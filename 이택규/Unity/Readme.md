@@ -5,4 +5,21 @@
 ### Version
 
 2020.3.6f1 version 사용
-![image (22).png](Picture/hub_version.PNG)
+
+![image (22).png](이택규/Picture/hub_version.PNG)
+
+
+###  Import Asset (Car)
+
+Asset Store에서 원하는 Asset을 가져온다.
+지하주차장의 환경세팅을 위한 주차되어 있는 차량을 구현해야함
+
+예시로 자동차 obj파일을 가져온다.
+
+Import -> Import New Asset
+
+![image (22).png](이택규/Picture/hub_version.PNG)
+
+Import 확인
+
+![image (22).png](이택규/Picture/hub_version.PNG)
