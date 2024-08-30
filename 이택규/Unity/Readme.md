@@ -23,3 +23,14 @@ Import -> Import New Asset
 Import 확인
 
 ![image (3).png](../Picture/confirm_Asset.PNG)
+
+scene에 Car Asset 표시 확인 
+Drag and Drop으로 진행
+
+![image (4).png](../Picture/scene_car.PNG)
+
+AssetBundle Editor를 활용하여 Build 진행
+
+![image (5).png](../Picture/AssetBundle_build.PNG)
+
+init -> create Bundle -> build Bundle
