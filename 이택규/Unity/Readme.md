@@ -6,7 +6,7 @@
 
 2020.3.6f1 version 사용
 
-![image (22).png](이택규/Picture/hub_version.PNG)
+![image (1).png](../Picture/hub_version.PNG)
 
 
 ###  Import Asset (Car)
@@ -18,8 +18,8 @@ Asset Store에서 원하는 Asset을 가져온다.
 
 Import -> Import New Asset
 
-![image (22).png](이택규/Picture/hub_version.PNG)
+![image (2).png](../Picture/import_Asset.PNG)
 
 Import 확인
 
-![image (22).png](이택규/Picture/hub_version.PNG)
+![image (3).png](../Picture/confirm_Asset.PNG)
