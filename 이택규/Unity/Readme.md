@@ -27,10 +27,26 @@ Import 확인
 scene에 Car Asset 표시 확인 
 Drag and Drop으로 진행
 
-![image (4).png](../Picture/scene_car.PNG)
+![image (4).png](../Picture/car_scene.PNG)
 
 AssetBundle Editor를 활용하여 Build 진행
 
 ![image (5).png](../Picture/AssetBundle_build.PNG)
 
 init -> create Bundle -> build Bundle
+
+C:\SimulatorBuild\AssetBundle\Debug\win_extra
+경로에 빌드 내용 확인
+manifest, obstacle 파일 확인
+
+그 후 빌드 파일 밑의 경로로 복사 붙여넣기
+C:\Users\SSAFY\Downloads\새로다운로드한런처\새로다운로드한런처\SSAFYLauncher_SSAFY_Win_Data\Bundle\v.4.5.210806.H3\Extra
+
+시뮬레이션 내에서 
+SSAFY -> Custom Editor -> Extra AssetBundle -> car.obstacle
+shift + 왼쪽 클릭으로 적용
+
+![image (5).png](../Picture/morai_car.PNG)
+Custom Object 불러오기 성공
+
+위와 같은 방식으로 Custom Object 주차장 도입 진행
