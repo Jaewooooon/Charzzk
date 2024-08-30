@@ -1,0 +1,52 @@
+### Unity Hub
+
+유니티는 3D 및 2D 비디오 게임의 개발 환경을 제공하는 게임 엔진이자, 3D 애니메이션과 건축 시각화, 가상현실 등 인터랙티브 콘텐츠 제작을 위한 통합 제작 도구.
+
+### Version
+
+2020.3.6f1 version 사용
+
+![image (1).png](../Picture/hub_version.PNG)
+
+
+###  Import Asset (Car)
+
+Asset Store에서 원하는 Asset을 가져온다.
+지하주차장의 환경세팅을 위한 주차되어 있는 차량을 구현해야함
+
+예시로 자동차 obj파일을 가져온다.
+
+Import -> Import New Asset
+
+![image (2).png](../Picture/import_Asset.PNG)
+
+Import 확인
+
+![image (3).png](../Picture/confirm_Asset.PNG)
+
+scene에 Car Asset 표시 확인 
+Drag and Drop으로 진행
+
+![image (4).png](../Picture/car_scene.PNG)
+
+AssetBundle Editor를 활용하여 Build 진행
+
+![image (5).png](../Picture/AssetBundle_build.PNG)
+
+init -> create Bundle -> build Bundle
+
+C:\SimulatorBuild\AssetBundle\Debug\win_extra
+경로에 빌드 내용 확인
+manifest, obstacle 파일 확인
+
+그 후 빌드 파일 밑의 경로로 복사 붙여넣기
+C:\Users\SSAFY\Downloads\새로다운로드한런처\새로다운로드한런처\SSAFYLauncher_SSAFY_Win_Data\Bundle\v.4.5.210806.H3\Extra
+
+시뮬레이션 내에서 
+SSAFY -> Custom Editor -> Extra AssetBundle -> car.obstacle
+shift + 왼쪽 클릭으로 적용
+
+![image (5).png](../Picture/morai_car.PNG)
+Custom Object 불러오기 성공
+
+위와 같은 방식으로 Custom Object 주차장 도입 진행
