@@ -1,0 +1,46 @@
+name: charzzk-docker-compose
+
+services:
+  database:
+    image: postgres:16.3-alpine
+    container_name: charzzk-database
+    environment:
+      POSTGRES_DB: charzzk
+      POSTGRES_USER: charzzk
+      POSTGRES_PASSWORD: charzzk
+      TIMEZONE: Asia/Seoul
+    ports:
+      - "5432:5432"
+    volumes:
+      - charzzk-db:/var/lib/postgresql/data
+
+  database-admin:
+    container_name: database-admin
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "charzzk@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "charzzk"
+    restart: always
+
+  cache-database:
+    image: redis:7.4-rc2-alpine
+    container_name: charzzk-cache-database
+    ports:
+      - "6379:6379"
+    entrypoint: redis-server --requirepass ssapick --maxmemory 128mb
+
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger
+    ports:
+      - "80:8081"
+    environment:
+      SWAGGER_JSON: /tmp/openapi3.json
+    volumes:
+      - ./build/api-spec:/tmp
+
+volumes:
+  charzzk-db:
