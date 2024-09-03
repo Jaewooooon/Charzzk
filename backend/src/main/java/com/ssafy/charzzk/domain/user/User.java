@@ -30,14 +30,19 @@ public class User extends BaseEntity {
     @Column(nullable = false, length = 50)
     private String username;
 
+    @Column(nullable = false)
+    private String nickname;
+
     @Builder
-    private User(String username) {
+    private User(String username, String nickname) {
         this.username = username;
+        this.nickname = nickname;
     }
 
-    public static User create(String username) {
+    public static User create(String username, String nickname) {
         return User.builder()
                 .username(username)
+                .nickname(nickname)
                 .build();
     }
 }
