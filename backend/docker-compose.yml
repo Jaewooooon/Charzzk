@@ -39,7 +39,7 @@ services:
       - "8000:8080"
     restart: on-failure
     environment:
-      SWAGGER_JSON: /usr/share/nginx/html/openapi3.json
+      SWAGGER_JSON: /usr/share/nginx/html/docs/openapi3.json
     volumes:
       - ./build/api-spec:/usr/share/nginx/html/docs
 
