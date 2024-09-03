@@ -76,8 +76,8 @@ openapi3 {
 			{ url = 'http://localhost:8080' },
 			{ url = 'http://production-api-server-url.com' }
 	]
-	title = 'Post Service API'
-	description = 'Post Service API description'
+	title = 'Charzzk API'
+	description = 'Charzzk의 API 문서입니다.'
 	version = '1.0.0'
 	format = 'json'
 }

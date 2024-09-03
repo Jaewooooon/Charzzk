@@ -1,5 +1,6 @@
 package com.ssafy.charzzk.docs.user;
 
+import com.epages.restdocs.apispec.ResourceSnippetParameters;
 import com.ssafy.charzzk.api.controller.user.UserController;
 import com.ssafy.charzzk.api.service.user.UserService;
 import com.ssafy.charzzk.api.service.user.response.UserResponse;
@@ -10,6 +11,7 @@ import org.springframework.restdocs.payload.JsonFieldType;
 
 import java.util.List;
 
+import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
@@ -50,18 +52,21 @@ public class UserControllerDocsTest extends RestDocsSupport {
                 .andExpect(status().isOk())
                 .andDo(document("user-get",
                         preprocessResponse(prettyPrint()),
-                        responseFields(
-                                fieldWithPath("code").type(JsonFieldType.NUMBER)
-                                        .description("코드"),
-                                fieldWithPath("status").type(JsonFieldType.STRING)
-                                        .description("상태"),
-                                fieldWithPath("message").type(JsonFieldType.STRING)
-                                        .description("메시지"),
-                                fieldWithPath("data[].id").type(JsonFieldType.NUMBER)
-                                        .description("아이디"),
-                                fieldWithPath("data[].username").type(JsonFieldType.STRING)
-                                        .description("유저 이름")
+                        resource(ResourceSnippetParameters.builder()
+                                .tag("User")
+                                .summary("유저 목록 조회")
+                                .responseFields(
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER)
+                                                .description("코드"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("message").type(JsonFieldType.STRING)
+                                                .description("메시지"),
+                                        fieldWithPath("data[].id").type(JsonFieldType.NUMBER)
+                                                .description("아이디"),
+                                        fieldWithPath("data[].username").type(JsonFieldType.STRING)
+                                                .description("유저 이름")
                                 )
-                        ));
+                                .build())));
     }
 }
