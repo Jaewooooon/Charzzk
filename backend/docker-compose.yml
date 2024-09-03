@@ -36,11 +36,13 @@ services:
     image: swaggerapi/swagger-ui
     container_name: swagger
     ports:
-      - "80:8081"
+      - "8000:8080"
+    restart: on-failure
     environment:
-      SWAGGER_JSON: /tmp/openapi3.json
+      SWAGGER_JSON: /usr/share/nginx/html/openapi3.json
     volumes:
-      - ./build/api-spec:/tmp
+      - ./build/api-spec:/usr/share/nginx/html/docs
+
 
 volumes:
   charzzk-db:
