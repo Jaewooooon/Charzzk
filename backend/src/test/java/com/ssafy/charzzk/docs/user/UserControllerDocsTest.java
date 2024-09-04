@@ -39,6 +39,7 @@ public class UserControllerDocsTest extends RestDocsSupport {
                 UserResponse.builder()
                         .id(1L)
                         .username("test")
+                        .nickname("test")
                         .build()
         );
 
@@ -65,7 +66,9 @@ public class UserControllerDocsTest extends RestDocsSupport {
                                         fieldWithPath("data[].id").type(JsonFieldType.NUMBER)
                                                 .description("아이디"),
                                         fieldWithPath("data[].username").type(JsonFieldType.STRING)
-                                                .description("유저 이름")
+                                                .description("유저 이름"),
+                                        fieldWithPath("data[].nickname").type(JsonFieldType.STRING)
+                                                .description("닉네임")
                                 )
                                 .build())));
     }

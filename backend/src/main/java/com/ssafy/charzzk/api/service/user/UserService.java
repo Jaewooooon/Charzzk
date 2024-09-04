@@ -1,5 +1,6 @@
 package com.ssafy.charzzk.api.service.user;
 
+import com.ssafy.charzzk.api.service.user.request.UserUpdateServiceRequest;
 import com.ssafy.charzzk.api.service.user.response.UserResponse;
 import com.ssafy.charzzk.domain.user.User;
 import com.ssafy.charzzk.domain.user.UserRepository;
@@ -19,5 +20,10 @@ public class UserService {
         List<User> users = userRepository.findAll();
 
         return users.stream().map(UserResponse::of).toList();
+    }
+
+    @Transactional
+    public UserResponse updateNickname(User user, UserUpdateServiceRequest request) {
+        return null;
     }
 }
