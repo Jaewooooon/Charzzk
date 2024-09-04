@@ -43,9 +43,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         AtomicBoolean isNew = new AtomicBoolean(false);
         User user = userRepository.findByUsername(username).orElseGet(() -> {
             isNew.set(true);
-            return User.builder()
+            return userRepository.save(User.builder()
                     .username(username)
-                    .build();
+                    .nickname("")
+                    .build());
         });
 
         return new CustomOAuth2User(user);
