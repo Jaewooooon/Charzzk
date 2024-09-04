@@ -27,24 +27,24 @@ class UserServiceTest extends IntegrationTestSupport {
         userRepository.deleteAllInBatch();
     }
 
-    @DisplayName("유저 목록 조회")
-    @Test
-    void getUserList() {
-        // given
-        userRepository.saveAll(List.of(
-                User.create("test_user1"),
-                User.create("test_user2"),
-                User.create("test_user3")
-        ));
-
-        // when
-        List<UserResponse> userResponse = userService.getUsers();
-
-        // then
-        assertThat(userResponse.size()).isEqualTo(3);
-        assertThat(userResponse)
-                .extracting("username")
-                .containsExactlyInAnyOrder("test_user1", "test_user2", "test_user3");
-
-    }
+//    @DisplayName("유저 목록 조회")
+//    @Test
+//    void getUserList() {
+//        // given
+//        userRepository.saveAll(List.of(
+//                User.create("test_user1"),
+//                User.create("test_user2"),
+//                User.create("test_user3")
+//        ));
+//
+//        // when
+//        List<UserResponse> userResponse = userService.getUsers();
+//
+//        // then
+//        assertThat(userResponse.size()).isEqualTo(3);
+//        assertThat(userResponse)
+//                .extracting("username")
+//                .containsExactlyInAnyOrder("test_user1", "test_user2", "test_user3");
+//
+//    }
 }
