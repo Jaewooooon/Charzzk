@@ -29,6 +29,8 @@ public class Car extends BaseEntity {
     @Column(nullable = false)
     private String number;
 
+    private String nickname;
+
     @Builder
     private Car(User user, CarType carType, String number) {
         this.user = user;

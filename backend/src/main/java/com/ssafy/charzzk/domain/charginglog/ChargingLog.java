@@ -1,5 +1,6 @@
 package com.ssafy.charzzk.domain.charginglog;
 
+import com.ssafy.charzzk.domain.BaseEntity;
 import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.charger.Charger;
 import jakarta.persistence.*;
@@ -8,12 +9,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ChargingLog {
+public class ChargingLog extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,13 +30,13 @@ public class ChargingLog {
     private Charger charger;
 
     @Column(name = "start_time", nullable = false)
-    private LocalTime startTime;
+    private LocalDateTime startTime;
 
     @Column(name = "end_time", nullable = false)
-    private LocalTime endTime;
+    private LocalDateTime endTime;
 
     @Builder
-    private ChargingLog(Car car, Charger charger, LocalTime startTime, LocalTime endTime) {
+    private ChargingLog(Car car, Charger charger, LocalDateTime startTime, LocalDateTime endTime) {
         this.car = car;
         this.charger = charger;
         this.startTime = startTime;

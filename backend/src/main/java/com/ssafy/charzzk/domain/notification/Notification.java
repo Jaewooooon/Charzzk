@@ -22,11 +22,11 @@ public class Notification {
     private Car car;
 
     @Enumerated(EnumType.STRING)
-    private NotificationType name;
+    private NotificationType type;
 
     @Builder
-    private Notification(Car car, NotificationType name) {
+    private Notification(Car car, NotificationType type) {
         this.car = car;
-        this.name = name;
+        this.type = type;
     }
 }
