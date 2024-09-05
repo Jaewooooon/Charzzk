@@ -2,7 +2,6 @@ package com.ssafy.charzzk.api.controller;
 
 import com.ssafy.charzzk.ControllerTestSupport;
 import com.ssafy.charzzk.api.controller.user.request.UserUpdateRequest;
-import com.ssafy.charzzk.api.service.user.request.UserUpdateServiceRequest;
 import com.ssafy.charzzk.api.service.user.response.UserResponse;
 import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
@@ -56,7 +55,7 @@ class UserControllerTest extends ControllerTestSupport {
                 .nickname("New nickname")
                 .build();
 
-        given(userService.updateNickname(any(User.class), any(UserUpdateServiceRequest.class)))
+        given(userService.getUser(any(User.class)))
                 .willReturn(response);
 
         // when

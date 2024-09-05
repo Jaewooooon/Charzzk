@@ -30,7 +30,7 @@ public class UserController {
             @CurrentUser User user,
             @Valid @RequestBody UserUpdateRequest request
     ) {
-        return ApiResponse.ok(userService.updateNickname(user, request.toServiceRequest()));
-//        return ApiResponse.ok(userService.updateNickname(request.toServiceRequest()));
+        userService.updateNickname(user, request.toServiceRequest());
+        return ApiResponse.ok(userService.getUser(user));
     }
 }

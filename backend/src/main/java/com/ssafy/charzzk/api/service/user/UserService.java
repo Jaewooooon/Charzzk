@@ -22,8 +22,11 @@ public class UserService {
         return users.stream().map(UserResponse::of).toList();
     }
 
-    @Transactional
-    public UserResponse updateNickname(User user, UserUpdateServiceRequest request) {
+    public UserResponse getUser(User user) {
         return null;
+    }
+
+    @Transactional
+    public void updateNickname(User user, UserUpdateServiceRequest request) {
     }
 }

@@ -1,28 +1,27 @@
 package com.ssafy.charzzk;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ssafy.charzzk.api.controller.user.UserController;
 import com.ssafy.charzzk.api.service.auth.CustomUserService;
 import com.ssafy.charzzk.api.service.auth.JWTService;
-import com.ssafy.charzzk.api.controller.user.UserController;
 import com.ssafy.charzzk.api.service.user.UserService;
 import com.ssafy.charzzk.core.configuration.SecurityConfig;
 import com.ssafy.charzzk.core.filter.JWTFilter;
 import com.ssafy.charzzk.domain.user.User;
 import com.ssafy.charzzk.domain.user.UserRepository;
-import jakarta.annotation.PostConstruct;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.function.Function;
+import java.util.Optional;
 
-import static org.mockito.BDDMockito.given;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @WebMvcTest(
         controllers = {UserController.class},
@@ -31,6 +30,7 @@ import static org.mockito.BDDMockito.given;
                 @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {JWTFilter.class})
         }
 )
+@Import(CustomUserService.class)
 public abstract class ControllerTestSupport {
 
     @Autowired
@@ -45,15 +45,12 @@ public abstract class ControllerTestSupport {
     @MockBean
     protected JWTService jwtService;
 
+    @MockBean
+    protected UserRepository userRepository;
 
-    @TestConfiguration
-    static class TestConfig {
-        @Bean
-        public Function<Object, User> fetchUser() {
-            return principal -> {
-                // Implement test-specific logic or mock
-                return null;
-            };
-        }
+    @BeforeEach
+    public void setUp() {
+        User user = User.create("test-user", "test-user");
+        when(userRepository.findByUsername(any())).thenReturn(Optional.of(user));
     }
 }
