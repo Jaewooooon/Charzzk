@@ -34,6 +34,10 @@ public class UserService {
 
     @Transactional
     public void updateNickname(User user, UserUpdateServiceRequest request) {
+        if (userRepository.existsByNickname(request.getNickname())) {
+            throw new BaseException(ErrorCode.NICKNAME_ALREADY_EXISTS);
+        }
+
         user.updateNickname(request.getNickname());
         userRepository.save(user);
     }
