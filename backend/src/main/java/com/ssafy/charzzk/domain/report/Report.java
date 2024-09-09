@@ -27,10 +27,28 @@ public class Report extends BaseEntity {
     @JoinColumn(name = "parking_lot_id", nullable = false)
     private ParkingLot parkingLot;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private ReportType type;
+
+    @Column(nullable = false)
+    private String content;
+
+    @Column(nullable = false)
+    private String image;
+
+    @Column(nullable = false)
+    private boolean isRead;
+
+
     @Builder
-    private Report(User user, ParkingLot parkingLot) {
+    private Report(User user, ParkingLot parkingLot, ReportType type, String content, String image, boolean isRead) {
         this.user = user;
         this.parkingLot = parkingLot;
+        this.type = type;
+        this.content = content;
+        this.image = image;
+        this.isRead = isRead;
     }
 
 }
