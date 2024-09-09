@@ -32,11 +32,16 @@ public class Reservation extends BaseEntity {
     @Column(name = "end_time", nullable = false)
     private LocalDateTime endTime;
 
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus status;
+
+
     @Builder
-    private Reservation(Car car, Charger charger, LocalDateTime startTime, LocalDateTime endTime) {
+    private Reservation(Car car, Charger charger, LocalDateTime startTime, LocalDateTime endTime, ReservationStatus status) {
         this.car = car;
         this.charger = charger;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.status = status;
     }
 }

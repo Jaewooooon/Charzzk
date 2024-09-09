@@ -21,19 +21,18 @@ public class ParkingLot extends BaseEntity {
     private String name;
 
     @Embedded
-    private Address address;
-
-    @Embedded
     private Location location;
 
     private String image;
 
+    private String parkingMapImage;
+
     @Builder
-    private ParkingLot(String name, Address address, Location location, String image) {
+    private ParkingLot(String name, Location location, String image, String parkingMapImage) {
         this.name = name;
-        this.address = address;
         this.location = location;
         this.image = image;
+        this.parkingMapImage = parkingMapImage;
     }
 
 
