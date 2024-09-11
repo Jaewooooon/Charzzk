@@ -5,12 +5,12 @@ services:
     image: postgres:16.3-alpine
     container_name: charzzk-database
     environment:
-      POSTGRES_DB: charzzk
-      POSTGRES_USER: charzzk
-      POSTGRES_PASSWORD: charzzk
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       TIMEZONE: Asia/Seoul
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT}:5432"
     volumes:
       - charzzk-db:/var/lib/postgresql/data
 
@@ -18,31 +18,18 @@ services:
     container_name: database-admin
     image: dpage/pgadmin4
     ports:
-      - "5050:80"
+      - "${PGADMIN_PORT}:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: "charzzk@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "charzzk"
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     restart: always
 
   cache-database:
     image: redis:7.4-rc2-alpine
     container_name: charzzk-cache-database
     ports:
-      - "6379:6379"
-    entrypoint: redis-server --requirepass ssapick --maxmemory 128mb
-
-
-  swagger-ui:
-    image: swaggerapi/swagger-ui
-    container_name: swagger
-    ports:
-      - "8000:8080"
-    restart: on-failure
-    environment:
-      SWAGGER_JSON: /usr/share/nginx/html/docs/openapi3.json
-    volumes:
-      - ./build/api-spec:/usr/share/nginx/html/docs
-
+      - "${REDIS_PORT}:6379"
+    entrypoint: redis-server --requirepass ${REDIS_PASSWORD} --maxmemory 128mb
 
 volumes:
   charzzk-db:
