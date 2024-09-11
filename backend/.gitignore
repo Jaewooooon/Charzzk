@@ -41,3 +41,5 @@ out/
 application-dev.properties
 application-oauth2.properties
 application-jwt.properties
+
+.env
