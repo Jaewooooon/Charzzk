@@ -1,36 +1,37 @@
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist, Point, Point32
-from ssafy_msgs.msg import TurtlebotStatus
-from sensor_msgs.msg import LaserScan, PointCloud
-from squaternion import Quaternion
 from nav_msgs.msg import Odometry, Path
+from ssafy_msgs.msg import TurtlebotStatus
+from sensor_msgs.msg import LaserScan
+from squaternion import Quaternion
 from math import pi, cos, sin, sqrt, atan2
 import numpy as np
+import os
 
 class followTheCarrot(Node):
 
     def __init__(self):
         super().__init__('path_tracking')
         self.cmd_pub = self.create_publisher(Twist, 'cmd_vel', 10)
+        self.path_pub = self.create_publisher(Path, 'new_path', 10)  # 경로를 기록한 후 publish 할 publisher
         
-        # 로봇의 위치(/odom), 로봇의 상태/turtlebot_status), 경로(/local_path)를 받아
-        # 로봇의 제어 입력(/cmd_vel)을 보(내주기 위한 publish, subscriber 생성
+        # 로봇의 위치(/odom), 로봇의 상태(/turtlebot_status), 경로(/local_path)를 받아
+        # 로봇의 제어 입력(/cmd_vel)을 보내주기 위한 publish, subscriber 생성
         self.odom_sub = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
         self.status_sub = self.create_subscription(TurtlebotStatus, '/turtlebot_status', self.status_callback, 10)
         self.path_sub = self.create_subscription(Path, '/local_path', self.path_callback, 10)
-        
-        # 라이다 데이터를 수신하는 subscriber 생성
         self.lidar_sub = self.create_subscription(LaserScan, '/scan', self.lidar_callback, 10)
         
         time_period = 0.1
         self.timer = self.create_timer(time_period, self.timer_callback)
-
+        
+        # 초기 변수 설정
         self.is_odom = False
         self.is_path = False
         self.is_status = False
-        self.is_lidar = False # 라이다 메시지 수신여부 저장 변수
-        self.collision = False # 장애물 충돌여부 저장 변수
+        self.is_lidar = False
+        self.collision = False
 
         self.odom_msg = Odometry()
         self.path_msg = Path()
@@ -38,25 +39,24 @@ class followTheCarrot(Node):
         self.lidar_msg = LaserScan()
         self.robot_yaw = 0.0
         self.lidar_points = []
-
-        # 전방주시 거리(설정 단위는 m)
         self.lfd = 0.1
         self.min_lfd = 0.1
         self.max_lfd = 2.0
-
-        # 포인트 초기화
         self.forward_point = None
         self.current_point = None
-
-        # 충돌 감지 거리
         self.collision_threshold = 0.5
+
+        # 경로 기록을 위한 변수
+        self.previous_position = None
+        self.path_recording = Path()  # 기록된 경로를 저장할 Path 메시지
+        self.path_file = open(os.path.join(os.getcwd(), 'path', 'test.txt'), 'w')  # 기록할 경로 파일 오픈
 
     def lidar_callback(self, msg):
         # 라이다 데이터 수신 후, 극좌표 -> 직교좌표 변환
         self.lidar_msg=msg
         if self.is_path ==True and self.is_odom:
             
-            pcd_msg=PointCloud()
+            pcd_msg = PointCloud()
             pcd_msg.header.frame_id='map'
 
             pose_x = self.odom_msg.pose.pose.position.x
@@ -120,90 +120,116 @@ class followTheCarrot(Node):
                     return True
         
         return False
+    
+    # 터틀봇의 현재 위치를 기록하는 함수. 일정 거리 이상 이동 시에만 경로를 기록하고 파일에 저장.
+    def record_path(self):
+        current_position = self.odom_msg.pose.pose.position
+        if self.previous_position is None:
+            self.previous_position = current_position
+            return
 
-    # 로봇 제어 값을 계산할 타이머 콜백함수
+        # 이전 위치와 현재 위치 간 거리 계산
+        distance = sqrt(
+            pow(current_position.x - self.previous_position.x, 2) +
+            pow(current_position.y - self.previous_position.y, 2)
+        )
+
+        if distance > 0.1:  # 10cm 이상 이동한 경우에만 경로점 추가
+            self.previous_position = current_position
+
+            # 경로 메시지에 새로운 경로점 추가
+            path_pose = self.odom_msg.pose
+            self.path_recording.poses.append(path_pose)
+
+            # 경로를 publish
+            self.path_pub.publish(self.path_recording)
+
+            # 경로를 텍스트 파일에 기록 (탭으로 구분)
+            self.path_file.write(f"{current_position.x}\t{current_position.y}\n")
+
+            # 로깅
+            self.get_logger().info(f"Path recorded at position: ({current_position.x}, {current_position.y})")
+
+    # 기록된 경로를 불러와서 경로 추종 알고리즘을 실행하는 함수
+    def load_path(self):
+        with open(os.path.join(os.getcwd(), 'path', 'path.txt'), 'r') as file:
+            path_msg = Path()
+            for line in file:
+                x, y = map(float, line.strip().split('\t'))
+                pose = self.odom_msg.pose  # 현재 odom 메시지를 사용하여 경로점을 생성
+                pose.position.x = x
+                pose.position.y = y
+                path_msg.poses.append(pose)
+
+            self.path_msg = path_msg
+            self.is_path = True
+            self.get_logger().info(f"Loaded path with {len(self.path_msg.poses)} waypoints")
+
     def timer_callback(self):
+        # 경로 기록 함수 호출
+        if self.is_odom and not self.is_path:
+            self.record_path()
+
+        # 경로가 있으면 경로 추종
         if self.is_status and self.is_odom and self.is_path and self.is_lidar:
             if len(self.path_msg.poses) > 1:
                 self.is_look_forward_point = False
-
-                # odom으로부터 받은 x,y 좌표 저장
                 robot_pose_x = self.odom_msg.pose.pose.position.x
                 robot_pose_y = self.odom_msg.pose.pose.position.y
                 
-                # 목적지와의 거리 계산
                 goal_point = self.path_msg.poses[-1].pose.position
                 goal_distance = sqrt(pow(goal_point.x - robot_pose_x, 2) + pow(goal_point.y - robot_pose_y, 2))
 
-                # 목적지 도착 시 멈춤
-                if goal_distance < 0.1:  # 임계값 설정 (10cm 이내일 때)
+                if goal_distance < 0.1:
                     self.cmd_msg.linear.x = 0.0
                     self.cmd_msg.angular.z = 0.0
                     self.cmd_pub.publish(self.cmd_msg)
                     self.get_logger().info("Arrived at goal. Stopping robot.")
                     return
                 
-                # 충돌 감지
                 if self.check_collision(robot_pose_x, robot_pose_y):
-                    # 충돌 감지 시 정지
                     self.cmd_msg.linear.x = 0.0
                     self.cmd_msg.angular.z = 0.0
                     self.cmd_pub.publish(self.cmd_msg)
                     self.get_logger().info("Collision detected! Stopping robot.")
                     return
 
-                # 경로 탐색 및 전방 포인트 찾기
                 lateral_error = sqrt(pow(self.path_msg.poses[0].pose.position.x - robot_pose_x, 2) + pow(self.path_msg.poses[0].pose.position.y - robot_pose_y, 2))
                 self.lfd = (self.status_msg.twist.linear.x + lateral_error) * 0.7
                 self.lfd = max(self.min_lfd, min(self.lfd, self.max_lfd))
 
                 min_dis = float('inf')
                 for waypoint in self.path_msg.poses:
-                    # 로봇과 각 waypoint 사이의 거리 계산
                     dis = sqrt(pow(waypoint.pose.position.x - robot_pose_x, 2) + pow(waypoint.pose.position.y - robot_pose_y, 2))
-
-                    # Look-Ahead Distance(lfd)에 가장 근접한 포인트를 선택
                     if dis > self.lfd and dis < min_dis:
                         min_dis = dis
                         self.forward_point = waypoint.pose.position
                         self.is_look_forward_point = True
 
                 if self.is_look_forward_point:
-                    # 변환행렬
                     global_forward_point = [self.forward_point.x, self.forward_point.y, 1]
                     trans_matrix = np.array([
                         [cos(self.robot_yaw), -sin(self.robot_yaw), robot_pose_x],
                         [sin(self.robot_yaw), cos(self.robot_yaw), robot_pose_y],
                         [0, 0, 1]
                     ])
-                    # 변환행렬의 역행렬
                     det_trans_matrix = np.linalg.inv(trans_matrix)
                     local_forward_point = det_trans_matrix.dot(global_forward_point)
-                    
                     theta = -atan2(local_forward_point[1], local_forward_point[0])
-                    self.cmd_msg.linear.x = max(0.5, 1.0 - abs(theta))  # 각도에 따라 선속도를 조정
+                    self.cmd_msg.linear.x = max(0.5, 1.0 - abs(theta))
                     self.cmd_msg.angular.z = theta * 1.5
-                     
-                    # 충돌체크 후 정지
-                    if self.collision:
-                        self.cmd_msg.linear.x=0.0
-
                     self.cmd_pub.publish(self.cmd_msg)
-                
                 else:
-                    # 경로를 찾을 수 없을 때 정지
                     self.cmd_msg.linear.x = 0.0
                     self.cmd_msg.angular.z = 0.0
                     self.cmd_pub.publish(self.cmd_msg)
 
-    # odom 토픽을 받아 위치 저장. 쿼터니언을 오일러각으로 변환해서 로봇의 yaw로 사용
     def odom_callback(self, msg):
         self.is_odom = True
         self.odom_msg = msg
         q = Quaternion(msg.pose.pose.orientation.w, msg.pose.pose.orientation.x, msg.pose.pose.orientation.y, msg.pose.pose.orientation.z)
         _, _, self.robot_yaw = q.to_euler()
 
-    # 경로, 상태 데이터 저장
     def path_callback(self, msg):
         self.is_path = True
         self.path_msg = msg

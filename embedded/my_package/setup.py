@@ -29,7 +29,8 @@ setup(
             'tf_broadcast = my_package.tf_broadcast:main',
             'path=my_package.path:main',
             'path_tracking=my_package.path_tracking:main',
-            'collision_check=my_package.collision_check:main'
+            'collision_check=my_package.collision_check:main',
+            'make_path=my_package.make_path:main'
         ],
     },
 )

@@ -12,7 +12,7 @@ class Communicator(Node):
         self.timer = self.create_timer(0.1, self.timer_callback)
         
         self.cmd_msg = Twist()
-        self.turtlebot_status_msg = None() # 초기화할 때 None으로 설정
+        self.turtlebot_status_msg = None() # 초기화
 
     def status_callback(self, msg):
         self.turtlebot_status_msg = msg()
