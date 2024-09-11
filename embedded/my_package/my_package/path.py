@@ -1,10 +1,8 @@
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist,PoseStamped
-from squaternion import Quaternion
+from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Path, Odometry
-
-from math import pi, sqrt
+from math import sqrt
 import os
 
 class pathPub(Node):
@@ -13,29 +11,36 @@ class pathPub(Node):
         super().__init__('path_pub')
         # 로봇의 위치(/odom)을 받아서 전역경로(/global_path), 지역경로(/local_path)를 
         # 내보내주기 위해 publisher, subscriber 생성
-        self.global_path_pub = self.create_publisher(Path,'/global_path', 10)
-        self.local_path_pub = self.create_publisher(Path,'/local_path', 10)
+        self.global_path_pub = self.create_publisher(Path, '/global_path', 10)
+        self.local_path_pub = self.create_publisher(Path, '/local_path', 10)
         self.subscription = self.create_subscription(Odometry, '/odom', self.listener_callback, 10)
 
         self.odom_msg = Odometry()
-        self.is_odom=False
+        self.is_odom = False
 
         self.global_path_msg = Path()
         self.global_path_msg.header.frame_id = 'map'
 
         # 파일 읽어서 global path 생성
-        self.f=open('C:\\Users\\SSAFY\\Desktop\\catkin_ws\\src\\my_package\\path.txt', 'r')
+        self.f = open('C:\\Users\\SSAFY\\Desktop\\catkin_ws\\test.txt', 'r')
         lines = self.f.readlines()
-        #print("lines : ",lines)
+        self.f.close()
+
         # 라인을 split 해서 x,y를 따로 나누고, global_path_msg에 append 함
         for line in lines:
-            tmp = line.split()
-            read_pose = PoseStamped()
-            read_pose.pose.position.x = float(tmp[0])
-            read_pose.pose.position.y = float(tmp[1])
-            read_pose.pose.orientation.w = 1.0
-            self.global_path_msg.poses.append(read_pose)
-        self.f.close()
+            # 쉼표 제거 및 공백 제거
+            tmp = line.replace(',', '').split()
+            if len(tmp) == 2:
+                try:
+                    x = float(tmp[0])
+                    y = float(tmp[1])
+                    read_pose = PoseStamped()
+                    read_pose.pose.position.x = x
+                    read_pose.pose.position.y = y
+                    read_pose.pose.orientation.w = 1.0
+                    self.global_path_msg.poses.append(read_pose)
+                except ValueError:
+                    self.get_logger().warn(f"Skipping line due to conversion error: {line}")
 
         # 주기가 0.02초인 타이머 함수 설정
         time_period = 0.02
@@ -46,15 +51,15 @@ class pathPub(Node):
 
     # odometry 메시지 저장
     def listener_callback(self, msg):
-        self.is_odom=True
-        self.odom_msg=msg
+        self.is_odom = True
+        self.odom_msg = msg
 
     def timer_callback(self):
 
         local_path_msg = Path()
         local_path_msg.header.frame_id = "/map"
 
-        if self.is_odom :
+        if self.is_odom:
             x = self.odom_msg.pose.pose.position.x
             y = self.odom_msg.pose.pose.position.y
 
@@ -66,7 +71,7 @@ class pathPub(Node):
                 distance = sqrt(pow(x - waypoint.pose.position.x, 2) + pow(y - waypoint.pose.position.y, 2))
                 if distance < min_dis:
                     min_dis = distance
-                    current_waypoint =  i
+                    current_waypoint = i
 
             # 로컬 경로 발행
             if current_waypoint != -1:
@@ -76,18 +81,18 @@ class pathPub(Node):
                         tmp_pose = PoseStamped()
                         tmp_pose.pose.position.x = self.global_path_msg.poses[num].pose.position.x
                         tmp_pose.pose.position.y = self.global_path_msg.poses[num].pose.position.y
-                        tmp_pose.pose.orientation.w =  1.0
+                        tmp_pose.pose.orientation.w = 1.0
                         local_path_msg.poses.append(tmp_pose)
-                else :
+                else:
                     # global path의 끝을 넘어갈 때
                     for num in range(current_waypoint, len(self.global_path_msg.poses)):
                         tmp_pose = PoseStamped()
                         tmp_pose.pose.position.x = self.global_path_msg.poses[num].pose.position.x
                         tmp_pose.pose.position.y = self.global_path_msg.poses[num].pose.position.y
-                        tmp_pose.pose.orientation.w =  1.0
+                        tmp_pose.pose.orientation.w = 1.0
                         local_path_msg.poses.append(tmp_pose)
-            
-        self.local_path_pub.publish(local_path_msg) 
+
+        self.local_path_pub.publish(local_path_msg)
 
         # global path 주기적 발행
         if self.count % 10 == 0:
