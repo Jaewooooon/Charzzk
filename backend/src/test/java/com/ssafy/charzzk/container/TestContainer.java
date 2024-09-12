@@ -9,20 +9,27 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Testcontainers
 @PropertySource("classpath:application-test.properties")
 public class TestContainer {
-    private static final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:16.3-alpine")
-            .withDatabaseName("charzzk-test-db")
-            .withUsername("test")
-            .withPassword("test");
+    private static final String DATABASE_NAME = "charzzk-test-db";
+    private static final String USERNAME = "charzzk-test-user";
+    private static final String PASSWORD = "charzzk-test-password";
+    private static final PostgreSQLContainer<?> postgreSQLContainer;
 
     static {
-        postgresContainer.start();
+        postgreSQLContainer = new PostgreSQLContainer("postgres:16.3-alpine")
+                .withDatabaseName(DATABASE_NAME)
+                .withUsername(USERNAME)
+                .withPassword(PASSWORD);
+
+        postgreSQLContainer.start();
+
     }
 
     @DynamicPropertySource
-    static void postgresProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", postgresContainer::getJdbcUrl);
-        registry.add("spring.datasource.name", postgresContainer::getDatabaseName);
-        registry.add("spring.datasource.username", postgresContainer::getUsername);
-        registry.add("spring.datasource.password", postgresContainer::getPassword);
+    public static void overrideProps(DynamicPropertyRegistry dynamicPropertyRegistry) {
+        dynamicPropertyRegistry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);
+        dynamicPropertyRegistry.add("spring.datasource.name", () -> DATABASE_NAME);
+        dynamicPropertyRegistry.add("spring.datasource.username", () -> USERNAME);
+        dynamicPropertyRegistry.add("spring.datasource.password", () -> PASSWORD);
+        dynamicPropertyRegistry.add("spring.jpa.hibernate.ddl-auto", () -> "create");
     }
 }
