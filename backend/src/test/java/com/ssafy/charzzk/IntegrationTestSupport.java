@@ -18,7 +18,7 @@ import java.util.function.Function;
         "spring.data.redis.port=6379",
         "spring.data.redis.password=yourpassword"
 })
-public abstract class IntegrationTestSupport extends TestContainer {
+public abstract class IntegrationTestSupport{
 
     @MockBean
     protected RedisConnectionFactory redisConnectionFactory;
