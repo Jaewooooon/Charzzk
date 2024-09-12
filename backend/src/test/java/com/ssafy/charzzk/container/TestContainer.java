@@ -1,11 +1,13 @@
 package com.ssafy.charzzk.container;
 
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Testcontainers
+@PropertySource("classpath:application-test.properties")
 public class TestContainer {
     private static final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:16.3-alpine")
             .withDatabaseName("charzzk-test-db")
