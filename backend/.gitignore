@@ -39,7 +39,7 @@ out/
 
 ### properties ###
 application-dev.properties
-application-oauth2.properties
-application-jwt.properties
+application-prod.properties
+
 
 .env
