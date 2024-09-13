@@ -13,11 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.function.Function;
 
-@SpringBootTest(properties = {
-        "spring.data.redis.host=localhost",
-        "spring.data.redis.port=6379",
-        "spring.data.redis.password=yourpassword"
-})
+@SpringBootTest
 public abstract class IntegrationTestSupport{
 
     @MockBean
