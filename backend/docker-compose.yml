@@ -31,5 +31,17 @@ services:
       - "${REDIS_PORT}:6379"
     entrypoint: redis-server --requirepass ${REDIS_PASSWORD} --maxmemory 128mb
 
+
+  backend-server:
+    container_name: charzzk-backend-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${BACKEND_PORT}:8080"
+    depends_on:
+      - database
+      - cache-database
+
 volumes:
   charzzk-db:
