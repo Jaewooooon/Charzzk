@@ -25,8 +25,8 @@ public enum ErrorCode {
 	NICKNAME_ALREADY_EXISTS(2011, HttpStatus.BAD_REQUEST, "이미 존재하는 사용자 이름입니다."),
 
 
+    CAR_NOT_FOUND(3000, HttpStatus.NOT_FOUND, "차량을 찾을 수 없습니다.");
 
-	;
 	private final int code;
 	private final HttpStatus status;
 	private final String message;

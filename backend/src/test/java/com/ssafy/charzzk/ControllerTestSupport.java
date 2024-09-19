@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.charzzk.api.controller.user.UserController;
 import com.ssafy.charzzk.api.service.auth.CustomUserService;
 import com.ssafy.charzzk.api.service.auth.JWTService;
+import com.ssafy.charzzk.api.service.car.CarService;
 import com.ssafy.charzzk.api.service.user.UserService;
 import com.ssafy.charzzk.core.configuration.SecurityConfig;
 import com.ssafy.charzzk.core.filter.JWTFilter;
@@ -41,6 +42,9 @@ public abstract class ControllerTestSupport {
 
     @MockBean
     protected UserService userService;
+
+    @MockBean
+    protected CarService carService;
 
     @MockBean
     protected JWTService jwtService;
