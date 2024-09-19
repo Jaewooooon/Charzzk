@@ -1,0 +1,169 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+.MainPage_ContainerBox{
+    min-height: 100vh; /* 화면 전체 높이 */
+    width: 100%; /* 화면 전체 너비 */
+    background: linear-gradient(to top, #836FFF, #000000) ;
+    margin: 0;
+}
+
+.MainPage_ButtonBox{
+    background-color: #F2F2F2;
+    width: 100%; /* 부모 요소 너비의 100%로 설정 */
+    height: 60%;
+    border-radius: 16px 16px 0 0; /* 둥근 모서리 (위쪽만) */
+    padding: 20px; /* 내부 여백 */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed; /* 화면 아래에 고정 */
+    bottom: 0; /* 아래쪽에 위치 */
+    left: 50%; /* 수평 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬을 위해 변환 */
+    z-index: 100; /* 다른 요소보다 위에 배치 */
+    box-sizing: border-box; /* 패딩을 포함하여 계산 */
+}
+
+.Car_Information{
+    color: white;
+    padding: 50px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.Car_Image{
+    margin-top: 20px;
+    width: 85%; 
+    height: auto;
+}
+.Car_MonthInformation{
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+}
+.Car_MonthInformation1{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-right: 30px;
+    padding-bottom: 5px;
+}
+.Car_MonthInformation2{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-right: 30px;
+}
+.ButtonContainer {
+    display: flex; /* Flexbox 사용 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 20px; /* 버튼 사이의 간격 */
+    margin-top: 20px; /* 상단 여백 */
+    width: 100%; /* 부모 컨테이너의 너비 */
+    max-width: 600px; /* 최대 너비 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+  }
+  
+  .ChargeFind_Button,
+  .ChargeStart_Button {
+    background-color: #EAEAED; /* 버튼 기본 배경색 */
+    border: none; /* 테두리 제거 */
+    flex: 1; /* Flexbox에서 동일한 비율로 크기 설정 */
+    height: 160px; /* 버튼의 고정 높이 */
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    cursor: pointer;
+    transition: background-color 0.3s; /* 배경색 전환 효과 */
+    box-sizing: border-box; /* 패딩 포함 크기 계산 */
+    width: 140px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ChargeStart_Button {
+    background-color: #E8F2F0; /* 다른 버튼 배경색 */
+    padding-top: 22px;
+  }
+  
+  .ChargeFind_Button:hover,
+  .ChargeStart_Button:hover {
+    background-color: #d4d4d6; /* 마우스 오버 시 배경색 */
+  }
+
+  .ChargeStatus_Button{
+    border: none;
+    background-image: url(../assets/chargestatus_image.PNG);
+    background-size: cover;
+    margin-top: 30px;
+    padding-left: 150px;
+    padding-top: 50px;
+    height: 104px;
+    width: 312px;
+    border-radius: 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .MyPage{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    width: 300px;
+    justify-content: center
+  }
+
+  .Mypage_Car, .Mypage_Payment, .Mypage_ReportIssue {
+    background-color: transparent;
+    font-size: 11px;
+    font-weight: bolder;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+    height: 80px;
+    border: none;
+  }
+
+  .Mypage_Car, .Mypage_Payment{
+    border-right: solid 1px gainsboro;
+  }
+  .MyPage a {
+    text-decoration: none; /* 링크의 밑줄 제거 */
+  }
+
+  .ChargePage_Content, .MyPage_Content{
+    color: rgb(136, 135, 135);
+    margin-bottom: 10px;
+    padding-right: 220px;
+    font-weight: bold;
+  }
+  .MyPage_Content{
+    margin-top: 20px;
+  }
+
+
+  .ChargeStatus_img{
+    padding-right: 40px;
+    margin: 0px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .ChargeStart_Image{
+    padding-left: 30px;
+    height: 100px;
+    margin-top: 10px;
+  }
+
+  .ChargeStart_Button_Content{
+    padding-right: 40px;
+  }
