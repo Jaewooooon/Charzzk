@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
 
-    @Query("SELECT c FROM Car c JOIN FETCH c.carType")
+    @Query("SELECT c FROM Car c JOIN FETCH c.carType WHERE c.id = :carId")
     Optional<Car> findById(Long carId);
 
 }
