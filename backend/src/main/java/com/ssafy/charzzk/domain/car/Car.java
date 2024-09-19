@@ -9,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(
+        uniqueConstraints = {@UniqueConstraint(columnNames = "number")}
+)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Car extends BaseEntity {
@@ -18,11 +21,11 @@ public class Car extends BaseEntity {
     @Column(name = "car_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "car_type_id", nullable = false)
     private CarType carType;
 

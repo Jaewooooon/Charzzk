@@ -26,6 +26,12 @@ public class CarService {
         CarType carType = carTypeRepository.findById(request.getCarTypeId())
                 .orElseThrow(
                         () -> new BaseException(ErrorCode.CAR_TYPE_NOT_FOUND));
+
+        // TODO exists 추가해야함.
+        if (carRepository.existsByNumber(request.getNumber())) {
+            throw new BaseException(ErrorCode.CAR_NUMBER_ALREADY_EXISTS);
+        }
+
         Car car = Car.create(user, carType, request.getNumber(), request.getNickname());
         carRepository.save(car);
         return car.getId();
