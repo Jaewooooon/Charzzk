@@ -23,12 +23,11 @@ public class CarService {
 
     @Transactional
     public Long createCar(User user, CarServiceRequest request) {
-
         CarType carType = carTypeRepository.findById(request.getCarTypeId())
-                .orElseThrow();
+                .orElseThrow(
+                        () -> new BaseException(ErrorCode.CAR_TYPE_NOT_FOUND));
         Car car = Car.create(user, carType, request.getNumber(), request.getNickname());
         carRepository.save(car);
-
         return car.getId();
     }
 

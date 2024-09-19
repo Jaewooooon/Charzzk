@@ -2,7 +2,9 @@ package com.ssafy.charzzk.api.service.car.response;
 
 import com.ssafy.charzzk.domain.car.CarType;
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 public class CarTypeResponse {
     private Long id;
     private String name;
