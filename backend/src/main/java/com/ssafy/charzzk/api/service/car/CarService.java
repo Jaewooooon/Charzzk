@@ -2,6 +2,7 @@ package com.ssafy.charzzk.api.service.car;
 
 import com.ssafy.charzzk.api.service.car.request.CarServiceRequest;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
+import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
 import com.ssafy.charzzk.domain.car.Car;
@@ -12,6 +13,9 @@ import com.ssafy.charzzk.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -27,7 +31,6 @@ public class CarService {
                 .orElseThrow(
                         () -> new BaseException(ErrorCode.CAR_TYPE_NOT_FOUND));
 
-        // TODO exists 추가해야함.
         if (carRepository.existsByNumber(request.getNumber())) {
             throw new BaseException(ErrorCode.CAR_NUMBER_ALREADY_EXISTS);
         }
@@ -43,5 +46,19 @@ public class CarService {
         );
 
         return CarResponse.from(findCar);
+    }
+
+    public List<CarTypeResponse> getCarTypes(String name) {
+        List<CarType> carTypes;
+
+        if (name != null && !name.isEmpty()) {
+            carTypes = carTypeRepository.findByNameContaining(name);
+        } else {
+            carTypes = carTypeRepository.findAll();
+        }
+
+        return carTypes.stream()
+                .map(CarTypeResponse::from)
+                .collect(Collectors.toList());
     }
 }
