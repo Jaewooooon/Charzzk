@@ -5,6 +5,8 @@ import com.ssafy.charzzk.api.controller.parkinglot.ParkingLotController;
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
 import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
+import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
+import com.ssafy.charzzk.api.service.parkinglot.response.ParkingSpotListResponse;
 import com.ssafy.charzzk.docs.RestDocsSupport;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import org.junit.jupiter.api.DisplayName;
@@ -111,4 +113,67 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                                 .build())));
 
     }
+
+    @DisplayName("주차장 상세정보를 조회한다.")
+    @Test
+    void getParkingLot() throws Exception {
+        // given
+        List<ParkingSpotListResponse> parkingSpotListResponseList = List.of(
+                ParkingSpotListResponse.builder()
+                        .id(1L)
+                        .name("A11")
+                        .build(),
+                ParkingSpotListResponse.builder()
+                        .id(2L)
+                        .name("A12")
+                        .build()
+        );
+
+        ParkingLotResponse response = ParkingLotResponse.builder()
+                .id(1L)
+                .name("주차장1")
+                .parkingMapImage("주차장1 이미지")
+                .parkingSpots(parkingSpotListResponseList)
+                .build();
+
+        given(parkingLotService.getParkingLot(any())).willReturn(response);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/parking-lot/{parkingLotId}", 1L)
+        );
+
+        // then
+        perform
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document("parking-lot-get",
+                        preprocessResponse(prettyPrint()),
+                        resource(ResourceSnippetParameters.builder()
+                                .tag("ParkingLot")
+                                .summary("주차장 상세 조회")
+                                .responseFields(
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER)
+                                                .description("코드"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("message").type(JsonFieldType.STRING)
+                                                .description("메시지"),
+                                        fieldWithPath("data.id").type(JsonFieldType.NUMBER)
+                                                .description("주차장 아이디"),
+                                        fieldWithPath("data.name").type(JsonFieldType.STRING)
+                                                .description("주차장 이름"),
+                                        fieldWithPath("data.parkingMapImage").type(JsonFieldType.STRING)
+                                                .description("주차칸 이미지"),
+                                        fieldWithPath("data.parkingSpots[]").type(JsonFieldType.ARRAY)
+                                                .description("주차칸 이미지"),
+                                        fieldWithPath("data.parkingSpots[].id").type(JsonFieldType.NUMBER)
+                                                .description("주차칸 아이디"),
+                                        fieldWithPath("data.parkingSpots[].name").type(JsonFieldType.STRING)
+                                                .description("주차칸 이름")
+                                )
+                                .build())));
+
+    }
+
 }

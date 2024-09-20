@@ -2,12 +2,19 @@ package com.ssafy.charzzk.api.controller.parkinglot;
 
 import com.ssafy.charzzk.ControllerTestSupport;
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
+import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
+import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
+import com.ssafy.charzzk.api.service.parkinglot.response.ParkingSpotListResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.util.List;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -97,5 +104,48 @@ class ParkingLotControllerTest extends ControllerTestSupport {
     }
 
 
+    @DisplayName("주차장 상세조회에 성공한다")
+    @WithMockUser
+    @Test
+    void getParkingLot() throws Exception {
+        // given
+        List<ParkingSpotListResponse> parkingSpotListResponseList = List.of(
+                ParkingSpotListResponse.builder()
+                        .id(1L)
+                        .name("A11")
+                        .build(),
+                ParkingSpotListResponse.builder()
+                        .id(2L)
+                        .name("A12")
+                        .build()
+        );
+
+        ParkingLotResponse response = ParkingLotResponse.builder()
+                .id(1L)
+                .name("주차장1")
+                .parkingMapImage("주차장1 이미지")
+                .parkingSpots(parkingSpotListResponseList)
+                .build();
+
+        given(parkingLotService.getParkingLot(any())).willReturn(response);
+
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/parking-lot/{parkingLotId}", 1L)
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("200"))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data.id").value(response.getId()))
+                .andExpect(jsonPath("$.data.name").value(response.getName()))
+                .andExpect(jsonPath("$.data.parkingMapImage").value(response.getParkingMapImage()))
+                .andExpect(jsonPath("$.data.parkingSpots").isArray());
+    }
 
 }
