@@ -2,6 +2,9 @@ package com.ssafy.charzzk.api.service.parkinglot;
 
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
+import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
+import com.ssafy.charzzk.core.exception.BaseException;
+import com.ssafy.charzzk.core.exception.ErrorCode;
 import com.ssafy.charzzk.core.util.DistanceCalculator;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
@@ -40,4 +43,10 @@ public class ParkingLotService {
                 .toList();
     }
 
+    public ParkingLotResponse getParkingLot(Long parkingLotId) {
+        ParkingLot findParkingLot = parkingLotRepository.findByIdWithParkingSpots(parkingLotId)
+                .orElseThrow(() -> new BaseException(ErrorCode.PARKING_LOT_NOT_FOUND));
+
+        return ParkingLotResponse.of(findParkingLot);
+    }
 }
