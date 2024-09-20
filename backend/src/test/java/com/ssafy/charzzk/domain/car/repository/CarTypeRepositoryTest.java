@@ -21,11 +21,6 @@ class CarTypeRepositoryTest extends IntegrationTestSupport {
     @Autowired
     private CarTypeRepository carTypeRepository;
 
-    @BeforeEach
-    public void setUp() {
-        carTypeRepository.deleteAll();
-    }
-
     @DisplayName("차종 이름에 특정 문자열이 포함된 차량 목록을 반환한다.")
     @Test
     void findByNameContaining() {
@@ -46,9 +41,7 @@ class CarTypeRepositoryTest extends IntegrationTestSupport {
                 .image("image/bmwX5")
                 .build();
 
-        carTypeRepository.save(carType1);
-        carTypeRepository.save(carType2);
-        carTypeRepository.save(carType3);
+        carTypeRepository.saveAll(List.of(carType1, carType2, carType3));
 
         // when
         List<CarType> teslaTypes = carTypeRepository.findByNameContaining("테슬라");
@@ -80,9 +73,7 @@ class CarTypeRepositoryTest extends IntegrationTestSupport {
                 .image("image/bmwX5")
                 .build();
 
-        carTypeRepository.save(carType1);
-        carTypeRepository.save(carType2);
-        carTypeRepository.save(carType3);
+        carTypeRepository.saveAll(List.of(carType1, carType2, carType3));
 
         // when
         List<CarType> allCarTypes = carTypeRepository.findByNameContaining("");
@@ -112,9 +103,7 @@ class CarTypeRepositoryTest extends IntegrationTestSupport {
                 .image("image/bmwX5")
                 .build();
 
-        carTypeRepository.save(carType1);
-        carTypeRepository.save(carType2);
-        carTypeRepository.save(carType3);
+        carTypeRepository.saveAll(List.of(carType1, carType2, carType3));
 
         // when
         List<CarType> nonExistentCarTypes = carTypeRepository.findByNameContaining("아우디");
