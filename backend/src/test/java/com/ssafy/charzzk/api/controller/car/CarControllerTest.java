@@ -59,7 +59,6 @@ class CarControllerTest extends ControllerTestSupport {
                         .contentType(MediaType.APPLICATION_JSON)
         );
 
-
         // then
         perform.andDo(print())
                 .andExpect(status().isOk())
