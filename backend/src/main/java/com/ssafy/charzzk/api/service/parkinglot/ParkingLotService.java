@@ -1,7 +1,7 @@
 package com.ssafy.charzzk.api.service.parkinglot;
 
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
-import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
+import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.core.util.DistanceCalculator;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
@@ -20,7 +20,7 @@ public class ParkingLotService {
 
     private final ParkingLotRepository parkingLotRepository;
 
-    public List<ParkingLotResponse> getParkingLotList(ParkingLotListRequest request) {
+    public List<ParkingLotListResponse> getParkingLotList(ParkingLotListRequest request) {
         List<ParkingLot> ParkingLotList = parkingLotRepository.findAll();
 
         Location currentLocation = Location.builder()
@@ -34,9 +34,9 @@ public class ParkingLotService {
                     Location parkingLotLocation = parkingLot.getLocation();
                     double distance = DistanceCalculator.calculateDistance(currentLocation, parkingLotLocation);
 
-                    return ParkingLotResponse.of(parkingLot, distance);
+                    return ParkingLotListResponse.of(parkingLot, distance);
                 })
-                .sorted(Comparator.comparingDouble(ParkingLotResponse::getDistance))
+                .sorted(Comparator.comparingDouble(ParkingLotListResponse::getDistance))
                 .toList();
     }
 

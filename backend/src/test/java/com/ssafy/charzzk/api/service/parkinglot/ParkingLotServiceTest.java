@@ -2,7 +2,7 @@ package com.ssafy.charzzk.api.service.parkinglot;
 
 import com.ssafy.charzzk.IntegrationTestSupport;
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
-import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
+import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
@@ -59,14 +59,14 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
         parkingLotRepository.saveAll(parkingLotList);
 
         // when
-        List<ParkingLotResponse> parkingLotResponseList = parkingLotService.getParkingLotList(request);
+        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(request);
 
         // then
-        assertThat(parkingLotResponseList).hasSize(2)
-                .extracting("id", "name", "location", "image", "parkingMapImage")
+        assertThat(parkingLotListResponseList).hasSize(2)
+                .extracting("id", "name", "location", "image")
                 .containsExactly(
-                        tuple(parkingLotList.get(0).getId(), "주차장1", location1, null, null),
-                        tuple(parkingLotList.get(1).getId(), "주차장2", location2, null, null)
+                        tuple(parkingLotList.get(0).getId(), "주차장1", location1, null),
+                        tuple(parkingLotList.get(1).getId(), "주차장2", location2, null)
                 );
 
     }
