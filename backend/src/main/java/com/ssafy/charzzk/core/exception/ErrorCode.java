@@ -24,9 +24,12 @@ public enum ErrorCode {
 	ACCESS_DENIED(2010, HttpStatus.FORBIDDEN, "접근 권한이 없습니다."),
 	NICKNAME_ALREADY_EXISTS(2011, HttpStatus.BAD_REQUEST, "이미 존재하는 사용자 이름입니다."),
 
+	// Car, CarType
+    CAR_NOT_FOUND(3000, HttpStatus.NOT_FOUND, "차량을 찾을 수 없습니다."),
+	CAR_TYPE_NOT_FOUND(3001, HttpStatus.NOT_FOUND, "차 기종을 찾을 수 없습니다."),
+	CAR_NUMBER_ALREADY_EXISTS(3002, HttpStatus.BAD_REQUEST, "이미 존재하는 차량 번호입니다."),
+	PARKING_LOT_NOT_FOUND(3003, HttpStatus.NOT_FOUND, "주차장이 존재하지 않습니다.");
 
-
-	;
 	private final int code;
 	private final HttpStatus status;
 	private final String message;
