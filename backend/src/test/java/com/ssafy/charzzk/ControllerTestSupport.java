@@ -1,9 +1,11 @@
 package com.ssafy.charzzk;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ssafy.charzzk.api.controller.car.CarController;
 import com.ssafy.charzzk.api.controller.user.UserController;
 import com.ssafy.charzzk.api.service.auth.CustomUserService;
 import com.ssafy.charzzk.api.service.auth.JWTService;
+import com.ssafy.charzzk.api.service.car.CarService;
 import com.ssafy.charzzk.api.service.user.UserService;
 import com.ssafy.charzzk.core.configuration.SecurityConfig;
 import com.ssafy.charzzk.core.filter.JWTFilter;
@@ -24,7 +26,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @WebMvcTest(
-        controllers = {UserController.class},
+        controllers = {
+                UserController.class,
+                CarController.class,
+        },
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {SecurityConfig.class}),
                 @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {JWTFilter.class})
@@ -41,6 +46,9 @@ public abstract class ControllerTestSupport {
 
     @MockBean
     protected UserService userService;
+
+    @MockBean
+    protected CarService carService;
 
     @MockBean
     protected JWTService jwtService;
