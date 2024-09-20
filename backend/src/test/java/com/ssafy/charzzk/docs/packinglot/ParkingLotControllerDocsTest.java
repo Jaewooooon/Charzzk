@@ -81,6 +81,12 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                         resource(ResourceSnippetParameters.builder()
                                 .tag("ParkingLot")
                                 .summary("주차장 목록 조회")
+                                .requestFields(
+                                        fieldWithPath("latitude").type(JsonFieldType.NUMBER)
+                                                .description("위도"),
+                                        fieldWithPath("longitude").type(JsonFieldType.NUMBER)
+                                                .description("경도")
+                                )
                                 .responseFields(
                                         fieldWithPath("code").type(JsonFieldType.NUMBER)
                                                 .description("코드"),
