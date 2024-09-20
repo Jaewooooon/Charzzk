@@ -4,7 +4,7 @@ import com.epages.restdocs.apispec.ResourceSnippetParameters;
 import com.ssafy.charzzk.api.controller.parkinglot.ParkingLotController;
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
 import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
-import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
+import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.docs.RestDocsSupport;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import org.junit.jupiter.api.DisplayName;
@@ -51,13 +51,12 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                 .longitude(0.0)
                 .build();
 
-        List<ParkingLotResponse> response = List.of(
-                ParkingLotResponse.builder()
+        List<ParkingLotListResponse> response = List.of(
+                ParkingLotListResponse.builder()
                         .id(1L)
                         .name("주차장1")
                         .location(location)
                         .image("주차장 이미지")
-                        .parkingMapImage("주차칸 이미지")
                         .distance(100.0)
                         .build()
         );
@@ -106,8 +105,6 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                                                 .description("경도"),
                                         fieldWithPath("data[].image").type(JsonFieldType.STRING)
                                                 .description("주차장 이미지"),
-                                        fieldWithPath("data[].parkingMapImage").type(JsonFieldType.STRING)
-                                                .description("주차칸 이미지"),
                                         fieldWithPath("data[].distance").type(JsonFieldType.NUMBER)
                                                 .description("주차장까지 거리")
                                 )

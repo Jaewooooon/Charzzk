@@ -6,32 +6,29 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class ParkingLotResponse {
+public class ParkingLotListResponse {
 
     private Long id;
     private String name;
     private Location location;
     private String image;
-    private String parkingMapImage;
     private Double distance;
 
     @Builder
-    private ParkingLotResponse(Long id, String name, Location location, String image, String parkingMapImage, Double distance) {
+    private ParkingLotListResponse(Long id, String name, Location location, String image, Double distance) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.image = image;
-        this.parkingMapImage = parkingMapImage;
         this.distance = distance;
     }
 
-    public static ParkingLotResponse of(ParkingLot parkingLot, double distance) {
-        return ParkingLotResponse.builder()
+    public static ParkingLotListResponse of(ParkingLot parkingLot, double distance) {
+        return ParkingLotListResponse.builder()
             .id(parkingLot.getId())
             .name(parkingLot.getName())
             .location(parkingLot.getLocation())
             .image(parkingLot.getImage())
-            .parkingMapImage(parkingLot.getParkingMapImage())
             .distance(distance)
             .build();
     }
