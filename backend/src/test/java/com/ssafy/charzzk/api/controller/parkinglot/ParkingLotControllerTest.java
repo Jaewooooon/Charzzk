@@ -44,4 +44,58 @@ class ParkingLotControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data").isArray());
     }
 
+    @DisplayName("주차장 목록을 조회할 때 위도는 필수값이다")
+    @WithMockUser
+    @Test
+    void getParkingLotListWithoutLatitude() throws Exception {
+        // given
+        ParkingLotListRequest request = ParkingLotListRequest.builder()
+                .longitude(127.123456)
+                .build();
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/parking-lot")
+                        .with(csrf())
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("400"))
+                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.message").value("위도는 필수입니다."))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
+
+    @DisplayName("주차장 목록을 조회할 때 경도는 필수값이다")
+    @WithMockUser
+    @Test
+    void getParkingLotListWithoutLongitude() throws Exception {
+        // given
+        ParkingLotListRequest request = ParkingLotListRequest.builder()
+                .latitude(37.123456)
+                .build();
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/parking-lot")
+                        .with(csrf())
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("400"))
+                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.message").value("경도는 필수입니다."))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
+
+
+
 }
