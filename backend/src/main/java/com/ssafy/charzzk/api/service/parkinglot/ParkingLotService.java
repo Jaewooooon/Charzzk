@@ -23,8 +23,8 @@ public class ParkingLotService {
 
     private final ParkingLotRepository parkingLotRepository;
 
-    public List<ParkingLotListResponse> getParkingLotList(ParkingLotListRequest request) {
-        List<ParkingLot> ParkingLotList = parkingLotRepository.findAll();
+    public List<ParkingLotListResponse> getParkingLotList(ParkingLotListRequest request, String keyword) {
+        List<ParkingLot> ParkingLotList = parkingLotRepository.findAllContaining(keyword);
 
         Location currentLocation = Location.builder()
                 .latitude(request.getLatitude())

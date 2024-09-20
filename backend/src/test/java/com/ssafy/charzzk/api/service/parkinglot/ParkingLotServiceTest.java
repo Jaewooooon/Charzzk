@@ -62,7 +62,7 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
         parkingLotRepository.saveAll(parkingLotList);
 
         // when
-        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(request);
+        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(request, "");
 
         // then
         assertThat(parkingLotListResponseList).hasSize(2)
@@ -71,6 +71,59 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
                         tuple(parkingLotList.get(0).getId(), "주차장1", location1, null),
                         tuple(parkingLotList.get(1).getId(), "주차장2", location2, null)
                 );
+    }
+
+    @DisplayName("검색어로 주차장을 조회하면 검색어를 포함하는 주차장 목록을 반환한다.")
+    @Test
+    void getParkingLotListWithKeyword() {
+        // given
+        Location location1 = Location.builder()
+                .latitude(0.0)
+                .longitude(0.0)
+                .build();
+
+        Location location2 = Location.builder()
+                .latitude(89.0)
+                .longitude(179.0)
+                .build();
+
+        List<ParkingLot> parkingLotList = List.of(
+                ParkingLot.builder()
+                        .name("주차장1")
+                        .location(location1)
+                        .build(),
+                ParkingLot.builder()
+                        .name("주차장2")
+                        .location(location2)
+                        .build(),
+                ParkingLot.builder()
+                        .name("공영주차장")
+                        .location(location2)
+                        .build(),
+                ParkingLot.builder()
+                        .name("xxxxxxx")
+                        .location(location2)
+                        .build());
+
+        ParkingLotListRequest request = ParkingLotListRequest.builder()
+                .latitude(0.0)
+                .longitude(0.0)
+                .build();
+
+        parkingLotRepository.saveAll(parkingLotList);
+
+        // when
+        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(request, "주차장");
+
+        // then
+        assertThat(parkingLotListResponseList).hasSize(3)
+                .extracting("id", "name", "location", "image")
+                .containsExactly(
+                        tuple(parkingLotList.get(0).getId(), "주차장1", location1, null),
+                        tuple(parkingLotList.get(1).getId(), "주차장2", location2, null),
+                        tuple(parkingLotList.get(2).getId(), "공영주차장", location2, null)
+                );
+
     }
 
 
