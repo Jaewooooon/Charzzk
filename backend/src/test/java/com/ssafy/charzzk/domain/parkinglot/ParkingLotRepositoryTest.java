@@ -56,4 +56,43 @@ class ParkingLotRepositoryTest extends IntegrationTestSupport {
         assertThat(findParkingLot.get().getId()).isEqualTo(parkingLot1.getId());
     }
 
+
+    @DisplayName("키워드를 포함하는 주차장 리스트를 조회한다.")
+    @Test
+    void findAllContaining() {
+        // given
+        Location location1 = Location.builder()
+                .latitude(0.0)
+                .longitude(0.0)
+                .build();
+
+        List<ParkingLot> parkingLotList = List.of(
+                ParkingLot.builder()
+                        .name("주차장1")
+                        .location(location1)
+                        .build(),
+                ParkingLot.builder()
+                        .name("주차장2")
+                        .location(location1)
+                        .build(),
+                ParkingLot.builder()
+                        .name("공영주차장")
+                        .location(location1)
+                        .build(),
+                ParkingLot.builder()
+                        .name("xxxxxxx")
+                        .location(location1)
+                        .build());
+
+        parkingLotRepository.saveAll(parkingLotList);
+
+        // when
+        List<ParkingLot> findParkingLotList = parkingLotRepository.findAllContaining("주차");
+
+        // then
+        assertThat(findParkingLotList).hasSize(3)
+                .extracting("name")
+                .containsExactly("주차장1", "주차장2", "공영주차장");
+
+    }
 }
