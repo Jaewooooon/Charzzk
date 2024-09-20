@@ -30,9 +30,9 @@ public class CarController {
 
     @GetMapping("/api/v1/cars")
     public ApiResponse<List<CarTypeResponse>> getCarTypes(
-            @RequestParam String q
+            @RequestParam(value = "q", defaultValue = "", required = false) String keyword
     ) {
-        List<CarTypeResponse> carTypes = carService.getCarTypes(q);
+        List<CarTypeResponse> carTypes = carService.getCarTypes(keyword);
         return ApiResponse.ok(carTypes);
     }
 

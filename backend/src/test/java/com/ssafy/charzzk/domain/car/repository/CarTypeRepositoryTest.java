@@ -58,6 +58,69 @@ class CarTypeRepositoryTest extends IntegrationTestSupport {
         assertEquals(2, teslaTypes.size());
         assertTrue(teslaTypes.stream().anyMatch(carType -> carType.getName().equals("테슬라 모델 3")));
         assertTrue(teslaTypes.stream().anyMatch(carType -> carType.getName().equals("테슬라 모델 Y")));
+    }
 
+    @DisplayName("빈 문자열을 입력하면 모든 차종 목록을 반환한다.")
+    @Test
+    void findByNameContainingEmptyString() {
+
+        // given
+        CarType carType1 = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("image/tesla3")
+                .build();
+
+        CarType carType2 = CarType.builder()
+                .name("테슬라 모델 Y")
+                .image("image/teslaY")
+                .build();
+
+        CarType carType3 = CarType.builder()
+                .name("BMW X5")
+                .image("image/bmwX5")
+                .build();
+
+        carTypeRepository.save(carType1);
+        carTypeRepository.save(carType2);
+        carTypeRepository.save(carType3);
+
+        // when
+        List<CarType> allCarTypes = carTypeRepository.findByNameContaining("");
+
+        // then
+        assertNotNull(allCarTypes);
+        assertEquals(3, allCarTypes.size());
+    }
+
+    @DisplayName("존재하지 않는 문자열을 입력하면 빈 목록을 반환한다.")
+    @Test
+    void findByNameContainingNonExistentString() {
+
+        // given
+        CarType carType1 = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("image/tesla3")
+                .build();
+
+        CarType carType2 = CarType.builder()
+                .name("테슬라 모델 Y")
+                .image("image/teslaY")
+                .build();
+
+        CarType carType3 = CarType.builder()
+                .name("BMW X5")
+                .image("image/bmwX5")
+                .build();
+
+        carTypeRepository.save(carType1);
+        carTypeRepository.save(carType2);
+        carTypeRepository.save(carType3);
+
+        // when
+        List<CarType> nonExistentCarTypes = carTypeRepository.findByNameContaining("아우디");
+
+        // then
+        assertNotNull(nonExistentCarTypes);
+        assertEquals(0, nonExistentCarTypes.size());
     }
 }

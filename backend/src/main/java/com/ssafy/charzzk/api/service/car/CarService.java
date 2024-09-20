@@ -49,13 +49,7 @@ public class CarService {
     }
 
     public List<CarTypeResponse> getCarTypes(String name) {
-        List<CarType> carTypes;
-
-        if (name != null && !name.isEmpty()) {
-            carTypes = carTypeRepository.findByNameContaining(name);
-        } else {
-            carTypes = carTypeRepository.findAll();
-        }
+        List<CarType> carTypes = carTypeRepository.findByNameContaining(name);
 
         return carTypes.stream()
                 .map(CarTypeResponse::from)
