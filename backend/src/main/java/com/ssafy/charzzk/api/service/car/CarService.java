@@ -55,4 +55,28 @@ public class CarService {
                 .map(CarTypeResponse::from)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void updateCar(Long carId, User user, CarServiceRequest request) {
+        Car car = carRepository.findById(carId).orElseThrow(
+                () -> new BaseException(ErrorCode.CAR_NOT_FOUND)
+        );
+
+        // 차량의 주인이 맞는지 검증
+        if (!car.getUser().getId().equals(user.getId())) {
+            throw new BaseException(ErrorCode.CAR_NOT_BELONG_TO_USER);
+        }
+
+        CarType carType = carTypeRepository.findById(request.getCarTypeId())
+                .orElseThrow(
+                        () -> new BaseException(ErrorCode.CAR_TYPE_NOT_FOUND));
+
+        if (carRepository.existsByNumber(request.getNumber())) {
+            throw new BaseException(ErrorCode.CAR_NUMBER_ALREADY_EXISTS);
+        }
+
+        // TODO: 빈 닉네임이 들어오거나 했을 때, 기존 닉네임을 쓸 수 있도록 해야할듯함.
+        car.updateCar(carType, request.getNumber(), request.getNickname());
+        carRepository.save(car);
+    }
 }

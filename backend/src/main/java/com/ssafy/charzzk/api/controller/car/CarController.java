@@ -36,5 +36,14 @@ public class CarController {
         return ApiResponse.ok(carTypes);
     }
 
+    @PatchMapping("/api/v1/cars/{carId}")
+    public ApiResponse<CarResponse> updateCar(
+            @PathVariable Long carId,
+            @CurrentUser User user,
+            @Valid @RequestBody CarRequest request
+    ) {
+        carService.updateCar(carId, user, request.toServiceRequest());
+        return ApiResponse.ok(carService.getCar(carId));
+    }
 
 }
