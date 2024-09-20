@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -26,6 +29,9 @@ public class ParkingLot extends BaseEntity {
     private String image;
 
     private String parkingMapImage;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "parkingLot", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ParkingSpot> parkingSpots = new ArrayList<>();
 
     @Builder
     private ParkingLot(String name, Location location, String image, String parkingMapImage) {

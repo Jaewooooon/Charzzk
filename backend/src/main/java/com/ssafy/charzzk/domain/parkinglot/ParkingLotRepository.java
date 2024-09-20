@@ -1,6 +1,12 @@
 package com.ssafy.charzzk.domain.parkinglot;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.Optional;
 
 public interface ParkingLotRepository extends JpaRepository<ParkingLot, Long> {
+
+    @Query("SELECT p FROM ParkingLot p LEFT JOIN FETCH p.parkingSpots WHERE p.id = :parkingLotId")
+    Optional<ParkingLot> findByIdWithParkingSpots(Long parkingLotId);
 }

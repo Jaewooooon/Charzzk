@@ -27,7 +27,8 @@ public enum ErrorCode {
 	// Car, CarType
     CAR_NOT_FOUND(3000, HttpStatus.NOT_FOUND, "차량을 찾을 수 없습니다."),
 	CAR_TYPE_NOT_FOUND(3001, HttpStatus.NOT_FOUND, "차 기종을 찾을 수 없습니다."),
-	CAR_NUMBER_ALREADY_EXISTS(3002, HttpStatus.BAD_REQUEST, "이미 존재하는 차량 번호입니다.");
+	CAR_NUMBER_ALREADY_EXISTS(3002, HttpStatus.BAD_REQUEST, "이미 존재하는 차량 번호입니다."),
+	PARKING_LOT_NOT_FOUND(3003, HttpStatus.NOT_FOUND, "주차장이 존재하지 않습니다.");
 
 	private final int code;
 	private final HttpStatus status;
