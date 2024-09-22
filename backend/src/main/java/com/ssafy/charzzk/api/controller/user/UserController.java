@@ -25,6 +25,13 @@ public class UserController {
         return ApiResponse.ok(userService.getUsers());
     }
 
+    @GetMapping(value = "/api/v1/users/check-nickname")
+    public ApiResponse<String> checkNickname(
+            @Valid @RequestBody UserUpdateRequest request
+    ) {
+        return ApiResponse.ok(userService.checkNickname(request.toServiceRequest()));
+    }
+
     @PatchMapping(value = "/api/v1/users/nickname")
     public ApiResponse<UserResponse> updateNickname(
             @CurrentUser User user,

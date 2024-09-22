@@ -62,6 +62,37 @@ class UserServiceTest extends IntegrationTestSupport {
                 .hasMessage(ErrorCode.NOT_FOUND_USER.getMessage());
     }
 
+    @DisplayName("중복된 닉네임을 확인했을 때 중복된 닉네임이 없으면 성공 메시지를 반환한다.")
+    @Test
+    public void checkNicknameSuccess() {
+        UserUpdateServiceRequest request = UserUpdateServiceRequest.builder()
+                .nickname("newNickname")
+                .build();
+
+        String result = userService.checkNickname(request);
+
+        assertThat(result).isEqualTo("닉네임 변경이 가능합니다");
+    }
+
+    @DisplayName("중복된 닉네임을 확인했을 때 중복된 닉네임이 있으면 예외가 발생한다.")
+    @Test
+    public void checkNicknameFail() {
+        User user = User.builder()
+                .username("example@google.com")
+                .nickname("existNickname")
+                .build();
+
+        userRepository.save(user);
+
+        UserUpdateServiceRequest request = UserUpdateServiceRequest.builder()
+                .nickname("existNickname")
+                .build();
+
+        assertThatThrownBy(() -> userService.checkNickname(request))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.NICKNAME_ALREADY_EXISTS.getMessage());
+    }
+
     @DisplayName("유저가 닉네임을 수정하면 수정된 닉네임을 반환한다.")
     @Test
     public void updateNickname() {
