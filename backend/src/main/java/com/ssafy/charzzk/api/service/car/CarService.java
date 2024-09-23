@@ -81,4 +81,20 @@ public class CarService {
 
         car.updateCar(carType, request.getNumber(), request.getNickname());
     }
+
+    @Transactional
+    public void deleteCar(Long carId, User user) {
+
+        // 차량 조회
+        Car car = carRepository.findById(carId).orElseThrow(
+                () -> new BaseException(ErrorCode.CAR_NOT_FOUND)
+        );
+
+        // 차량 소유자가 맞는지 검증
+        if (!car.getUser().getId().equals(user.getId())) {
+            throw new BaseException(ErrorCode.CAR_NOT_BELONG_TO_USER);
+        }
+
+        carRepository.delete(car);
+    }
 }

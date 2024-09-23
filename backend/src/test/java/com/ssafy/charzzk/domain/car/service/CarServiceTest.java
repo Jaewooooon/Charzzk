@@ -383,4 +383,89 @@ class CarServiceTest extends IntegrationTestSupport {
 
     }
 
+    @DisplayName("차량을 삭제하면 정상적으로 삭제된다.")
+    @Test
+    public void deleteCar() {
+        // given
+        User owner = User.builder()
+                .username("owner@gmail.com")
+                .nickname("owner")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("image/tesla3")
+                .build();
+
+        carTypeRepository.save(carType);
+
+        Car car = Car.builder()
+                .carType(carType)
+                .number("11가1111")
+                .nickname("콩이")
+                .user(owner)
+                .build();
+
+        carRepository.save(car);
+
+        // when
+        carService.deleteCar(car.getId(), owner);
+
+        // then
+        assertThatThrownBy(() -> carRepository.findById(car.getId())
+                .orElseThrow(() -> new BaseException(ErrorCode.CAR_NOT_FOUND)))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.CAR_NOT_FOUND.getMessage());
+    }
+
+    @DisplayName("차량 소유자가 아닌 사용자가 차량을 삭제하려고 하면 예외가 발생한다.")
+    @Test
+    public void deleteCarWithWrongUser() {
+        // given
+        User owner = User.builder()
+                .username("owner@gmail.com")
+                .nickname("ownerNickname")
+                .build();
+
+        User anotherUser = User.builder()
+                .username("another@gmail.com")
+                .nickname("anotherNickname")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("image/tesla3")
+                .build();
+
+        carTypeRepository.save(carType);
+
+        Car car = Car.builder()
+                .carType(carType)
+                .number("11가1111")
+                .nickname("콩이")
+                .user(owner)
+                .build();
+
+        carRepository.save(car);
+
+        // when & then
+        assertThatThrownBy(() -> carService.deleteCar(car.getId(), anotherUser))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.CAR_NOT_BELONG_TO_USER.getMessage());
+    }
+
+    @DisplayName("존재하지 않는 차량을 삭제하려고 하면 예외가 발생한다.")
+    @Test
+    public void deleteNonExistentCar() {
+        // given
+        User user = User.builder()
+                .username("user@gmail.com")
+                .nickname("user")
+                .build();
+
+        // when & then
+        assertThatThrownBy(() -> carService.deleteCar(999L, user))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.CAR_NOT_FOUND.getMessage());
+    }
 }
