@@ -55,4 +55,30 @@ public class CarService {
                 .map(CarTypeResponse::from)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public void updateCar(Long carId, User user, CarServiceRequest request) {
+        Car car = carRepository.findById(carId).orElseThrow(
+                () -> new BaseException(ErrorCode.CAR_NOT_FOUND)
+        );
+
+        // 차량의 주인이 맞는지 검증
+        if (!car.getUser().getId().equals(user.getId())) {
+            throw new BaseException(ErrorCode.CAR_NOT_BELONG_TO_USER);
+        }
+
+        // 존재하지 않는 carType 인지 검증
+        CarType carType = carTypeRepository.findById(request.getCarTypeId())
+                .orElseThrow(
+                        () -> new BaseException(ErrorCode.CAR_TYPE_NOT_FOUND));
+
+        // 차량 번호를 수정한다면, 이미 존재하는 차량 번호로 수정하는지 검증
+        if (!car.getNumber().equals(request.getNumber())) {
+            if (carRepository.existsByNumber(request.getNumber())) {
+                throw new BaseException(ErrorCode.CAR_NUMBER_ALREADY_EXISTS);
+            }
+        }
+
+        car.updateCar(carType, request.getNumber(), request.getNickname());
+    }
 }

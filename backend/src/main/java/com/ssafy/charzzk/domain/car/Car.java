@@ -49,6 +49,12 @@ public class Car extends BaseEntity {
                 .number(number)
                 .nickname(nickname)
                 .build();
-
     }
+
+    public void updateCar(CarType carType, String number, String nickname) {
+        this.carType = carType;
+        this.number = number;
+        this.nickname = nickname;
+    }
+
 }
