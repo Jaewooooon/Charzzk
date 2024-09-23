@@ -26,6 +26,7 @@ public class CarResponse {
                 .id(car.getId())
                 .carType(car.getCarType())
                 .number(car.getNumber())
+                .nickname(car.getNickname())
                 .build();
     }
 }
