@@ -4,6 +4,7 @@ import com.ssafy.charzzk.ControllerTestSupport;
 import com.ssafy.charzzk.api.controller.car.request.CarRequest;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
+import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -189,4 +190,129 @@ class CarControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data[1].id").value(2L))
                 .andExpect(jsonPath("$.data[1].name").value("테슬라 모델 Y"));
     }
+
+    @DisplayName("차량을 수정하면 정상적으로 수정된다.")
+    @WithMockUser
+    @Test
+    public void updateCar() throws Exception {
+        // given
+        CarRequest request = CarRequest.builder()
+                .carTypeId(1L)
+                .number("11가1111")
+                .nickname("새로운 콩이")
+                .build();
+
+        CarType carType = CarType.builder()
+                .image("example image")
+                .name("테슬라 모델 3")
+                .build();
+
+        CarResponse response = CarResponse.builder()
+                .id(1L)
+                .carType(carType)
+                .number("11가1111")
+                .nickname("새로운 콩이")
+                .build();
+
+        given(carService.getCar(any())).willReturn(response);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                patch("/api/v1/cars/{carId}", 1L)
+                        .with(csrf())
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("200"))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data.number").value("11가1111"));
+    }
+
+    @DisplayName("차량을 수정할 때 차량 기종 ID는 필수값이다.")
+    @WithMockUser
+    @Test
+    public void updateCarWithoutCarTypeId() throws Exception {
+        // given
+        CarRequest request = CarRequest.builder()
+                .number("11다1111")
+                .nickname("콩이")
+                .build();
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                patch("/api/v1/cars/{carId}", 1L)
+                        .with(csrf())
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("400"))
+                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.message").value("차량 기종은 필수입니다."))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
+
+    @DisplayName("차량을 수정할 때 차량 번호는 필수값이다.")
+    @WithMockUser
+    @Test
+    public void updateCarWithoutNumber() throws Exception {
+        // given
+        CarRequest request = CarRequest.builder()
+                .carTypeId(1L)
+                .nickname("콩이")
+                .build();
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                patch("/api/v1/cars/{carId}", 1L)
+                        .with(csrf())
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("400"))
+                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.message").value("차량 번호는 필수입니다."))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
+
+    @DisplayName("차량을 수정할 때 차량 번호가 빈 문자열이면 예외가 발생한다.")
+    @WithMockUser
+    @Test
+    public void updateCarWithBlankNumber() throws Exception {
+        // given
+        CarRequest request = CarRequest.builder()
+                .carTypeId(1L)
+                .number("")
+                .nickname("콩이")
+                .build();
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                patch("/api/v1/cars/{carId}", 1L)
+                        .with(csrf())
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.code").value("400"))
+                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.message").value("차량 번호는 필수입니다."))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
+
 }

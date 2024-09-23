@@ -66,7 +66,7 @@ class CarServiceTest extends IntegrationTestSupport {
 
     }
 
-    @DisplayName("동일한 차량번호를 등록하면 예외가 발생한다.")
+    @DisplayName("이미 존재하는 차량번호를 등록하면 예외가 발생한다.")
     @Test
     public void createCarWithExistingName() {
         // given
@@ -171,6 +171,215 @@ class CarServiceTest extends IntegrationTestSupport {
         // then
         assertThat(carTypes).hasSize(1);
         assertThat(carTypes.get(0).getName()).isEqualTo("테슬라 모델 3");
+
+    }
+
+    @DisplayName("차량을 수정하면 정상적으로 수정된다.")
+    @Test
+    public void updateCar() {
+        // given
+        User user = User.builder()
+                .username("test@gmail.com")
+                .nickname("nickname")
+                .build();
+
+        CarType cartype = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("abc/def")
+                .build();
+
+        carTypeRepository.save(cartype);
+
+        Car car = Car.builder()
+                .carType(cartype)
+                .number("11가1111")
+                .nickname("콩이")
+                .user(user)
+                .build();
+
+        carRepository.save(car);
+
+        CarServiceRequest request = CarServiceRequest.builder()
+                .carTypeId(cartype.getId())
+                .number("22나2222")
+                .nickname("새로운 콩이")
+                .build();
+
+        // when
+        carService.updateCar(car.getId(), user, request);
+
+        // then
+        Car updatedCar = carRepository.findById(car.getId()).get();
+
+        assertThat(updatedCar.getNumber()).isEqualTo("22나2222");
+        assertThat(updatedCar.getNickname()).isEqualTo("새로운 콩이");
+
+    }
+
+    @DisplayName("차량 번호를 변경하지 않으면 차량 번호 중복 검사가 이루어지지 않는다.")
+    @Test
+    public void updateCarWithoutChangingNumber() {
+        // given
+        User user = User.builder()
+                .username("test@gmail.com")
+                .nickname("nickname")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("image/tesla3")
+                .build();
+
+        carTypeRepository.save(carType);
+
+        Car car = Car.builder()
+                .carType(carType)
+                .number("11가1111")
+                .nickname("콩이")
+                .user(user)
+                .build();
+
+        carRepository.save(car);
+
+        CarServiceRequest request = CarServiceRequest.builder()
+                .carTypeId(carType.getId())
+                .number("11가1111") // 차량 번호를 변경 x
+                .nickname("새로운 콩이") // 닉네임만 변경
+                .build();
+
+        // when
+        carService.updateCar(car.getId(), user, request);
+
+        // then
+        Car updatedCar = carRepository.findById(car.getId()).orElseThrow(
+                () -> new BaseException(ErrorCode.CAR_NOT_FOUND)
+        );
+
+        assertThat(updatedCar.getNumber()).isEqualTo("11가1111");
+        assertThat(updatedCar.getNickname()).isEqualTo("새로운 콩이");
+    }
+
+
+    @DisplayName("차량 번호를 변경할 때, 이미 존재하는 차량번호로 수정하면 예외가 발생한다.")
+    @Test
+    public void updateCarWithExistingName() {
+        // given
+        User user = User.builder()
+                .username("test@gmail.com")
+                .nickname("nickname")
+                .build();
+
+        CarType cartype = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("abc/def")
+                .build();
+
+        Car car1 = Car.builder()
+                .carType(cartype)
+                .number("11가1111")
+                .user(user)
+                .build();
+
+        carRepository.save(car1);
+
+        Car car2 = Car.builder()
+                .carType(cartype)
+                .number("22나2222")
+                .user(user)
+                .build();
+
+        carRepository.save(car2);
+
+        CarServiceRequest request = CarServiceRequest.builder()
+                .carTypeId(cartype.getId())
+                .number("11가1111") // 이미 존재하는 번호로 수정 시도
+                .nickname("새로운 콩이")
+                .build();
+
+        // when & then
+        assertThatThrownBy(() -> carService.updateCar(car2.getId(), user, request))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.CAR_NUMBER_ALREADY_EXISTS.getMessage());
+    }
+
+    @DisplayName("존재하지 않는 차종으로 수정하면 예외가 발생한다.")
+    @Test
+    public void updateCarWithNonExistentCarType() {
+        // given
+        User user = User.builder()
+                .username("test@gmail.com")
+                .nickname("nickname")
+                .build();
+
+        CarType existingCarType = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("image/tesla3")
+                .build();
+
+        carTypeRepository.save(existingCarType);
+
+        Car car = Car.builder()
+                .carType(existingCarType)
+                .number("11가1111")
+                .nickname("콩이")
+                .user(user)
+                .build();
+
+        carRepository.save(car);
+
+        CarServiceRequest request = CarServiceRequest.builder()
+                .carTypeId(999L) // 존재하지 않을 carTypeId
+                .number("11가1111")
+                .nickname("순이")
+                .build();
+
+        // when & then
+        assertThatThrownBy(() -> carService.updateCar(car.getId(), user, request))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.CAR_TYPE_NOT_FOUND.getMessage());
+    }
+
+    @DisplayName("차량 소유자가 아닌 사용자가 차량을 수정하려고 하면 예외가 발생한다.")
+    @Test
+    public void updateCarWithWrongUser() {
+        // given
+        User owner = User.builder()
+                .username("owner@gmail.com")
+                .nickname("ownerNickname")
+                .build();
+
+        User anotherUser = User.builder()
+                .username("another@gmail.com")
+                .nickname("anotherNickname")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("image/tesla3")
+                .build();
+
+        carTypeRepository.save(carType);
+
+        Car car = Car.builder()
+                .carType(carType)
+                .number("11가1111")
+                .nickname("콩이")
+                .user(owner)
+                .build();
+
+        carRepository.save(car);
+
+        // 수정 요청 (다른 사용자가 수정을 시도하는 상황)
+        CarServiceRequest request = CarServiceRequest.builder()
+                .carTypeId(carType.getId())
+                .number("22나2222")
+                .nickname("순이")
+                .build();
+
+        // when & then
+        assertThatThrownBy(() -> carService.updateCar(car.getId(), anotherUser, request))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.CAR_NOT_BELONG_TO_USER.getMessage());
 
     }
 

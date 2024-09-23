@@ -67,16 +67,18 @@ public class CarService {
             throw new BaseException(ErrorCode.CAR_NOT_BELONG_TO_USER);
         }
 
+        // 존재하지 않는 carType 인지 검증
         CarType carType = carTypeRepository.findById(request.getCarTypeId())
                 .orElseThrow(
                         () -> new BaseException(ErrorCode.CAR_TYPE_NOT_FOUND));
 
-        if (carRepository.existsByNumber(request.getNumber())) {
-            throw new BaseException(ErrorCode.CAR_NUMBER_ALREADY_EXISTS);
+        // 차량 번호를 수정한다면, 이미 존재하는 차량 번호로 수정하는지 검증
+        if (!car.getNumber().equals(request.getNumber())) {
+            if (carRepository.existsByNumber(request.getNumber())) {
+                throw new BaseException(ErrorCode.CAR_NUMBER_ALREADY_EXISTS);
+            }
         }
 
-        // TODO: 빈 닉네임이 들어오거나 했을 때, 기존 닉네임을 쓸 수 있도록 해야할듯함.
         car.updateCar(carType, request.getNumber(), request.getNickname());
-        carRepository.save(car);
     }
 }
