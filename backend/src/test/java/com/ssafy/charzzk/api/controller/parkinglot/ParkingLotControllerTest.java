@@ -51,6 +51,47 @@ class ParkingLotControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data").isArray());
     }
 
+    @DisplayName("주차장 검색에 성공한다")
+    @WithMockUser
+    @Test
+    void getParkingLotListWithKeyword() throws Exception {
+        // given
+        ParkingLotListRequest request = ParkingLotListRequest.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        List<ParkingLotListResponse> response = List.of(
+                ParkingLotListResponse.builder()
+                        .id(1L)
+                        .name("주차장1")
+                        .build(),
+                ParkingLotListResponse.builder()
+                        .id(2L)
+                        .name("주차장2")
+                        .build()
+        );
+
+        given(parkingLotService.getParkingLotList(any(), any())).willReturn(response);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/parking-lot")
+                        .with(csrf())
+                        .param("keyword", "주차장")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("200"))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data").isArray());
+    }
+
     @DisplayName("주차장 목록을 조회할 때 위도는 필수값이다")
     @WithMockUser
     @Test

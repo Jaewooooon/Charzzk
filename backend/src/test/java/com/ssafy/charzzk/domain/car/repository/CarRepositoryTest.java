@@ -1,9 +1,10 @@
-package com.ssafy.charzzk.domain.car;
+package com.ssafy.charzzk.domain.car.repository;
 
 import com.ssafy.charzzk.IntegrationTestSupport;
-import com.ssafy.charzzk.api.service.car.CarService;
+import com.ssafy.charzzk.domain.car.Car;
+import com.ssafy.charzzk.domain.car.CarRepository;
+import com.ssafy.charzzk.domain.car.CarType;
 import com.ssafy.charzzk.domain.user.User;
-import com.ssafy.charzzk.domain.user.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

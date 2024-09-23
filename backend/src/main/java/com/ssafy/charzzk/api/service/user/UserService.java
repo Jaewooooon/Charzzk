@@ -41,4 +41,12 @@ public class UserService {
         user.updateNickname(request.getNickname());
         userRepository.save(user);
     }
+
+    public String checkNickname(UserUpdateServiceRequest request) {
+        if (userRepository.existsByNickname(request.getNickname())) {
+            throw new BaseException(ErrorCode.NICKNAME_ALREADY_EXISTS);
+        }
+
+        return "닉네임 변경이 가능합니다";
+    }
 }
