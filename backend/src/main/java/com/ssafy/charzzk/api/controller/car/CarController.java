@@ -28,7 +28,7 @@ public class CarController {
         return ApiResponse.ok(carService.getCar(carId));
     }
 
-    @GetMapping("/api/v1/cars")
+    @GetMapping("/api/v1/car-types")
     public ApiResponse<List<CarTypeResponse>> getCarTypes(
             @RequestParam(value = "q", defaultValue = "", required = false) String keyword
     ) {

@@ -67,7 +67,7 @@ class CarControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data").exists());
     }
 
-    @DisplayName("차종을 등록할 때 차량 기종 ID는 필수값이다.")
+    @DisplayName("차량을 등록할 때 차량 기종 ID는 필수값이다.")
     @WithMockUser
     @Test
     public void createCarWithoutCarTypeId() throws Exception {
@@ -94,7 +94,7 @@ class CarControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
-    @DisplayName("차종을 등록할 때 차량 번호는 필수값이다.")
+    @DisplayName("차량을 등록할 때 차량 번호는 필수값이다.")
     @WithMockUser
     @Test
     public void createCarWithoutNumber() throws Exception {
@@ -121,7 +121,7 @@ class CarControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
-    @DisplayName("차종을 등록할 때 차량 번호가 빈 문자열이면 예외가 발생한다.")
+    @DisplayName("차량을 등록할 때 차량 번호가 빈 문자열이면 예외가 발생한다.")
     @WithMockUser
     @Test
     public void createCarWithBlankNumber() throws Exception {
@@ -172,7 +172,7 @@ class CarControllerTest extends ControllerTestSupport {
 
         // when
         ResultActions perform = mockMvc.perform(
-                get("/api/v1/cars")
+                get("/api/v1/car-types")
                         .param("q", "테슬라")
                         .contentType(MediaType.APPLICATION_JSON)
         );
