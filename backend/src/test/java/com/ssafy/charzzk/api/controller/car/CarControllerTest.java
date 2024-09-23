@@ -6,6 +6,7 @@ import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarType;
+import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willDoNothing;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -315,4 +317,29 @@ class CarControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data").isEmpty());
     }
 
+    @DisplayName("차량을 삭제하면 정상적으로 삭제된다.")
+    @WithMockUser
+    @Test
+    public void deleteCar() throws Exception {
+        // given
+        Long carId = 1L;
+
+        // 차량 삭제 메서드 호출해도 아무 일 없도록 함
+        willDoNothing().given(carService).deleteCar(any(Long.class), any(User.class));
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                delete("/api/v1/cars/{carId}", carId)
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("200"))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data").isEmpty());
+    }
 }

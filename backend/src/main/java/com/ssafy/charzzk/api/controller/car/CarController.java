@@ -46,4 +46,12 @@ public class CarController {
         return ApiResponse.ok(carService.getCar(carId));
     }
 
+    @DeleteMapping("/api/v1/cars/{carId}")
+    public ApiResponse<CarResponse> deleteCar(
+            @PathVariable Long carId,
+            @CurrentUser User user
+    ) {
+        carService.deleteCar(carId, user);
+        return ApiResponse.ok(null);
+    }
 }
