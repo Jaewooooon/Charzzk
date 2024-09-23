@@ -28,7 +28,7 @@ public class CarController {
         return ApiResponse.ok(carService.getCar(carId));
     }
 
-    @GetMapping("/api/v1/cars")
+    @GetMapping("/api/v1/car-types")
     public ApiResponse<List<CarTypeResponse>> getCarTypes(
             @RequestParam(value = "q", defaultValue = "", required = false) String keyword
     ) {
@@ -36,5 +36,14 @@ public class CarController {
         return ApiResponse.ok(carTypes);
     }
 
+    @PatchMapping("/api/v1/cars/{carId}")
+    public ApiResponse<CarResponse> updateCar(
+            @PathVariable Long carId,
+            @CurrentUser User user,
+            @Valid @RequestBody CarRequest request
+    ) {
+        carService.updateCar(carId, user, request.toServiceRequest());
+        return ApiResponse.ok(carService.getCar(carId));
+    }
 
 }
