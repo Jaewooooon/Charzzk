@@ -20,12 +20,14 @@ import java.util.List;
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -63,12 +65,12 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                         .build()
         );
 
-        given(parkingLotService.getParkingLotList(any())).willReturn(response);
+        given(parkingLotService.getParkingLotList(any(), anyString())).willReturn(response);
 
         // when
         ResultActions perform = mockMvc.perform(
                 get("/api/v1/parking-lot")
-                        .with(csrf())
+                        .param("q", "검색어")
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON)
         );
@@ -87,6 +89,9 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                                                 .description("위도"),
                                         fieldWithPath("longitude").type(JsonFieldType.NUMBER)
                                                 .description("경도")
+                                )
+                                .queryParameters(
+                                        parameterWithName("q").optional().description("검색어 (옵션)")
                                 )
                                 .responseFields(
                                         fieldWithPath("code").type(JsonFieldType.NUMBER)

@@ -8,10 +8,7 @@ import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,9 +20,10 @@ public class ParkingLotController {
 
     @GetMapping("/api/v1/parking-lot")
     public ApiResponse<List<ParkingLotListResponse>> getParkingLotList(
-            @Valid @RequestBody ParkingLotListRequest request
+            @Valid @RequestBody ParkingLotListRequest request,
+            @RequestParam(value = "q", defaultValue = "", required = false) String keyword
     ) {
-        return ApiResponse.ok(parkingLotService.getParkingLotList(request));
+        return ApiResponse.ok(parkingLotService.getParkingLotList(request, keyword));
     }
 
     @GetMapping("/api/v1/parking-lot/{parkingLotId}")

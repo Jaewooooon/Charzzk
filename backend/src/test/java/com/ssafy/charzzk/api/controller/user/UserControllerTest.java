@@ -1,7 +1,8 @@
-package com.ssafy.charzzk.api.controller;
+package com.ssafy.charzzk.api.controller.user;
 
 import com.ssafy.charzzk.ControllerTestSupport;
 import com.ssafy.charzzk.api.controller.user.request.UserUpdateRequest;
+import com.ssafy.charzzk.api.service.user.request.UserUpdateServiceRequest;
 import com.ssafy.charzzk.api.service.user.response.UserResponse;
 import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
@@ -40,6 +41,37 @@ class UserControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.message").value("OK"))
                 .andExpect(jsonPath("$.data").isArray());
     }
+
+    @DisplayName("유저가 닉네임 중복을 확인했을 때 중복된 닉네임이 없다.")
+    @WithMockUser
+    @Test
+    public void checkNickname() throws Exception {
+        // given
+        UserUpdateRequest request = UserUpdateRequest.builder()
+                .nickname("nickname")
+                .build();
+
+        given(userService.checkNickname(any(UserUpdateServiceRequest.class)))
+                .willReturn("닉네임 변경이 가능합니다");
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/users/check-nickname")
+                        .with(csrf())
+                        .param("nickname", "NewNickname")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("200"))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data").value("닉네임 변경이 가능합니다"));
+    }
+
 
     @DisplayName("유저가 올바른 닉네임으로 닉네임을 수정하면 성공한다.")
     @WithMockUser

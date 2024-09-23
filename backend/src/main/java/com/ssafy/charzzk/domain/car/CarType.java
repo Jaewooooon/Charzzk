@@ -23,7 +23,8 @@ public class CarType {
     private String image;
 
     @Builder
-    private CarType(String name, String image) {
+    private CarType(Long id, String name, String image) {
+        this.id = id;
         this.name = name;
         this.image = image;
     }
