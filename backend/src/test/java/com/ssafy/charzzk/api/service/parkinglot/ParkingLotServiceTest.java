@@ -54,15 +54,13 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
                         .location(location2)
                         .build());
 
-        ParkingLotListRequest request = ParkingLotListRequest.builder()
-                .latitude(0.0)
-                .longitude(0.0)
-                .build();
+        Double latitude = 0.0;
+        Double longitude = 0.0;
 
         parkingLotRepository.saveAll(parkingLotList);
 
         // when
-        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(request, "");
+        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(latitude, longitude, "");
 
         // then
         assertThat(parkingLotListResponseList).hasSize(2)
@@ -105,15 +103,13 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
                         .location(location2)
                         .build());
 
-        ParkingLotListRequest request = ParkingLotListRequest.builder()
-                .latitude(0.0)
-                .longitude(0.0)
-                .build();
+        Double latitude = 0.0;
+        Double longitude = 0.0;
 
         parkingLotRepository.saveAll(parkingLotList);
 
         // when
-        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(request, "주차장");
+        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(latitude, longitude, "주차장");
 
         // then
         assertThat(parkingLotListResponseList).hasSize(3)

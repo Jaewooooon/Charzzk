@@ -23,14 +23,33 @@ public class ParkingLotService {
 
     private final ParkingLotRepository parkingLotRepository;
 
-    public List<ParkingLotListResponse> getParkingLotList(ParkingLotListRequest request, String keyword) {
+    //    public List<ParkingLotListResponse> getParkingLotList(ParkingLotListRequest request, String keyword) {
+//        List<ParkingLot> ParkingLotList = parkingLotRepository.findAllContaining(keyword);
+//
+//        Location currentLocation = Location.builder()
+//                .latitude(request.getLatitude())
+//                .longitude(request.getLongitude())
+//                .build();
+//
+//
+//        return ParkingLotList.stream()
+//                .map(parkingLot -> {
+//                    Location parkingLotLocation = parkingLot.getLocation();
+//                    double distance = DistanceCalculator.calculateDistance(currentLocation, parkingLotLocation);
+//
+//                    return ParkingLotListResponse.of(parkingLot, distance);
+//                })
+//                .sorted(Comparator.comparingDouble(ParkingLotListResponse::getDistance))
+//                .toList();
+//    }
+
+    public List<ParkingLotListResponse> getParkingLotList(Double latitude, Double longitude, String keyword) {
         List<ParkingLot> ParkingLotList = parkingLotRepository.findAllContaining(keyword);
 
         Location currentLocation = Location.builder()
-                .latitude(request.getLatitude())
-                .longitude(request.getLongitude())
+                .latitude(latitude)
+                .longitude(longitude)
                 .build();
-
 
         return ParkingLotList.stream()
                 .map(parkingLot -> {
@@ -49,4 +68,6 @@ public class ParkingLotService {
 
         return ParkingLotResponse.of(findParkingLot);
     }
+
+
 }

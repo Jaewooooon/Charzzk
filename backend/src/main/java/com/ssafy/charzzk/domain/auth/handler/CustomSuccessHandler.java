@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -46,10 +47,16 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         JwtToken jwtToken = jwtService.generateToken(customUserDetails.getUsername(), customUserDetails.getAuthorities());
         CookieUtils.addCookie(response, AuthConst.REFRESH_TOKEN, jwtToken.getRefreshToken(), properties.getRefreshExpire(), true);
 
-        response.setHeader("Authorization", "Bearer " + jwtToken.getAccessToken());
 
         String redirectURI = determineTargetUrl(request, response, authentication);
-        getRedirectStrategy().sendRedirect(request, response, redirectURI);
+        getRedirectStrategy().sendRedirect(request, response, getRedirectUrl(redirectURI, jwtToken));
+
+    }
+
+    private String getRedirectUrl(String targetUrl, JwtToken token) {
+        return UriComponentsBuilder.fromUriString(targetUrl + "/auth/callback")
+                .queryParam("accessToken", token.getAccessToken())
+                .build().toUriString();
     }
 
     protected void clearAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response) {
