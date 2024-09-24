@@ -19,8 +19,7 @@ import java.util.List;
 
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -65,12 +64,14 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                         .build()
         );
 
-        given(parkingLotService.getParkingLotList(any(), anyString())).willReturn(response);
+        given(parkingLotService.getParkingLotList(anyDouble(), anyDouble(), anyString())).willReturn(response);
 
         // when
         ResultActions perform = mockMvc.perform(
                 get("/api/v1/parking-lot")
                         .param("q", "검색어")
+                        .param("latitude", "37.123456")
+                        .param("longitude", "127.123456")
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON)
         );
@@ -91,7 +92,9 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                                                 .description("경도")
                                 )
                                 .queryParameters(
-                                        parameterWithName("q").optional().description("검색어 (옵션)")
+                                        parameterWithName("q").optional().description("검색어 (옵션)"),
+                                        parameterWithName("latitude").description("위도"),
+                                        parameterWithName("longitude").description("경도")
                                 )
                                 .responseFields(
                                         fieldWithPath("code").type(JsonFieldType.NUMBER)
