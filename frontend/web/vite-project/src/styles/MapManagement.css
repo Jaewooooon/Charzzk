@@ -1,0 +1,13 @@
+.MapManagement_container{
+    padding-left: 150px;
+    margin-top: 60px;
+}
+.Management_Map{
+    width: 80%;
+    height: auto;
+}
+#map {
+    width: 80%;
+    height: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */    padding-left: 300px;
+  }

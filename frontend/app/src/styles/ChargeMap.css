@@ -1,0 +1,45 @@
+/* KakaoMap 컨테이너 스타일 */
+#KakaoMap {
+    width: 100%;
+    height: 100vh; /* 전체 화면 높이 사용 */
+  }
+  
+  /* 지도 위에 띄우는 박스 스타일 */
+  .coordinates-box {
+    position: absolute;
+    left: 50%; /* 가로 중앙 */
+    bottom: 0; /* 세로 하단 */
+    transform: translateX(-50%); /* 가로 중앙 정렬 */
+    width: 95%;
+    height: 300px;
+    overflow-y: auto; /* 내용이 많아지면 스크롤 */
+    background-color: rgb(255, 255, 255); /* 반투명 배경 */
+    padding: 15px;
+    border-radius: 50px 50px 0 0; /* 상단만 둥글게 */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10; /* 지도 위에 표시 */
+  }
+  
+  /* 좌표 목록 스타일 */
+  .coordinates-box h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .coordinates-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .coordinates-box li {
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  .coordinates-box li strong {
+    color: #000;
+  }
+  

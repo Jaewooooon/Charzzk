@@ -1,0 +1,32 @@
+.start_button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 180px;
+}
+.kakao_button, .google_button{
+    width: 80%;
+    height: 60px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bolder;
+    border: none;
+}
+.kakao_button{
+    background-color: #FFE600;
+}
+.google_button{
+    background-color: white;
+    border: 1px solid #E7E7E7;
+}
+.CharZzk_Logo{
+    width: 60%;
+    padding-left: 85px;
+    margin-top: 200px;
+
+}
+.ChageStart_Box{
+    display: flex;
+    flex-direction: column;
+}
