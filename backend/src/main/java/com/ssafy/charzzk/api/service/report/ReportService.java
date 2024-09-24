@@ -26,10 +26,10 @@ public class ReportService {
     public Long createReport(User user, ReportServiceRequest serviceRequest) {
         // 주차장 찾기
         Charger charger = chargerRepository.findBySerialNumber(serviceRequest.getSerialNumber())
-                .orElseThrow(()-> new BaseException(ErrorCode.CHARGER_NOT_FOUND));
+                .orElseThrow(() -> new BaseException(ErrorCode.CHARGER_NOT_FOUND));
         ParkingLot parkingLot = charger.getParkingLot();
 
-        Report report = Report.create(user, parkingLot,serviceRequest.getType(), serviceRequest.getContent(), serviceRequest.getImage());
+        Report report = Report.create(user, parkingLot, serviceRequest.getType(), serviceRequest.getContent(), serviceRequest.getImage());
         reportRepository.save(report);
         return report.getId();
     }
@@ -38,7 +38,6 @@ public class ReportService {
         Report findReport = reportRepository.findById(reportId).orElseThrow(
                 () -> new BaseException(ErrorCode.REPORT_NOT_FOUND)
         );
-
         return ReportResponse.from(findReport);
     }
 }

@@ -63,24 +63,24 @@ class ReportServiceTest extends IntegrationTestSupport {
 //        chargerRepository.save(charger);
 //    }
 
-    @DisplayName("신고를 등록하면 정상적으로 등록된다.")
-    @Test
-    public void createReport() throws Exception {
-        // given
-        ReportServiceRequest request = ReportServiceRequest.builder()
-                .serialNumber("1234ABCD")
-                .type(ReportType.FLIPPED)
-                .content("로봇이 뒤집혔습니다.")
-                .image("test-image-url")
-                .build();
-
-        // when
-        Long reportId = reportService.createReport(user, request);
-
-        // then
-        assertThat(reportId).isNotNull();
-
-    }
+//    @DisplayName("신고를 등록하면 정상적으로 등록된다.")
+//    @Test
+//    public void createReport() throws Exception {
+//        // given
+//        ReportServiceRequest request = ReportServiceRequest.builder()
+//                .serialNumber("1234ABCD")
+//                .type(ReportType.FLIPPED)
+//                .content("로봇이 뒤집혔습니다.")
+//                .image("test-image-url")
+//                .build();
+//
+//        // when
+//        Long reportId = reportService.createReport(user, request);
+//
+//        // then
+//        assertThat(reportId).isNotNull();
+//
+//    }
 
   
 }

@@ -32,12 +32,12 @@ public class ReportRequest {
         this.image = image;
     }
 
-    public ReportServiceRequest toServiceRequest() {
+    public ReportServiceRequest toServiceRequest(String imageUrl) {
         return ReportServiceRequest.builder()
                 .serialNumber(serialNumber)
                 .type(type)
                 .content(content)
-                .image(image)
+                .image(imageUrl)
                 .build();
     }
 }

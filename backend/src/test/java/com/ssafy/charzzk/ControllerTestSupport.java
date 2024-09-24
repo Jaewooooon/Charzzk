@@ -10,6 +10,7 @@ import com.ssafy.charzzk.api.service.auth.JWTService;
 import com.ssafy.charzzk.api.service.car.CarService;
 import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
 import com.ssafy.charzzk.api.service.report.ReportService;
+import com.ssafy.charzzk.api.service.report.S3ImageService;
 import com.ssafy.charzzk.api.service.user.UserService;
 import com.ssafy.charzzk.core.configuration.SecurityConfig;
 import com.ssafy.charzzk.core.filter.JWTFilter;
@@ -61,6 +62,9 @@ public abstract class ControllerTestSupport {
 
     @MockBean
     protected ReportService reportService;
+
+    @MockBean
+    protected S3ImageService s3ImageService;
 
     @MockBean
     protected JWTService jwtService;

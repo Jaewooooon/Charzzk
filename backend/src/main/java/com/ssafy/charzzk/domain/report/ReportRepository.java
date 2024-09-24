@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface ReportRepository extends JpaRepository<Report, Long> {
 
-    @Query("SELECT r FROM Report r JOIN FETCH r.user WHERE r.id = :reportId")
+    @Query("SELECT r FROM Report r JOIN FETCH r.user JOIN FETCH r.parkingLot WHERE r.id = :reportId")
     Optional<Report> findById(Long reportId);
 }

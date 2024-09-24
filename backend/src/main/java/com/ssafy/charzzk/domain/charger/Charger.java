@@ -25,10 +25,8 @@ public class Charger extends BaseEntity {
     @JoinColumn(name = "parking_lot_id", nullable = false)
     private ParkingLot parkingLot;
 
-    @Column(name = "serial_number")
     private String serialNumber;
 
-    @Column(name = "battery")
     private Integer battery;
 
     @Enumerated(EnumType.STRING)

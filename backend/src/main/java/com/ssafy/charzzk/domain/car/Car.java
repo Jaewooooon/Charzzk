@@ -34,6 +34,9 @@ public class Car extends BaseEntity {
 
     private String nickname;
 
+    @Column(nullable = false)
+    private Integer battery = 30;
+
     @Builder
     private Car(User user, CarType carType, String number, String nickname) {
         this.user = user;
@@ -43,6 +46,7 @@ public class Car extends BaseEntity {
     }
 
     public static Car create(User user, CarType carType, String number, String nickname) {
+
         return Car.builder()
                 .user(user)
                 .carType(carType)
