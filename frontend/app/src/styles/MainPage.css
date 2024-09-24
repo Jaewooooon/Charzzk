@@ -2,6 +2,8 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: 'MinSans-Regular';
+
   }
 
 .MainPage_ContainerBox{
@@ -9,6 +11,7 @@ html, body {
     width: 100%; /* 화면 전체 너비 */
     background: linear-gradient(to top, #836FFF, #000000) ;
     margin: 0;
+    font-family: 'MinSans-Regular';
 }
 
 .MainPage_ButtonBox{
@@ -27,6 +30,7 @@ html, body {
     transform: translateX(-50%); /* 중앙 정렬을 위해 변환 */
     z-index: 100; /* 다른 요소보다 위에 배치 */
     box-sizing: border-box; /* 패딩을 포함하여 계산 */
+    font-family: 'MinSans-Regular';
 }
 
 .Car_Information{
@@ -35,22 +39,26 @@ html, body {
     text-align: center;
     align-items: center;
     justify-content: center;
+    font-family: 'MinSans-Regular';
 }
 .Car_Image{
     margin-top: 20px;
     width: 85%; 
     height: auto;
+    font-family: 'MinSans-Regular';
 }
 .Car_MonthInformation{
     display: flex;
     justify-content: space-between;
     color: rgba(255, 255, 255, 0.55);
     font-size: 12px;
+    font-family: 'MinSans-Regular';
 }
 .Car_MonthInformation1{
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-right: 30px;
     padding-bottom: 5px;
+    font-family: 'MinSans-Regular';
 }
 .Car_MonthInformation2{
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -83,6 +91,7 @@ html, body {
     width: 140px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'MinSans-Regular';
   }
   
   .ChargeStart_Button {
@@ -109,6 +118,7 @@ html, body {
     font-size: 20px;
     font-weight: bolder;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'MinSans-Regular';
   }
 
   .MyPage{
@@ -117,7 +127,7 @@ html, body {
     border-radius: 10px;
     display: flex;
     width: 300px;
-    justify-content: center
+    justify-content: center;
   }
 
   .Mypage_Car, .Mypage_Payment, .Mypage_ReportIssue {
@@ -131,6 +141,7 @@ html, body {
     width: 100px;
     height: 80px;
     border: none;
+    font-family: 'MinSans-Regular';
   }
 
   .Mypage_Car, .Mypage_Payment{
