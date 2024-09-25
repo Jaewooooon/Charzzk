@@ -79,8 +79,8 @@ class ReservationRepositoryTest extends IntegrationTestSupport {
         Reservation reservation1 = Reservation.builder()
                 .charger(charger)
                 .car(car)
-                .startTime(dateTime.minusMinutes(10))
-                .endTime(dateTime.plusMinutes(10))
+                .startTime(dateTime.minusMinutes(50))
+                .endTime(dateTime.minusMinutes(30))
                 .build();
 
         Reservation reservation2 = Reservation.builder()
