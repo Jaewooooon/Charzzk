@@ -111,8 +111,8 @@ public class ReportControllerDocsTest extends RestDocsSupport {
                         preprocessResponse(prettyPrint()),
                         resource(ResourceSnippetParameters.builder()
                                 .tag("Report")
-                                .summary("신고하기")
-                                .description("사용자가 로봇 관련 문제를 신고하는 기능")
+                                .summary("신고 등록")
+                                .description("사용자는 사진과 함께 충전 로봇에 대한 신고를 할 수 있다.")
                                 .requestHeaders(
                                         headerWithName("Authorization").description("JWT 토큰 (Bearer)")
                                 )

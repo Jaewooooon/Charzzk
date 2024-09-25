@@ -30,13 +30,14 @@ public class ReportController {
         return ApiResponse.ok(reportService.getReport(reportId));
     }
 
-//    @PatchMapping("/api/v1/reports/{reportId}")
-//    public ApiResponse<ReportResponse> readReport(
-//            @CurrentUser User user,
-//            @PathVariable Long carId
-//    ) {
-//
-//    }
+    @PatchMapping("/api/v1/reports/{reportId}")
+    public ApiResponse<ReportResponse> readReport(
+            @CurrentUser User user,
+            @PathVariable Long reportId
+    ) {
+        reportService.readReport(user, reportId);
+        return ApiResponse.ok(reportService.getReport(reportId));
+    }
 
 
 }

@@ -178,4 +178,83 @@ class ReportServiceTest extends IntegrationTestSupport {
         assertThat(foundReport.getUser().getUsername()).isEqualTo("testuser@gmail.com");
         assertThat(foundReport.getParkingLot().getName()).isEqualTo("테스트 주차장");
     }
+
+    @DisplayName("신고를 읽음 처리하면 isRead가 true로 변경된다.")
+    @Test
+    public void readReport() throws Exception {
+        // given
+        User user = User.builder()
+                .username("testuser@gmail.com")
+                .nickname("테스트유저")
+                .build();
+        userRepository.save(user);
+
+        Location location = Location.builder()
+                .latitude(37.5665)
+                .longitude(126.9780)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+        parkingLotRepository.save(parkingLot);
+
+        Charger charger = Charger.builder()
+                .serialNumber("1234ABCD")
+                .parkingLot(parkingLot)
+                .build();
+        chargerRepository.save(charger);
+
+        Report report = Report.create(user, parkingLot, ReportType.FLIPPED, "로봇이 뒤집혔습니다.", null);
+        reportRepository.save(report);
+
+        // when
+        reportService.readReport(user, report.getId());
+
+        // then
+        Report updatedReport = reportRepository.findById(report.getId()).orElseThrow();
+        assertThat(updatedReport.isRead()).isTrue();
+    }
+
+    @DisplayName("이미 읽힌 신고를 다시 읽음 처리하면 상태가 변하지 않는다.")
+    @Test
+    public void readReport_alreadyRead() throws Exception {
+        // given
+        User user = User.builder()
+                .username("testuser@gmail.com")
+                .nickname("테스트유저")
+                .build();
+        userRepository.save(user);
+
+        Location location = Location.builder()
+                .latitude(37.5665)
+                .longitude(126.9780)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+        parkingLotRepository.save(parkingLot);
+
+        Charger charger = Charger.builder()
+                .serialNumber("1234ABCD")
+                .parkingLot(parkingLot)
+                .build();
+        chargerRepository.save(charger);
+
+        Report report = Report.create(user, parkingLot, ReportType.FLIPPED, "로봇이 뒤집혔습니다.", null);
+        report.readReport();
+        reportRepository.save(report);
+
+        // when & then
+        assertThat(report.isRead()).isTrue();
+
+        reportService.readReport(user, report.getId());
+
+        Report updatedReport = reportRepository.findById(report.getId()).orElseThrow();
+        assertThat(updatedReport.isRead()).isTrue();
+    }
+
 }

@@ -16,7 +16,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willDoNothing;
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -189,6 +191,52 @@ class ReportControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.code").value(400))
                 .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
                 .andExpect(jsonPath("$.message").value("신고 내용은 필수입니다."));
+    }
+
+    @DisplayName("신고 읽기 요청이 성공하면, isRead가 true로 변경된다.")
+    @WithMockUser
+    @Test
+    public void readReport() throws Exception {
+        // given
+        UserResponse userResponse = UserResponse.builder()
+                .id(1L)
+                .username("testuser@gmail.com")
+                .nickname("유저1")
+                .build();
+
+        ParkingLotReportResponse parkingLotReportResponse = ParkingLotReportResponse.builder()
+                .id(1L)
+                .name("장덕 공영 주차장")
+                .build();
+
+        ReportResponse response = ReportResponse.builder()
+                .id(1L)
+                .user(userResponse)
+                .reportType(ReportType.FLIPPED)
+                .parkingLot(parkingLotReportResponse)
+                .content("로봇이 뒤집혔습니다.")
+                .image("https://mockurl.com/test-image.jpg")
+                .isRead(true)  // 읽음 처리
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        willDoNothing().given(reportService).readReport(any(), anyLong());
+        given(reportService.getReport(1L)).willReturn(response);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                patch("/api/v1/reports/{reportId}", 1L)
+                        .with(csrf())
+                        .header("Authorization", "Bearer token")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data.read").value(true));  // isRead가 true인지
     }
 
 }
