@@ -13,6 +13,7 @@ import com.ssafy.charzzk.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -21,15 +22,22 @@ public class ReportService {
 
     private final ReportRepository reportRepository;
     private final ChargerRepository chargerRepository;
+    private final S3ImageService s3ImageService;
 
     @Transactional
-    public Long createReport(User user, ReportServiceRequest serviceRequest) {
+    public Long createReport(User user, ReportServiceRequest serviceRequest, MultipartFile image) {
         // 주차장 찾기
         Charger charger = chargerRepository.findBySerialNumber(serviceRequest.getSerialNumber())
                 .orElseThrow(() -> new BaseException(ErrorCode.CHARGER_NOT_FOUND));
         ParkingLot parkingLot = charger.getParkingLot();
 
-        Report report = Report.create(user, parkingLot, serviceRequest.getType(), serviceRequest.getContent(), serviceRequest.getImage());
+        // 이미지가 있다면 이미지 업로드
+        String imageUrl = null;
+        if (image != null && !image.isEmpty()) {
+            imageUrl = s3ImageService.upload(image);
+        }
+
+        Report report = Report.create(user, parkingLot, serviceRequest.getType(), serviceRequest.getContent(), imageUrl);
         reportRepository.save(report);
         return report.getId();
     }

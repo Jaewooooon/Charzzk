@@ -20,17 +20,19 @@ public class ReportResponse {
     private ParkingLotReportResponse parkingLot;
     private String content;
     private String image;
+    private boolean isRead;
 
     private LocalDateTime createdAt;
 
     @Builder
-    private ReportResponse(Long id, UserResponse user, ReportType reportType, ParkingLotReportResponse parkingLot, String content, String image, LocalDateTime createdAt) {
+    private ReportResponse(Long id, UserResponse user, ReportType reportType, ParkingLotReportResponse parkingLot, String content, String image, boolean isRead, LocalDateTime createdAt) {
         this.id = id;
         this.user = user;
         this.reportType = reportType;
         this.parkingLot = parkingLot;
         this.content = content;
         this.image = image;
+        this.isRead = isRead;
         this.createdAt = createdAt;
     }
 
@@ -42,6 +44,7 @@ public class ReportResponse {
                 .parkingLot(ParkingLotReportResponse.of(report.getParkingLot()))
                 .content(report.getContent())
                 .image(report.getImage())
+                .isRead(report.isRead())
                 .createdAt(report.getCreatedAt())
                 .build();
     }

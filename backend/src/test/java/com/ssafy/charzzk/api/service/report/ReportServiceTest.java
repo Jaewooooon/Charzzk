@@ -1,7 +1,6 @@
 package com.ssafy.charzzk.api.service.report;
 
 import com.ssafy.charzzk.IntegrationTestSupport;
-import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
 import com.ssafy.charzzk.api.service.report.request.ReportServiceRequest;
 import com.ssafy.charzzk.api.service.report.response.ReportResponse;
 import com.ssafy.charzzk.domain.charger.Charger;
@@ -14,23 +13,15 @@ import com.ssafy.charzzk.domain.report.ReportRepository;
 import com.ssafy.charzzk.domain.report.ReportType;
 import com.ssafy.charzzk.domain.user.User;
 import com.ssafy.charzzk.domain.user.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
-import static org.mockito.BDDMockito.given;
-import static org.mockito.ArgumentMatchers.any;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
 @ActiveProfiles("test")
@@ -51,16 +42,14 @@ class ReportServiceTest extends IntegrationTestSupport {
     @Autowired
     private UserRepository userRepository;
 
-    @DisplayName("신고를 등록하면 정상적으로 등록된다.")
+    @DisplayName("이미지와 함께 신고를 등록하면 이미지가 정상적으로 업로드되고 신고가 등록된다.")
     @Test
-    public void createReport() throws Exception {
+    public void createReportWithImage() throws Exception {
         // given
-
         User user = User.builder()
                 .username("testuser@gmail.com")
                 .nickname("테스트유저")
                 .build();
-
         userRepository.save(user);
 
         Location location = Location.builder()
@@ -72,25 +61,24 @@ class ReportServiceTest extends IntegrationTestSupport {
                 .name("테스트 주차장")
                 .location(location)
                 .build();
-
         parkingLotRepository.save(parkingLot);
 
         Charger charger = Charger.builder()
                 .serialNumber("1234ABCD")
                 .parkingLot(parkingLot)
                 .build();
-
         chargerRepository.save(charger);
+
+        MultipartFile mockImage = new MockMultipartFile("image", "test-image.jpg", "image/jpeg", "image content".getBytes());
 
         ReportServiceRequest request = ReportServiceRequest.builder()
                 .serialNumber("1234ABCD")
                 .type(ReportType.FLIPPED)
                 .content("로봇이 뒤집혔습니다.")
-                .image("test-image-url")
                 .build();
 
         // when
-        Long reportId = reportService.createReport(user, request);
+        Long reportId = reportService.createReport(user, request, mockImage);
         Report savedReport = reportRepository.findById(reportId).orElseThrow();
 
         // then
@@ -99,9 +87,55 @@ class ReportServiceTest extends IntegrationTestSupport {
         assertThat(savedReport.getType()).isEqualTo(ReportType.FLIPPED);
         assertThat(savedReport.getUser().getUsername()).isEqualTo("testuser@gmail.com");
         assertThat(savedReport.getParkingLot().getName()).isEqualTo("테스트 주차장");
-        assertThat(savedReport.getParkingLot().getLocation().getLatitude()).isEqualTo(37.5665);
-        assertThat(savedReport.getParkingLot().getLocation().getLongitude()).isEqualTo(126.9780);
+        assertThat(savedReport.getImage()).contains("test-image.jpg");
     }
+
+    @DisplayName("이미지 없이 신고를 등록하면 이미지 필드는 null로 저장된다.")
+    @Test
+    public void createReportWithoutImage() throws Exception {
+        // given
+        User user = User.builder()
+                .username("testuser@gmail.com")
+                .nickname("테스트유저")
+                .build();
+        userRepository.save(user);
+
+        Location location = Location.builder()
+                .latitude(37.5665)
+                .longitude(126.9780)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+        parkingLotRepository.save(parkingLot);
+
+        Charger charger = Charger.builder()
+                .serialNumber("1234ABCD")
+                .parkingLot(parkingLot)
+                .build();
+        chargerRepository.save(charger);
+
+        ReportServiceRequest request = ReportServiceRequest.builder()
+                .serialNumber("1234ABCD")
+                .type(ReportType.FLIPPED)
+                .content("로봇이 뒤집혔습니다.")
+                .build();
+
+        // when
+        Long reportId = reportService.createReport(user, request, null);
+        Report savedReport = reportRepository.findById(reportId).orElseThrow();
+
+        // then
+        assertThat(reportId).isNotNull();
+        assertThat(savedReport.getContent()).isEqualTo("로봇이 뒤집혔습니다.");
+        assertThat(savedReport.getType()).isEqualTo(ReportType.FLIPPED);
+        assertThat(savedReport.getUser().getUsername()).isEqualTo("testuser@gmail.com");
+        assertThat(savedReport.getParkingLot().getName()).isEqualTo("테스트 주차장");
+        assertThat(savedReport.getImage()).isNull();
+    }
+
 
     @DisplayName("ID로 신고를 조회하면 정상적으로 조회된다.")
     @Test
@@ -144,5 +178,4 @@ class ReportServiceTest extends IntegrationTestSupport {
         assertThat(foundReport.getUser().getUsername()).isEqualTo("testuser@gmail.com");
         assertThat(foundReport.getParkingLot().getName()).isEqualTo("테스트 주차장");
     }
-
 }

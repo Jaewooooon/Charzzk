@@ -22,22 +22,18 @@ public class ReportRequest {
     @NotNull(message = "신고 내용은 필수입니다.")
     private String content;
 
-    private String image;
-
     @Builder
-    private ReportRequest(String serialNumber, ReportType type, String content, String image) {
+    private ReportRequest(String serialNumber, ReportType type, String content) {
         this.serialNumber = serialNumber;
         this.type = type;
         this.content = content;
-        this.image = image;
     }
 
-    public ReportServiceRequest toServiceRequest(String imageUrl) {
+    public ReportServiceRequest toServiceRequest() {
         return ReportServiceRequest.builder()
                 .serialNumber(serialNumber)
                 .type(type)
                 .content(content)
-                .image(imageUrl)
                 .build();
     }
 }

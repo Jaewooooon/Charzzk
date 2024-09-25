@@ -12,10 +12,8 @@ public class ReportServiceRequest {
 
     private String serialNumber;
 
-    @NotNull(message = "신고 유형은 필수입니다.")
     private ReportType type;
 
-    @NotNull(message = "신고 내용은 필수입니다.")
     private String content;
 
     private String image;
