@@ -1,0 +1,87 @@
+/* 전체 레이아웃 설정 */
+.main_layout {
+    display: flex;
+    height: 80px;
+    width: 100vw;
+  }
+  
+  /* 좌측 네비게이션 바 */
+  .nav_container {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    background-color: #4A4A4A;
+    height: 100vh; /* 전체 화면 높이를 차지 */
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  /* 상단 네비게이션 바 */
+  .top_nav {
+    position: fixed;
+    top: 0;
+    left: 80px; /* 좌측 네비게이션 바의 너비만큼 여백 */
+    width: calc(100% - 80px); /* 좌측 네비게이션 바를 제외한 나머지 너비 */
+    height: 80px;
+    background-color: #4A4A4A;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1;
+  }
+  
+  .logo_img {
+    width: 80px;
+    height: 80px;
+    padding-right: 15px;
+  }
+  
+  /* 메인 콘텐츠 영역 */
+  .content {
+    margin-top: 80px; /* 상단 네비게이션 바 아래로 여백 */
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    background-color: #F3F3F3;
+    height: calc(100vh - 80px); /* 상단 네비게이션 바 높이를 제외한 나머지 높이 */
+    width: calc(100% - 80px); /* 좌측 네비게이션 바 너비를 제외한 나머지 너비 */
+    position: relative;
+  }
+  
+  /* 버튼 기본 스타일 */
+  .MapManagement_button, .DocumentManagement_button {
+    background-color: #4A4A4A;
+    border: none;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+  }
+  .MapManagement_button{
+    margin-top: 80px;
+  }
+  
+  .MapManagement_button:hover, .DocumentManagement_button:hover {
+    background-color: #7a7a7a;
+  }
+  
+  .MapManagement_button.active, .DocumentManagement_button.active {
+    background-color: #4DC2A3; /* 클릭된 버튼의 색상 */
+  }
+  
+  .map_img{
+    width: 55px;
+  }
+  .document_img {
+    width: 45px;
+  }
+  
+  /* 기본 설정 */
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #F3F3F3;
+  }
+  
