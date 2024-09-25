@@ -34,12 +34,15 @@ public class Car extends BaseEntity {
 
     private String nickname;
 
+    private int battery = 30;
+
     @Builder
-    public Car(User user, CarType carType, String number, String nickname) {
+    private Car(User user, CarType carType, String number, String nickname, int battery) {
         this.user = user;
         this.carType = carType;
         this.number = number;
         this.nickname = nickname;
+        this.battery = battery;
     }
 
     public static Car create(User user, CarType carType, String number, String nickname) {
