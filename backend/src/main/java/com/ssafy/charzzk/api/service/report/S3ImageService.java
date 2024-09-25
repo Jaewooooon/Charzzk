@@ -36,7 +36,7 @@ public class S3ImageService {
             throw new BaseException(ErrorCode.EMPTY_FILE_EXCEPTION);
         }
 
-        if (image.getSize() > 1_048_576) {
+        if (image.getSize() > 5_242_880) {
             throw new BaseException(ErrorCode.FILE_SIZE_EXCEEDS_LIMIT);
         }
 
