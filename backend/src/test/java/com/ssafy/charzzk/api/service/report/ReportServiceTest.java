@@ -3,6 +3,7 @@ package com.ssafy.charzzk.api.service.report;
 import com.ssafy.charzzk.IntegrationTestSupport;
 import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
 import com.ssafy.charzzk.api.service.report.request.ReportServiceRequest;
+import com.ssafy.charzzk.api.service.report.response.ReportResponse;
 import com.ssafy.charzzk.domain.charger.Charger;
 import com.ssafy.charzzk.domain.charger.ChargerRepository;
 import com.ssafy.charzzk.domain.parkinglot.Location;
@@ -102,5 +103,46 @@ class ReportServiceTest extends IntegrationTestSupport {
         assertThat(savedReport.getParkingLot().getLocation().getLongitude()).isEqualTo(126.9780);
     }
 
+    @DisplayName("ID로 신고를 조회하면 정상적으로 조회된다.")
+    @Test
+    public void getReport() throws Exception {
+        // given
+        User user = User.builder()
+                .username("testuser@gmail.com")
+                .nickname("테스트유저")
+                .build();
+        userRepository.save(user);
+
+        Location location = Location.builder()
+                .latitude(37.5665)
+                .longitude(126.9780)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+        parkingLotRepository.save(parkingLot);
+
+        Charger charger = Charger.builder()
+                .serialNumber("1234ABCD")
+                .parkingLot(parkingLot)
+                .build();
+        chargerRepository.save(charger);
+
+        Report report = Report.create(user, parkingLot, ReportType.FLIPPED, "로봇이 뒤집혔습니다.", "test-image-url");
+        reportRepository.save(report);
+
+        // when
+        ReportResponse foundReport = reportService.getReport(report.getId());
+
+        // then
+        assertThat(foundReport).isNotNull();
+        assertThat(foundReport.getContent()).isEqualTo("로봇이 뒤집혔습니다.");
+        assertThat(foundReport.getReportType()).isEqualTo(ReportType.FLIPPED);
+        assertThat(foundReport.getImage()).isEqualTo("test-image-url");
+        assertThat(foundReport.getUser().getUsername()).isEqualTo("testuser@gmail.com");
+        assertThat(foundReport.getParkingLot().getName()).isEqualTo("테스트 주차장");
+    }
 
 }
