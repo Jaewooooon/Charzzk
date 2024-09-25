@@ -12,17 +12,24 @@ const Navbar = () => {
     setActiveButton(buttonName);
   };
 
+  const handleTopButtonClick = () => {
+    setActiveButton(null);
+  };
+
   return (
     <div className="main_layout">
       {/* 상단 네비게이션 바 */}
       <div className="top_nav">
-        <img src={logo} alt="logo" className="logo_img" />
+      <NavLink to="/management">
+        <button className='top_button' onClick={handleTopButtonClick}>
+          <img src={logo} alt="logo" className="logo_img" /></button>
+        </NavLink>
       </div>
 
       <div className='test'>
         {/* 좌측 네비게이션 바 */}
         <nav className="nav_container">
-          <NavLink to="/">
+          <NavLink to="/management/map-management">
             <button
               className={`MapManagement_button ${activeButton === 'map' ? 'active' : ''}`}
               onClick={() => handleButtonClick('map')}
@@ -30,7 +37,7 @@ const Navbar = () => {
               <img src={map} alt="map" className="map_img" />
             </button>
           </NavLink>
-          <NavLink to="/document-management">
+          <NavLink to="/management/document-management">
             <button
               className={`DocumentManagement_button ${activeButton === 'document' ? 'active' : ''}`}
               onClick={() => handleButtonClick('document')}

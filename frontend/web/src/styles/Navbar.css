@@ -84,4 +84,8 @@
     width: 100%;
     background-color: #F3F3F3;
   }
-  
+  .top_button{
+    background-color: rgba(102, 51, 153, 0);
+    border: none;
+
+  }
