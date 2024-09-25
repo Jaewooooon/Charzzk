@@ -20,10 +20,11 @@ public class ParkingLotController {
 
     @GetMapping("/api/v1/parking-lot")
     public ApiResponse<List<ParkingLotListResponse>> getParkingLotList(
-            @Valid @RequestBody ParkingLotListRequest request,
+            @RequestParam(value = "latitude", defaultValue = "0.0") Double latitude,
+            @RequestParam(value = "longitude", defaultValue = "0.0") Double longitude,
             @RequestParam(value = "q", defaultValue = "", required = false) String keyword
     ) {
-        return ApiResponse.ok(parkingLotService.getParkingLotList(request, keyword));
+        return ApiResponse.ok(parkingLotService.getParkingLotList(latitude, longitude, keyword));
     }
 
     @GetMapping("/api/v1/parking-lot/{parkingLotId}")
