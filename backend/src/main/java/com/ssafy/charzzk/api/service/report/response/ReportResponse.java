@@ -1,5 +1,6 @@
 package com.ssafy.charzzk.api.service.report.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotReportResponse;
 import com.ssafy.charzzk.api.service.user.response.UserResponse;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
@@ -22,6 +23,7 @@ public class ReportResponse {
     private String image;
     private boolean isRead;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 
     @Builder

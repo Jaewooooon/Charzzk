@@ -19,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReportController {
 
     private final ReportService reportService;
-    private final S3ImageService s3ImageService;
 
     @PostMapping("/api/v1/reports")
     public ApiResponse<ReportResponse> createReport(
