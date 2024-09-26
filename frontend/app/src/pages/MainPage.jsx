@@ -40,7 +40,7 @@ const MainPage = () => {
         </div>
 
         
-        <div className='MyPage_Content'>마이페이지</div>
+        <div className='MyPage_Content'>마이페이지.</div>
         <div className='MyPage'>
           <Link to="/mypage/car-management">
             <button className='Mypage_Car'><img src={MypageCar} alt="MypageCar" className="MypageCar_Image" />차량 관리</button>
