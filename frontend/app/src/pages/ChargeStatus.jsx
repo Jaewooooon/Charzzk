@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/ChargeStatus.css';
+
 const ChargeStatus= () => {
   const [chargePercent, setChargePercent] = useState(63); // 초기값은 40으로 설정합니다.
 
