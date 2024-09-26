@@ -26,6 +26,7 @@ import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.multipart;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
@@ -238,4 +239,88 @@ public class ReportControllerDocsTest extends RestDocsSupport {
                         )
                 ));
     }
+
+    @DisplayName("신고 상세 조회를 한다.")
+    @Test
+    public void getReport() throws Exception {
+        // given
+        UserResponse userResponse = UserResponse.builder()
+                .id(1L)
+                .username("testuser@gmail.com")
+                .nickname("유저1")
+                .build();
+
+        ParkingLotReportResponse parkingLotReportResponse = ParkingLotReportResponse.builder()
+                .id(1L)
+                .name("장덕 공영 주차장")
+                .build();
+
+        ReportResponse reportResponse = ReportResponse.builder()
+                .id(1L)
+                .user(userResponse)
+                .reportType(ReportType.FLIPPED)
+                .parkingLot(parkingLotReportResponse)
+                .content("로봇이 뒤집혔습니다.")
+                .image("https://mockurl.com/test-image.jpg")
+                .isRead(true)
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        given(reportService.getReport(anyLong())).willReturn(reportResponse);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/reports/{reportId}", 1L)
+                        .header("Authorization", "Bearer token")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document("report-get",
+                        preprocessResponse(prettyPrint()),
+                        resource(ResourceSnippetParameters.builder()
+                                .tag("Report")
+                                .summary("신고 상세 조회")
+                                .description("관리자는 특정 신고의 상세 정보를 조회할 수 있다.")
+                                .requestHeaders(
+                                        headerWithName("Authorization").description("JWT 토큰 (Bearer)")
+                                )
+                                .responseFields(
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER)
+                                                .description("코드"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("message").type(JsonFieldType.STRING)
+                                                .description("메시지"),
+                                        fieldWithPath("data.id").type(JsonFieldType.NUMBER)
+                                                .description("신고 아이디"),
+                                        fieldWithPath("data.user.id").type(JsonFieldType.NUMBER)
+                                                .description("유저 아이디"),
+                                        fieldWithPath("data.user.username").type(JsonFieldType.STRING)
+                                                .description("유저 네임"),
+                                        fieldWithPath("data.user.nickname").type(JsonFieldType.STRING)
+                                                .description("유저 닉네임"),
+                                        fieldWithPath("data.reportType").type(JsonFieldType.STRING)
+                                                .description("신고 유형"),
+                                        fieldWithPath("data.parkingLot.id").type(JsonFieldType.NUMBER)
+                                                .description("주차장 ID"),
+                                        fieldWithPath("data.parkingLot.name").type(JsonFieldType.STRING)
+                                                .description("주차장 이름"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING)
+                                                .description("신고 내용"),
+                                        fieldWithPath("data.image").type(JsonFieldType.STRING)
+                                                .description("신고 이미지 URL"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING)
+                                                .description("신고 시각"),
+                                        fieldWithPath("data.read").type(JsonFieldType.BOOLEAN)
+                                                .description("신고 확인 여부")
+                                )
+                                .build()
+                        )
+                ));
+    }
+
 }

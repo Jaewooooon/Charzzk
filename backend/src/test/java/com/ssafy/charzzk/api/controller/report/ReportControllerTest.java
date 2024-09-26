@@ -22,6 +22,7 @@ import static org.mockito.BDDMockito.willDoNothing;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -237,6 +238,62 @@ class ReportControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.status").value("OK"))
                 .andExpect(jsonPath("$.message").value("OK"))
                 .andExpect(jsonPath("$.data.read").value(true));  // isRead가 true인지
+    }
+
+    @DisplayName("신고 상세 조회 요청이 성공하면 신고 상세 정보가 정상적으로 반환된다.")
+    @WithMockUser
+    @Test
+    public void getReport() throws Exception {
+        // given
+        UserResponse userResponse = UserResponse.builder()
+                .id(1L)
+                .username("testuser@gmail.com")
+                .nickname("유저1")
+                .build();
+
+        ParkingLotReportResponse parkingLotReportResponse = ParkingLotReportResponse.builder()
+                .id(1L)
+                .name("장덕 공영 주차장")
+                .build();
+
+        ReportResponse response = ReportResponse.builder()
+                .id(1L)
+                .user(userResponse)
+                .reportType(ReportType.FLIPPED)
+                .parkingLot(parkingLotReportResponse)
+                .content("로봇이 뒤집혔습니다.")
+                .image("https://mockurl.com/test-image.jpg")
+                .isRead(true)
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        given(reportService.getReport(anyLong())).willReturn(response);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/reports/{reportId}", 1L)
+                        .with(csrf())
+                        .header("Authorization", "Bearer token")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data.id").value(1L))
+                .andExpect(jsonPath("$.data.user.id").value(1L))
+                .andExpect(jsonPath("$.data.user.username").value("testuser@gmail.com"))
+                .andExpect(jsonPath("$.data.user.nickname").value("유저1"))
+                .andExpect(jsonPath("$.data.reportType").value("FLIPPED"))
+                .andExpect(jsonPath("$.data.parkingLot.id").value(1L))
+                .andExpect(jsonPath("$.data.parkingLot.name").value("장덕 공영 주차장"))
+                .andExpect(jsonPath("$.data.content").value("로봇이 뒤집혔습니다."))
+                .andExpect(jsonPath("$.data.image").value("https://mockurl.com/test-image.jpg"))
+                .andExpect(jsonPath("$.data.read").value(true))
+                .andExpect(jsonPath("$.data.createdAt").exists());
     }
 
 }

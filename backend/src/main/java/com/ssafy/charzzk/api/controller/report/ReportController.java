@@ -36,5 +36,12 @@ public class ReportController {
         return ApiResponse.ok(reportService.getReport(reportId));
     }
 
+    @GetMapping("/api/v1/reports/{reportId}")
+    public ApiResponse<ReportResponse> getReport(
+            @PathVariable Long reportId
+    ) {
+        return ApiResponse.ok(reportService.getReport(reportId));
+    }
+
 
 }
