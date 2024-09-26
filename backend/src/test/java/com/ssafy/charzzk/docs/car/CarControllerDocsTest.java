@@ -5,10 +5,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ssafy.charzzk.api.controller.car.CarController;
 import com.ssafy.charzzk.api.controller.car.request.CarRequest;
 import com.ssafy.charzzk.api.service.car.CarService;
+import com.ssafy.charzzk.api.service.car.response.CarListResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.docs.RestDocsSupport;
 import com.ssafy.charzzk.domain.car.CarType;
+import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -274,5 +276,90 @@ public class CarControllerDocsTest extends RestDocsSupport {
                                 .build())));
     }
 
+    @DisplayName("사용자의 차량 목록을 조회한다.")
+    @Test
+    public void getCarList() throws Exception {
+        // given
+        CarTypeResponse carTypeResponse = CarTypeResponse.builder()
+                .id(1L)
+                .name("테슬라 모델 3")
+                .image("cars/image1")
+                .build();
+
+        CarListResponse carResponse1 = CarListResponse.builder()
+                .id(1L)
+                .carType(carTypeResponse)
+                .number("11다1111")
+                .nickname("콩이")
+                .isCharging(false)
+                .chargeCost(10000L)
+                .chargeAmount(500L)
+                .build();
+
+        CarListResponse carResponse2 = CarListResponse.builder()
+                .id(2L)
+                .carType(carTypeResponse)
+                .number("22나2222")
+                .nickname("순이")
+                .isCharging(true)
+                .chargeCost(20000L)
+                .chargeAmount(1000L)
+                .build();
+
+        List<CarListResponse> carList = List.of(carResponse1, carResponse2);
+
+        given(carService.getCarList(any(User.class))).willReturn(carList);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/cars/me")
+                        .header("Authorization", "Bearer token")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document("car-list",
+                        preprocessResponse(prettyPrint()),
+                        resource(ResourceSnippetParameters.builder()
+                                .tag("Car")
+                                .summary("내 차량 목록 조회")
+                                .description("로그인한 사용자의 차량 목록을 조회한다.")
+                                .requestHeaders(
+                                        headerWithName("Authorization").description("JWT 토큰 (Bearer)")
+                                )
+                                .responseFields(
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER)
+                                                .description("코드"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("message").type(JsonFieldType.STRING)
+                                                .description("메시지"),
+                                        fieldWithPath("data").type(JsonFieldType.ARRAY)
+                                                .description("차량 목록"),
+                                        fieldWithPath("data[].id").type(JsonFieldType.NUMBER)
+                                                .description("차량 ID"),
+                                        fieldWithPath("data[].number").type(JsonFieldType.STRING)
+                                                .description("차량 번호"),
+                                        fieldWithPath("data[].nickname").type(JsonFieldType.STRING)
+                                                .optional().description("차량 별명"),
+                                        fieldWithPath("data[].charging").type(JsonFieldType.BOOLEAN)
+                                                .description("충전 중 여부"),
+                                        fieldWithPath("data[].chargeCost").type(JsonFieldType.NUMBER)
+                                                .description("이번달 충전 비용"),
+                                        fieldWithPath("data[].chargeAmount").type(JsonFieldType.NUMBER)
+                                                .description("이번달 충전 양"),
+                                        fieldWithPath("data[].carType.id").type(JsonFieldType.NUMBER)
+                                                .description("차종 아이디"),
+                                        fieldWithPath("data[].carType.name").type(JsonFieldType.STRING)
+                                                .description("차종 이름"),
+                                        fieldWithPath("data[].carType.image").type(JsonFieldType.STRING)
+                                                .description("차종 이미지")
+                                )
+                                .build()
+                        )));
+    }
 
 }

@@ -3,6 +3,7 @@ package com.ssafy.charzzk.api.controller.car;
 import com.ssafy.charzzk.api.ApiResponse;
 import com.ssafy.charzzk.api.controller.car.request.CarRequest;
 import com.ssafy.charzzk.api.service.car.CarService;
+import com.ssafy.charzzk.api.service.car.response.CarListResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.core.annotation.CurrentUser;
@@ -53,5 +54,13 @@ public class CarController {
     ) {
         carService.deleteCar(carId, user);
         return ApiResponse.ok(null);
+    }
+
+    @GetMapping("/api/v1/cars/me")
+    public ApiResponse<List<CarListResponse>> getCarList(
+            @CurrentUser User user
+    ) {
+        List<CarListResponse> carList = carService.getCarList(user);
+        return ApiResponse.ok(carList);
     }
 }

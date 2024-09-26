@@ -1,6 +1,7 @@
 package com.ssafy.charzzk.api.service.car;
 
 import com.ssafy.charzzk.api.service.car.request.CarServiceRequest;
+import com.ssafy.charzzk.api.service.car.response.CarListResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
@@ -9,11 +10,15 @@ import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarRepository;
 import com.ssafy.charzzk.domain.car.CarType;
 import com.ssafy.charzzk.domain.car.CarTypeRepository;
+import com.ssafy.charzzk.domain.charginglog.ChargingLog;
+import com.ssafy.charzzk.domain.charginglog.ChargingLogRepository;
 import com.ssafy.charzzk.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,6 +29,7 @@ public class CarService {
 
     private final CarRepository carRepository;
     private final CarTypeRepository carTypeRepository;
+    private final ChargingLogRepository chargingLogRepository;
 
     @Transactional
     public Long createCar(User user, CarServiceRequest request) {
@@ -97,4 +103,39 @@ public class CarService {
 
         carRepository.delete(car);
     }
+
+    public List<CarListResponse> getCarList(User user) {
+        return carRepository.findByUser(user)
+                .stream()
+                .map(this::convertToCarListResponse)
+                .collect(Collectors.toList());
+    }
+
+    private CarListResponse convertToCarListResponse(Car car) {
+        LocalDateTime startOfMonth = LocalDateTime.now().with(TemporalAdjusters.firstDayOfMonth()).toLocalDate().atStartOfDay();
+        LocalDateTime endOfMonth = LocalDateTime.now().with(TemporalAdjusters.lastDayOfMonth()).toLocalDate().atTime(23, 59, 59);
+
+        // TODO: 월말, 월초 경계값 처리 필요 -> 충전 끝나는 시간만 기준으로 하면 될듯함.
+        List<ChargingLog> chargingLogs = chargingLogRepository.findByCarAndTimePeriod(car, startOfMonth, endOfMonth);
+
+        long totalChargingTimeInSeconds = chargingLogs.stream()
+                .mapToLong(log -> log.getEndTime().getSecond() - log.getStartTime().getSecond())
+                .sum();
+
+        // 비용과 충전량 계산 -> 로직 깔끔하게 바꾸긴 해야할 듯함.
+        long chargeCost = totalChargingTimeInSeconds * 100;
+        long chargeAmount = totalChargingTimeInSeconds * 10;
+
+        return CarListResponse.builder()
+                .id(car.getId())
+                .carType(CarTypeResponse.from(car.getCarType()))
+                .number(car.getNumber())
+                .nickname(car.getNickname())
+                .isCharging(car.isCharging())
+                .chargeCost(chargeCost)
+                .chargeAmount(chargeAmount)
+                .build();
+    }
+
+
 }
