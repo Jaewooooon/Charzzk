@@ -26,40 +26,41 @@ def generate_launch_description():
             node_name='odom',
             output = 'screen'
         ),
-        # Node(
-        #     package = 'sub1',
-        #     node_executable = 'path_pub',
-        #     node_name = 'path_pub',
-        #     output = 'screen'
-        # ),
         Node(
             package = 'sub1',
-            node_executable = 'a_star',
-            node_name = 'a_star',
+            node_executable = 'path_pub',
+            node_name = 'path_pub',
             output = 'screen'
         ),
         Node(
             package = 'sub1',
-            node_executable = 'a_star_local_path',
-            node_name = 'a_star_local_path',
+            node_executable = 'path_tracking_PID',
+            node_name = 'path_tracking_PID',
             output = 'screen'
         ),
-        Node(
-            package = 'sub1',
-            node_executable = 'load_map',
-            node_name = 'load_map',
-            output = 'screen'
-        ),
-        # Node(
-        #     package = 'sub1',
-        #     node_executable = 'path_tracking',
-        #     node_name = 'path_tracking',
-        #     output = 'screen'
-        # ),
         # Node(
         #     package='sub1',
         #     node_executable='make_path',
         #     node_name='make_path',
+        #     output = 'screen'
+        # ),
+
+        # Node(
+        #     package = 'sub1',
+        #     node_executable = 'a_star',
+        #     node_name = 'a_star',
+        #     output = 'screen'
+        # ),
+        # Node(
+        #     package = 'sub1',
+        #     node_executable = 'a_star_local_path',
+        #     node_name = 'a_star_local_path',
+        #     output = 'screen'
+        # ),
+        # Node(
+        #     package = 'sub1',
+        #     node_executable = 'load_map',
+        #     node_name = 'load_map',
         #     output = 'screen'
         # ),
         

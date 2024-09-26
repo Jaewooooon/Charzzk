@@ -13,12 +13,14 @@ sub1/__init__.py
 sub1/a_star.py
 sub1/a_star_local_path.py
 sub1/controller.py
+sub1/goal_publisher.py
 sub1/handcontrol.py
 sub1/load_map.py
 sub1/make_path.py
 sub1/odom.py
 sub1/path_pub.py
 sub1/path_tracking.py
+sub1/path_tracking_PID.py
 sub1/perception.py
 sub1/publisher.py
 sub1/subscriber.py

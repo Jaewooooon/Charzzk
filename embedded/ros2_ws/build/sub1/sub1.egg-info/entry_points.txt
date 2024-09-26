@@ -2,12 +2,14 @@
 a_star = sub1.a_star:main
 a_star_local_path = sub1.a_star_local_path:main
 controller = sub1.controller:main
+goal_publisher = sub1.goal_publisher:main
 handcontrol = sub1.handcontrol:main
 load_map = sub1.load_map:main
 make_path = sub1.make_path:main
 odom = sub1.odom:main
 path_pub = sub1.path_pub:main
 path_tracking = sub1.path_tracking:main
+path_tracking_PID = sub1.path_tracking_PID:main
 perception = sub1.perception:main
 publisher = sub1.publisher:main
 subscriber = sub1.subscriber:main

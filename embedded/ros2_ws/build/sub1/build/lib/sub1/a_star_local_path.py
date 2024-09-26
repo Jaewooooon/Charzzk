@@ -53,7 +53,7 @@ class astarLocalpath(Node):
         self.global_path_msg=
         
         '''
-        # 로직 2. global_path 데이터 수신 후 저장
+        # 로직 2. global_path 데이터 수신 후 저장(주호 귀여워)
         self.is_path = True  # 경로 데이터가 수신되었음을 나타냄
         self.global_path_msg = msg  # 수신한 경로 메시지를 저장
 

@@ -32,7 +32,9 @@ setup(
 
             'a_star = sub1.a_star:main',
             'a_star_local_path = sub1.a_star_local_path:main',
-            'load_map = sub1.load_map:main'
+            'load_map = sub1.load_map:main',
+            'goal_publisher = sub1.goal_publisher:main',
+            'path_tracking_PID=sub1.path_tracking_PID:main'
         ],
     },
 )

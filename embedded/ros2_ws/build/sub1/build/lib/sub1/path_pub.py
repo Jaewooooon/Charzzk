@@ -22,7 +22,7 @@ class pathPub(Node):
         self.global_path_msg.header.frame_id = 'odom'
 
         # 파일 읽어서 global path 생성
-        self.f = open('C:\\Users\\SSAFY\\Desktop\\path.txt', 'r')
+        self.f = open('C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\sub2\\path\\globalPath.txt', 'r')
         lines = self.f.readlines()
         self.f.close()
 
