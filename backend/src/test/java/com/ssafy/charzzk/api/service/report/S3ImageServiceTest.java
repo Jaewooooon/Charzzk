@@ -1,19 +1,15 @@
 package com.ssafy.charzzk.api.service.report;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.ssafy.charzzk.IntegrationTestSupport;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
@@ -23,14 +19,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
 @Transactional
@@ -65,8 +60,6 @@ class S3ImageServiceTest {
         // then
         assertThat(result).isEqualTo("https://mockurl.com/test-image.jpg");
     }
-
-
 
 
     @DisplayName("빈 파일을 업로드하면 예외가 발생한다.")
@@ -118,7 +111,6 @@ class S3ImageServiceTest {
         BaseException exception = assertThrows(BaseException.class, () -> s3ImageService.upload(multipartFile));
         assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.IO_EXCEPTION_ON_IMAGE_UPLOAD);
     }
-
 
 
 }

@@ -25,6 +25,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.multipart;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
@@ -59,7 +60,7 @@ public class ReportControllerDocsTest extends RestDocsSupport {
                 .nickname("유저1")
                 .build();
 
-        ParkingLotReportResponse  parkingLotReportResponse = ParkingLotReportResponse.builder()
+        ParkingLotReportResponse parkingLotReportResponse = ParkingLotReportResponse.builder()
                 .id(1L)
                 .name("장덕 공영 주차장")
                 .build();
@@ -118,11 +119,11 @@ public class ReportControllerDocsTest extends RestDocsSupport {
                                 )
                                 .responseFields(
                                         fieldWithPath("code").type(JsonFieldType.NUMBER)
-                                                .description("응답 코드"),
+                                                .description("코드"),
                                         fieldWithPath("status").type(JsonFieldType.STRING)
-                                                .description("응답 상태"),
+                                                .description("상태"),
                                         fieldWithPath("message").type(JsonFieldType.STRING)
-                                                .description("응답 메시지"),
+                                                .description("메시지"),
                                         fieldWithPath("data.id").type(JsonFieldType.NUMBER)
                                                 .description("신고 아이디"),
                                         fieldWithPath("data.user.id").type(JsonFieldType.NUMBER)
@@ -152,6 +153,88 @@ public class ReportControllerDocsTest extends RestDocsSupport {
                         requestParts(
                                 partWithName("report").description("신고 정보"),
                                 partWithName("image").description("신고 이미지 파일")
+                        )
+                ));
+    }
+
+    @DisplayName("신고를 읽는다.")
+    @Test
+    public void readReport() throws Exception {
+        // given
+        UserResponse userResponse = UserResponse.builder()
+                .id(1L)
+                .username("testuser@gmail.com")
+                .nickname("유저1")
+                .build();
+
+        ParkingLotReportResponse parkingLotReportResponse = ParkingLotReportResponse.builder()
+                .id(1L)
+                .name("장덕 공영 주차장")
+                .build();
+
+        ReportResponse reportResponse = ReportResponse.builder()
+                .id(1L)
+                .user(userResponse)
+                .reportType(ReportType.FLIPPED)
+                .parkingLot(parkingLotReportResponse)
+                .content("로봇이 뒤집혔습니다.")
+                .image("https://mockurl.com/test-image.jpg")
+                .isRead(true) // 읽은 상태로 설정
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        given(reportService.getReport(anyLong())).willReturn(reportResponse);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                patch("/api/v1/reports/{reportId}", 1L)
+                        .header("Authorization", "Bearer token")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document("report-read",
+                        preprocessResponse(prettyPrint()),
+                        resource(ResourceSnippetParameters.builder()
+                                .tag("Report")
+                                .summary("신고 읽기")
+                                .description("관리자는 읽지 않은 신고를 읽은 상태로 변경할 수 있다.")
+                                .requestHeaders(
+                                        headerWithName("Authorization").description("JWT 토큰 (Bearer)")
+                                )
+                                .responseFields(
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER)
+                                                .description("코드"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("message").type(JsonFieldType.STRING)
+                                                .description("메시지"),
+                                        fieldWithPath("data.id").type(JsonFieldType.NUMBER)
+                                                .description("신고 아이디"),
+                                        fieldWithPath("data.user.id").type(JsonFieldType.NUMBER)
+                                                .description("유저 아이디"),
+                                        fieldWithPath("data.user.username").type(JsonFieldType.STRING)
+                                                .description("유저 네임"),
+                                        fieldWithPath("data.user.nickname").type(JsonFieldType.STRING)
+                                                .description("유저 닉네임"),
+                                        fieldWithPath("data.reportType").type(JsonFieldType.STRING)
+                                                .description("신고 유형"),
+                                        fieldWithPath("data.parkingLot.id").type(JsonFieldType.NUMBER)
+                                                .description("주차장 ID"),
+                                        fieldWithPath("data.parkingLot.name").type(JsonFieldType.STRING)
+                                                .description("주차장 이름"),
+                                        fieldWithPath("data.content").type(JsonFieldType.STRING)
+                                                .description("신고 내용"),
+                                        fieldWithPath("data.image").type(JsonFieldType.STRING)
+                                                .description("신고 이미지 URL"),
+                                        fieldWithPath("data.createdAt").type(JsonFieldType.STRING)
+                                                .description("신고 시각"),
+                                        fieldWithPath("data.read").type(JsonFieldType.BOOLEAN)
+                                                .description("신고 확인 여부")
+                                ).build()
                         )
                 ));
     }

@@ -3,10 +3,8 @@ package com.ssafy.charzzk.api.service.report.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotReportResponse;
 import com.ssafy.charzzk.api.service.user.response.UserResponse;
-import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.report.Report;
 import com.ssafy.charzzk.domain.report.ReportType;
-import com.ssafy.charzzk.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 
