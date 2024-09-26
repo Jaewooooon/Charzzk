@@ -14,6 +14,7 @@ import com.ssafy.charzzk.domain.report.ReportRepository;
 import com.ssafy.charzzk.domain.report.ReportType;
 import com.ssafy.charzzk.domain.user.User;
 import com.ssafy.charzzk.domain.user.UserRepository;
+import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -332,15 +333,14 @@ class ReportServiceTest extends IntegrationTestSupport {
         List<ReportListResponse> reportList = reportService.getReportList();
 
         // then
-        assertThat(reportList).hasSize(3)
-                .extracting("reportType")
-                .containsExactly(FLIPPED, BROKEN, ETC);
-
-        assertThat(reportList).extracting("user.username")
-                .containsExactly("testuser1@gmail.com", "testuser2@gmail.com", "testuser3@gmail.com");
-
-        assertThat(reportList).extracting("parkingLot.name")
-                .containsExactly("테스트 주차장1", "테스트 주차장2", "테스트 주차장1");
+        assertThat(reportList)
+                .hasSize(3)
+                .extracting("reportType", "user.username", "parkingLot.name")
+                .containsExactlyInAnyOrder(
+                        Tuple.tuple(FLIPPED, "testuser1@gmail.com", "테스트 주차장1"),
+                        Tuple.tuple(BROKEN, "testuser2@gmail.com", "테스트 주차장2"),
+                        Tuple.tuple(ETC, "testuser3@gmail.com", "테스트 주차장1")
+                );
     }
 
 }
