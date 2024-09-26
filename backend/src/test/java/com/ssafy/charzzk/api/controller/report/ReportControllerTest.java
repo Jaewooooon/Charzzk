@@ -3,6 +3,7 @@ package com.ssafy.charzzk.api.controller.report;
 import com.ssafy.charzzk.ControllerTestSupport;
 import com.ssafy.charzzk.api.controller.report.request.ReportRequest;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotReportResponse;
+import com.ssafy.charzzk.api.service.report.response.ReportListResponse;
 import com.ssafy.charzzk.api.service.report.response.ReportResponse;
 import com.ssafy.charzzk.api.service.user.response.UserResponse;
 import com.ssafy.charzzk.domain.report.ReportType;
@@ -14,6 +15,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -296,4 +298,76 @@ class ReportControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data.createdAt").exists());
     }
 
+    @DisplayName("신고 목록 조회 요청이 성공하면 신고 목록 정보가 정상적으로 반환된다.")
+    @WithMockUser
+    @Test
+    public void getReportList() throws Exception {
+        // given
+        UserResponse userResponse1 = UserResponse.builder()
+                .id(1L)
+                .username("testuser1@gmail.com")
+                .nickname("유저1")
+                .build();
+
+        UserResponse userResponse2 = UserResponse.builder()
+                .id(2L)
+                .username("testuser2@gmail.com")
+                .nickname("유저2")
+                .build();
+
+        ParkingLotReportResponse parkingLotResponse = ParkingLotReportResponse.builder()
+                .id(1L)
+                .name("장덕 공영 주차장")
+                .build();
+
+        ReportListResponse reportResponse1 = ReportListResponse.builder()
+                .id(1L)
+                .user(userResponse1)
+                .reportType(ReportType.FLIPPED)
+                .parkingLot(parkingLotResponse)
+                .isRead(false)
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        ReportListResponse reportResponse2 = ReportListResponse.builder()
+                .id(2L)
+                .user(userResponse2)
+                .reportType(ReportType.BROKEN)
+                .parkingLot(parkingLotResponse)
+                .isRead(true)
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        given(reportService.getReportList()).willReturn(List.of(reportResponse1, reportResponse2));
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/reports")
+                        .with(csrf())
+                        .header("Authorization", "Bearer token")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data").isArray())
+                .andExpect(jsonPath("$.data[0].id").value(1L))
+                .andExpect(jsonPath("$.data[0].user.id").value(1L))
+                .andExpect(jsonPath("$.data[0].user.username").value("testuser1@gmail.com"))
+                .andExpect(jsonPath("$.data[0].reportType").value("FLIPPED"))
+                .andExpect(jsonPath("$.data[0].parkingLot.id").value(1L))
+                .andExpect(jsonPath("$.data[0].parkingLot.name").value("장덕 공영 주차장"))
+                .andExpect(jsonPath("$.data[0].read").value(false))
+                .andExpect(jsonPath("$.data[1].id").value(2L))
+                .andExpect(jsonPath("$.data[1].user.id").value(2L))
+                .andExpect(jsonPath("$.data[1].user.username").value("testuser2@gmail.com"))
+                .andExpect(jsonPath("$.data[1].reportType").value("BROKEN"))
+                .andExpect(jsonPath("$.data[1].parkingLot.id").value(1L))
+                .andExpect(jsonPath("$.data[1].parkingLot.name").value("장덕 공영 주차장"))
+                .andExpect(jsonPath("$.data[1].read").value(true));
+    }
 }
