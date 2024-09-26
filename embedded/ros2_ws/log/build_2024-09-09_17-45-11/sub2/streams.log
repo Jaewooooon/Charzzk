@@ -1,0 +1,38 @@
+[17.625s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub2': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub2 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\install.log --install-scripts $base/lib/sub2 --single-version-externally-managed install_data
+[21.422s] running egg_info
+[21.437s] writing ..\..\build\sub2\sub2.egg-info\PKG-INFO
+[21.437s] writing dependency_links to ..\..\build\sub2\sub2.egg-info\dependency_links.txt
+[21.437s] writing entry points to ..\..\build\sub2\sub2.egg-info\entry_points.txt
+[21.437s] writing requirements to ..\..\build\sub2\sub2.egg-info\requires.txt
+[21.437s] writing top-level names to ..\..\build\sub2\sub2.egg-info\top_level.txt
+[21.672s] reading manifest file '..\..\build\sub2\sub2.egg-info\SOURCES.txt'
+[21.719s] writing manifest file '..\..\build\sub2\sub2.egg-info\SOURCES.txt'
+[21.719s] running build
+[21.719s] running build_py
+[21.750s] running install
+[21.750s] running install_lib
+[21.812s] running install_data
+[21.812s] running install_egg_info
+[21.859s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2-0.0.0-py3.7.egg-info' (and everything under it)
+[21.875s] Copying ..\..\build\sub2\sub2.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2-0.0.0-py3.7.egg-info
+[21.969s] running install_scripts
+[22.125s] Installing a_star-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.125s] Installing a_star.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.125s] Installing a_star_local_path-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.141s] Installing a_star_local_path.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.141s] Installing ex_calib-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.141s] Installing ex_calib.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.141s] Installing human_detector-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.156s] Installing human_detector.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.156s] Installing load_map-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.156s] Installing load_map.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.172s] Installing odom-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.172s] Installing odom.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.172s] Installing path_tracking-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.187s] Installing path_tracking.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.187s] Installing seg_binarizer-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.187s] Installing seg_binarizer.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+[22.203s] writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\install.log'
+[22.516s] Invoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub2' returned '0': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub2 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\install.log --install-scripts $base/lib/sub2 --single-version-externally-managed install_data

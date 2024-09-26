@@ -1,0 +1,81 @@
+running egg_info
+creating ..\..\build\sub1\sub1.egg-info
+writing ..\..\build\sub1\sub1.egg-info\PKG-INFO
+writing dependency_links to ..\..\build\sub1\sub1.egg-info\dependency_links.txt
+writing entry points to ..\..\build\sub1\sub1.egg-info\entry_points.txt
+writing requirements to ..\..\build\sub1\sub1.egg-info\requires.txt
+writing top-level names to ..\..\build\sub1\sub1.egg-info\top_level.txt
+writing manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+reading manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+writing manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+running build
+running build_py
+creating C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build
+creating C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib
+creating C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\controller.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\handcontrol.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\make_path.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\odom.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\path_pub.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\path_tracking.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\perception.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\publisher.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\subscriber.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+copying sub1\__init__.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+running install
+running install_lib
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\controller.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\handcontrol.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\make_path.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\odom.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\path_pub.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\path_tracking.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\perception.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\publisher.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\subscriber.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\__init__.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\controller.py to controller.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\handcontrol.py to handcontrol.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\make_path.py to make_path.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\odom.py to odom.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\path_pub.py to path_pub.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\path_tracking.py to path_tracking.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\perception.py to perception.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\publisher.py to publisher.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\subscriber.py to subscriber.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\__init__.py to __init__.cpython-37.pyc
+running install_data
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\ament_index
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\ament_index\resource_index
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\ament_index\resource_index\packages
+copying resource\sub1 -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\ament_index\resource_index\packages
+copying package.xml -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1
+running install_egg_info
+Copying ..\..\build\sub1\sub1.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1-0.0.0-py3.7.egg-info
+running install_scripts
+Installing controller-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing controller.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing handcontrol-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing handcontrol.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing make_path-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing make_path.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing odom-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing odom.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing path_pub-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing path_pub.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing path_tracking-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing path_tracking.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing perception-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing perception.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing publisher-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing publisher.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing subscriber-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+Installing subscriber.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log'
+  File "C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\controller.py", line 137
+    self.turtlebot_go()
+       ^
+SyntaxError: invalid syntax
+
