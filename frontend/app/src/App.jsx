@@ -7,11 +7,16 @@ import ChargeStatus from './pages/ChargeStatus';
 import CarManagement from './pages/Mypage/CarManagement';
 import PaymentManagement from './pages/Mypage/PaymentManagement';
 import ReportIssue from './pages/Mypage/ReportIssue';
+import LoginSuccess from './pages/Login/LoginSuccess';
+import Login from './pages/Login/Login';
+import PrivateRoute from './components/PrivateRoute';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
     <Router>
       <Routes>
+
         {/* 메인 페이지 */}
         <Route path="/" element={<MainPage />} />
 
@@ -32,6 +37,12 @@ function App() {
 
         {/* 마이페이지 - 문제 신고 */}
         <Route path="/mypage/report-issue" element={<ReportIssue />} />
+
+        {/*로그인 페이지*/}
+        <Route path="/login" element={<Login />} />
+
+        {/* 로그인 성공 페이지 */}
+        <Route path="/auth/callback" element={<LoginSuccess />} />
       </Routes>
     </Router>
   );
