@@ -3,11 +3,16 @@ package com.ssafy.charzzk;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.charzzk.api.controller.car.CarController;
 import com.ssafy.charzzk.api.controller.parkinglot.ParkingLotController;
+import com.ssafy.charzzk.api.controller.report.ReportController;
+import com.ssafy.charzzk.api.controller.reservation.ReservationController;
 import com.ssafy.charzzk.api.controller.user.UserController;
 import com.ssafy.charzzk.api.service.auth.CustomUserService;
 import com.ssafy.charzzk.api.service.auth.JWTService;
 import com.ssafy.charzzk.api.service.car.CarService;
 import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
+import com.ssafy.charzzk.api.service.report.ReportService;
+import com.ssafy.charzzk.api.service.report.S3ImageService;
+import com.ssafy.charzzk.api.service.reservation.ReservationService;
 import com.ssafy.charzzk.api.service.user.UserService;
 import com.ssafy.charzzk.core.configuration.SecurityConfig;
 import com.ssafy.charzzk.core.filter.JWTFilter;
@@ -31,7 +36,10 @@ import static org.mockito.Mockito.when;
         controllers = {
                 UserController.class,
                 CarController.class,
-                ParkingLotController.class
+                ParkingLotController.class,
+                ReportController.class,
+                ParkingLotController.class,
+                ReservationController.class
         },
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {SecurityConfig.class}),
@@ -55,6 +63,15 @@ public abstract class ControllerTestSupport {
 
     @MockBean
     protected ParkingLotService parkingLotService;
+
+    @MockBean
+    protected ReportService reportService;
+
+    @MockBean
+    protected S3ImageService s3ImageService;
+
+    @MockBean
+    protected ReservationService reservationService;
 
     @MockBean
     protected JWTService jwtService;

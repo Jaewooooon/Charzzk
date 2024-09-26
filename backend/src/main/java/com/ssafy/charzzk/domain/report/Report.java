@@ -24,7 +24,7 @@ public class Report extends BaseEntity {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parking_lot_id", nullable = false)
+    @JoinColumn(name = "parking_lot_id")
     private ParkingLot parkingLot;
 
     @Enumerated(EnumType.STRING)
@@ -34,7 +34,7 @@ public class Report extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String image;
 
     @Column(nullable = false)
@@ -49,6 +49,21 @@ public class Report extends BaseEntity {
         this.content = content;
         this.image = image;
         this.isRead = isRead;
+    }
+
+    public static Report create(User user, ParkingLot parkingLot, ReportType type, String content, String image) {
+        return Report.builder()
+                .user(user)
+                .parkingLot(parkingLot)
+                .type(type)
+                .content(content)
+                .image(image)
+                .isRead(false)
+                .build();
+    }
+
+    public void readReport() {
+        this.isRead = true;
     }
 
 }
