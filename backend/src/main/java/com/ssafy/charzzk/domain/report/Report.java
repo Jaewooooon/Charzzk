@@ -34,6 +34,7 @@ public class Report extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
+    @Column(nullable = true)
     private String image;
 
     @Column(nullable = false)
@@ -59,6 +60,10 @@ public class Report extends BaseEntity {
                 .image(image)
                 .isRead(false)
                 .build();
+    }
+
+    public void readReport() {
+        this.isRead = true;
     }
 
 }

@@ -48,4 +48,17 @@ public class ReportService {
         );
         return ReportResponse.from(findReport);
     }
+
+    @Transactional
+    public void readReport(User user, Long reportId) {
+        Report report = reportRepository.findById(reportId).orElseThrow(
+                () -> new BaseException(ErrorCode.REPORT_NOT_FOUND)
+        );
+        // TODO: 관리자가 맞는지 검증
+
+        // 이미 확인된 신고는 다시 처리하지 않음
+        if (!report.isRead()) {
+            report.readReport();
+        }
+    }
 }
