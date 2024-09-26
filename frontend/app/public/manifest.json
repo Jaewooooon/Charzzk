@@ -3,21 +3,25 @@
     "short_name": "차지직", 
     "icons": [
       {
-        "src": "chips192.png",
-        "type": "image/png",
-        "sizes": "192x192",
-        "purpose": "any maskable"
+        "src": "icons/favicon.ico",
+        "type": "image/x-icon",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "purpose": "image/x-icon"
       },
       {
-        "src": "chips512.png",
+        "src": "icons/android-chrome-192x192.png",
         "type": "image/png",
-        "sizes": "512x512",
-        "purpose": "any maskable"
+        "sizes": "192x192"
+      },
+      {
+        "src": "icons/android-chrome-512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
       }
     ],
-    "start_url": ".",
+    "start_url": "/",
     "display": "standalone",
-    "theme_color": "#111111",
-    "background_color": "#ffffff"
+    "theme_color": "#ffffff",
+    "background_color": "#65f9d1"
   }
   
