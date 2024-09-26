@@ -41,7 +41,8 @@ public enum ErrorCode {
     FILE_SIZE_EXCEEDS_LIMIT(4006, HttpStatus.BAD_REQUEST, "파일 크기가 제한을 초과했습니다. (최대 1MB)"),
 
     // Charger
-    CHARGER_NOT_FOUND(5000, HttpStatus.NOT_FOUND, "충전 로봇을 찾을 수 없습니다.");
+    CHARGER_NOT_FOUND(5000, HttpStatus.NOT_FOUND, "충전 로봇을 찾을 수 없습니다."),
+    CHARGER_NOT_EXIST_IN_PARKING_LOT(5001, HttpStatus.NOT_FOUND, "주차장에 충전기가 없습니다.");
 
     private final int code;
     private final HttpStatus status;
