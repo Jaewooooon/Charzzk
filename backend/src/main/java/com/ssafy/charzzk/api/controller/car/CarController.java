@@ -12,6 +12,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -60,7 +62,10 @@ public class CarController {
     public ApiResponse<List<CarListResponse>> getCarList(
             @CurrentUser User user
     ) {
-        List<CarListResponse> carList = carService.getCarList(user);
+        LocalDateTime startOfMonth = LocalDateTime.now().with(TemporalAdjusters.firstDayOfMonth()).toLocalDate().atStartOfDay();
+        LocalDateTime endOfMonth = LocalDateTime.now().with(TemporalAdjusters.lastDayOfMonth()).toLocalDate().atTime(23, 59, 59);
+
+        List<CarListResponse> carList = carService.getCarList(user, startOfMonth, endOfMonth);
         return ApiResponse.ok(carList);
     }
 }

@@ -13,10 +13,10 @@ public class CarListResponse {
     private String nickname;
     private boolean isCharging;
     private Long ChargeCost;
-    private Long ChargeAmount;
+    private Double ChargeAmount;
 
     @Builder
-    private CarListResponse(Long id, CarTypeResponse carType, String number, String nickname, boolean isCharging, Long chargeCost, Long chargeAmount) {
+    private CarListResponse(Long id, CarTypeResponse carType, String number, String nickname, boolean isCharging, Long chargeCost, Double chargeAmount) {
         this.id = id;
         this.carType = carType;
         this.number = number;
@@ -33,6 +33,18 @@ public class CarListResponse {
                 .number(car.getNumber())
                 .nickname(car.getNickname())
                 .isCharging(car.isCharging())
+                .build();
+    }
+
+    public static CarListResponse of(Car car, Double chargeAmount, Long chargeCost) {
+        return CarListResponse.builder()
+                .id(car.getId())
+                .carType(CarTypeResponse.from(car.getCarType()))
+                .number(car.getNumber())
+                .nickname(car.getNickname())
+                .isCharging(car.isCharging())
+                .chargeAmount(chargeAmount)
+                .chargeCost(chargeCost)
                 .build();
     }
 }

@@ -1,7 +1,6 @@
 package com.ssafy.charzzk.docs.car;
 
 import com.epages.restdocs.apispec.ResourceSnippetParameters;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ssafy.charzzk.api.controller.car.CarController;
 import com.ssafy.charzzk.api.controller.car.request.CarRequest;
 import com.ssafy.charzzk.api.service.car.CarService;
@@ -17,7 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.util.Arrays;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
@@ -70,9 +69,9 @@ public class CarControllerDocsTest extends RestDocsSupport {
 
         // when
         ResultActions perform = mockMvc.perform(post("/api/v1/cars")
-                        .header("Authorization", "Bearer token")
-                        .content(objectMapper.writeValueAsString(request))
-                        .contentType(MediaType.APPLICATION_JSON));
+                .header("Authorization", "Bearer token")
+                .content(objectMapper.writeValueAsString(request))
+                .contentType(MediaType.APPLICATION_JSON));
 
         // then
         perform
@@ -134,13 +133,13 @@ public class CarControllerDocsTest extends RestDocsSupport {
                 .image("cars/image2")
                 .build();
 
-        List<CarTypeResponse> carTypeResponses = List.of(carType1,carType2);
+        List<CarTypeResponse> carTypeResponses = List.of(carType1, carType2);
 
         given(carService.getCarTypes(any())).willReturn(carTypeResponses);
 
         // when
         ResultActions perform = mockMvc.perform(get("/api/v1/car-types")
-                        .param("q", "테슬라"));
+                .param("q", "테슬라"));
 
         // then
         perform
@@ -199,8 +198,8 @@ public class CarControllerDocsTest extends RestDocsSupport {
 
         // when
         ResultActions perform = mockMvc.perform(patch("/api/v1/cars/{carId}", 1L)
-                        .content(objectMapper.writeValueAsString(request))
-                        .contentType(MediaType.APPLICATION_JSON));
+                .content(objectMapper.writeValueAsString(request))
+                .contentType(MediaType.APPLICATION_JSON));
 
         // then
         perform
@@ -292,8 +291,8 @@ public class CarControllerDocsTest extends RestDocsSupport {
                 .number("11다1111")
                 .nickname("콩이")
                 .isCharging(false)
-                .chargeCost(10000L)
-                .chargeAmount(500L)
+                .chargeCost(150000L)
+                .chargeAmount(500.1)
                 .build();
 
         CarListResponse carResponse2 = CarListResponse.builder()
@@ -302,13 +301,16 @@ public class CarControllerDocsTest extends RestDocsSupport {
                 .number("22나2222")
                 .nickname("순이")
                 .isCharging(true)
-                .chargeCost(20000L)
-                .chargeAmount(1000L)
+                .chargeCost(300000L)
+                .chargeAmount(1000.2)
                 .build();
 
         List<CarListResponse> carList = List.of(carResponse1, carResponse2);
 
-        given(carService.getCarList(any(User.class))).willReturn(carList);
+        LocalDateTime startOfMonth = LocalDateTime.of(2024, 9, 1, 0, 0, 0);
+        LocalDateTime endOfMonth = LocalDateTime.of(2024, 9, 30, 23, 59, 59);
+
+        given(carService.getCarList(any(User.class), any(LocalDateTime.class), any(LocalDateTime.class))).willReturn(carList);
 
         // when
         ResultActions perform = mockMvc.perform(

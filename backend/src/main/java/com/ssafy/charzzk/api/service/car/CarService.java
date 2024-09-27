@@ -17,8 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -104,38 +104,24 @@ public class CarService {
         carRepository.delete(car);
     }
 
-    public List<CarListResponse> getCarList(User user) {
+    public List<CarListResponse> getCarList(User user, LocalDateTime startOfMonth, LocalDateTime endOfMonth) {
         return carRepository.findByUser(user)
                 .stream()
-                .map(this::convertToCarListResponse)
+                .map(car -> convertToCarListResponse(car, startOfMonth, endOfMonth))
                 .collect(Collectors.toList());
     }
 
-    private CarListResponse convertToCarListResponse(Car car) {
-        LocalDateTime startOfMonth = LocalDateTime.now().with(TemporalAdjusters.firstDayOfMonth()).toLocalDate().atStartOfDay();
-        LocalDateTime endOfMonth = LocalDateTime.now().with(TemporalAdjusters.lastDayOfMonth()).toLocalDate().atTime(23, 59, 59);
-
-        // TODO: 월말, 월초 경계값 처리 필요 -> 충전 끝나는 시간만 기준으로 하면 될듯함.
-        List<ChargingLog> chargingLogs = chargingLogRepository.findByCarAndTimePeriod(car, startOfMonth, endOfMonth);
+    private CarListResponse convertToCarListResponse(Car car, LocalDateTime startOfMonth, LocalDateTime endOfMonth) {
+        List<ChargingLog> chargingLogs = chargingLogRepository.findByCarAndEndTime(car, startOfMonth, endOfMonth);
 
         long totalChargingTimeInSeconds = chargingLogs.stream()
-                .mapToLong(log -> log.getEndTime().getSecond() - log.getStartTime().getSecond())
+                .mapToLong(log -> Duration.between(log.getStartTime(), log.getEndTime()).getSeconds())
                 .sum();
 
-        // 비용과 충전량 계산 -> 로직 깔끔하게 바꾸긴 해야할 듯함.
-        long chargeCost = totalChargingTimeInSeconds * 100;
-        long chargeAmount = totalChargingTimeInSeconds * 10;
+        // 비용과 충전량 계산(임의)
+        double chargeAmount = 100 * (totalChargingTimeInSeconds / 3600.0); // 시간 당 100kWh 충전
+        long chargeCost = (long) chargeAmount * 300; // 1kWh 당 300원
 
-        return CarListResponse.builder()
-                .id(car.getId())
-                .carType(CarTypeResponse.from(car.getCarType()))
-                .number(car.getNumber())
-                .nickname(car.getNickname())
-                .isCharging(car.isCharging())
-                .chargeCost(chargeCost)
-                .chargeAmount(chargeAmount)
-                .build();
+        return CarListResponse.of(car, chargeAmount, chargeCost);
     }
-
-
 }

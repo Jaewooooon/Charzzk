@@ -5,7 +5,6 @@ import com.ssafy.charzzk.api.controller.car.request.CarRequest;
 import com.ssafy.charzzk.api.service.car.response.CarListResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
-import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarType;
 import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
@@ -14,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -170,7 +170,7 @@ class CarControllerTest extends ControllerTestSupport {
                 .image("cars/image2")
                 .build();
 
-        List<CarTypeResponse> carTypeResponses = Arrays.asList(carType1,carType2);
+        List<CarTypeResponse> carTypeResponses = Arrays.asList(carType1, carType2);
 
         given(carService.getCarTypes(any())).willReturn(carTypeResponses);
 
@@ -362,7 +362,7 @@ class CarControllerTest extends ControllerTestSupport {
                 .nickname("콩이")
                 .isCharging(false)
                 .chargeCost(10000L)
-                .chargeAmount(500L)
+                .chargeAmount(500.0)
                 .build();
 
         CarListResponse carResponse2 = CarListResponse.builder()
@@ -372,12 +372,15 @@ class CarControllerTest extends ControllerTestSupport {
                 .nickname("둥이")
                 .isCharging(true)
                 .chargeCost(20000L)
-                .chargeAmount(1000L)
+                .chargeAmount(1000.0)
                 .build();
 
         List<CarListResponse> carList = List.of(carResponse1, carResponse2);
 
-        given(carService.getCarList(any(User.class))).willReturn(carList);
+        LocalDateTime startOfMonth = LocalDateTime.of(2024, 9, 1, 0, 0, 0);
+        LocalDateTime endOfMonth = LocalDateTime.of(2024, 9, 30, 23, 59, 59);
+
+        given(carService.getCarList(any(User.class), any(LocalDateTime.class), any(LocalDateTime.class))).willReturn(carList);
 
         // when
         ResultActions perform = mockMvc.perform(

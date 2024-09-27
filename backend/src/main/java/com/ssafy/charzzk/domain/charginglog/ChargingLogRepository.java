@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ChargingLogRepository extends JpaRepository<ChargingLog, Long> {
 
-    @Query("SELECT cl FROM ChargingLog cl WHERE cl.car = :car AND cl.startTime >= :startTime AND cl.endTime <= :endTime")
-    List<ChargingLog> findByCarAndTimePeriod(Car car, LocalDateTime startTime, LocalDateTime endTime);
+    @Query("SELECT cl FROM ChargingLog cl WHERE cl.car = :car AND cl.endTime BETWEEN :startOfMonth AND :endOfMonth")
+    List<ChargingLog> findByCarAndEndTime(Car car, LocalDateTime startOfMonth, LocalDateTime endOfMonth);
 }

@@ -102,11 +102,11 @@ class ChargingLogRepositoryTest extends IntegrationTestSupport {
                 .build();
         chargingLogRepository.save(log2);
 
-        LocalDateTime startTime = LocalDateTime.of(2024, 9, 1, 0, 0);
-        LocalDateTime endTime = LocalDateTime.of(2024, 9, 30, 23, 59);
+        LocalDateTime startTime = LocalDateTime.of(2024, 9, 1, 0, 0, 0);
+        LocalDateTime endTime = LocalDateTime.of(2024, 9, 30, 23, 59, 59);
 
         // when
-        List<ChargingLog> logs = chargingLogRepository.findByCarAndTimePeriod(car, startTime, endTime);
+        List<ChargingLog> logs = chargingLogRepository.findByCarAndEndTime(car, startTime, endTime);
 
         // then
         assertThat(logs).hasSize(2)
