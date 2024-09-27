@@ -22,6 +22,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.ssafy.charzzk.api.service.car.CarConstant.CHARGE_AMOUNT_PER_HOUR;
+import static com.ssafy.charzzk.api.service.car.CarConstant.COST_PER_KWH;
+
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
@@ -119,8 +122,8 @@ public class CarService {
                 .sum();
 
         // 비용과 충전량 계산(임의)
-        double chargeAmount = 100 * (totalChargingTimeInSeconds / 3600.0); // 시간 당 100kWh 충전
-        long chargeCost = (long) chargeAmount * 300; // 1kWh 당 300원
+        double chargeAmount = CHARGE_AMOUNT_PER_HOUR * (totalChargingTimeInSeconds / 3600.0); // 시간 당 100kWh 충전
+        long chargeCost = (long) chargeAmount * COST_PER_KWH; // 1kWh 당 300원
 
         return CarListResponse.of(car, chargeAmount, chargeCost);
     }

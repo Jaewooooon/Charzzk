@@ -30,6 +30,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.ssafy.charzzk.api.service.car.CarConstant.CHARGE_AMOUNT_PER_HOUR;
+import static com.ssafy.charzzk.api.service.car.CarConstant.COST_PER_KWH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -587,39 +589,77 @@ class CarServiceTest extends IntegrationTestSupport {
         ChargingLog chargingLog1Car1 = ChargingLog.builder()
                 .car(car1)
                 .charger(charger)
+                .startTime(LocalDateTime.of(2024, 8, 23, 10, 0, 0))
+                .endTime(LocalDateTime.of(2024, 8, 23, 14, 0, 0))
+                .build();
+        ChargingLog chargingLog2Car1 = ChargingLog.builder()
+                .car(car1)
+                .charger(charger)
                 .startTime(LocalDateTime.of(2024, 9, 5, 10, 0, 0))
                 .endTime(LocalDateTime.of(2024, 9, 5, 14, 0, 0)) // 4시간
                 .build();
-        ChargingLog chargingLog2Car1 = ChargingLog.builder()
+        ChargingLog chargingLog3Car1 = ChargingLog.builder()
                 .car(car1)
                 .charger(charger)
                 .startTime(LocalDateTime.of(2024, 9, 6, 12, 0, 0))
                 .endTime(LocalDateTime.of(2024, 9, 6, 15, 0, 0)) // 3시간
                 .build();
-        ChargingLog chargingLog3Car1 = ChargingLog.builder()
+        ChargingLog chargingLog4Car1 = ChargingLog.builder()
                 .car(car1)
                 .charger(charger)
                 .startTime(LocalDateTime.of(2024, 9, 7, 14, 0, 0))
                 .endTime(LocalDateTime.of(2024, 9, 7, 16, 0, 0)) // 2시간
                 .build();
-        chargingLogRepository.saveAll(List.of(chargingLog1Car1, chargingLog2Car1, chargingLog3Car1));
+        ChargingLog chargingLog5Car1 = ChargingLog.builder()
+                .car(car1)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 10, 24, 14, 0, 0))
+                .endTime(LocalDateTime.of(2024, 10, 24, 16, 0, 0))
+                .build();
+        chargingLogRepository.saveAll(List.of(chargingLog1Car1, chargingLog2Car1, chargingLog3Car1, chargingLog4Car1, chargingLog5Car1));
 
         ChargingLog chargingLog1Car2 = ChargingLog.builder()
+                .car(car2)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 8, 8, 10, 0, 0))
+                .endTime(LocalDateTime.of(2024, 8, 8, 11, 0, 0))
+                .build();
+        ChargingLog chargingLog2Car2 = ChargingLog.builder()
+                .car(car2)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 8, 14, 10, 0, 0))
+                .endTime(LocalDateTime.of(2024, 8, 14, 11, 0, 0))
+                .build();
+        ChargingLog chargingLog3Car2 = ChargingLog.builder()
                 .car(car2)
                 .charger(charger)
                 .startTime(LocalDateTime.of(2024, 9, 8, 10, 0, 0))
                 .endTime(LocalDateTime.of(2024, 9, 8, 12, 0, 0)) // 2시간
                 .build();
-        ChargingLog chargingLog2Car2 = ChargingLog.builder()
+        ChargingLog chargingLog4Car2 = ChargingLog.builder()
                 .car(car2)
                 .charger(charger)
                 .startTime(LocalDateTime.of(2024, 9, 9, 14, 0, 0))
                 .endTime(LocalDateTime.of(2024, 9, 9, 16, 0, 0)) // 2시간
                 .build();
-        chargingLogRepository.saveAll(List.of(chargingLog1Car2, chargingLog2Car2));
+        ChargingLog chargingLog5Car2 = ChargingLog.builder()
+                .car(car2)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 10, 2, 14, 0, 0))
+                .endTime(LocalDateTime.of(2024, 10, 2, 16, 0, 0))
+                .build();
+        chargingLogRepository.saveAll(List.of(chargingLog1Car2, chargingLog2Car2, chargingLog3Car2, chargingLog4Car2, chargingLog5Car2));
 
         LocalDateTime startOfMonth = LocalDateTime.of(2024, 9, 1, 0, 0, 0);
         LocalDateTime endOfMonth = LocalDateTime.of(2024, 9, 30, 23, 59, 59);
+
+        // 첫 번째 차량 (9시간 충전)
+        double expectedChargeAmountCar1 = 9 * CHARGE_AMOUNT_PER_HOUR;
+        long expectedChargeCostCar1 = (long) (expectedChargeAmountCar1 * COST_PER_KWH);
+
+        // 두 번째 차량 (4시간 충전)
+        double expectedChargeAmountCar2 = 4 * CHARGE_AMOUNT_PER_HOUR;
+        long expectedChargeCostCar2 = (long) (expectedChargeAmountCar2 * COST_PER_KWH);
 
         // when
         List<CarListResponse> carList = carService.getCarList(user, startOfMonth, endOfMonth);
@@ -628,8 +668,8 @@ class CarServiceTest extends IntegrationTestSupport {
         assertThat(carList).hasSize(2)
                 .extracting("number", "chargeAmount", "chargeCost")
                 .containsExactlyInAnyOrder(
-                        Tuple.tuple("11가1111", 900.0, 270000L),  // 첫 번째 차량 (9시간 충전, 비용 270000원)
-                        Tuple.tuple("22나2222", 400.0, 120000L)   // 두 번째 차량 (4시간 충전, 비용 120000원)
+                        Tuple.tuple("11가1111", expectedChargeAmountCar1, expectedChargeCostCar1),  // 첫 번째 차량 (9시간 충전)
+                        Tuple.tuple("22나2222", expectedChargeAmountCar2, expectedChargeCostCar2)   // 두 번째 차량 (4시간 충전)
                 );
     }
 }

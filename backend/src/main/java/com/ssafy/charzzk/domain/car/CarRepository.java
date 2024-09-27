@@ -14,5 +14,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
 
     boolean existsByNumber(String number);
 
+    @Query("SELECT c FROM Car c JOIN FETCH c.carType WHERE c.user = :user")
     List<Car> findByUser(User user);
 }

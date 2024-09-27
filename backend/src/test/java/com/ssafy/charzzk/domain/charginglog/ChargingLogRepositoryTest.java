@@ -89,18 +89,28 @@ class ChargingLogRepositoryTest extends IntegrationTestSupport {
         ChargingLog log1 = ChargingLog.builder()
                 .car(car)
                 .charger(charger)
+                .startTime(LocalDateTime.of(2024, 8, 21, 11, 0))
+                .endTime(LocalDateTime.of(2024, 8, 21, 14, 0))
+                .build();
+        ChargingLog log2 = ChargingLog.builder()
+                .car(car)
+                .charger(charger)
                 .startTime(LocalDateTime.of(2024, 9, 1, 10, 0))
                 .endTime(LocalDateTime.of(2024, 9, 1, 12, 0))
                 .build();
-        chargingLogRepository.save(log1);
-
-        ChargingLog log2 = ChargingLog.builder()
+        ChargingLog log3 = ChargingLog.builder()
                 .car(car)
                 .charger(charger)
                 .startTime(LocalDateTime.of(2024, 9, 5, 10, 0))
                 .endTime(LocalDateTime.of(2024, 9, 5, 11, 0))
                 .build();
-        chargingLogRepository.save(log2);
+        ChargingLog log4 = ChargingLog.builder()
+                .car(car)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 10, 16, 10, 0))
+                .endTime(LocalDateTime.of(2024, 10, 16, 11, 0))
+                .build();
+        chargingLogRepository.saveAll(List.of(log1, log2, log3, log4));
 
         LocalDateTime startTime = LocalDateTime.of(2024, 9, 1, 0, 0, 0);
         LocalDateTime endTime = LocalDateTime.of(2024, 9, 30, 23, 59, 59);
