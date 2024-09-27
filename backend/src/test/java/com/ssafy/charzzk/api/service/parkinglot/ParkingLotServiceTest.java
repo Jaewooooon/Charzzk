@@ -12,6 +12,7 @@ import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
 import com.ssafy.charzzk.domain.parkinglot.ParkingSpot;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,6 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private ParkingLotService parkingLotService;
-
 
     @Autowired
     private ParkingLotRepository parkingLotRepository;
@@ -231,10 +231,14 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
                 .status(ChargerStatus.CHARGER_CHARGING)
                 .build();
 
+        // 연관관계 편의 메서드
+        parkingLot1.getChargers().addAll(List.of(charger1ParkingLot1, charger2ParkingLot1));
+        parkingLot2.getChargers().addAll(List.of(charger3ParkingLot2, charger2ParkingLot2, charger3ParkingLot2));
+
         chargerRepository.saveAll(List.of(charger1ParkingLot1, charger2ParkingLot1, charger1ParkingLot2, charger2ParkingLot2, charger3ParkingLot2));
 
         // when
-        List<ChargerResponse> chargers= parkingLotService.getChargerList(parkingLot1.getId());
+        List<ChargerResponse> chargers = parkingLotService.getChargerList(parkingLot1.getId());
 
         // then
         assertThat(chargers).hasSize(2)

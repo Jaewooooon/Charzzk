@@ -40,4 +40,9 @@ public class Charger extends BaseEntity {
         this.status = status;
     }
 
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+        parkingLot.getChargers().add(this);
+    }
+
 }
