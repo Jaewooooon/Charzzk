@@ -1,6 +1,7 @@
 package com.ssafy.charzzk.api.service.car;
 
 import com.ssafy.charzzk.api.service.car.request.CarServiceRequest;
+import com.ssafy.charzzk.api.service.car.response.CarListResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
@@ -9,13 +10,20 @@ import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarRepository;
 import com.ssafy.charzzk.domain.car.CarType;
 import com.ssafy.charzzk.domain.car.CarTypeRepository;
+import com.ssafy.charzzk.domain.charginglog.ChargingLog;
+import com.ssafy.charzzk.domain.charginglog.ChargingLogRepository;
 import com.ssafy.charzzk.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.ssafy.charzzk.api.service.car.CarConstant.CHARGE_AMOUNT_PER_HOUR;
+import static com.ssafy.charzzk.api.service.car.CarConstant.COST_PER_KWH;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -24,6 +32,7 @@ public class CarService {
 
     private final CarRepository carRepository;
     private final CarTypeRepository carTypeRepository;
+    private final ChargingLogRepository chargingLogRepository;
 
     @Transactional
     public Long createCar(User user, CarServiceRequest request) {
@@ -96,5 +105,26 @@ public class CarService {
         }
 
         carRepository.delete(car);
+    }
+
+    public List<CarListResponse> getCarList(User user, LocalDateTime startOfMonth, LocalDateTime endOfMonth) {
+        return carRepository.findByUser(user)
+                .stream()
+                .map(car -> convertToCarListResponse(car, startOfMonth, endOfMonth))
+                .collect(Collectors.toList());
+    }
+
+    private CarListResponse convertToCarListResponse(Car car, LocalDateTime startOfMonth, LocalDateTime endOfMonth) {
+        List<ChargingLog> chargingLogs = chargingLogRepository.findByCarAndEndTime(car, startOfMonth, endOfMonth);
+
+        long totalChargingTimeInSeconds = chargingLogs.stream()
+                .mapToLong(log -> Duration.between(log.getStartTime(), log.getEndTime()).getSeconds())
+                .sum();
+
+        // 비용과 충전량 계산(임의)
+        double chargeAmount = CHARGE_AMOUNT_PER_HOUR * (totalChargingTimeInSeconds / 3600.0); // 시간 당 100kWh 충전
+        long chargeCost = (long) chargeAmount * COST_PER_KWH; // 1kWh 당 300원
+
+        return CarListResponse.of(car, chargeAmount, chargeCost);
     }
 }

@@ -32,17 +32,23 @@ public class Car extends BaseEntity {
     @Column(nullable = false)
     private String number;
 
+    @Column(nullable = true)
     private String nickname;
 
+    @Column(nullable = false)
     private int battery = 30;
 
+    @Column(nullable = false)
+    private boolean isCharging;
+
     @Builder
-    private Car(User user, CarType carType, String number, String nickname, int battery) {
+    private Car(User user, CarType carType, String number, String nickname, int battery, boolean isCharging) {
         this.user = user;
         this.carType = carType;
         this.number = number;
         this.nickname = nickname;
         this.battery = battery;
+        this.isCharging = isCharging;
     }
 
     public static Car create(User user, CarType carType, String number, String nickname) {
@@ -51,6 +57,7 @@ public class Car extends BaseEntity {
                 .carType(carType)
                 .number(number)
                 .nickname(nickname)
+                .isCharging(false)
                 .build();
     }
 
