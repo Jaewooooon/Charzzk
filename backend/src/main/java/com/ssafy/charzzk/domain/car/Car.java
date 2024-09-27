@@ -39,7 +39,7 @@ public class Car extends BaseEntity {
     private int battery = 30;
 
     @Column(nullable = false)
-    private boolean isCharging = false;
+    private boolean isCharging;
 
     @Builder
     private Car(User user, CarType carType, String number, String nickname, int battery, boolean isCharging) {
