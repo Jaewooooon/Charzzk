@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import '../../styles/ReportIssue.css';
 import { useNavigate } from 'react-router-dom';
+import GoBackButton from '../../components/GobackButton.jsx';
 
 function ReportIssue() {
   const [selectedIssue, setSelectedIssue] = useState(''); // 선택된 옵션의 값을 저장하는 상태
   const [isEditable, setIsEditable] = useState(false); // 입력 창을 열 수 있는 상태
   const navigate = useNavigate();
-
-  const handleReturnClick = () => {
-    navigate('/'); 
-  };
 
   const handleSelectChange = (event) => {
     if (event.target.value === "custom") {
@@ -23,7 +20,7 @@ function ReportIssue() {
 
   return (
   <div>
-    <button className='ReportIssue_return_button' onClick={handleReturnClick}>&lt;</button>
+    <GoBackButton />
   
   <div className='ReportIssue_contents_box'>
       <div className='ReportIssue_contents1'>신고할 내용을</div>

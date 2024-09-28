@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/ChargeMap.css';
-
+import GoBackButton from '../components/GobackButton.jsx';
+import MyLocation from '../assets/MyCarLocation.png'; // 이미지 임포트
+import ParkingLocation from '../assets/marker.png'; // 주차장 마커 이미지 임포트
 const { kakao } = window;
 
 function Kakao() {
@@ -9,10 +11,13 @@ function Kakao() {
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
   const [parkingLots, setParkingLots] = useState([]);
-  const [menuHeight, setMenuHeight] = useState(200); // 초기 메뉴 높이
+  const [menuHeight, setMenuHeight] = useState(350); // 초기 메뉴 높이
   const [startY, setStartY] = useState(0); // 터치 시작 Y좌표
   const [startHeight, setStartHeight] = useState(200); // 터치 시작 시점의 높이
   const [isExpanded, setIsExpanded] = useState(false); // 메뉴 확장 상태
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태 추가
 
   useEffect(() => {
     const resizeListener = () => {
@@ -21,24 +26,54 @@ function Kakao() {
     };
     window.addEventListener("resize", resizeListener);
 
-    const container = document.getElementById('KakaoMap');
-    const options = {
-      center: new kakao.maps.LatLng(35.205580, 126.811458),
-      level: 2
-    };
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({ latitude, longitude });
+          
+          const container = document.getElementById('KakaoMap');
+          const options = {
+            center: new kakao.maps.LatLng(latitude, longitude), // 사용자의 현재 위치로 중심 설정
+            level: 2,
+          };
 
-    const newMap = new kakao.maps.Map(container, options);
-    setMap(newMap);
+          const newMap = new kakao.maps.Map(container, options);
+          setMap(newMap);
 
-    // API 요청
-    axios.get('https://j11c208.p.ssafy.io/api/v1/parking-lot')
-      .then(response => {
-        const lots = response.data;
-        setParkingLots(lots); // 주차장 좌표 저장
-      })
-      .catch(error => {
-        console.error("Error fetching parking lots:", error);
-      });
+          // 현재 위치에 이미지 마커 추가
+          const markerPosition = new kakao.maps.LatLng(latitude, longitude);
+          const markerImage = new kakao.maps.MarkerImage(MyLocation, new kakao.maps.Size(100, 80));
+
+          const marker = new kakao.maps.Marker({
+            position: markerPosition,
+            image: markerImage, // 커스텀 마커 이미지 설정
+            map: newMap,
+            title: "현재 위치",
+          });
+
+          // 주차장 데이터를 가져오는 API 호출
+          axios.get('https://j11c208.p.ssafy.io/api/v1/parking-lot', {
+            params: {
+              latitude: latitude, // 현재 위치의 위도
+              longitude: longitude // 현재 위치의 경도
+            }
+          })
+          .then(response => {
+            const lots = response.data.data; // data 필드에서 주차장 리스트 추출
+            setParkingLots(lots); // 주차장 좌표 저장
+          })
+          .catch(error => {
+            console.error("Error fetching parking lots:", error);
+          });
+        },
+        (error) => {
+          setError("Error retrieving location: " + error.message);
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by this browser.");
+    }
 
     return () => {
       window.removeEventListener('resize', resizeListener);
@@ -48,9 +83,15 @@ function Kakao() {
   useEffect(() => {
     if (map && parkingLots.length > 0) {
       parkingLots.forEach(lot => {
-        const markerPosition = new kakao.maps.LatLng(lot.latitude, lot.longitude);
+        const markerPosition = new kakao.maps.LatLng(lot.location.latitude, lot.location.longitude);
+
+        // 주차장 마커 이미지 설정
+        const parkingMarkerImage = new kakao.maps.MarkerImage(ParkingLocation, new kakao.maps.Size(100, 50));
+
         const marker = new kakao.maps.Marker({
           position: markerPosition,
+          image: parkingMarkerImage, // 주차장 마커 이미지 적용
+          map: map,
         });
         marker.setMap(map); // 마커를 지도에 표시
       });
@@ -89,12 +130,25 @@ function Kakao() {
     } else {
       // 그렇지 않으면 원래 높이로 복구
       setIsExpanded(false);
-      setMenuHeight(200);
+      setMenuHeight(350);
     }
   };
 
+  // 필터링된 주차장 목록을 검색어에 따라 계산
+  const filteredParkingLots = parkingLots.filter(lot =>
+    lot.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div style={{ position: 'relative' }}>
+      <GoBackButton />
+      <input 
+        type="text" 
+        placeholder="Search location..." 
+        className='ChargeMap_Search' 
+        value={searchTerm} // 입력된 검색어와 상태를 동기화
+        onChange={(e) => setSearchTerm(e.target.value)} // 검색어 상태 업데이트
+      />
       <div id="KakaoMap" style={{ width: innerWidth, height: innerHeight }}></div>
       
       {/* 터치 이벤트가 적용된 coordinates-box */}
@@ -108,14 +162,15 @@ function Kakao() {
       >
         <h3>Parking Lot Coordinates</h3>
         <ul>
-          {parkingLots.length > 0 ? (
-            parkingLots.map((lot, index) => (
+          {filteredParkingLots.length > 0 ? (
+            filteredParkingLots.map((lot, index) => (
               <li key={index}>
-                <strong>Latitude:</strong> {lot.latitude}, <strong>Longitude:</strong> {lot.longitude}
+                <img src={lot.image} alt="주차장 이미지" style={{ width: '100px', height: '100px' }} />
+                {lot.name}  {lot.distance}m
               </li>
             ))
           ) : (
-            <li>데이터가 없습니다</li>
+            <li>일치하는 주차장이 없습니다</li>
           )}
         </ul>
       </div>

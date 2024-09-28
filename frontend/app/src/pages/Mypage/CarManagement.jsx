@@ -5,6 +5,7 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useSpring, animated } from '@react-spring/web'; // 애니메이션을 위한 import 추가
 import Slider from 'react-slick';
+import GoBackButton from '../../components/GobackButton';
 
 
 // CircularProgressbar를 애니메이션 가능한 컴포넌트로 만듦
@@ -33,6 +34,7 @@ function CarManagement() {
 
   return (
     <div className='CarManagement_ContainerBox'>
+      <GoBackButton />
       <div className='Car_ImageBox'>
         <img src={CarSample} alt="Car Sample" className="Car_Image_Management" />
       </div>
