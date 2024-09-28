@@ -17,7 +17,7 @@ html, body {
 .MainPage_ButtonBox{
     background-color: #F2F2F2;
     width: 100%; /* 부모 요소 너비의 100%로 설정 */
-    height: 60%;
+    height: 65%;
     border-radius: 16px 16px 0 0; /* 둥근 모서리 (위쪽만) */
     padding: 20px; /* 내부 여백 */
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
@@ -30,22 +30,19 @@ html, body {
     transform: translateX(-50%); /* 중앙 정렬을 위해 변환 */
     z-index: 100; /* 다른 요소보다 위에 배치 */
     box-sizing: border-box; /* 패딩을 포함하여 계산 */
-    font-family: 'MinSans-Regular';
-}
+    
+  }
 
 .Car_Information{
     color: white;
     padding: 50px;
     text-align: center;
     align-items: center;
-    justify-content: center;
-    font-family: 'MinSans-Regular';
+    justify-content: center;;
 }
 .Car_Image{
     margin-top: 20px;
-    width: 85%; 
-    height: auto;
-    font-family: 'MinSans-Regular';
+    height: 20%;
 }
 .Car_MonthInformation{
     display: flex;
@@ -63,6 +60,9 @@ html, body {
 .Car_MonthInformation2{
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding-right: 30px;
+    padding-bottom: 5px;
+    font-family: 'MinSans-Regular';
+    
 }
 .ButtonContainer {
     display: flex; /* Flexbox 사용 */
@@ -73,6 +73,7 @@ html, body {
     width: 100%; /* 부모 컨테이너의 너비 */
     max-width: 600px; /* 최대 너비 설정 */
     margin: 0 auto; /* 가운데 정렬 */
+    
   }
   
   .ChargeFind_Button,
@@ -92,16 +93,19 @@ html, body {
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'MinSans-Regular';
+    
   }
   
   .ChargeStart_Button {
     background-color: #E8F2F0; /* 다른 버튼 배경색 */
     padding-top: 22px;
+    
   }
   
   .ChargeFind_Button:hover,
   .ChargeStart_Button:hover {
     background-color: #d4d4d6; /* 마우스 오버 시 배경색 */
+  
   }
 
   .ChargeStatus_Button{
@@ -177,4 +181,28 @@ html, body {
 
   .ChargeStart_Button_Content{
     padding-right: 40px;
+  }
+
+  .MonthPayment_Contents{
+    display: flex;
+    font-family: 'LAB디지털';
+    font-size: 30px;
+    font-weight: bolder;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+
+  .MonthCharge_Contents{
+    display: flex;
+    font-family: 'LAB디지털';
+    font-size: 30px;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+
+  .small_font{
+    font-size: 15px;
+    font-weight: 200;
+    padding-top: 12px;
+    padding-left: 5px;
   }

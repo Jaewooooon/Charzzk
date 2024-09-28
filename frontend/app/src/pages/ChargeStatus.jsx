@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/ChargeStatus.css';
+import GoBackButton from '../components/GobackButton';
 
 const ChargeStatus= () => {
   const [chargePercent, setChargePercent] = useState(63); // 초기값은 40으로 설정합니다.
@@ -7,7 +8,7 @@ const ChargeStatus= () => {
 
   return (
     <div className="ChargeStatus_ContainerBox">
-
+      <GoBackButton />
  
       <div className="Percent_Contents">
         <p className='AutoCharge_Contents'> AutoCharge!</p>
