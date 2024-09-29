@@ -4,6 +4,9 @@ import '../styles/ChargeMap.css';
 import GoBackButton from '../components/GobackButton.jsx';
 import MyLocation from '../assets/MyCarLocation.png'; // 이미지 임포트
 import ParkingLocation from '../assets/marker.png'; // 주차장 마커 이미지 임포트
+import Check from '../assets/Check.png';
+import NoCheck from '../assets/NoCheck.png';
+
 const { kakao } = window;
 
 function Kakao() {
@@ -18,6 +21,24 @@ function Kakao() {
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태 추가
+  const [sortedByDistance, setSortedByDistance] = useState(false); // 거리 정렬 상태
+  const [isSorted, setIsSorted] = useState(false); // 버튼 클릭 여부 상태
+
+  // 역지오코딩을 통해 주소 가져오기
+  const getAddressFromCoords = (latitude, longitude, callback) => {
+    const geocoder = new kakao.maps.services.Geocoder();
+
+    const coord = new kakao.maps.LatLng(latitude, longitude);
+    const callbackFn = (result, status) => {
+      if (status === kakao.maps.services.Status.OK) {
+        callback(result[0].address.address_name);
+      } else {
+        callback('주소를 가져올 수 없음');
+      }
+    };
+
+    geocoder.coord2Address(coord.getLng(), coord.getLat(), callbackFn);
+  };
 
   useEffect(() => {
     const resizeListener = () => {
@@ -61,7 +82,21 @@ function Kakao() {
           })
           .then(response => {
             const lots = response.data.data; // data 필드에서 주차장 리스트 추출
-            setParkingLots(lots); // 주차장 좌표 저장
+
+            // 주차장 데이터에 주소를 추가하기 위해 각각의 좌표로 역지오코딩 요청
+            const updatedLots = lots.map(lot => {
+              return new Promise((resolve) => {
+                getAddressFromCoords(lot.location.latitude, lot.location.longitude, (address) => {
+                  resolve({ ...lot, address }); // 주소를 주차장 데이터에 추가
+                });
+              });
+            });
+
+            // 모든 주차장의 주소 데이터를 가져온 후 상태 업데이트
+            Promise.all(updatedLots).then((resolvedLots) => {
+              setParkingLots(resolvedLots);
+            });
+
           })
           .catch(error => {
             console.error("Error fetching parking lots:", error);
@@ -98,6 +133,14 @@ function Kakao() {
     }
   }, [map, parkingLots]);
 
+  // 주차장을 거리 순으로 정렬하는 함수
+  const sortByDistance = () => {
+    const sortedLots = [...parkingLots].sort((a, b) => Math.floor(a.distance) - Math.floor(b.distance));
+    setParkingLots(sortedLots);
+    setSortedByDistance(true); // 정렬 상태를 업데이트
+    setIsSorted(!isSorted); // 이미지 토글 상태 변경
+  };
+
   const handleTouchStart = (e) => {
     setStartY(e.touches[0].clientY); // 터치 시작 위치 기록
     setStartHeight(menuHeight); // 터치 시작 시점의 높이 저장
@@ -117,13 +160,8 @@ function Kakao() {
   const handleTouchEnd = (e) => {
     const currentY = e.changedTouches[0].clientY;
     const distance = startY - currentY;
-    const duration = e.timeStamp - e.target.dataset.startTime;
 
-    // 빠르게 스와이프하면 전체 화면으로 확장
-    if (duration < 300 && distance > 50) {
-      setIsExpanded(true);
-      setMenuHeight(innerHeight);
-    } else if (menuHeight > innerHeight / 2) {
+    if (menuHeight > innerHeight *0.6) {
       // 천천히 움직여도 일정 높이 이상이면 확장
       setIsExpanded(true);
       setMenuHeight(innerHeight);
@@ -158,15 +196,24 @@ function Kakao() {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
-        data-start-time={Date.now()} // 스와이프 시작 시간 기록
       >
-        <h3>Parking Lot Coordinates</h3>
+        <div className='List_Title'>
+          <h2 className='parking_title'>Service Parking Lots </h2>
+          <button onClick={sortByDistance} className='sort_distance'>
+            <img src={isSorted ? Check : NoCheck} alt={isSorted ? "가까운순" : "기본"} /> <div className='show_distance'>거리순으로 보기</div>
+          </button>
+        </div>
+        
         <ul>
           {filteredParkingLots.length > 0 ? (
             filteredParkingLots.map((lot, index) => (
-              <li key={index}>
+              <li key={index} className='parking_box'>
                 <img src={lot.image} alt="주차장 이미지" style={{ width: '100px', height: '100px' }} />
-                {lot.name}  {lot.distance}m
+                <div className='parking_contents'>
+                  <h3 className='parking_name'>{lot.name}</h3>
+                  <div>{lot.address}</div> {/* 주소 표시 */}
+                  <div className='parking_distance'>{Math.floor(lot.distance)}m</div> {/* 소수점 버림 */}
+                </div>
               </li>
             ))
           ) : (

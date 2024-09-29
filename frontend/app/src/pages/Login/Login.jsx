@@ -35,7 +35,7 @@ const Login = () => {
         <button 
           className='google_button'
           onClick={() => {
-            window.location.href = `https://j11c208.p.ssafy.io/oauth2/authorization/google?redirect_uri=http://localhost:5173`;
+            window.location.href = `https://j11c208.p.ssafy.io/oauth2/authorization/google?redirect_uri=${redirectUri}`;
           }}
         >
           <img src={GoogleLogo} alt="구글" className='google_logo' />구글로 시작하기
