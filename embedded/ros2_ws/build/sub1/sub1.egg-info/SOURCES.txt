@@ -23,6 +23,8 @@ sub1/path_tracking.py
 sub1/path_tracking_PID.py
 sub1/perception.py
 sub1/publisher.py
+sub1/run_localization.py
+sub1/run_mapping.py
 sub1/subscriber.py
 test/test_copyright.py
 test/test_flake8.py

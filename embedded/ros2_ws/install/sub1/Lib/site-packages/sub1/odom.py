@@ -60,10 +60,10 @@ class odom(Node):
         '''
         로직 2. publish, broadcast 할 메시지 설정
         '''
-        self.odom_msg.header.frame_id= "odom"
+        self.odom_msg.header.frame_id= "map"
         self.odom_msg.child_frame_id= "base_link"
 
-        self.base_link_transform.header.frame_id = "odom"
+        self.base_link_transform.header.frame_id = "map"
         self.base_link_transform.child_frame_id = "base_link"
 
         self.laser_transform.header.frame_id = "base_link"

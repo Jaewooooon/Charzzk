@@ -26,18 +26,31 @@ def generate_launch_description():
             node_name='odom',
             output = 'screen'
         ),
+        # Node(
+        #     package='sub1',
+        #     node_executable='goal_publisher',
+        #     node_name='goal_publisher',
+        #     output = 'screen'
+        # ),
+
         Node(
-            package = 'sub1',
-            node_executable = 'path_pub',
-            node_name = 'path_pub',
+            package='sub2',
+            node_executable='load_map',
+            node_name='load_map',
             output = 'screen'
         ),
-        Node(
-            package = 'sub1',
-            node_executable = 'path_tracking_PID',
-            node_name = 'path_tracking_PID',
-            output = 'screen'
-        ),
+        # Node(
+        #     package = 'sub1',
+        #     node_executable = 'path_pub',
+        #     node_name = 'path_pub',
+        #     output = 'screen'
+        # ),
+        # Node(
+        #     package = 'sub1',
+        #     node_executable = 'path_tracking_PID',
+        #     node_name = 'path_tracking_PID',
+        #     output = 'screen'
+        # ),
         # Node(
         #     package='sub1',
         #     node_executable='make_path',

@@ -1,0 +1,40 @@
+[20.672s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub3': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub3 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\install.log --install-scripts $base/lib/sub3 --single-version-externally-managed install_data
+[24.922s] running egg_info
+[24.937s] writing ..\..\build\sub3\sub3.egg-info\PKG-INFO
+[24.937s] writing dependency_links to ..\..\build\sub3\sub3.egg-info\dependency_links.txt
+[24.937s] writing entry points to ..\..\build\sub3\sub3.egg-info\entry_points.txt
+[24.937s] writing requirements to ..\..\build\sub3\sub3.egg-info\requires.txt
+[24.937s] writing top-level names to ..\..\build\sub3\sub3.egg-info\top_level.txt
+[24.937s] reading manifest file '..\..\build\sub3\sub3.egg-info\SOURCES.txt'
+[24.937s] writing manifest file '..\..\build\sub3\sub3.egg-info\SOURCES.txt'
+[24.937s] running build
+[24.937s] running build_py
+[25.172s] running install
+[25.172s] running install_lib
+[25.172s] running install_data
+[25.172s] running install_egg_info
+[25.187s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3-0.0.0-py3.7.egg-info' (and everything under it)
+[25.187s] Copying ..\..\build\sub3\sub3.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3-0.0.0-py3.7.egg-info
+[25.203s] running install_scripts
+[25.469s] Installing aws_client-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.469s] Installing aws_client.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.484s] Installing iot_udp-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.484s] Installing iot_udp.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.484s] Installing iot_udp_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.500s] Installing iot_udp_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.500s] Installing load_map-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.516s] Installing load_map.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.516s] Installing run_localization-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.516s] Installing run_localization.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.516s] Installing run_localization_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.531s] Installing run_localization_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.531s] Installing run_mapping-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.531s] Installing run_mapping.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.547s] Installing run_mapping_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.547s] Installing run_mapping_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.562s] Installing tf_detector-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.578s] Installing tf_detector.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.578s] Installing tf_detector_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.578s] Installing tf_detector_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[25.594s] writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\install.log'

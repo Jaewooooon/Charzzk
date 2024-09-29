@@ -34,7 +34,9 @@ setup(
             'a_star_local_path = sub1.a_star_local_path:main',
             'load_map = sub1.load_map:main',
             'goal_publisher = sub1.goal_publisher:main',
-            'path_tracking_PID=sub1.path_tracking_PID:main'
+            'path_tracking_PID=sub1.path_tracking_PID:main', 
+            'run_localization = sub1.run_localization:main',
+            'run_mapping = sub1.run_mapping:main'
         ],
     },
 )

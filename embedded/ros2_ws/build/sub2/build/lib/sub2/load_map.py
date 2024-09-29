@@ -1,4 +1,6 @@
+import rclpy
 import numpy as np
+import matplotlib.pyplot as plt
 from rclpy.node import Node
 
 import os
@@ -19,6 +21,7 @@ class loadMap(Node):
 
     def __init__(self):
         super().__init__('load_map')
+        print("load MAP!!!!")
         self.map_pub = self.create_publisher(OccupancyGrid, 'map', 1)
         
         time_period=1  
@@ -30,7 +33,7 @@ class loadMap(Node):
         # 각 항에 -8.75를 뺀이유는 ros에서 occupancygrid의 offset이라는 데이터는 맵의 중앙에서 기준좌표계까지 거리가 아니라 맵의 우측하단에서 부터 기준좌표계까지의 거리를 의미합니다.
         # 따라서 (350*0.05)/2를 해준 값을 빼줍니다.
         self.map_msg=OccupancyGrid()
-        self.map_size_x=350 
+        self.map_size_x=350
         self.map_size_y=350
         self.map_resolution=0.05
         self.map_offset_x=-8-8.75
@@ -75,7 +78,8 @@ class loadMap(Node):
         #open('C:\\Users\\SSAFY\\Desktop\\path.txt', 'r')
 
         #full_path = os.path.join(os.path.dirname(__file__), 'map.txt')
-        self.f = open('C:\\Users\\SSAFY\\Desktop\\map.txt', 'r')
+        full_path = 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\sub2\\map\\map.txt'
+        self.f = open(full_path, 'r')
 
         line = self.f.readline()
         line_data = list(map(int, line.split()))  # 텍스트 파일에서 정수로 변환
@@ -89,7 +93,11 @@ class loadMap(Node):
 
         for y in range(350):
             for x in range(350):
-                if grid[x][y]==100 :
+                
+                if grid[x][y] <= 20:
+                    grid[x][y] = 0
+                elif grid[x][y] > 20:
+                    grid[x][y] = 100
                     
                     '''
                     로직 3. 점유영역 근처 필터처리
@@ -98,11 +106,20 @@ class loadMap(Node):
 
                     '''
                     # 주변 그리드의 값도 업데이트하여 장애물 영역 확장
-                    for dy in range(-1, 2):  # -1, 0, 1
-                        for dx in range(-1, 2):  # -1, 0, 1
-                            if 0 <= x + dx < 350 and 0 <= y + dy < 350:
-                                grid[x + dx][y + dy] = 100  # 점유 영역으로 설정
+                    #for dy in range(-1, 2):  # -1, 0, 1
+                    #    for dx in range(-1, 2):  # -1, 0, 1
+                    #        if 0 <= x + dx < 350 and 0 <= y + dy < 350:
+                    #            grid[x + dx][y + dy] = 100  # 점유 영역으로 설정
 
+        #np.savetxt("C:\\Users\\SSAFY\\Desktop\\saved_map.txt", grid, fmt='%d')
+
+        # 맵 데이터를 이미지로 저장
+        #plt.imshow(grid, cmap='gray')
+        #plt.colorbar()
+        #plt.title("Occupancy Grid Map")
+        #plt.savefig("C:\\Users\\SSAFY\\Desktop\\map_image.png")
+        #lt.show()
+        
         
         np_map_data=grid.reshape(1,350*350) 
         list_map_data=np_map_data.tolist()

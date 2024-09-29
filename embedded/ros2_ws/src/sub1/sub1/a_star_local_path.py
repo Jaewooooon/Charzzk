@@ -21,8 +21,9 @@ class astarLocalpath(Node):
 
     def __init__(self):
         super().__init__('a_star_local_path')
+        print("MAKE LOCAL PATH!!!")
         # 로직 1. publisher, subscriber 만들기
-        self.local_path_pub = self.create_publisher(Path, 'local_path', 10)
+        self.local_path_pub = self.create_publisher(Path, '/local_path', 10)
         self.subscription = self.create_subscription(Path,'/global_path',self.path_callback,10)
         self.subscription = self.create_subscription(Odometry,'/odom',self.listener_callback,10)
         self.odom_msg=Odometry()
@@ -42,6 +43,7 @@ class astarLocalpath(Node):
     def listener_callback(self,msg):
         self.is_odom=True
         self.odom_msg=msg
+        #print(self.odom_msg)
 
 
     def path_callback(self,msg):
@@ -53,7 +55,7 @@ class astarLocalpath(Node):
         self.global_path_msg=
         
         '''
-        # 로직 2. global_path 데이터 수신 후 저장(주호 귀여워)
+        # 로직 2. global_path 데이터 수신 후 저장
         self.is_path = True  # 경로 데이터가 수신되었음을 나타냄
         self.global_path_msg = msg  # 수신한 경로 메시지를 저장
 
@@ -97,6 +99,7 @@ class astarLocalpath(Node):
                 
                 # 로봇과 웨이포인트 간의 거리 계산
                 distance = sqrt((x - waypoint_x) ** 2 + (y - waypoint_y) ** 2)
+                print(distance)
                 
                 # 최소 거리와 해당 웨이포인트 인덱스를 업데이트
                 if distance < min_dis:

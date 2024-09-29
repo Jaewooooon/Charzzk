@@ -12,5 +12,7 @@ path_tracking = sub1.path_tracking:main
 path_tracking_PID = sub1.path_tracking_PID:main
 perception = sub1.perception:main
 publisher = sub1.publisher:main
+run_localization = sub1.run_localization:main
+run_mapping = sub1.run_mapping:main
 subscriber = sub1.subscriber:main
 
