@@ -7,33 +7,46 @@ import ChargeStatus from './pages/ChargeStatus';
 import CarManagement from './pages/Mypage/CarManagement';
 import PaymentManagement from './pages/Mypage/PaymentManagement';
 import ReportIssue from './pages/Mypage/ReportIssue';
+import LoginSuccess from './pages/Login/LoginSuccess';
+import Login from './pages/Login/Login';
+import PrivateRoute from './components/PrivateRoute';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
+    <RecoilRoot>
     <Router>
-      <Routes>
-        {/* 메인 페이지 */}
-        <Route path="/" element={<MainPage />} />
+    <Routes>
 
-        {/* 충전 지도 페이지 */}
-        <Route path="/charge-map" element={<ChargeMap />} />
+{/* 메인 페이지 */}
+<Route path="/" element={<PrivateRoute element={<MainPage />} />} />
 
-        {/* 충전 시작 페이지 */}
-        <Route path="/charge-start" element={<ChargeStart />} />
+{/* 충전 지도 페이지 */}
+<Route path="/charge-map" element={<PrivateRoute element={<ChargeMap />} />} />
 
-        {/* 충전 상태 페이지 */}
-        <Route path="/charge-status" element={<ChargeStatus />} />
+{/* 충전 시작 페이지 */}
+<Route path="/charge-start" element={<PrivateRoute element={<ChargeStart />} />} />
 
-        {/* 마이페이지 - 차량 관리 */}
-        <Route path="/mypage/car-management" element={<CarManagement />} />
+{/* 충전 상태 페이지 */}
+<Route path="/charge-status" element={<PrivateRoute element={<ChargeStatus />} />} />
 
-        {/* 마이페이지 - 결제 수단 관리 */}
-        <Route path="/mypage/payment-management" element={<PaymentManagement />} />
+{/* 마이페이지 - 차량 관리 */}
+<Route path="/mypage/car-management" element={<PrivateRoute element={<CarManagement />} />} />
 
-        {/* 마이페이지 - 문제 신고 */}
-        <Route path="/mypage/report-issue" element={<ReportIssue />} />
-      </Routes>
+{/* 마이페이지 - 결제 수단 관리 */}
+<Route path="/mypage/payment-management" element={<PrivateRoute element={<PaymentManagement />} />} />
+
+{/* 마이페이지 - 문제 신고 */}
+<Route path="/mypage/report-issue" element={<PrivateRoute element={<ReportIssue />} />} />
+
+{/*로그인 페이지*/}
+<Route path="/login" element={<Login />} />
+
+{/* 로그인 성공 페이지 */}
+<Route path="/auth/callback" element={<LoginSuccess />} />
+</Routes>
     </Router>
+    </RecoilRoot>
   );
 }
 

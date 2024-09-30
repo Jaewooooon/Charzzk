@@ -11,13 +11,13 @@
     bottom: 0; /* 세로 하단 */
     transform: translateX(-50%); /* 가로 중앙 정렬 */
     width: 95%;
-    height: 300px;
     overflow-y: auto; /* 내용이 많아지면 스크롤 */
     background-color: rgb(255, 255, 255); /* 반투명 배경 */
     padding: 15px;
     border-radius: 50px 50px 0 0; /* 상단만 둥글게 */
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     z-index: 10; /* 지도 위에 표시 */
+    padding-top: 40px;
   }
   
   /* 좌표 목록 스타일 */
@@ -43,3 +43,62 @@
     color: #000;
   }
   
+  .ChargeMap_Search{
+      position: absolute;
+      top: 15px;
+      left: 10px; 
+      width: 83%; 
+      height: 40px; 
+      z-index: 1000;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  .parking_box{
+    position: relative;
+    border-bottom: 1px solid rgb(229, 229, 229);
+    padding: 10px;
+    display: flex;
+  }
+  
+  .List_Title{
+    display: flex;
+    justify-content:space-between;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(229, 229, 229);
+    height: 50px;
+  }
+
+  .sort_distance{
+    background-color: rgba(255, 255, 255, 0.394);
+    padding: none;
+    border: none;
+    display: flex;
+    height: 18px;
+    margin-top: 45px;
+  }
+
+  .show_distance{
+    padding-left: 5px;
+  }
+
+  .parking_title{
+    margin-top: 15px;
+  }
+
+  .parking_name{
+    margin: 0;
+  }
+
+  .parking_contents{
+    margin-left: 10px;
+  }
+  .parking_distance {
+    position: absolute; /* 절대 위치 */
+    bottom: 10px; /* 부모의 하단에서 10px 위로 */
+    right: 10px; /* 부모의 좌측에서 10px 떨어짐 */
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+  }

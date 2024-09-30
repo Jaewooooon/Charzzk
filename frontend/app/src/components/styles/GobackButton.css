@@ -1,0 +1,11 @@
+.ReportIssue_return_button {
+    position: fixed; /* 화면의 특정 위치에 고정 */
+    top: 5px;       /* 상단에서 10px 아래 */
+    right: 10px;      /* 왼쪽에서 10px 오른쪽 */
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    color: rgb(171, 171, 171);
+    font-weight: 100;
+    z-index: 1000;  /* 다른 요소들보다 위에 표시되도록 설정 */
+}

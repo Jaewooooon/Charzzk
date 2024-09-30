@@ -8,18 +8,6 @@
     padding: 20px;
     align-items: center;
 }
-.ReportIssue_return_button{
-    background-color: transparent;
-    border: none;
-    font-size: 48px;
-    padding: 10px;
-    padding-top: 40px;
-    padding-bottom: 0px;
-    color: rgb(151, 149, 149);
-    margin: none;
-    padding-left: 30px;
-    font-weight: 500;
-}
 .ReportIssue_select{
     width: 90%;
     height: 40px;
@@ -41,6 +29,7 @@
 }
 .ReportIssue_contents_box{
     padding-left: 40px;
+    margin-top: 22%;
 }
 .ReportIssue_startbutton{
     background-color: #5DEAC4;

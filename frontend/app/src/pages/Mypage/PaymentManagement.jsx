@@ -1,9 +1,12 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
+import { accessTokenState } from '../../recoil/LoginAtom';
 
 function PaymentManagement() {
+  const accessToken = useRecoilValue(accessTokenState);
   return (
     <div>
-      <h1>결제 수단 관리 페이지</h1>
+      <h1>Access Token: {accessToken}</h1>
     </div>
   );
 }
