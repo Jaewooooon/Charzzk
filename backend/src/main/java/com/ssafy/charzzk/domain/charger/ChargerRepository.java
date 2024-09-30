@@ -9,4 +9,5 @@ public interface ChargerRepository extends JpaRepository<Charger, Long> {
 
     @Query("SELECT c FROM Charger c JOIN FETCH c.parkingLot WHERE c.serialNumber = :serialNumber")
     Optional<Charger> findBySerialNumber(String serialNumber);
+
 }

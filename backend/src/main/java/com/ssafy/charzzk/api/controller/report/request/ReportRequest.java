@@ -1,10 +1,7 @@
 package com.ssafy.charzzk.api.controller.report.request;
 
 import com.ssafy.charzzk.api.service.report.request.ReportServiceRequest;
-import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.report.ReportType;
-import com.ssafy.charzzk.domain.user.User;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;

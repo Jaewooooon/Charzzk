@@ -1,7 +1,6 @@
 package com.ssafy.charzzk.api.service.report.request;
 
 import com.ssafy.charzzk.domain.report.ReportType;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

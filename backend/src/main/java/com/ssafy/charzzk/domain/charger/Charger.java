@@ -59,4 +59,10 @@ public class Charger extends BaseEntity {
     public void updateLastReservedTime(LocalDateTime startTime) {
         this.lastReservedTime = startTime;
     }
+
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+        parkingLot.getChargers().add(this);
+    }
+
 }

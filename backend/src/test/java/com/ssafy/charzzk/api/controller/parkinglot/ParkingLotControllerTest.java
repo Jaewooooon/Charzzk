@@ -2,9 +2,11 @@ package com.ssafy.charzzk.api.controller.parkinglot;
 
 import com.ssafy.charzzk.ControllerTestSupport;
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
+import com.ssafy.charzzk.api.service.charger.response.ChargerResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingSpotListResponse;
+import com.ssafy.charzzk.domain.charger.ChargerStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -131,4 +133,49 @@ class ParkingLotControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data.parkingSpots").isArray());
     }
 
+    @DisplayName("주차장 ID로 조회하면 해당 주차장에 속한 충전 로봇 목록이 정상적으로 반환된다.")
+    @WithMockUser
+    @Test
+    void getChargerList() throws Exception {
+        // given
+        ChargerResponse chargerResponse1 = ChargerResponse.builder()
+                .id(1L)
+                .serialNumber("1234A")
+                .battery(80)
+                .status(ChargerStatus.WAITING)
+                .build();
+
+        ChargerResponse chargerResponse2 = ChargerResponse.builder()
+                .id(2L)
+                .serialNumber("1234B")
+                .battery(90)
+                .status(ChargerStatus.CHARGER_CHARGING)
+                .build();
+
+        List<ChargerResponse> chargerList = List.of(chargerResponse1, chargerResponse2);
+
+        given(parkingLotService.getChargerList(any(Long.class))).willReturn(chargerList);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/parking-lot/{parkingLotId}/chargers", 1L)
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("200"))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data[0].id").value(1L))
+                .andExpect(jsonPath("$.data[0].serialNumber").value("1234A"))
+                .andExpect(jsonPath("$.data[0].battery").value(80))
+                .andExpect(jsonPath("$.data[0].status").value(ChargerStatus.WAITING.name()))
+                .andExpect(jsonPath("$.data[1].id").value(2L))
+                .andExpect(jsonPath("$.data[1].serialNumber").value("1234B"))
+                .andExpect(jsonPath("$.data[1].battery").value(90))
+                .andExpect(jsonPath("$.data[1].status").value(ChargerStatus.CHARGER_CHARGING.name()));
+    }
 }
