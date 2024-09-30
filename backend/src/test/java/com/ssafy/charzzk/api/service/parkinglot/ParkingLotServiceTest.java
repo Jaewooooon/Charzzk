@@ -2,12 +2,17 @@ package com.ssafy.charzzk.api.service.parkinglot;
 
 import com.ssafy.charzzk.IntegrationTestSupport;
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
+import com.ssafy.charzzk.api.service.charger.response.ChargerResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
+import com.ssafy.charzzk.domain.charger.Charger;
+import com.ssafy.charzzk.domain.charger.ChargerRepository;
+import com.ssafy.charzzk.domain.charger.ChargerStatus;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
 import com.ssafy.charzzk.domain.parkinglot.ParkingSpot;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +31,11 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
     @Autowired
     private ParkingLotService parkingLotService;
 
-
     @Autowired
     private ParkingLotRepository parkingLotRepository;
+
+    @Autowired
+    private ChargerRepository chargerRepository;
 
     @DisplayName("주변 주차장 리스트 현재 거리와 가까운순 오름차순으로 조회한다.")
     @Test
@@ -166,6 +173,79 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
                 .containsExactlyInAnyOrder(
                         tuple(parkingSpot1.getId(), "A11"),
                         tuple(parkingSpot2.getId(), "A12")
+                );
+    }
+
+    @DisplayName("주차장 ID로 충전 로봇 목록을 조회한다.")
+    @Test
+    void getChargerList() {
+        // given
+        ParkingLot parkingLot1 = ParkingLot.builder()
+                .name("첨단 주차장")
+                .location(Location.builder()
+                        .latitude(37.5665)
+                        .longitude(126.9780).build())
+                .build();
+
+        ParkingLot parkingLot2 = ParkingLot.builder()
+                .name("상무 주차장")
+                .location(Location.builder()
+                        .latitude(37.5765)
+                        .longitude(126.9880).build())
+                .build();
+
+        parkingLotRepository.saveAll(List.of(parkingLot1, parkingLot2));
+
+        Charger charger1ParkingLot1 = Charger.builder()
+                .parkingLot(parkingLot1)
+                .serialNumber("1234A")
+                .battery(80)
+                .status(ChargerStatus.WAITING)
+                .build();
+
+        Charger charger2ParkingLot1 = Charger.builder()
+                .parkingLot(parkingLot1)
+                .serialNumber("1234B")
+                .battery(90)
+                .status(ChargerStatus.CHARGER_CHARGING)
+                .build();
+
+        Charger charger1ParkingLot2 = Charger.builder()
+                .parkingLot(parkingLot2)
+                .serialNumber("1234C")
+                .battery(60)
+                .status(ChargerStatus.CHARGER_CHARGING)
+                .build();
+
+        Charger charger2ParkingLot2 = Charger.builder()
+                .parkingLot(parkingLot2)
+                .serialNumber("1234D")
+                .battery(70)
+                .status(ChargerStatus.WAITING)
+                .build();
+
+        Charger charger3ParkingLot2 = Charger.builder()
+                .parkingLot(parkingLot2)
+                .serialNumber("1234E")
+                .battery(50)
+                .status(ChargerStatus.CHARGER_CHARGING)
+                .build();
+
+        // 연관관계 편의 메서드
+        parkingLot1.getChargers().addAll(List.of(charger1ParkingLot1, charger2ParkingLot1));
+        parkingLot2.getChargers().addAll(List.of(charger3ParkingLot2, charger2ParkingLot2, charger3ParkingLot2));
+
+        chargerRepository.saveAll(List.of(charger1ParkingLot1, charger2ParkingLot1, charger1ParkingLot2, charger2ParkingLot2, charger3ParkingLot2));
+
+        // when
+        List<ChargerResponse> chargers = parkingLotService.getChargerList(parkingLot1.getId());
+
+        // then
+        assertThat(chargers).hasSize(2)
+                .extracting("id", "serialNumber", "battery", "status")
+                .containsExactlyInAnyOrder(
+                        tuple(charger1ParkingLot1.getId(), "1234A", 80, ChargerStatus.WAITING),
+                        tuple(charger2ParkingLot1.getId(), "1234B", 90, ChargerStatus.CHARGER_CHARGING)
                 );
     }
 }

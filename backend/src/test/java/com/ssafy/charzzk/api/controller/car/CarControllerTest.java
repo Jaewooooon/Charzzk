@@ -2,9 +2,9 @@ package com.ssafy.charzzk.api.controller.car;
 
 import com.ssafy.charzzk.ControllerTestSupport;
 import com.ssafy.charzzk.api.controller.car.request.CarRequest;
+import com.ssafy.charzzk.api.service.car.response.CarListResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
-import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarType;
 import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -169,7 +170,7 @@ class CarControllerTest extends ControllerTestSupport {
                 .image("cars/image2")
                 .build();
 
-        List<CarTypeResponse> carTypeResponses = Arrays.asList(carType1,carType2);
+        List<CarTypeResponse> carTypeResponses = Arrays.asList(carType1, carType2);
 
         given(carService.getCarTypes(any())).willReturn(carTypeResponses);
 
@@ -341,5 +342,71 @@ class CarControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.status").value("OK"))
                 .andExpect(jsonPath("$.message").value("OK"))
                 .andExpect(jsonPath("$.data").isEmpty());
+    }
+
+    @DisplayName("사용자의 차량 목록을 조회하면 정상적으로 반환된다.")
+    @WithMockUser
+    @Test
+    public void getCarList() throws Exception {
+        // given
+        CarTypeResponse carTypeResponse = CarTypeResponse.builder()
+                .id(1L)
+                .name("테슬라 모델 3")
+                .image("cars/image1")
+                .build();
+
+        CarListResponse carResponse1 = CarListResponse.builder()
+                .id(1L)
+                .carType(carTypeResponse)
+                .number("11다1111")
+                .nickname("콩이")
+                .isCharging(false)
+                .chargeCost(10000L)
+                .chargeAmount(500.0)
+                .build();
+
+        CarListResponse carResponse2 = CarListResponse.builder()
+                .id(2L)
+                .carType(carTypeResponse)
+                .number("22나2222")
+                .nickname("둥이")
+                .isCharging(true)
+                .chargeCost(20000L)
+                .chargeAmount(1000.0)
+                .build();
+
+        List<CarListResponse> carList = List.of(carResponse1, carResponse2);
+
+        LocalDateTime startOfMonth = LocalDateTime.of(2024, 9, 1, 0, 0, 0);
+        LocalDateTime endOfMonth = LocalDateTime.of(2024, 9, 30, 23, 59, 59);
+
+        given(carService.getCarList(any(User.class), any(LocalDateTime.class), any(LocalDateTime.class))).willReturn(carList);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/cars/me")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("200"))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data").isArray())
+                .andExpect(jsonPath("$.data[0].id").value(1L))
+                .andExpect(jsonPath("$.data[0].number").value("11다1111"))
+                .andExpect(jsonPath("$.data[0].nickname").value("콩이"))
+                .andExpect(jsonPath("$.data[0].charging").value(false))
+                .andExpect(jsonPath("$.data[0].chargeCost").value(10000L))
+                .andExpect(jsonPath("$.data[0].chargeAmount").value(500L))
+                .andExpect(jsonPath("$.data[1].id").value(2L))
+                .andExpect(jsonPath("$.data[1].number").value("22나2222"))
+                .andExpect(jsonPath("$.data[1].nickname").value("둥이"))
+                .andExpect(jsonPath("$.data[1].charging").value(true))
+                .andExpect(jsonPath("$.data[1].chargeCost").value(20000L))
+                .andExpect(jsonPath("$.data[1].chargeAmount").value(1000L));
     }
 }

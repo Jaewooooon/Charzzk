@@ -1,20 +1,24 @@
 package com.ssafy.charzzk.api.service.parkinglot;
 
-import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
+import com.ssafy.charzzk.api.service.charger.response.ChargerResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
 import com.ssafy.charzzk.core.util.DistanceCalculator;
+import com.ssafy.charzzk.domain.charger.ChargerRepository;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -22,6 +26,9 @@ import java.util.List;
 public class ParkingLotService {
 
     private final ParkingLotRepository parkingLotRepository;
+
+    private final ChargerRepository chargerRepository;
+
 
     //    public List<ParkingLotListResponse> getParkingLotList(ParkingLotListRequest request, String keyword) {
 //        List<ParkingLot> ParkingLotList = parkingLotRepository.findAllContaining(keyword);
@@ -69,5 +76,12 @@ public class ParkingLotService {
         return ParkingLotResponse.of(findParkingLot);
     }
 
+    public List<ChargerResponse> getChargerList(Long parkingLotId) {
+        ParkingLot parkingLot = parkingLotRepository.findByIdWithChargers(parkingLotId)
+                .orElseThrow(() -> new BaseException(ErrorCode.PARKING_LOT_NOT_FOUND));
 
+        return parkingLot.getChargers().stream()
+                .map(ChargerResponse::from)
+                .collect(Collectors.toList());
+    }
 }

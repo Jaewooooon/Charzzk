@@ -1,0 +1,31 @@
+name: charzzk-docker-dev
+
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger
+    ports:
+      - "8000:8080"
+    restart: on-failure
+    environment:
+      SWAGGER_JSON: /usr/share/nginx/html/docs/openapi3.yml
+    volumes:
+      - ./build/api-spec:/usr/share/nginx/html/docs
+
+  cache-dev-database:
+    image: redis:7.4-rc2-alpine
+    container_name: charzzk-cache-dev-database
+    ports:
+      - "6380:6379"
+    entrypoint:
+      - redis-server
+      - "--maxmemory"
+      - "128mb"
+      - "--notify-keyspace-events"
+      - "Ex"
+
+  redis-insite:
+    image: redis/redisinsight:latest
+    container_name: redis-insite
+    ports:
+      - "8001:5540"

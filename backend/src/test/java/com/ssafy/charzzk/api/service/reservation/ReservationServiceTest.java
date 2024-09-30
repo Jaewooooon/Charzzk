@@ -1,7 +1,8 @@
 package com.ssafy.charzzk.api.service.reservation;
 
 import com.ssafy.charzzk.IntegrationTestSupport;
-import com.ssafy.charzzk.api.service.response.ReservationCheckTimeResponse;
+import com.ssafy.charzzk.api.service.reservation.request.ReservationServiceRequest;
+import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
 import com.ssafy.charzzk.domain.car.Car;
@@ -13,10 +14,15 @@ import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
 import com.ssafy.charzzk.domain.reservation.Reservation;
+import com.ssafy.charzzk.domain.reservation.ReservationCacheRepository;
 import com.ssafy.charzzk.domain.reservation.ReservationRepository;
+import com.ssafy.charzzk.domain.reservation.ReservationStatus;
 import com.ssafy.charzzk.domain.user.User;
+import com.ssafy.charzzk.domain.user.UserRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +32,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+
 @Transactional
 @ActiveProfiles("test")
 class ReservationServiceTest extends IntegrationTestSupport {
@@ -35,43 +43,31 @@ class ReservationServiceTest extends IntegrationTestSupport {
     private ReservationService reservationService;
 
     @Autowired
+    private ReservationRepository reservationRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private ParkingLotRepository parkingLotRepository;
 
     @Autowired
     private CarRepository carRepository;
 
     @Autowired
-    private ReservationRepository reservationRepository;
+    private ReservationCacheRepository reservationCacheRepository;
 
-    @DisplayName("사용 가능한 충전기가 있을 때 예약 가능한 시간을 확인한다.")
+    @AfterEach
+    void tearDown() {
+        reservationCacheRepository.deleteAllReservations();
+    }
+
+    @DisplayName("예약 아이디로 예약을 조회한다.")
     @Test
-    void checkTime() {
-        // given
-        Location location = Location.builder()
-                .latitude(37.123456)
-                .longitude(127.123456)
-                .build();
-
-        ParkingLot parkingLot = ParkingLot.builder()
-                .name("테스트 주차장")
-                .location(location)
-                .build();
-
-        Charger charger1 = Charger.builder()
-                .parkingLot(parkingLot)
-                .status(ChargerStatus.WAITING)
-                .build();
-        Charger charger2 = Charger.builder()
-                .parkingLot(parkingLot)
-                .status(ChargerStatus.CAR_CHARGING)
-                .build();
-
-        parkingLot.getChargers().add(charger1);
-        parkingLot.getChargers().add(charger2);
-
+    public void getReservation() {
         User user = User.builder()
-                .username("test@gmail.com")
-                .nickname("테스터")
+                .username("user@google.com")
+                .nickname("user")
                 .build();
 
         CarType carType = CarType.builder()
@@ -82,47 +78,70 @@ class ReservationServiceTest extends IntegrationTestSupport {
                 .user(user)
                 .carType(carType)
                 .number("12다1234")
-                .battery(50)
                 .build();
 
-        parkingLotRepository.save(parkingLot);
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        Charger charger = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("1")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        parkingLot.getChargers().add(charger);
+
+        Reservation reservation = Reservation.builder()
+                .car(car)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .status(ReservationStatus.PENDING)
+                .build();
+
+        userRepository.save(user);
         carRepository.save(car);
-
-        LocalDateTime dateTime = LocalDateTime.of(2024, 1, 1, 0, 0);
-        boolean fullCharge = true;
-        int time = 0;
-
-        int duration = ChargeTimeCalculator.calculate(car, fullCharge, time);
+        parkingLotRepository.save(parkingLot);
+        reservationRepository.save(reservation);
 
         // when
-        ReservationCheckTimeResponse response = reservationService.checkTime(parkingLot.getId(), car.getId(), fullCharge, time, dateTime);
+        ReservationResponse response = reservationService.getReservation(reservation.getId());
 
         // then
         assertThat(response).isNotNull()
-                .extracting("chargerId", "isPossibleNow", "startTime", "endTime")
-                .containsExactly(charger1.getId(), true, dateTime, dateTime.plusMinutes(duration));
+                .extracting("id", "car.id", "startTime", "endTime", "status")
+                .containsExactly(reservation.getId(), car.getId(), reservation.getStartTime(), reservation.getEndTime(), reservation.getStatus().name());
     }
 
-    @DisplayName("주차장을 찾을 수 없을 때 예외가 발생한다.")
+    @DisplayName("예약을 생성하면 예약의 아이디를 반환한다.")
     @Test
-    void checkTimeWithInvalidParkingLot() {
+    public void createReservation() {
         // given
-        LocalDateTime dateTime = LocalDateTime.of(2024, 1, 1, 0, 0);
-        boolean fullCharge = true;
-        int time = 0;
+        LocalDateTime time = LocalDateTime.of(2024, 1, 1, 0, 0);
 
-        // when, then
-        assertThatThrownBy(() -> reservationService.checkTime(1L, 1L, fullCharge, time, dateTime))
-                .isInstanceOf(BaseException.class)
-                .hasMessage(ErrorCode.PARKING_LOT_NOT_FOUND.getMessage());
+        User user = User.builder()
+                .username("user@google.com")
+                .nickname("user")
+                .build();
 
-    }
+        CarType carType = CarType.builder()
+                .name("테스트 차종")
+                .build();
 
+        Car car = Car.builder()
+                .user(user)
+                .carType(carType)
+                .number("12다1234")
+                .build();
 
-    @DisplayName("차량을 찾을 수 없을 때 예외가 발생한다.")
-    @Test
-    void checkTimeWithInvalidCar()  {
-        // given
         Location location = Location.builder()
                 .latitude(37.123456)
                 .longitude(127.123456)
@@ -135,92 +154,117 @@ class ReservationServiceTest extends IntegrationTestSupport {
 
         Charger charger1 = Charger.builder()
                 .parkingLot(parkingLot)
+                .serialNumber("1")
                 .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
                 .build();
+
         Charger charger2 = Charger.builder()
                 .parkingLot(parkingLot)
+                .serialNumber("2")
                 .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
                 .build();
 
         parkingLot.getChargers().add(charger1);
         parkingLot.getChargers().add(charger2);
 
+        userRepository.save(user);
+        carRepository.save(car);
         parkingLotRepository.save(parkingLot);
 
-        LocalDateTime dateTime = LocalDateTime.of(2024, 1, 1, 0, 0);
-        boolean fullCharge = true;
-        int time = 0;
+        ReservationServiceRequest request = ReservationServiceRequest.builder()
+                .carId(car.getId())
+                .parkingLotId(parkingLot.getId())
+                .fullCharge(true)
+                .time(0)
+                .build();
+
+        // when
+        Long reservationId = reservationService.create(user, request, time);
+
+        // then
+        assertThat(reservationId).isNotNull();
+    }
+
+    @DisplayName("예약을 생성할 때 차량을 찾을 수 없으면 예외가 발생한다.")
+    @Test
+    public void createReservationWithInvalidCar() {
+        // given
+        LocalDateTime time = LocalDateTime.of(2024, 1, 1, 0, 0);
+
+        User user = User.builder()
+                .username("user@google.com")
+                .nickname("user")
+                .build();
+
+        ReservationServiceRequest request = ReservationServiceRequest.builder()
+                .carId(1L)
+                .parkingLotId(1L)
+                .fullCharge(true)
+                .time(0)
+                .build();
 
         // when, then
-        assertThatThrownBy(() -> reservationService.checkTime(parkingLot.getId(), 1L, fullCharge, time, dateTime))
+        assertThatThrownBy(() -> reservationService.create(user, request, time))
                 .isInstanceOf(BaseException.class)
                 .hasMessage(ErrorCode.CAR_NOT_FOUND.getMessage());
-
     }
 
-    @DisplayName("주차장에 충전기가 없을 때 예외가 발생한다.")
+    @DisplayName("예약을 생성할 때 차량이 사용자의 차량이 아니면 예외가 발생한다.")
     @Test
-    void checkTimeWithoutCharger() {
+    public void createReservationWithNotMyCar() {
         // given
-        Location location = Location.builder()
-                .latitude(37.123456)
-                .longitude(127.123456)
+        LocalDateTime time = LocalDateTime.of(2024, 1, 1, 0, 0);
+
+        User user1 = User.builder()
+                .username("user1@google.com")
+                .nickname("user1")
                 .build();
 
-        ParkingLot parkingLot = ParkingLot.builder()
-                .name("테스트 주차장")
-                .location(location)
+        User user2 = User.builder()
+                .username("user2@google.com")
+                .nickname("user2")
                 .build();
 
-        parkingLotRepository.save(parkingLot);
 
-        LocalDateTime dateTime = LocalDateTime.of(2024, 1, 1, 0, 0);
-        boolean fullCharge = true;
-        int time = 0;
+        CarType carType = CarType.builder()
+                .name("테스트 차종")
+                .build();
+
+        Car car = Car.builder()
+                .user(user1)
+                .carType(carType)
+                .number("12다1234")
+                .build();
+
+
+        userRepository.saveAll(List.of(user1, user2));
+        carRepository.save(car);
+
+
+        ReservationServiceRequest request = ReservationServiceRequest.builder()
+                .carId(car.getId())
+                .parkingLotId(1L)
+                .fullCharge(true)
+                .time(0)
+                .build();
 
         // when, then
-        assertThatThrownBy(() -> reservationService.checkTime(parkingLot.getId(), 1L, fullCharge, time, dateTime))
+        assertThatThrownBy(() -> reservationService.create(user2, request, time))
                 .isInstanceOf(BaseException.class)
-                .hasMessage(ErrorCode.CHARGER_NOT_EXIST_IN_PARKING_LOT.getMessage());
-
+                .hasMessage(ErrorCode.FORBIDDEN.getMessage());
     }
 
-
-    @DisplayName("당장 이용 가능한 충전기가 없으면 예약 가능한 시간을 확인한다.")
+    @DisplayName("예약을 생성할 주차장을 찾을 수 없으면 예외가 발생한다.")
     @Test
-    void checkTimeLater() {
+    public void createReservationWithInvalidParkingLot() {
         // given
-        LocalDateTime dateTime = LocalDateTime.of(2024, 1, 1, 0, 0);
-        boolean fullCharge = true;
-        int time = 0;
-
-        Location location = Location.builder()
-                .latitude(37.123456)
-                .longitude(127.123456)
-                .build();
-
-        ParkingLot parkingLot = ParkingLot.builder()
-                .name("테스트 주차장")
-                .location(location)
-                .build();
-
-        Charger charger1 = Charger.builder()
-                .parkingLot(parkingLot)
-                .status(ChargerStatus.CAR_CHARGING)
-                .build();
-        Charger charger2 = Charger.builder()
-                .parkingLot(parkingLot)
-                .status(ChargerStatus.CAR_CHARGING)
-                .build();
-
-        parkingLot.getChargers().add(charger1);
-        parkingLot.getChargers().add(charger2);
-
-
+        LocalDateTime time = LocalDateTime.of(2024, 1, 1, 0, 0);
 
         User user = User.builder()
-                .username("test@gmail.com")
-                .nickname("테스터")
+                .username("user@google.com")
+                .nickname("user")
                 .build();
 
         CarType carType = CarType.builder()
@@ -231,38 +275,22 @@ class ReservationServiceTest extends IntegrationTestSupport {
                 .user(user)
                 .carType(carType)
                 .number("12다1234")
-                .battery(50)
                 .build();
 
-        Reservation reservation1 = Reservation.builder()
-                .charger(charger1)
-                .car(car)
-                .startTime(dateTime.minusMinutes(10))
-                .endTime(dateTime.plusMinutes(10))
-                .build();
-
-        Reservation reservation2 = Reservation.builder()
-                .charger(charger2)
-                .car(car)
-                .startTime(dateTime.minusMinutes(10))
-                .endTime(dateTime.plusMinutes(20))
-                .build();
-
-        List<Reservation> reservations = List.of(reservation1, reservation2);
-
-        parkingLotRepository.save(parkingLot);
+        userRepository.save(user);
         carRepository.save(car);
-        reservationRepository.saveAll(reservations);
 
-        int duration = ChargeTimeCalculator.calculate(car, fullCharge, time);
+        ReservationServiceRequest request = ReservationServiceRequest.builder()
+                .carId(car.getId())
+                .parkingLotId(1L)
+                .fullCharge(true)
+                .time(0)
+                .build();
 
-        // when
-        ReservationCheckTimeResponse response = reservationService.checkTime(parkingLot.getId(), car.getId(), fullCharge, time, dateTime);
-
-        // then
-        assertThat(response).isNotNull()
-                .extracting("isPossibleNow", "startTime", "endTime")
-                .containsExactly(false, dateTime.plusMinutes(10), dateTime.plusMinutes(10 + duration));
+        // when, then
+        assertThatThrownBy(() -> reservationService.create(user, request, time))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.PARKING_LOT_NOT_FOUND.getMessage());
     }
 
 }

@@ -42,8 +42,13 @@ public enum ErrorCode {
 
     // Charger
     CHARGER_NOT_FOUND(5000, HttpStatus.NOT_FOUND, "충전 로봇을 찾을 수 없습니다."),
-    CHARGER_NOT_EXIST_IN_PARKING_LOT(5001, HttpStatus.NOT_FOUND, "주차장에 충전기가 없습니다.");
+    CHARGER_NOT_EXIST_IN_PARKING_LOT(5001, HttpStatus.NOT_FOUND, "주차장에 충전기가 없습니다."),
+    NO_AVAILABLE_CHARGER(5002, HttpStatus.BAD_REQUEST, "이용 가능한 충전기가 없습니다."),
 
+    // Reservation
+    RESERVATION_NOT_FOUND(6000, HttpStatus.NOT_FOUND, "예약을 찾을 수 없습니다."),
+
+    ;
     private final int code;
     private final HttpStatus status;
     private final String message;
