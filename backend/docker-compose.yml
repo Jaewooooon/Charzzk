@@ -29,7 +29,14 @@ services:
     container_name: charzzk-cache-database
     ports:
       - "${REDIS_PORT}:6379"
-    entrypoint: redis-server --requirepass ${REDIS_PASSWORD} --maxmemory 128mb
+    entrypoint:
+      - redis-server
+      - "--requirepass"
+      - "${REDIS_PASSWORD}"
+      - "--maxmemory"
+      - "128mb"
+      - "--notify-keyspace-events"
+      - "Ex"
 
 
   backend-server:
