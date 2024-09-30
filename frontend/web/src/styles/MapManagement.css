@@ -6,9 +6,55 @@
     width: 80%;
     height: auto;
 }
-#map {
+#KakaoMap {
     margin-left:80px;
     width: 80%;
-    height: 500px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */    padding-left: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */    
+    padding-left: 300px;
+    position: relative;
+  }
+  .ParkingListBox{
+    position: absolute;
+    top: 63px; /* 원하는 위치로 조정 */
+    left: 80px;
+    width: 300px;
+    height: 85%;
+    overflow-y: auto;
+    background-color: #F3F3F3; 
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1; 
+
+  }
+
+  .ParkingListTitle{
+    z-index: 3;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 30px;
+    padding-left: 80px;
+    padding-top: 20px;
+    border-bottom: 1px solid rgb(223, 223, 223);
+
+
+  }
+
+  .parking_box{
+    position: relative;
+    border-bottom: 1px solid rgb(223, 223, 223);
+    padding: 10px;
+    display: flex;
+    background-color: #F3F3F3;
+  }
+   .parking_contents{
+    margin-left: 10px;
+
+  }
+  .parking_name{
+    margin: 0;
+    font-size: 15px;
+  }
+  .parking_address{
+    font-size: 13px;
   }
