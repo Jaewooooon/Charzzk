@@ -44,4 +44,15 @@ public class Reservation extends BaseEntity {
         this.endTime = endTime;
         this.status = status;
     }
+
+    public static Reservation create(Car car, Charger charger, LocalDateTime startTime, LocalDateTime endTime) {
+
+        return Reservation.builder()
+                .car(car)
+                .charger(charger)
+                .startTime(startTime)
+                .endTime(endTime)
+                .status(ReservationStatus.PENDING)
+                .build();
+    }
 }

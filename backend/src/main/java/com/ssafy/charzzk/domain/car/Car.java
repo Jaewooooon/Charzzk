@@ -37,7 +37,8 @@ public class Car extends BaseEntity {
     private int battery = 30;
 
     @Builder
-    private Car(User user, CarType carType, String number, String nickname, int battery) {
+    private Car(Long id, User user, CarType carType, String number, String nickname, int battery) {
+        this.id = id;
         this.user = user;
         this.carType = carType;
         this.number = number;

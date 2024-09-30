@@ -16,18 +16,6 @@ import java.util.function.Function;
 public abstract class IntegrationTestSupport{
 
     @MockBean
-    protected RedisConnectionFactory redisConnectionFactory;
-
-    @MockBean
-    protected RedisMessageListenerContainer redisMessageListener;
-
-    @MockBean
-    protected RedisTemplate<String, Object> redisTemplate;
-
-    @MockBean
-    protected RedisKeyValueAdapter redisKeyValueAdapter;
-
-    @MockBean
     protected JWTService jwtService;
 
     @MockBean

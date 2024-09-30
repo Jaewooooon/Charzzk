@@ -2,28 +2,34 @@ package com.ssafy.charzzk.docs.reservations;
 
 import com.epages.restdocs.apispec.ResourceSnippetParameters;
 import com.ssafy.charzzk.api.controller.reservation.ReservationController;
+import com.ssafy.charzzk.api.controller.reservation.request.ReservationRequest;
+import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.reservation.ReservationService;
-import com.ssafy.charzzk.api.service.response.ReservationCheckTimeResponse;
+import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
 import com.ssafy.charzzk.docs.RestDocsSupport;
+import com.ssafy.charzzk.domain.car.Car;
+import com.ssafy.charzzk.domain.car.CarType;
+import com.ssafy.charzzk.domain.reservation.ReservationStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.time.LocalDateTime;
 
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -36,41 +42,71 @@ public class ReservationControllerDocsTest extends RestDocsSupport {
         return new ReservationController(reservationService);
     }
 
-    @DisplayName("예약 가능한 시간을 조회한다.")
+    @DisplayName("예약을 성공적으로 만든다.")
+    @WithMockUser
     @Test
-    void checkTime() throws Exception {
+    void createReservation() throws Exception {
+
         // given
-        ReservationCheckTimeResponse response = ReservationCheckTimeResponse.builder()
-                .chargerId(1L)
-                .startTime(LocalDateTime.of(2021, 8, 1, 0, 0, 0))
-                .endTime(LocalDateTime.of(2021, 8, 1, 2, 0, 0))
-                .isPossibleNow(true)
+        ReservationRequest request = ReservationRequest.builder()
+                .carId(1L)
+                .parkingLotId(1L)
+                .fullCharge(true)
+                .time(0)
                 .build();
 
-        given(reservationService.checkTime(anyLong(), anyLong(), anyBoolean(), anyInt(), any())).willReturn(response);
+        CarType carType = CarType.builder()
+                .id(1L)
+                .name("아이오닉")
+                .image("image")
+                .build();
+
+        Car car = Car.builder()
+                .id(1L)
+                .carType(carType)
+                .number("1234")
+                .nickname("nickname")
+                .build();
+
+        ReservationResponse response = ReservationResponse.builder()
+                .id(1L)
+                .car(CarResponse.from(car))
+                .startTime(LocalDateTime.of(2021, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2021, 1, 1, 2, 0))
+                .status(ReservationStatus.PENDING.name())
+                .build();
+
+        given(reservationService.getReservation(any())).willReturn(response);
 
         // when
-        ResultActions perform = mockMvc.perform(get("/api/v1/reservations/check-time")
-                .param("parkingLotId", "1")
-                .param("carId", "1")
-                .param("fullCharge", "true")
-                .param("time", "0")
-                .contentType(MediaType.APPLICATION_JSON));
+        ResultActions perform = mockMvc.perform(
+                post("/api/v1/reservations")
+                        .with(csrf())
+                        .header("Authorization", "Bearer token")
+                        .content(objectMapper.writeValueAsString(request))
+                        .contentType(MediaType.APPLICATION_JSON));
 
         // then
         perform
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andDo(document("reservations-check-time",
+                .andDo(document("reservation-create",
                         preprocessResponse(prettyPrint()),
                         resource(ResourceSnippetParameters.builder()
                                 .tag("Reservation")
-                                .summary("예약 가능한 시간을 조회")
-                                .queryParameters(
-                                        parameterWithName("parkingLotId").description("주차장 아이디"),
-                                        parameterWithName("carId").description("차량 아이디"),
-                                        parameterWithName("fullCharge").description("풀충전 여부"),
-                                        parameterWithName("time").description("충전 시간")
+                                .summary("예약을 성공적으로 만든다.")
+                                .requestHeaders(
+                                        headerWithName("Authorization").description("JWT 토큰 (Bearer)")
+                                )
+                                .requestFields(
+                                        fieldWithPath("carId").type(JsonFieldType.NUMBER)
+                                                .description("자동차 아이디"),
+                                        fieldWithPath("parkingLotId").type(JsonFieldType.NUMBER)
+                                                .description("주차장 아이디"),
+                                        fieldWithPath("fullCharge").type(JsonFieldType.BOOLEAN)
+                                                .description("풀충전 여부"),
+                                        fieldWithPath("time").type(JsonFieldType.NUMBER)
+                                                .optional().description("충전 시간")
                                 )
                                 .responseFields(
                                         fieldWithPath("code").type(JsonFieldType.NUMBER)
@@ -79,15 +115,30 @@ public class ReservationControllerDocsTest extends RestDocsSupport {
                                                 .description("상태"),
                                         fieldWithPath("message").type(JsonFieldType.STRING)
                                                 .description("메시지"),
-                                        fieldWithPath("data.chargerId").type(JsonFieldType.NUMBER)
-                                                .description("충전기 아이디"),
+                                        fieldWithPath("data.id").type(JsonFieldType.NUMBER)
+                                                .description("예약 아이디"),
                                         fieldWithPath("data.startTime").type(JsonFieldType.STRING)
-                                                .description("예상 시작 시간"),
+                                                .description("예상 시작시간"),
                                         fieldWithPath("data.endTime").type(JsonFieldType.STRING)
-                                                .description("예상 종료 시간"),
-                                        fieldWithPath("data.possibleNow").type(JsonFieldType.BOOLEAN)
-                                                .description("즉시 충전 가능 여부")
-                                )
+                                                .description("예상 종료시간"),
+                                        fieldWithPath("data.status").type(JsonFieldType.STRING)
+                                                .description("예약 상태"),
+                                        fieldWithPath("data.car.id").type(JsonFieldType.NUMBER)
+                                                .description("차량 아이디"),
+                                        fieldWithPath("data.car.id").type(JsonFieldType.NUMBER)
+                                                .description("차량 아이디"),
+                                        fieldWithPath("data.car.number").type(JsonFieldType.STRING)
+                                                .description("차량 번호"),
+                                        fieldWithPath("data.car.nickname").type(JsonFieldType.STRING)
+                                                .description("차량 별명"),
+                                        fieldWithPath("data.car.carType.id").type(JsonFieldType.NUMBER)
+                                                .description("차종 아이디"),
+                                        fieldWithPath("data.car.carType.name").type(JsonFieldType.STRING)
+                                                .description("차종 이름"),
+                                        fieldWithPath("data.car.carType.image").type(JsonFieldType.STRING)
+                                                .description("차종 이미지 아이디"))
                                 .build())));
+
     }
+
 }
