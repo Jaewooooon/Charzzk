@@ -1,4 +1,0 @@
-[console_scripts]
-game = custom_game.game:main
-odom = custom_game.odom:main
-
