@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';  // Link 컴포넌트 임포트
 import '../styles/MainPage.css';
 import CarSample from '../assets/car_sample.png';
 import MypageCar from '../assets/MypageCar.png';
-import MyPagePayment from '../assets/MyPagePayment.png';
+import MyPagePayment from '../assets/MypagePayment.png';
 import MyPageReport from '../assets/MypageReport.png';
 import ChargeStatus from '../assets/ChargeStatus.png';
 import ChargeStart from '../assets/ChargeStart.png';
