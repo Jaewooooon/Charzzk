@@ -64,5 +64,4 @@ class ChargerRepositoryTest extends IntegrationTestSupport {
         assertThat(foundCharger.get().getParkingLot().getLocation().getLongitude()).isEqualTo(126.9780);
 
     }
-
 }
