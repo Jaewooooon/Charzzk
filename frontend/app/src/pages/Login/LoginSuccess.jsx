@@ -18,7 +18,7 @@ const LoginSuccess = () => {
       if (token) {
         console.log('Setting access token and auth state');
         setAccessToken(token); // Recoil 상태에 저장
-        setAuthState(true);
+        setAuthState({ isAuthenticated: true }); 
         navigate('/'); // 메인 페이지로 이동
       } else if (accessToken) {
         console.log('Already logged in with token:', accessToken);
