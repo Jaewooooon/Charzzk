@@ -1,54 +1,43 @@
 import pika
 import json
-from datetime import datetime
 
-# RabbitMQ 서버에 연결
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
-channel = connection.channel()
+class MessageProducer:
+    def __init__(self, host='localhost', exchange_name='exchange', routing_key='routingkey', queue_name='python_to_spring_queue'):
+        self.host = host
+        self.exchange_name = exchange_name
+        self.routing_key = routing_key
+        self.queue_name = queue_name
+        self.connection = None
+        self.channel = None
+        self._setup_connection()
 
-# 큐 선언 (Spring Boot에서 수신할 큐)
-channel.queue_declare(queue='python_to_spring_queue', durable=True)
-channel.queue_declare(queue='robot_location_queue', durable=True)
+    def _setup_connection(self):
+        # RabbitMQ 서버에 연결
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(self.host))
+        self.channel = self.connection.channel()
 
-def send_message_to_queue(queue_name, message):
-    # JSON 형식으로 메시지 직렬화
-    json_message = json.dumps(message)
+        # Exchange 선언
+        self.channel.exchange_declare(exchange=self.exchange_name, exchange_type='direct', durable=True)
 
-    # 메시지 전송
-    channel.basic_publish(
-        exchange='',
-        routing_key=queue_name,
-        body=json_message,
-        properties=pika.BasicProperties(
-            delivery_mode=2,  # 메시지의 지속성 보장
+        # 큐 선언
+        self.channel.queue_declare(queue=self.queue_name, durable=True)
+
+        # 큐와 Exchange를 바인딩
+        self.channel.queue_bind(exchange=self.exchange_name, queue=self.queue_name, routing_key=self.routing_key)
+
+    def send_message_to_queue(self, message):
+        json_message = json.dumps(message)
+        self.channel.basic_publish(
+            exchange=self.exchange_name,
+            routing_key=self.routing_key,
+            body=json_message,
+            properties=pika.BasicProperties(
+                delivery_mode=2,
+                content_type='application/json',
+                content_encoding='utf-8'
+            )
         )
-    )
-    print(f"Sent message to {queue_name}: {json_message}")
+        print(f"Sent message: {json_message}")
 
-# 예시 메시지 생성 (로봇의 인식 상태 업데이트)
-recognition_status_message = {
-    "type": "recognition_status",
-    "robotSerialNumber": "robot_001",
-    "data": {
-        "vehicleId": "AB4411",
-        "status": "success",
-        "timestamp": datetime.now().isoformat()
-    }
-}
-
-# 예시 메시지 생성 (로봇의 위치 업데이트)
-location_update_message = {
-    "type": "location_update",
-    "robotSerialNumber": "robot_001",
-    "data": {
-        "latitude": "37.7749",
-        "longitude": "-122.4194",
-        "timestamp": datetime.now().isoformat()
-    }
-}
-
-# 메시지를 각 큐에 전송
-# send_message_to_queue('python_to_spring_queue', recognition_status_message)
-send_message_to_queue('robot_location_queue', location_update_message)
-
-connection.close()
+    def close_connection(self):
+        self.connection.close()
