@@ -65,11 +65,8 @@ class UserServiceTest extends IntegrationTestSupport {
     @DisplayName("중복된 닉네임을 확인했을 때 중복된 닉네임이 없으면 성공 메시지를 반환한다.")
     @Test
     public void checkNicknameSuccess() {
-        UserUpdateServiceRequest request = UserUpdateServiceRequest.builder()
-                .nickname("newNickname")
-                .build();
 
-        String result = userService.checkNickname(request);
+        String result = userService.checkNickname("newNickname");
 
         assertThat(result).isEqualTo("닉네임 변경이 가능합니다");
     }
@@ -84,11 +81,7 @@ class UserServiceTest extends IntegrationTestSupport {
 
         userRepository.save(user);
 
-        UserUpdateServiceRequest request = UserUpdateServiceRequest.builder()
-                .nickname("existNickname")
-                .build();
-
-        assertThatThrownBy(() -> userService.checkNickname(request))
+        assertThatThrownBy(() -> userService.checkNickname("existNickname"))
                 .isInstanceOf(BaseException.class)
                 .hasMessage(ErrorCode.NICKNAME_ALREADY_EXISTS.getMessage());
     }
