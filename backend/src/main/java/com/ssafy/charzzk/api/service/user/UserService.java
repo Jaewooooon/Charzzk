@@ -42,8 +42,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public String checkNickname(UserUpdateServiceRequest request) {
-        if (userRepository.existsByNickname(request.getNickname())) {
+    public String checkNickname(String nickname) {
+        if (userRepository.existsByNickname(nickname)) {
             throw new BaseException(ErrorCode.NICKNAME_ALREADY_EXISTS);
         }
 
