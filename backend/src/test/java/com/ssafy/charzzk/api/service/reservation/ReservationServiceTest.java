@@ -1,6 +1,7 @@
 package com.ssafy.charzzk.api.service.reservation;
 
 import com.ssafy.charzzk.IntegrationTestSupport;
+import com.ssafy.charzzk.api.service.reservation.request.ReservationConfirmServiceRequest;
 import com.ssafy.charzzk.api.service.reservation.request.ReservationServiceRequest;
 import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
@@ -24,6 +25,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +35,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @Transactional
@@ -56,6 +60,9 @@ class ReservationServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private ReservationCacheRepository reservationCacheRepository;
+
+    @MockBean
+    private ReservationManager reservationManager;
 
     @AfterEach
     void tearDown() {
@@ -180,6 +187,9 @@ class ReservationServiceTest extends IntegrationTestSupport {
                 .time(0)
                 .build();
 
+        given(reservationManager.createReservation(any(ParkingLot.class), any(Car.class), anyInt(), any(Boolean.class), any(LocalDateTime.class)))
+                .willReturn(Reservation.builder().id(1L).build());
+
         // when
         Long reservationId = reservationService.create(user, request, time);
 
@@ -291,6 +301,80 @@ class ReservationServiceTest extends IntegrationTestSupport {
         assertThatThrownBy(() -> reservationService.create(user, request, time))
                 .isInstanceOf(BaseException.class)
                 .hasMessage(ErrorCode.PARKING_LOT_NOT_FOUND.getMessage());
+    }
+
+    @DisplayName("예약을 확정하면 예약 아이디를 반환한다.")
+    @Test
+    public void confirm() {
+        // given
+        User user = User.builder()
+                .username("user@google.com")
+                .nickname("user")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테스트 차종")
+                .build();
+
+        Car car = Car.builder()
+                .user(user)
+                .carType(carType)
+                .number("12다1234")
+                .build();
+
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        Charger charger1 = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("1")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        Charger charger2 = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("2")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        parkingLot.getChargers().add(charger1);
+        parkingLot.getChargers().add(charger2);
+
+        userRepository.save(user);
+        carRepository.save(car);
+        parkingLotRepository.save(parkingLot);
+
+        Reservation reservation = Reservation.builder()
+                .id(1L)
+                .car(car)
+                .charger(charger1)
+                .startTime(LocalDateTime.of(2024, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .status(ReservationStatus.PENDING)
+                .build();
+
+        reservationRepository.save(reservation);
+
+        ReservationConfirmServiceRequest request = ReservationConfirmServiceRequest.builder()
+                .reservationId(1L)
+                .build();
+
+        given(reservationManager.confirmReservation(any(), any())).willReturn(reservation);
+
+        // when
+        Long reservationId = reservationService.confirm(user, request);
+
+        // then
+        assertThat(reservationId).isEqualTo(1L);
     }
 
 }
