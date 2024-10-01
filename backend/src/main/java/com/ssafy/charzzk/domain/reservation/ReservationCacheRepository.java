@@ -25,6 +25,7 @@ public class ReservationCacheRepository {
 
     public void createReservationGracePeriod(Long reservationId, Long chargerId, int TTlSeconds) {
         String key = RESERVATION_CACHE + reservationId + ":" + chargerId;
+        System.out.println("유예시간 저장하기");
         vop.set(key, "true", TTlSeconds, TimeUnit.SECONDS);
     }
 
@@ -33,6 +34,11 @@ public class ReservationCacheRepository {
         if (keys != null && !keys.isEmpty()) {
             redisTemplate.delete(keys);
         }
+    }
+
+    public boolean existsReservationGracePeriod(Long reservationId, Long chargerId) {
+        String key = RESERVATION_CACHE + reservationId + ":" + chargerId;
+        return vop.get(key) != null;
     }
 
 }

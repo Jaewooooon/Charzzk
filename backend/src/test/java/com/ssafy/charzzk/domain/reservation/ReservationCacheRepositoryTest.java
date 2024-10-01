@@ -60,4 +60,33 @@ class ReservationCacheRepositoryTest extends IntegrationTestSupport {
         assertThat(value).isNull();
     }
 
+    @DisplayName("예약 아이디, 충전기 아이디로 구성된 키로 예약이 존재하는지 확인한다.")
+    @Test
+    public void existsReservationGracePeriod() {
+        // given
+        Long reservationId = 1L;
+        Long chargerId = 1L;
+        reservationCacheRepository.createReservationGracePeriod(reservationId, chargerId, ReservationConst.gracePeriod);
+
+        // when
+        boolean exists = reservationCacheRepository.existsReservationGracePeriod(reservationId, chargerId);
+
+        // Then
+        assertThat(exists).isTrue();
+    }
+
+    @DisplayName("예약 아이디, 충전기 아이디로 구성된 키로 예약이 존재하지 않는지 확인한다.")
+    @Test
+    public void notExistsReservationGracePeriod() {
+        // given
+        Long reservationId = 1L;
+        Long chargerId = 1L;
+
+        // when
+        boolean exists = reservationCacheRepository.existsReservationGracePeriod(reservationId, chargerId);
+
+        // Then
+        assertThat(exists).isFalse();
+    }
+
 }

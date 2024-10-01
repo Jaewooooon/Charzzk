@@ -1,6 +1,7 @@
 package com.ssafy.charzzk.api.controller.reservation;
 
 import com.ssafy.charzzk.api.ApiResponse;
+import com.ssafy.charzzk.api.controller.reservation.request.ReservationConfirmRequest;
 import com.ssafy.charzzk.api.controller.reservation.request.ReservationRequest;
 import com.ssafy.charzzk.api.service.reservation.ReservationService;
 import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
@@ -25,6 +26,16 @@ public class ReservationController {
     ) {
         LocalDateTime now = LocalDateTime.now();
         Long reservationId = reservationService.create(user, request.toServiceRequest(), now);
+
+        return ApiResponse.ok(reservationService.getReservation(reservationId));
+    }
+
+    @PatchMapping("/api/v1/reservations/{reservationId}")
+    public ApiResponse<ReservationResponse> confirmReservation(
+            @CurrentUser User user,
+            @Valid @RequestBody ReservationConfirmRequest request
+    ) {
+        Long reservationId = reservationService.confirm(user, request.toServiceRequest());
 
         return ApiResponse.ok(reservationService.getReservation(reservationId));
     }
