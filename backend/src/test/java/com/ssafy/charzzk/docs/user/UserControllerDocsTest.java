@@ -19,6 +19,7 @@ import java.util.List;
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
@@ -43,17 +44,12 @@ public class UserControllerDocsTest extends RestDocsSupport {
     @Test
     void checkNickname() throws Exception {
         // given
-        UserUpdateRequest request = UserUpdateRequest.builder()
-                .nickname("nickname")
-                .build();
-
-        given(userService.checkNickname(any(UserUpdateServiceRequest.class)))
+        given(userService.checkNickname(anyString()))
                 .willReturn("닉네임 변경이 가능합니다");
 
         // when
         ResultActions perform = mockMvc.perform(get("/api/v1/users/check-nickname")
                 .param("nickname", "NewNickname")
-                .content(objectMapper.writeValueAsString(request))
                 .contentType(MediaType.APPLICATION_JSON));
 
         // then
@@ -65,10 +61,6 @@ public class UserControllerDocsTest extends RestDocsSupport {
                         resource(ResourceSnippetParameters.builder()
                                 .tag("User")
                                 .summary("닉네임 중복확인")
-                                .requestFields(
-                                        fieldWithPath("nickname").type(JsonFieldType.STRING)
-                                                .description("수정할 닉네임")
-                                )
                                 .queryParameters(
                                         parameterWithName("nickname").description("중복확인할 닉네임")
                                 )

@@ -47,6 +47,7 @@ public enum ErrorCode {
 
     // Reservation
     RESERVATION_NOT_FOUND(6000, HttpStatus.NOT_FOUND, "예약을 찾을 수 없습니다."),
+    RESERVATION_CONFIRM_TIMEOUT(6001, HttpStatus.BAD_REQUEST, "예약 확정 시간이 초과되었습니다."),
 
     ;
     private final int code;

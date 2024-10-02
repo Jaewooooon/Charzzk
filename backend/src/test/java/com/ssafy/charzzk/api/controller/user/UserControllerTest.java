@@ -12,6 +12,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -47,20 +48,17 @@ class UserControllerTest extends ControllerTestSupport {
     @Test
     public void checkNickname() throws Exception {
         // given
-        UserUpdateRequest request = UserUpdateRequest.builder()
-                .nickname("nickname")
-                .build();
+        String nickname = "nickname"; // 쿼리 파라미터로 사용할 닉네임
 
-        given(userService.checkNickname(any(UserUpdateServiceRequest.class)))
+        given(userService.checkNickname(anyString()))
                 .willReturn("닉네임 변경이 가능합니다");
 
         // when
         ResultActions perform = mockMvc.perform(
                 get("/api/v1/users/check-nickname")
                         .with(csrf())
-                        .param("nickname", "NewNickname")
-                        .content(objectMapper.writeValueAsString(request))
-                        .contentType(MediaType.APPLICATION_JSON)
+                        .param("nickname", nickname) // 쿼리 파라미터 사용
+                        .contentType(MediaType.APPLICATION_JSON) // GET 요청이므로 본문은 없음
         );
 
         // then

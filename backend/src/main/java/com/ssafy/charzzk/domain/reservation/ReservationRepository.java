@@ -10,4 +10,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     @Query("SELECT r FROM Reservation r JOIN FETCH r.car c JOIN FETCH c.carType WHERE r.id = :reservationId")
     Optional<Reservation> findByIdWithCar(Long reservationId);
+
+    @Query("SELECT r FROM Reservation r JOIN FETCH r.car c JOIN FETCH c.user JOIN FETCH r.charger WHERE r.id = :reservationId")
+    Optional<Reservation> findByIdWithCarAndCharger(Long reservationId);
 }

@@ -1,17 +1,16 @@
 package com.ssafy.charzzk.api.service.reservation;
 
+import com.ssafy.charzzk.api.controller.reservation.request.ReservationConfirmRequest;
+import com.ssafy.charzzk.api.service.reservation.request.ReservationConfirmServiceRequest;
 import com.ssafy.charzzk.api.service.reservation.request.ReservationServiceRequest;
 import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
-import com.ssafy.charzzk.core.util.ChargeTimeCalculator;
 import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarRepository;
-import com.ssafy.charzzk.domain.charger.Charger;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
 import com.ssafy.charzzk.domain.reservation.Reservation;
-import com.ssafy.charzzk.domain.reservation.ReservationCacheRepository;
 import com.ssafy.charzzk.domain.reservation.ReservationRepository;
 import com.ssafy.charzzk.domain.user.User;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -64,5 +62,8 @@ public class ReservationService {
 //        reservationManager.deleteReservation(reservationId);
     }
 
-
+    @Transactional
+    public Long confirm(User user, ReservationConfirmServiceRequest request) {
+        return reservationManager.confirmReservation(user, request.getReservationId()).getId();
+    }
 }

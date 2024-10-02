@@ -7,10 +7,12 @@ import com.ssafy.charzzk.api.service.user.response.UserResponse;
 import com.ssafy.charzzk.core.annotation.CurrentUser;
 import com.ssafy.charzzk.domain.user.User;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -27,9 +29,9 @@ public class UserController {
 
     @GetMapping(value = "/api/v1/users/check-nickname")
     public ApiResponse<String> checkNickname(
-            @Valid @RequestBody UserUpdateRequest request
+            @RequestParam @NotBlank String nickname
     ) {
-        return ApiResponse.ok(userService.checkNickname(request.toServiceRequest()));
+        return ApiResponse.ok(userService.checkNickname(nickname));
     }
 
     @PatchMapping(value = "/api/v1/users/nickname")
