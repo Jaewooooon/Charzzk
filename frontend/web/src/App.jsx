@@ -8,13 +8,12 @@ import MainManagement from "./pages/MainManagement";
 const App = () => {
 
   return (
-
       <Router>
         <Navbar />
         <Routes>
-        <Route path = "/management" element={<MainManagement />} />
-          <Route path = "/management/map-management" element={<MapManagement />} />
-          <Route path = "/management/document-management" element={<DocumentManagement />} />
+        <Route path = "/" element={<MainManagement />} />
+          <Route path = "/map-management" element={<MapManagement />} />
+          <Route path = "/document-management" element={<DocumentManagement />} />
         </Routes>
       </Router>
   )
