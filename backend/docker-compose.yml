@@ -31,6 +31,12 @@ services:
       - "${REDIS_PORT}:6379"
     entrypoint: redis-server --requirepass ${REDIS_PASSWORD} --maxmemory 128mb
 
+  rabbit-mq:
+    image: rabbitmq:4.0-management
+    container_name: rabbit-mq
+    ports:
+      - "${RABBITMQ_PORT}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT}:15672"
 
   backend-server:
     container_name: charzzk-backend-server

@@ -21,7 +21,7 @@ recognition_status_success_message = {
   "type": "recognition_status",
   "status": "success",
   "reservationId": 1,
-  "robotId": 1,
+  "chargerId": 1,
   "vehicleNumber": "11가1234",
   "timestamp": "2024-09-16T14:00:00Z"
 }
@@ -30,7 +30,7 @@ recognition_status_failure_message= {
   "type": "recognition_status",
   "status": "failure",
   "reservationId": 1,
-  "robotId": 1,
+  "chargerId": 1,
   "vehicleNumber": "11가1234",
   "timestamp": "2024-09-16T14:00:00Z"
 }
@@ -40,7 +40,7 @@ battery_status_message = {
   "type": "battery_status",
   "batteryLevel": 85,
   "reservationId": 1,
-  "robotId": 1,
+  "chargerId": 1,
   "vehicleNumber": "11가1234",  
   "timestamp": "2024-09-16T14:05:00Z"
 }
@@ -49,7 +49,7 @@ battery_status_message = {
 charge_complete_message = {
   "type": "charge_complete",
   "reservationId": 1,
-  "robotId": 1,
+  "chargerId": 1,
   "vehicleNumber": "11가1234", 
   "timestamp": "2024-09-16T14:30:00Z"
 }
@@ -58,10 +58,10 @@ charge_complete_message = {
 location_update_message = {
   "type": "location_update",
   "reservationId": 1,
-  "robotId": 1,
+  "chargerId": 1,
   "vehicleNumber": "11가1234",
-  "gridX": 255,
-  "gridY": 311, 
+  "latitude": 255,
+  "longitude": 311, 
   "timestamp": "2024-09-16T14:30:00Z"
 }
 

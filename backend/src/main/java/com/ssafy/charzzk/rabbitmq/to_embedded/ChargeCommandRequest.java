@@ -3,16 +3,13 @@ package com.ssafy.charzzk.rabbitmq.to_embedded;
 import lombok.Getter;
 import lombok.Setter;
 
-// 요청 데이터 받을 DTO
 @Getter
 @Setter
 public class ChargeCommandRequest {
-    private long robotId;
+    private long chargerId;
     private long reservationId;
-    private long parkingLotId;
-    private int gridX;
-    private int gridY;
+    private double latitude;
+    private double longitude;
     private String vehicleNumber;
-    private String chargeStartTime;
-    private int chargeDuration; // 아마 분단위
+    private int chargeDuration; // 분 단위
 }

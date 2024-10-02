@@ -19,12 +19,10 @@ public class ChargeController {
         // 테스트 용
         ChargeCommandRequest request = new ChargeCommandRequest();
         request.setReservationId(1L);
-        request.setRobotId(2L);
-        request.setParkingLotId(1L);
-        request.setGridX(167);
-        request.setGridY(257);
+        request.setChargerId(2L);
+        request.setLatitude(167);
+        request.setLongitude(257);
         request.setVehicleNumber("EV12345");
-        request.setChargeStartTime("2024-09-01T10:00:00");
         request.setChargeDuration(120);
 
         return embeddedServerService.sendChargeCommand(request);
