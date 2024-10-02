@@ -38,6 +38,13 @@ services:
       - "--notify-keyspace-events"
       - "Ex"
 
+  rabbit-mq:
+    image: rabbitmq:4.0-management
+    container_name: rabbit-mq
+    ports:
+      - "${RABBITMQ_PORT}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT}:15672"
+
   backend-server:
     container_name: charzzk-backend-server
     image: backend-image
@@ -46,6 +53,7 @@ services:
     depends_on:
       - database
       - cache-database
+      - rabbit-mq
 
 volumes:
   charzzk-db:
