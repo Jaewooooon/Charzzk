@@ -84,6 +84,27 @@ jacoco {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+	dependsOn test
+	reports {
+		html.required.set(true)
+	}
+
+	afterEvaluate {
+		classDirectories.setFrom(
+				files(classDirectories.files.collect { fileTree(dir: it, exclude: [
+						'**/filter/**',
+						'**/exception/**',
+						'**/handler/**',
+						'**/request/**',
+						'**/response/**',
+						'**/configuration/**'
+				])})
+		)
+	}
 }
 
 openapi3 {
