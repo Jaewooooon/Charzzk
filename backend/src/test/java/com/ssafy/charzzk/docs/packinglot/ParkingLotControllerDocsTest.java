@@ -3,11 +3,13 @@ package com.ssafy.charzzk.docs.packinglot;
 import com.epages.restdocs.apispec.ResourceSnippetParameters;
 import com.ssafy.charzzk.api.controller.parkinglot.ParkingLotController;
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
+import com.ssafy.charzzk.api.service.charger.response.ChargerResponse;
 import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingSpotListResponse;
 import com.ssafy.charzzk.docs.RestDocsSupport;
+import com.ssafy.charzzk.domain.charger.ChargerStatus;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -184,4 +186,65 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
 
     }
 
+    @DisplayName("주차장 ID로 충전 로봇 목록을 조회한다.")
+    @Test
+    void getChargerList() throws Exception {
+        // given
+        ChargerResponse chargerResponse1 = ChargerResponse.builder()
+                .id(1L)
+                .serialNumber("1234A")
+                .battery(80)
+                .status(ChargerStatus.WAITING)
+                .build();
+
+        ChargerResponse chargerResponse2 = ChargerResponse.builder()
+                .id(2L)
+                .serialNumber("1234B")
+                .battery(90)
+                .status(ChargerStatus.CHARGER_CHARGING)
+                .build();
+        List<ChargerResponse> chargerList = List.of(chargerResponse1, chargerResponse2);
+
+        given(parkingLotService.getChargerList(any(Long.class))).willReturn(chargerList);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/parking-lot/{parkingLotId}/chargers", 1L)
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document("parking-lot-chargers-get",
+                        preprocessResponse(prettyPrint()),
+                        resource(ResourceSnippetParameters.builder()
+                                .tag("ParkingLot")
+                                .summary("주차장 충전 로봇 목록 조회")
+                                .description("주차장 ID로 해당 주차장에 속한 충전 로봇 목록을 조회한다.")
+                                .pathParameters(
+                                        parameterWithName("parkingLotId").description("주차장 아이디")
+                                )
+                                .responseFields(
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER)
+                                                .description("코드"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("message").type(JsonFieldType.STRING)
+                                                .description("메시지"),
+                                        fieldWithPath("data[].id").type(JsonFieldType.NUMBER)
+                                                .description("충전 로봇 아이디"),
+                                        fieldWithPath("data[].serialNumber").type(JsonFieldType.STRING)
+                                                .description("충전 로봇 시리얼 번호"),
+                                        fieldWithPath("data[].battery").type(JsonFieldType.NUMBER)
+                                                .description("충전 로봇 배터리"),
+                                        fieldWithPath("data[].status").type(JsonFieldType.STRING)
+                                                .description("충전 로봇 상태")
+                                )
+                                .build()
+                        )
+                ));
+    }
 }

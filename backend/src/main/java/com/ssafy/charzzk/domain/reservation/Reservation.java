@@ -37,11 +37,27 @@ public class Reservation extends BaseEntity {
 
 
     @Builder
-    private Reservation(Car car, Charger charger, LocalDateTime startTime, LocalDateTime endTime, ReservationStatus status) {
+    private Reservation(Long id, Car car, Charger charger, LocalDateTime startTime, LocalDateTime endTime, ReservationStatus status) {
+        this.id = id;
         this.car = car;
         this.charger = charger;
         this.startTime = startTime;
         this.endTime = endTime;
         this.status = status;
+    }
+
+    public static Reservation create(Car car, Charger charger, LocalDateTime startTime, LocalDateTime endTime) {
+
+        return Reservation.builder()
+                .car(car)
+                .charger(charger)
+                .startTime(startTime)
+                .endTime(endTime)
+                .status(ReservationStatus.PENDING)
+                .build();
+    }
+
+    public void confirm() {
+        this.status = ReservationStatus.WAITING;
     }
 }

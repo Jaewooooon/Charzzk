@@ -29,7 +29,14 @@ services:
     container_name: charzzk-cache-database
     ports:
       - "${REDIS_PORT}:6379"
-    entrypoint: redis-server --requirepass ${REDIS_PASSWORD} --maxmemory 128mb
+    entrypoint:
+      - redis-server
+      - "--requirepass"
+      - "${REDIS_PASSWORD}"
+      - "--maxmemory"
+      - "128mb"
+      - "--notify-keyspace-events"
+      - "Ex"
 
   rabbit-mq:
     image: rabbitmq:4.0-management
@@ -46,6 +53,7 @@ services:
     depends_on:
       - database
       - cache-database
+      - rabbit-mq
 
 volumes:
   charzzk-db:

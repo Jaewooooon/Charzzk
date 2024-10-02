@@ -3,6 +3,7 @@ package com.ssafy.charzzk.api.controller.parkinglot;
 
 import com.ssafy.charzzk.api.ApiResponse;
 import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
+import com.ssafy.charzzk.api.service.charger.response.ChargerResponse;
 import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
@@ -33,4 +34,12 @@ public class ParkingLotController {
     ) {
         return ApiResponse.ok(parkingLotService.getParkingLot(parkingLotId));
     }
+
+    @GetMapping("/api/v1/parking-lot/{parkingLotId}/chargers")
+    public ApiResponse<List<ChargerResponse>> getChargerList(
+            @PathVariable Long parkingLotId
+    ) {
+        return ApiResponse.ok(parkingLotService.getChargerList(parkingLotId));
+    }
+
 }

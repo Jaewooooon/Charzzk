@@ -1,4 +1,4 @@
-package com.ssafy.charzzk.api.service.reservation;
+package com.ssafy.charzzk.core.util;
 
 import com.ssafy.charzzk.domain.car.Car;
 

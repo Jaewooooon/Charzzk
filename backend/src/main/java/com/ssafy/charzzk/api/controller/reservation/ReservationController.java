@@ -1,12 +1,15 @@
 package com.ssafy.charzzk.api.controller.reservation;
 
 import com.ssafy.charzzk.api.ApiResponse;
+import com.ssafy.charzzk.api.controller.reservation.request.ReservationConfirmRequest;
+import com.ssafy.charzzk.api.controller.reservation.request.ReservationRequest;
 import com.ssafy.charzzk.api.service.reservation.ReservationService;
-import com.ssafy.charzzk.api.service.response.ReservationCheckTimeResponse;
+import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
+import com.ssafy.charzzk.core.annotation.CurrentUser;
+import com.ssafy.charzzk.domain.user.User;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -16,14 +19,25 @@ public class ReservationController {
 
     private final ReservationService reservationService;
 
-    @GetMapping("/api/v1/reservations/check-time")
-    public ApiResponse<ReservationCheckTimeResponse> checkTime(
-            @RequestParam(value = "parkingLotId") Long parkingLotId,
-            @RequestParam(value = "carId") Long carId,
-            @RequestParam(value = "fullCharge") boolean fullCharge,
-            @RequestParam(value = "time") int time
+    @PostMapping("/api/v1/reservations")
+    public ApiResponse<ReservationResponse> createReservation(
+            @CurrentUser User user,
+            @Valid @RequestBody ReservationRequest request
     ) {
         LocalDateTime now = LocalDateTime.now();
-        return ApiResponse.ok(reservationService.checkTime(parkingLotId, carId, fullCharge, time, now));
+        Long reservationId = reservationService.create(user, request.toServiceRequest(), now);
+
+        return ApiResponse.ok(reservationService.getReservation(reservationId));
     }
+
+    @PatchMapping("/api/v1/reservations/{reservationId}")
+    public ApiResponse<ReservationResponse> confirmReservation(
+            @CurrentUser User user,
+            @Valid @RequestBody ReservationConfirmRequest request
+    ) {
+        Long reservationId = reservationService.confirm(user, request.toServiceRequest());
+
+        return ApiResponse.ok(reservationService.getReservation(reservationId));
+    }
+
 }
