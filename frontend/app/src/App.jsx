@@ -10,6 +10,7 @@ import ReportIssue from './pages/Mypage/ReportIssue';
 import LoginSuccess from './pages/Login/LoginSuccess';
 import Login from './pages/Login/Login';
 import PrivateRoute from './components/PrivateRoute';
+import SignUp from './pages/Login/SignUp';
 import { RecoilRoot } from 'recoil';
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
     <Routes>
 
 {/* 메인 페이지 */}
-<Route path="/" element={<PrivateRoute element={<MainPage />} />} />
+<Route path="/" element={<PrivateRoute element={<MainPage />} />}/>
 
 {/* 충전 지도 페이지 */}
 <Route path="/charge-map" element={<PrivateRoute element={<ChargeMap />} />} />
@@ -44,6 +45,10 @@ function App() {
 
 {/* 로그인 성공 페이지 */}
 <Route path="/auth/callback" element={<LoginSuccess />} />
+
+{/* 회원가입 페이지 */}
+<Route path="/sign-up" element={<SignUp />} />
+
 </Routes>
     </Router>
     </RecoilRoot>
