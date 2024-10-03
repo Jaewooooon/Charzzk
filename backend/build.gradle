@@ -76,6 +76,16 @@ dependencies {
 
 	// STOMP, websocket
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	
+	// OpenFeign
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2023.0.2"
+	}
+
 }
 
 jacoco {

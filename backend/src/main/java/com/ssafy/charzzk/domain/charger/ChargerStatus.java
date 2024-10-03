@@ -1,6 +1,7 @@
 package com.ssafy.charzzk.domain.charger;
 
 import java.util.List;
+import java.util.Objects;
 
 public enum ChargerStatus {
     WAITING,            // 로봇이 대기 중인 상태
@@ -15,5 +16,9 @@ public enum ChargerStatus {
 
     public boolean isAvailable() {
         return List.of(WAITING, MOVING_TO_CAR, RETURNING_TO_CAR, CAR_CHARGING, CHARGER_CHARGING).contains(this);
+    }
+
+    public boolean isWaiting() {
+        return Objects.equals(WAITING, this);
     }
 }

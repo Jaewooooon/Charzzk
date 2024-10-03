@@ -1,95 +1,77 @@
 package com.ssafy.charzzk.api.service.reservation;
 
-import com.ssafy.charzzk.core.exception.BaseException;
-import com.ssafy.charzzk.core.exception.ErrorCode;
-import com.ssafy.charzzk.core.util.ChargeTimeCalculator;
-import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.charger.Charger;
-import com.ssafy.charzzk.domain.charger.ChargerRepository;
-import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.reservation.Reservation;
-import com.ssafy.charzzk.domain.reservation.ReservationCacheRepository;
-import com.ssafy.charzzk.domain.reservation.ReservationConst;
-import com.ssafy.charzzk.domain.reservation.ReservationRepository;
-import com.ssafy.charzzk.domain.user.User;
-import jakarta.annotation.PostConstruct;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Component
+@Getter
 public class ReservationManager {
 
-    Map<Long, Queue<Reservation>> reservationQueueMap = new ConcurrentHashMap<>();
+    private Map<Long, Queue<Reservation>> reservationQueueMap = new ConcurrentHashMap<>();
 
-    private final ReservationRepository reservationRepository;
-    private final ReservationCacheRepository reservationCacheRepository;
-    private final ChargerRepository chargerRepository;
-
-    @PostConstruct
-    public void init() {
-        List<Charger> chargers = chargerRepository.findAll();
-
+    public void init(List<Charger> chargers) {
         for (Charger charger : chargers) {
             reservationQueueMap.put(charger.getId(), new LinkedList<>());
         }
     }
 
-    @Transactional
-    public Reservation createReservation(ParkingLot parkingLot, Car car, int time, boolean fullCharge, LocalDateTime now) {
+    public Reservation createReservation(Reservation reservation) {
 
-        List<Charger> chargers = parkingLot.getChargers();
+        Queue<Reservation> reservations = reservationQueueMap.get(reservation.getCharger().getId());
+        reservations.add(reservation);
 
-        Charger charger = chargers.stream()
-                .filter(c -> c.getStatus().isAvailable())
-                .min((c1, c2) -> c1.getLastReservedTime().isBefore(c2.getLastReservedTime()) ? -1 : 1)
-                .orElseThrow(() -> new BaseException(ErrorCode.NO_AVAILABLE_CHARGER));
-
-        LocalDateTime startTime = charger.getLastReservedTime().isAfter(now) ? charger.getLastReservedTime() : now;
-        LocalDateTime endTime = startTime.plusMinutes(ChargeTimeCalculator.calculate(car, fullCharge, time));
-        charger.updateLastReservedTime(startTime);
-
-        Reservation reservation = Reservation.create(car, charger, startTime, endTime);
-
-        reservationRepository.save(reservation);
-        reservationCacheRepository.createReservationGracePeriod(reservation.getId(), charger.getId(), ReservationConst.gracePeriod);
+        printReservationQueueMap();
 
         return reservation;
     }
 
-    @Transactional
-    public Reservation confirmReservation(User user, Long reservationId) {
+    public Reservation confirmReservation(Reservation reservation) {
 
-        Reservation reservation = reservationRepository.findByIdWithCarAndCharger(reservationId)
-                .orElseThrow(() -> new BaseException(ErrorCode.RESERVATION_NOT_FOUND));
-
-        if (!reservation.getCar().getUser().equals(user)) {
-            throw new BaseException(ErrorCode.FORBIDDEN);
-        }
-
-        if (!reservationCacheRepository.existsReservationGracePeriod(reservation.getId(), reservation.getCharger().getId())) {
-            throw new BaseException(ErrorCode.RESERVATION_CONFIRM_TIMEOUT);
-        }
-
-        reservation.confirm();
         Queue<Reservation> reservations = reservationQueueMap.get(reservation.getCharger().getId());
-        reservations.add(reservation);
 
-        // TODO : 임베디드서버 api요청 보내서 로봇이 이용 가능한지 확인
-        // 이용 가능하면 큐에서 꺼내서 예약정보 보내기
-        // 이용 불가능하면 스킵
+        reservations.stream().forEach(r -> {
+            if (r.getId().equals(reservation.getId())) {
+                r.confirm();
+            }
+        });
+
+        /**
+         * 충전기에 해당하는 큐에서 이 예약을 찾아서 상태를 WAITING으로 바꾸기
+         * 해당 예약이 peek인지 확인
+         * 충전기의 해당하는 큐의 peek의 예약의 상태가 WAITING + 충전기가 이용가능이면
+         * FastAPI서버 요청 보내기
+         */
+        if (reservations.peek().equals(reservation) && reservation.getCharger().getStatus().isWaiting()) {
+            // FastAPI 서버 요청
+        }
+
+        printReservationQueueMap();
 
         return reservation;
+    }
+
+    public void printReservationQueueMap() {
+        for (Map.Entry<Long, Queue<Reservation>> entry : reservationQueueMap.entrySet()) {
+            Long chargerId = entry.getKey();
+            Queue<Reservation> reservations = entry.getValue();
+
+            System.out.println("Charger ID: " + chargerId);
+            System.out.println("Reservations: ");
+
+            for (Reservation reservation : reservations) {
+                System.out.println(" - " + reservation.toString()); // 예약의 toString() 메서드가 적절하게 구현되어 있어야 합니다.
+            }
+        }
     }
 
 }

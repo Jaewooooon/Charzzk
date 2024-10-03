@@ -8,6 +8,7 @@ import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
 import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarType;
+import com.ssafy.charzzk.domain.reservation.Reservation;
 import com.ssafy.charzzk.domain.reservation.ReservationStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,6 +36,7 @@ class ReservationControllerTest extends ControllerTestSupport {
 
         // given
         ReservationRequest request = ReservationRequest.builder()
+                .parkingSpotId(1L)
                 .carId(1L)
                 .parkingLotId(1L)
                 .fullCharge(true)
@@ -61,6 +63,7 @@ class ReservationControllerTest extends ControllerTestSupport {
                 .status(ReservationStatus.PENDING.name())
                 .build();
 
+        given(reservationService.create(any(), any(), any())).willReturn(Reservation.builder().id(1L).build());
         given(reservationService.getReservation(any())).willReturn(response);
 
         // when
@@ -87,6 +90,7 @@ class ReservationControllerTest extends ControllerTestSupport {
 
         // given
         ReservationRequest request = ReservationRequest.builder()
+                .parkingSpotId(1L)
                 .parkingLotId(1L)
                 .fullCharge(true)
                 .time(0)
@@ -137,6 +141,7 @@ class ReservationControllerTest extends ControllerTestSupport {
 
         // given
         ReservationRequest request = ReservationRequest.builder()
+                .parkingSpotId(1L)
                 .carId(1L)
                 .fullCharge(true)
                 .time(0)
@@ -207,6 +212,7 @@ class ReservationControllerTest extends ControllerTestSupport {
                 .status(ReservationStatus.WAITING.name())
                 .build();
 
+        given(reservationService.confirm(any(), any())).willReturn(Reservation.builder().id(1L).build());
         given(reservationService.getReservation(any())).willReturn(response);
 
         // when
