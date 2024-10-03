@@ -9,6 +9,8 @@ import com.ssafy.charzzk.domain.charger.ChargerStatus;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
+import com.ssafy.charzzk.domain.parkinglot.ParkingSpot;
+import com.ssafy.charzzk.domain.parkinglot.ParkingSpotRepository;
 import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.PrimitiveIterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,8 +43,6 @@ class ReservationRepositoryTest extends IntegrationTestSupport {
     void checkTime() {
         // given
         LocalDateTime dateTime = LocalDateTime.of(2024, 1, 1, 0, 0);
-        boolean fullCharge = true;
-        int time = 0;
 
         Location location = Location.builder()
                 .latitude(37.123456)
@@ -50,6 +51,12 @@ class ReservationRepositoryTest extends IntegrationTestSupport {
 
         ParkingLot parkingLot = ParkingLot.builder()
                 .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        ParkingSpot parkingSpot = ParkingSpot.builder()
+                .parkingLot(parkingLot)
+                .name("1")
                 .location(location)
                 .build();
 
@@ -77,6 +84,7 @@ class ReservationRepositoryTest extends IntegrationTestSupport {
                 .build();
 
         Reservation reservation1 = Reservation.builder()
+                .parkingSpot(parkingSpot)
                 .charger(charger)
                 .car(car)
                 .startTime(dateTime.minusMinutes(50))
@@ -84,6 +92,7 @@ class ReservationRepositoryTest extends IntegrationTestSupport {
                 .build();
 
         Reservation reservation2 = Reservation.builder()
+                .parkingSpot(parkingSpot)
                 .charger(charger)
                 .car(car)
                 .startTime(dateTime.minusMinutes(10))
@@ -102,6 +111,5 @@ class ReservationRepositoryTest extends IntegrationTestSupport {
         // then
         assertTrue(findReservation.isPresent());
         assertEquals(reservation2.getId(), findReservation.get().getId());
-
     }
 }

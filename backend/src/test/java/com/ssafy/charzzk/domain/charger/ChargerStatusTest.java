@@ -25,4 +25,10 @@ class ChargerStatusTest {
         assertThat(ChargerStatus.MAINTENANCE.isAvailable()).isFalse();
     }
 
+    @DisplayName("대기 상태인지 확인한다.")
+    @Test
+    public void isWaiting() {
+        assertThat(ChargerStatus.WAITING.isWaiting()).isTrue();
+    }
+
 }
