@@ -65,6 +65,7 @@ public class ReservationManager {
                 reservations.poll();
                 Charger charger = reservation.getCharger();
                 charger.startCharge();
+                reservation.start();
             }
         }
 

@@ -1,5 +1,6 @@
 package com.ssafy.charzzk.domain.reservation;
 
+import com.ssafy.charzzk.domain.car.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,4 +14,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     @Query("SELECT r FROM Reservation r JOIN FETCH r.car c JOIN FETCH c.user JOIN FETCH r.charger WHERE r.id = :reservationId")
     Optional<Reservation> findByIdWithCarAndCharger(Long reservationId);
+
+    @Query("SELECT r FROM Reservation r JOIN FETCH r.car c WHERE r.car = :car ORDER BY r.createdAt DESC")
+    Optional<Reservation> findLatestReservationByCar(Car car);
+
 }

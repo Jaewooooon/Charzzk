@@ -93,4 +93,8 @@ public class Reservation extends BaseEntity {
     public void confirm() {
         this.status = ReservationStatus.WAITING;
     }
+
+    public void start() {
+        this.status = ReservationStatus.CHARGING;
+    }
 }
