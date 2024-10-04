@@ -44,10 +44,10 @@ function App() {
 <Route path="/login" element={<Login />} />
 
 {/* 로그인 성공 페이지 */}
-<Route path="/auth/callback" element={<LoginSuccess />} />
+<Route path="/auth/callback" element={<LoginSuccess />}  />
 
 {/* 회원가입 페이지 */}
-<Route path="/sign-up" element={<SignUp />} />
+<Route path="/sign-up" element={<PrivateRoute element={<SignUp />} />} />
 
 </Routes>
     </Router>
