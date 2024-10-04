@@ -4,6 +4,7 @@ import com.ssafy.charzzk.IntegrationTestSupport;
 import com.ssafy.charzzk.api.service.car.CarService;
 import com.ssafy.charzzk.api.service.car.request.CarServiceRequest;
 import com.ssafy.charzzk.api.service.car.response.CarListResponse;
+import com.ssafy.charzzk.api.service.car.response.CarReservationStatusResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
@@ -19,7 +20,12 @@ import com.ssafy.charzzk.domain.charginglog.ChargingLogRepository;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
+import com.ssafy.charzzk.domain.parkinglot.ParkingSpot;
+import com.ssafy.charzzk.domain.reservation.Reservation;
+import com.ssafy.charzzk.domain.reservation.ReservationRepository;
+import com.ssafy.charzzk.domain.reservation.ReservationStatus;
 import com.ssafy.charzzk.domain.user.User;
+import com.ssafy.charzzk.domain.user.UserRepository;
 import org.assertj.core.groups.Tuple;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -53,6 +59,12 @@ class CarServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private ParkingLotRepository parkingLotRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private CarService carService;
@@ -672,4 +684,158 @@ class CarServiceTest extends IntegrationTestSupport {
                         Tuple.tuple("22나2222", expectedChargeAmountCar2, expectedChargeCostCar2)   // 두 번째 차량 (4시간 충전)
                 );
     }
+
+    @DisplayName("차량 충전 상태를 조회하면 정상적으로 반환된다.")
+    @Test
+    public void getCarChargingStatus() {
+        // given
+        User user = User.builder()
+                .username("user@google.com")
+                .nickname("user")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테스트 차종")
+                .build();
+
+        Car car = Car.builder()
+                .user(user)
+                .carType(carType)
+                .number("12다1234")
+                .build();
+
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        ParkingSpot parkingSpot = ParkingSpot.builder()
+                .parkingLot(parkingLot)
+                .name("1")
+                .location(location)
+                .build();
+
+        Charger charger = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("1")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        parkingLot.getChargers().add(charger);
+
+        Reservation reservation = Reservation.builder()
+                .car(car)
+                .parkingSpot(parkingSpot)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .status(ReservationStatus.PENDING)
+                .build();
+
+        userRepository.save(user);
+        carRepository.save(car);
+        parkingLotRepository.save(parkingLot);
+        reservationRepository.save(reservation);
+
+        // when
+        CarReservationStatusResponse response = carService.getCarChargingStatus(user, car.getId());
+
+        // then
+        assertThat(response).isNotNull()
+                .extracting("battery", "status", "startTime", "endTime")
+                .containsExactly(0, "PENDING", LocalDateTime.of(2024, 1, 1, 0, 0), LocalDateTime.of(2024, 1, 1, 1, 0));
+    }
+
+    @DisplayName("차량 충전 상태를 조회할 때 차량이 없으면 예외가 발생한다.")
+    @Test
+    public void getCarChargingStatusWithoutCar() {
+        // given
+        User user = User.builder()
+                .username("user@google.com")
+                .nickname("user")
+                .build();
+
+        userRepository.save(user);
+
+        // when, then
+       assertThatThrownBy(() -> carService.getCarChargingStatus(user,1L))
+               .isInstanceOf(BaseException.class)
+               .hasMessage(ErrorCode.CAR_NOT_FOUND.getMessage());
+    }
+
+    @DisplayName("차량 충전 상태를 조회할 때 내 차가 아니면 예외가 발생한다.")
+    @Test
+    public void getCarChargingStatusWithNotMyCar() {
+        // given
+        User user1 = User.builder()
+                .username("user1@google.com")
+                .nickname("user1")
+                .build();
+
+        User user2 = User.builder()
+                .username("user2@google.com")
+                .nickname("user2")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테스트 차종")
+                .build();
+
+        Car car = Car.builder()
+                .user(user2)
+                .carType(carType)
+                .number("12다1234")
+                .build();
+
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        ParkingSpot parkingSpot = ParkingSpot.builder()
+                .parkingLot(parkingLot)
+                .name("1")
+                .location(location)
+                .build();
+
+        Charger charger = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("1")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        parkingLot.getChargers().add(charger);
+
+        Reservation reservation = Reservation.builder()
+                .car(car)
+                .parkingSpot(parkingSpot)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .status(ReservationStatus.PENDING)
+                .build();
+
+        userRepository.saveAll(List.of(user1, user2));
+        carRepository.save(car);
+        parkingLotRepository.save(parkingLot);
+        reservationRepository.save(reservation);
+
+        // when
+        assertThatThrownBy(() -> carService.getCarChargingStatus(user1, car.getId()))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.CAR_NOT_BELONG_TO_USER.getMessage());
+    }
+
 }

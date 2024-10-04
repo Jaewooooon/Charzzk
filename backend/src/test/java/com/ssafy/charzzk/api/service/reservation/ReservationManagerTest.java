@@ -146,7 +146,7 @@ class ReservationManagerTest extends IntegrationTestSupport {
         assertThat(reservations.peek()).isEqualTo(reservation);
     }
 
-    @DisplayName("예약을 확정하면 큐에서 해당 예약의 상태를 PENDING에서 WAITING으로 변경한다.")
+    @DisplayName("예약 확정에 성공하면 큐에서 해당 예약의 상태를 PENDING에서 CHARGING으로 변경한다.")
     @Test
     public void confirmReservation() {
         User user = User.builder()
@@ -234,7 +234,8 @@ class ReservationManagerTest extends IntegrationTestSupport {
         reservationManager.confirmReservation(reservation);
 
         // then
-        assertThat(reservation.getStatus()).isEqualTo(ReservationStatus.WAITING);
+        assertThat(reservation.getStatus()).isEqualTo(ReservationStatus.CHARGING);
         assertThat(reservations.size()).isEqualTo(0);
     }
+
 }

@@ -5,14 +5,17 @@ import com.ssafy.charzzk.api.controller.car.CarController;
 import com.ssafy.charzzk.api.controller.car.request.CarRequest;
 import com.ssafy.charzzk.api.service.car.CarService;
 import com.ssafy.charzzk.api.service.car.response.CarListResponse;
+import com.ssafy.charzzk.api.service.car.response.CarReservationStatusResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.docs.RestDocsSupport;
 import com.ssafy.charzzk.domain.car.CarType;
+import com.ssafy.charzzk.domain.reservation.ReservationStatus;
 import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -362,6 +365,62 @@ public class CarControllerDocsTest extends RestDocsSupport {
                                                 .description("차종 이름"),
                                         fieldWithPath("data[].carType.image").type(JsonFieldType.STRING)
                                                 .description("차종 이미지")
+                                )
+                                .build()
+                        )));
+    }
+
+    @DisplayName("차량 충전 상태를 조회한다")
+    @Test
+    public void getCarChargingStatus() throws Exception {
+        // given
+        CarReservationStatusResponse response = CarReservationStatusResponse.builder()
+                .battery(30)
+                .startTime(LocalDateTime.of(2024, 9, 1, 0, 0, 0))
+                .endTime(LocalDateTime.of(2024, 9, 1, 1, 0, 0))
+                .status(ReservationStatus.CHARGING.name())
+                .build();
+
+        given(carService.getCarChargingStatus(any(User.class), any(Long.class))).willReturn(response);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/cars/{carId}", 1)
+                        .header("Authorization", "Bearer token")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document("car-charging-status",
+                        preprocessResponse(prettyPrint()),
+                        resource(ResourceSnippetParameters.builder()
+                                .tag("Car")
+                                .summary("차량 충전 상태 조회")
+                                .description("차량의 충전 상태를 조회한다.")
+                                .requestHeaders(
+                                        headerWithName("Authorization").description("JWT 토큰 (Bearer)")
+                                )
+                                .pathParameters(
+                                        parameterWithName("carId").description("차량 아이디")
+                                )
+                                .responseFields(
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER)
+                                                .description("코드"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("message").type(JsonFieldType.STRING)
+                                                .description("메시지"),
+                                        fieldWithPath("data.battery").type(JsonFieldType.NUMBER)
+                                                .description("배터리"),
+                                        fieldWithPath("data.status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("data.startTime").type(JsonFieldType.STRING)
+                                                .description("시작 시간"),
+                                        fieldWithPath("data.endTime").type(JsonFieldType.STRING)
+                                                .description("종료 시간")
                                 )
                                 .build()
                         )));

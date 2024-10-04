@@ -3,9 +3,11 @@ package com.ssafy.charzzk.api.controller.car;
 import com.ssafy.charzzk.ControllerTestSupport;
 import com.ssafy.charzzk.api.controller.car.request.CarRequest;
 import com.ssafy.charzzk.api.service.car.response.CarListResponse;
+import com.ssafy.charzzk.api.service.car.response.CarReservationStatusResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.domain.car.CarType;
+import com.ssafy.charzzk.domain.reservation.ReservationStatus;
 import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -408,5 +410,36 @@ class CarControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.data[1].charging").value(true))
                 .andExpect(jsonPath("$.data[1].chargeCost").value(20000L))
                 .andExpect(jsonPath("$.data[1].chargeAmount").value(1000L));
+    }
+
+
+    @DisplayName("현재 자동차의 충전 상태를 반환한다.")
+    @WithMockUser
+    @Test
+    public void getCarChargingStatus() throws Exception {
+        // given
+        CarReservationStatusResponse response = CarReservationStatusResponse.builder()
+                .battery(30)
+                .startTime(LocalDateTime.of(2024, 9, 1, 0, 0, 0))
+                .endTime(LocalDateTime.of(2024, 9, 1, 1, 0, 0))
+                .status(ReservationStatus.CHARGING.name())
+                .build();
+
+        given(carService.getCarChargingStatus(any(User.class), any(Long.class))).willReturn(response);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/cars/{carId}", 1)
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("200"))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data").exists());
     }
 }
