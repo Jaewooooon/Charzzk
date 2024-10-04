@@ -15,8 +15,8 @@ class ChargeCommandRequest(BaseModel):
 # JSON 파일에 데이터 저장 함수
 def save_request_to_json(request: ChargeCommandRequest, filename="charge_command.json"):
     data = request.dict(by_alias=True)  # by_alias=True로 요청 필드에 설정된 별칭을 사용
-    with open(filename, "w") as f:
-        json.dump(data, f)
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False)
     print(f"Data saved to {filename}")
 
 # 충전 로직 함수 -> 충전로봇이 움직일 수 있게 해야함.
