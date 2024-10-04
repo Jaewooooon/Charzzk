@@ -6,6 +6,7 @@ import com.ssafy.charzzk.api.controller.reservation.request.ReservationRequest;
 import com.ssafy.charzzk.api.service.reservation.ReservationService;
 import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
 import com.ssafy.charzzk.core.annotation.CurrentUser;
+import com.ssafy.charzzk.domain.reservation.Reservation;
 import com.ssafy.charzzk.domain.user.User;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,19 +26,19 @@ public class ReservationController {
             @Valid @RequestBody ReservationRequest request
     ) {
         LocalDateTime now = LocalDateTime.now();
-        Long reservationId = reservationService.create(user, request.toServiceRequest(), now);
+        Reservation reservation = reservationService.create(user, request.toServiceRequest(), now);
 
-        return ApiResponse.ok(reservationService.getReservation(reservationId));
+        return ApiResponse.ok(reservationService.getReservation(reservation.getId()));
     }
 
     @PatchMapping("/api/v1/reservations/{reservationId}")
     public ApiResponse<ReservationResponse> confirmReservation(
             @CurrentUser User user,
-            @Valid @RequestBody ReservationConfirmRequest request
+            @PathVariable Long reservationId
     ) {
-        Long reservationId = reservationService.confirm(user, request.toServiceRequest());
+        Reservation reservation = reservationService.confirm(user, reservationId);
 
-        return ApiResponse.ok(reservationService.getReservation(reservationId));
+        return ApiResponse.ok(reservationService.getReservation(reservation.getId()));
     }
 
 }
