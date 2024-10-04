@@ -28,7 +28,7 @@ public class Reservation extends BaseEntity {
     @JoinColumn(name = "charger_id", nullable = false)
     private Charger charger;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "parkingSpot_id", nullable = false)
     private ParkingSpot parkingSpot;
 

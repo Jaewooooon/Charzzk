@@ -1,5 +1,8 @@
 package com.ssafy.charzzk.api.service.reservation;
 
+import com.ssafy.charzzk.core.apiclient.ChargerClient;
+import com.ssafy.charzzk.core.apiclient.request.ChargerCommandRequest;
+import com.ssafy.charzzk.core.apiclient.response.ChargerCommandResponse;
 import com.ssafy.charzzk.domain.charger.Charger;
 import com.ssafy.charzzk.domain.reservation.Reservation;
 import lombok.Getter;
@@ -18,6 +21,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ReservationManager {
 
     private Map<Long, Queue<Reservation>> reservationQueueMap = new ConcurrentHashMap<>();
+
+    private final ChargerClient chargerClient;
 
     public void init(List<Charger> chargers) {
         for (Charger charger : chargers) {
@@ -47,15 +52,21 @@ public class ReservationManager {
 
         /**
          * 충전기에 해당하는 큐에서 이 예약을 찾아서 상태를 WAITING으로 바꾸기
-         * 해당 예약이 peek인지 확인
-         * 충전기의 해당하는 큐의 peek의 예약의 상태가 WAITING + 충전기가 이용가능이면
+         * 해당 예약이 1순위이고 해당 충전기가 이용가능하면 이동 명령
          * FastAPI서버 요청 보내기
          */
         if (reservations.peek().equals(reservation) && reservation.getCharger().getStatus().isWaiting()) {
             // FastAPI 서버 요청
-        }
+            ChargerCommandRequest chargerCommandRequest = ChargerCommandRequest.of(reservation);
+            ChargerCommandResponse response = chargerClient.command(chargerCommandRequest);
 
-        printReservationQueueMap();
+            // 성공하면 충전기의 상태 바꾸기
+            if (response.getStatus().equals("success")) {
+                reservations.poll();
+                Charger charger = reservation.getCharger();
+                charger.startCharge();
+            }
+        }
 
         return reservation;
     }

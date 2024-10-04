@@ -150,10 +150,6 @@ public class ReservationControllerDocsTest extends RestDocsSupport {
     @Test
     void confirmReservation() throws Exception {
         // given
-        ReservationConfirmRequest request = ReservationConfirmRequest.builder()
-                .reservationId(1L)
-                .build();
-
         CarType carType = CarType.builder()
                 .id(1L)
                 .name("아이오닉")
@@ -182,7 +178,6 @@ public class ReservationControllerDocsTest extends RestDocsSupport {
         ResultActions perform = mockMvc.perform(
                 patch("/api/v1/reservations/{reservationId}", 1)
                         .header("Authorization", "Bearer token")
-                        .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON));
 
         // then
@@ -197,9 +192,6 @@ public class ReservationControllerDocsTest extends RestDocsSupport {
                                 .requestHeaders(
                                         headerWithName("Authorization").description("JWT 토큰 (Bearer)")
                                 )
-                                .requestFields(
-                                        fieldWithPath("reservationId").type(JsonFieldType.NUMBER)
-                                                .description("예약 아이디"))
                                 .responseFields(
                                         fieldWithPath("code").type(JsonFieldType.NUMBER)
                                                 .description("코드"),
