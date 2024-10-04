@@ -34,9 +34,9 @@ public class ReservationController {
     @PatchMapping("/api/v1/reservations/{reservationId}")
     public ApiResponse<ReservationResponse> confirmReservation(
             @CurrentUser User user,
-            @Valid @RequestBody ReservationConfirmRequest request
+            @PathVariable Long reservationId
     ) {
-        Reservation reservation = reservationService.confirm(user, request.toServiceRequest());
+        Reservation reservation = reservationService.confirm(user, reservationId);
 
         return ApiResponse.ok(reservationService.getReservation(reservation.getId()));
     }

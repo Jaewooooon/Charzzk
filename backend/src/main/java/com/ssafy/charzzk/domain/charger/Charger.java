@@ -65,4 +65,7 @@ public class Charger extends BaseEntity {
         parkingLot.getChargers().add(this);
     }
 
+    public void startCharge() {
+        this.status = ChargerStatus.CAR_CHARGING;
+    }
 }

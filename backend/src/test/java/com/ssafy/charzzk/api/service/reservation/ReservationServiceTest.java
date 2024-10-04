@@ -392,12 +392,9 @@ class ReservationServiceTest extends IntegrationTestSupport {
         reservationRepository.save(reservation);
         reservationCacheRepository.createReservationGracePeriod(reservation.getId(), charger1.getId(), ReservationConst.gracePeriod);
 
-        ReservationConfirmServiceRequest request = ReservationConfirmServiceRequest.builder()
-                .reservationId(reservation.getId())
-                .build();
 
         // when
-        Reservation confirmReservation = reservationService.confirm(user, request);
+        Reservation confirmReservation = reservationService.confirm(user, reservation.getId());
 
         // then
         assertThat(confirmReservation).isNotNull()
@@ -474,14 +471,10 @@ class ReservationServiceTest extends IntegrationTestSupport {
         reservationRepository.save(reservation);
         reservationCacheRepository.createReservationGracePeriod(reservation.getId(), charger1.getId(), 1);
 
-        ReservationConfirmServiceRequest request = ReservationConfirmServiceRequest.builder()
-                .reservationId(reservation.getId())
-                .build();
-
         Thread.sleep(1000);
 
         // when
-        assertThatThrownBy(() -> reservationService.confirm(user, request))
+        assertThatThrownBy(() -> reservationService.confirm(user, reservation.getId()))
                 .isInstanceOf(BaseException.class)
                 .hasMessage(ErrorCode.RESERVATION_CONFIRM_TIMEOUT.getMessage());
     }
@@ -497,12 +490,8 @@ class ReservationServiceTest extends IntegrationTestSupport {
                 .nickname("user")
                 .build();
 
-        ReservationConfirmServiceRequest request = ReservationConfirmServiceRequest.builder()
-                .reservationId(1L)
-                .build();
-
         // when, then
-        assertThatThrownBy(() -> reservationService.confirm(user, request))
+        assertThatThrownBy(() -> reservationService.confirm(user, 1L))
                 .isInstanceOf(BaseException.class)
                 .hasMessage(ErrorCode.RESERVATION_NOT_FOUND.getMessage());
     }
@@ -579,12 +568,8 @@ class ReservationServiceTest extends IntegrationTestSupport {
 
         reservationRepository.save(reservation);
 
-        ReservationConfirmServiceRequest request = ReservationConfirmServiceRequest.builder()
-                .reservationId(reservation.getId())
-                .build();
-
         // when
-        assertThatThrownBy(() -> reservationService.confirm(user1, request))
+        assertThatThrownBy(() -> reservationService.confirm(user1, reservation.getId()))
                 .isInstanceOf(BaseException.class)
                 .hasMessage(ErrorCode.FORBIDDEN.getMessage());
     }

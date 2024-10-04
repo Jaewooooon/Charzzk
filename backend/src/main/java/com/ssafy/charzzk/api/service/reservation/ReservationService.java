@@ -99,9 +99,9 @@ public class ReservationService {
     }
 
     @Transactional
-    public Reservation confirm(User user, ReservationConfirmServiceRequest request) {
+    public Reservation confirm(User user, Long reservationId) {
 
-        Reservation reservation = reservationRepository.findByIdWithCarAndCharger(request.getReservationId())
+        Reservation reservation = reservationRepository.findByIdWithCarAndCharger(reservationId)
                 .orElseThrow(() -> new BaseException(ErrorCode.RESERVATION_NOT_FOUND));
 
         if (!reservation.getCar().getUser().equals(user)) {

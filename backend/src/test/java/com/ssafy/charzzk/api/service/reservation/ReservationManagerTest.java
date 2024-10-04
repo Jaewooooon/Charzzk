@@ -1,6 +1,8 @@
 package com.ssafy.charzzk.api.service.reservation;
 
 import com.ssafy.charzzk.IntegrationTestSupport;
+import com.ssafy.charzzk.core.apiclient.ChargerClient;
+import com.ssafy.charzzk.core.apiclient.response.ChargerCommandResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
 import com.ssafy.charzzk.core.util.ChargeTimeCalculator;
@@ -25,6 +27,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.shaded.org.checkerframework.checker.units.qual.A;
@@ -36,6 +39,7 @@ import java.util.Queue;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @Transactional
@@ -53,6 +57,9 @@ class ReservationManagerTest extends IntegrationTestSupport {
 
     @Autowired
     private ParkingLotRepository parkingLotRepository;
+
+    @MockBean
+    private ChargerClient chargerClient;
 
     @Autowired
     private CarRepository carRepository;
@@ -217,10 +224,17 @@ class ReservationManagerTest extends IntegrationTestSupport {
         Queue<Reservation> reservations = reservationManager.getReservationQueueMap().get(reservation.getCharger().getId());
         reservations.add(reservation);
 
+        ChargerCommandResponse response = ChargerCommandResponse.builder()
+                .status("success")
+                .build();
+
+        given(chargerClient.command(any())).willReturn(response);
+
         // when
         reservationManager.confirmReservation(reservation);
 
         // then
         assertThat(reservation.getStatus()).isEqualTo(ReservationStatus.WAITING);
+        assertThat(reservations.size()).isEqualTo(0);
     }
 }

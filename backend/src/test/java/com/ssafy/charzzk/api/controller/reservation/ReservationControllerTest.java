@@ -191,10 +191,6 @@ class ReservationControllerTest extends ControllerTestSupport {
     public void confirmReservation() throws Exception {
 
         // given
-        ReservationConfirmRequest request = ReservationConfirmRequest.builder()
-                .reservationId(1L)
-                .build();
-
         ReservationResponse response = ReservationResponse.builder()
                 .id(1L)
                 .car(CarResponse.builder()
@@ -217,9 +213,8 @@ class ReservationControllerTest extends ControllerTestSupport {
 
         // when
         ResultActions perform = mockMvc.perform(
-                patch("/api/v1/reservations/1")
+                patch("/api/v1/reservations/{reservationId}", 1L)
                         .with(csrf())
-                        .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON));
 
         // then
