@@ -2,6 +2,7 @@ package com.ssafy.charzzk.api.service.car;
 
 import com.ssafy.charzzk.api.service.car.request.CarServiceRequest;
 import com.ssafy.charzzk.api.service.car.response.CarListResponse;
+import com.ssafy.charzzk.api.service.car.response.CarReservationStatusResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
@@ -12,6 +13,8 @@ import com.ssafy.charzzk.domain.car.CarType;
 import com.ssafy.charzzk.domain.car.CarTypeRepository;
 import com.ssafy.charzzk.domain.charginglog.ChargingLog;
 import com.ssafy.charzzk.domain.charginglog.ChargingLogRepository;
+import com.ssafy.charzzk.domain.reservation.Reservation;
+import com.ssafy.charzzk.domain.reservation.ReservationRepository;
 import com.ssafy.charzzk.domain.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,6 +36,7 @@ public class CarService {
     private final CarRepository carRepository;
     private final CarTypeRepository carTypeRepository;
     private final ChargingLogRepository chargingLogRepository;
+    private final ReservationRepository reservationRepository;
 
     @Transactional
     public Long createCar(User user, CarServiceRequest request) {
@@ -126,5 +130,20 @@ public class CarService {
         long chargeCost = (long) chargeAmount * COST_PER_KWH; // 1kWh 당 300원
 
         return CarListResponse.of(car, chargeAmount, chargeCost);
+    }
+
+    public CarReservationStatusResponse getCarChargingStatus(User user, Long carId) {
+        Car car = carRepository.findById(carId).orElseThrow(
+                () -> new BaseException(ErrorCode.CAR_NOT_FOUND)
+        );
+
+        if(!car.getUser().getId().equals(user.getId())) {
+            throw new BaseException(ErrorCode.CAR_NOT_BELONG_TO_USER);
+        }
+
+        Reservation reservation = reservationRepository.findLatestReservationByCar(car)
+                .orElseGet(null);
+
+        return CarReservationStatusResponse.from(reservation);
     }
 }

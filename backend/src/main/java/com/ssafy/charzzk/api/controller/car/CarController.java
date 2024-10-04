@@ -4,6 +4,7 @@ import com.ssafy.charzzk.api.ApiResponse;
 import com.ssafy.charzzk.api.controller.car.request.CarRequest;
 import com.ssafy.charzzk.api.service.car.CarService;
 import com.ssafy.charzzk.api.service.car.response.CarListResponse;
+import com.ssafy.charzzk.api.service.car.response.CarReservationStatusResponse;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.core.annotation.CurrentUser;
@@ -67,5 +68,13 @@ public class CarController {
 
         List<CarListResponse> carList = carService.getCarList(user, startOfMonth, endOfMonth);
         return ApiResponse.ok(carList);
+    }
+
+    @GetMapping("/api/v1/cars/{carId}")
+    public ApiResponse<CarReservationStatusResponse> getCarChargingStatus(
+            @CurrentUser User user,
+            @PathVariable Long carId
+    ) {
+        return ApiResponse.ok(carService.getCarChargingStatus(user, carId));
     }
 }
