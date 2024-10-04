@@ -303,6 +303,7 @@ public class CarControllerDocsTest extends RestDocsSupport {
                 .isCharging(true)
                 .chargeCost(300000L)
                 .chargeAmount(1000.2)
+                .battery(30)
                 .build();
 
         List<CarListResponse> carList = List.of(carResponse1, carResponse2);
@@ -345,6 +346,8 @@ public class CarControllerDocsTest extends RestDocsSupport {
                                                 .description("차량 ID"),
                                         fieldWithPath("data[].number").type(JsonFieldType.STRING)
                                                 .description("차량 번호"),
+                                        fieldWithPath("data[].battery").type(JsonFieldType.NUMBER)
+                                                .description("차량 배터리"),
                                         fieldWithPath("data[].nickname").type(JsonFieldType.STRING)
                                                 .optional().description("차량 별명"),
                                         fieldWithPath("data[].charging").type(JsonFieldType.BOOLEAN)

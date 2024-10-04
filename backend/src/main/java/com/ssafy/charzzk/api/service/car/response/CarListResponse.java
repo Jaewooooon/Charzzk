@@ -14,9 +14,10 @@ public class CarListResponse {
     private boolean isCharging;
     private Long ChargeCost;
     private Double ChargeAmount;
+    private int battery;
 
     @Builder
-    private CarListResponse(Long id, CarTypeResponse carType, String number, String nickname, boolean isCharging, Long chargeCost, Double chargeAmount) {
+    private CarListResponse(Long id, CarTypeResponse carType, String number, String nickname, boolean isCharging, Long chargeCost, Double chargeAmount, int battery) {
         this.id = id;
         this.carType = carType;
         this.number = number;
@@ -24,6 +25,7 @@ public class CarListResponse {
         this.isCharging = isCharging;
         this.ChargeCost = chargeCost;
         this.ChargeAmount = chargeAmount;
+        this.battery = battery;
     }
 
     public static CarListResponse from(Car car) {
@@ -45,6 +47,7 @@ public class CarListResponse {
                 .isCharging(car.isCharging())
                 .chargeAmount(chargeAmount)
                 .chargeCost(chargeCost)
+                .battery(car.getBattery())
                 .build();
     }
 }
