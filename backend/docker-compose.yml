@@ -46,7 +46,6 @@ services:
     depends_on:
       - database
       - cache-database
-      - rabbit-mq
 
 volumes:
   charzzk-db:
