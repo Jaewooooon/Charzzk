@@ -42,7 +42,7 @@ html, body {
 }
 .Car_Image{
     margin-top: 20px;
-    height: 20%;
+    width: 100%;
 }
 .Car_MonthInformation{
     display: flex;
