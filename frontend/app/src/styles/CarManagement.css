@@ -8,7 +8,7 @@
 }
 .Car_Image_Management{
     margin-top: 20px;
-    width: 85%; 
+    width: 100%; 
     height: auto;
 }
 .Car_ImageBox{
@@ -20,5 +20,13 @@
 .circular-progressbar{
     width: 200px;
     height: 200px;
-    margin: 20px auto;
+}
+.DeleteCar_button, .AddCar_button, .PatchCar_button{
+    background: none;
+    border: none;
+}
+.CarManagement_ButtonBox{
+    display: flex;
+    padding: 15px;
+    padding-top: 22px;
 }
