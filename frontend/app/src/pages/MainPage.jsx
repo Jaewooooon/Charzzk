@@ -7,16 +7,18 @@ import MyPagePayment from '../assets/MypagePayment.png';
 import MyPageReport from '../assets/MypageReport.png';
 import ChargeStatus from '../assets/ChargeStatus.png';
 import ChargeStart from '../assets/ChargeStart.png';
+import Question from '../assets/Question.png';
 import axios from 'axios'; 
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { accessTokenState } from '../recoil/LoginAtom';
+import { currentIndexState } from '../recoil/CurrentIndex';
 import { useSwipeable } from 'react-swipeable'; // react-swipeable 임포트
 
 const MainPage = () => {
   const [payment, setPayment] = useState(0);
   const [chargeamount, setChargeAmount] = useState(0);
   const [carData, setCarData] = useState([]); // 차량 데이터를 배열로 저장
-  const [currentIndex, setCurrentIndex] = useState(0); // 현재 이미지 인덱스
+  const [currentIndex, setCurrentIndex] = useRecoilState(currentIndexState); // Recoil을 사용하여 currentIndex 상태 관리
   const accessToken = useRecoilValue(accessTokenState); 
 
   // 차량 데이터 가져오는 함수
@@ -31,8 +33,8 @@ const MainPage = () => {
       if (response.data.code === 200) {
         setCarData(response.data.data); // 차량 데이터를 상태에 저장
         if (response.data.data.length > 0) {
-          setPayment(response.data.data[0].chargeCost || 0); // 첫 번째 차량의 충전 요금을 설정
-          setChargeAmount(response.data.data[0].chargeAmount || 0); // 첫 번째 차량의 충전량을 설정
+          setPayment(response.data.data[currentIndex].chargeCost || 0); // 현재 차량의 충전 요금을 설정
+          setChargeAmount(response.data.data[currentIndex].chargeAmount || 0); // 현재 차량의 충전량을 설정
         }
       } else {
         console.error('Error fetching car data:', response.data.message);
@@ -68,13 +70,18 @@ const MainPage = () => {
   // 차량 정보 업데이트
   useEffect(() => {
     if (carData.length > 0) {
-      setPayment(carData[currentIndex].chargeCost || 0);
-      setChargeAmount(carData[currentIndex].chargeAmount || 0);
+      // currentIndex가 carData의 길이보다 크면 0으로 설정
+      if (currentIndex >= carData.length) {
+        setCurrentIndex(0);
+      } else {
+        setPayment(carData[currentIndex].chargeCost || 0);
+        setChargeAmount(carData[currentIndex].chargeAmount || 0);
+      }
     }
   }, [currentIndex, carData]);
-
   return (
     <div className='MainPage_ContainerBox'>
+      <button className='Question_button'><img src={Question} alt="도움말" className='Question_logo' /></button>
       <div className='Car_Information' {...handlers}>
         {/* 차량 이미지 슬라이드 */}
         <img 
