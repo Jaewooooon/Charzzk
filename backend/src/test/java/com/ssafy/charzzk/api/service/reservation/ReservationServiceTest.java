@@ -574,4 +574,189 @@ class ReservationServiceTest extends IntegrationTestSupport {
                 .hasMessage(ErrorCode.FORBIDDEN.getMessage());
     }
 
+    @DisplayName("예약을 취소할 때 예약을 찾을 수 없으면 예외가 발생한다.")
+    @Test
+    public void cancelReservationWithoutReservation() {
+        // given
+        LocalDateTime time = LocalDateTime.of(2024, 1, 1, 0, 0);
+
+        User user = User.builder()
+                .username("user@google.com")
+                .nickname("user")
+                .build();
+
+        // when, then
+        assertThatThrownBy(() -> reservationService.cancel(user, 1L))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.RESERVATION_NOT_FOUND.getMessage());
+    }
+
+    @DisplayName("예약을 취소할 때 예약의 차 주인과 내가 다르면 예외가 발생한다.")
+    @Test
+    public void cancelReservationWithNotMyCar(){
+        // given
+        User user1 = User.builder()
+                .username("user1@google.com")
+                .nickname("user1")
+                .build();
+
+        User user2 = User.builder()
+                .username("user2@google.com")
+                .nickname("user2")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테스트 차종")
+                .build();
+
+        Car car = Car.builder()
+                .user(user2)
+                .carType(carType)
+                .number("12다1234")
+                .build();
+
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        Charger charger1 = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("1")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        Charger charger2 = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("2")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        parkingLot.getChargers().add(charger1);
+        parkingLot.getChargers().add(charger2);
+
+        ParkingSpot parkingSpot = ParkingSpot.builder()
+                .parkingLot(parkingLot)
+                .name("1")
+                .location(location)
+                .build();
+
+        userRepository.saveAll(List.of(user1, user2));
+        carRepository.save(car);
+        parkingLotRepository.save(parkingLot);
+
+        Reservation reservation = Reservation.builder()
+                .parkingSpot(parkingSpot)
+                .car(car)
+                .charger(charger1)
+                .startTime(LocalDateTime.of(2024, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .status(ReservationStatus.PENDING)
+                .build();
+
+        reservationRepository.save(reservation);
+
+        // when
+        assertThatThrownBy(() -> reservationService.cancel(user1, reservation.getId()))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.FORBIDDEN.getMessage());
+    }
+
+    @DisplayName("예약을 성공적으로 취소하면 예약을 반환한다.")
+    @Test
+    public void cancel() {
+        // given
+        User user = User.builder()
+                .username("user@google.com")
+                .nickname("user")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테스트 차종")
+                .build();
+
+        Car car = Car.builder()
+                .user(user)
+                .carType(carType)
+                .number("12다1234")
+                .build();
+
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        Charger charger1 = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("1")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        Charger charger2 = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("2")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        parkingLot.getChargers().add(charger1);
+        parkingLot.getChargers().add(charger2);
+
+        ParkingSpot parkingSpot = ParkingSpot.builder()
+                .parkingLot(parkingLot)
+                .name("1")
+                .location(location)
+                .build();
+
+        userRepository.save(user);
+        carRepository.save(car);
+        parkingLotRepository.save(parkingLot);
+
+        Reservation reservation = Reservation.builder()
+                .parkingSpot(parkingSpot)
+                .car(car)
+                .charger(charger1)
+                .startTime(LocalDateTime.of(2024, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .status(ReservationStatus.PENDING)
+                .build();
+
+        Reservation canceledReservation = Reservation.builder()
+                .parkingSpot(parkingSpot)
+                .car(car)
+                .charger(charger1)
+                .startTime(LocalDateTime.of(2024, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .status(ReservationStatus.CANCELED)
+                .build();
+
+        reservationRepository.save(reservation);
+
+        reservation.cancel();
+        given(reservationManager.cancelReservation(any(Reservation.class))).willReturn(reservation);
+
+
+        // when
+        Reservation cancelReservation = reservationService.cancel(user, reservation.getId());
+
+        // then
+        assertThat(cancelReservation).isNotNull()
+                .extracting("id", "status")
+                .containsExactly(reservation.getId(), ReservationStatus.CANCELED);
+        verify(reservationManager).cancelReservation(any(Reservation.class));
+    }
+
 }

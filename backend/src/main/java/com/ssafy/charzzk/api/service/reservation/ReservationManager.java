@@ -1,10 +1,12 @@
 package com.ssafy.charzzk.api.service.reservation;
 
 import com.ssafy.charzzk.core.apiclient.ChargerClient;
+import com.ssafy.charzzk.core.apiclient.request.ChargerCancelRequest;
 import com.ssafy.charzzk.core.apiclient.request.ChargerCommandRequest;
 import com.ssafy.charzzk.core.apiclient.response.ChargerCommandResponse;
 import com.ssafy.charzzk.domain.charger.Charger;
 import com.ssafy.charzzk.domain.reservation.Reservation;
+import com.ssafy.charzzk.domain.reservation.ReservationStatus;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -86,4 +88,53 @@ public class ReservationManager {
         }
     }
 
+    public Reservation cancelReservation(Reservation reservation) {
+        /**
+         * 예약의 상태 확인
+         * 충전중인지 / 대기중인지
+         * 1. 충전중이면 임베디드 서버에 중지 명령 내리기
+         * 1-1. 큐에 확정된 다음 예약이 있다면 명령 내리기
+         * 2. 대기중이면 큐에서 삭제
+         * 예약 상태 바꾸기
+         */
+
+        Queue<Reservation> reservations = reservationQueueMap.get(reservation.getCharger().getId());
+
+        if (reservation.getStatus().isWaiting()) { // 대기중이면 취소
+            reservations.remove(reservation);
+
+        } else { // 충전중이면 중지 명령 내리기
+            ChargerCancelRequest request = ChargerCancelRequest.of(reservation);
+            ChargerCommandResponse response = chargerClient.cancel(request);
+
+            if (response.getStatus().equals("success")) {
+                Charger charger = reservation.getCharger();
+                charger.stopCharge();
+            }
+        }
+
+        // 큐의 peek()를 확인해서 WAITING상태면 fastAPI 서버에 명령 내리기
+        Reservation nextReservation = reservations.peek();
+
+        if (nextReservation != null && nextReservation.getStatus().equals(ReservationStatus.WAITING)) {
+            ChargerCommandRequest chargerCommandRequest = ChargerCommandRequest.of(reservation);
+            ChargerCommandResponse response = chargerClient.command(chargerCommandRequest);
+
+            if (response.getStatus().equals("success")) {
+                reservations.poll();
+                Charger charger = nextReservation.getCharger();
+                charger.startCharge();
+                nextReservation.start();
+            }
+        }
+
+        reservation.cancel();
+
+        return reservation;
+    }
+
+    public void timeout(Reservation reservation) {
+        Queue<Reservation> reservations = reservationQueueMap.get(reservation.getCharger().getId());
+        reservations.remove(reservation);
+    }
 }
