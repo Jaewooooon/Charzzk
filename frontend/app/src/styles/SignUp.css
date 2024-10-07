@@ -7,3 +7,13 @@
     font-weight: 700;
     font-size: 20px;
 }
+
+.SignUpBox_contents{
+    align-items: center;
+    padding-left: 40px;
+}
+
+.SignUpBox_content1{
+    color: rgb(140, 140, 140);
+    font-weight: 600;
+}
