@@ -68,4 +68,11 @@ public class Car extends BaseEntity {
         this.nickname = nickname;
     }
 
+    public void chargeBattery(Integer batteryLevel) {
+        this.battery = batteryLevel;
+    }
+
+    public void chargeComplete() {
+        this.isCharging = false;
+    }
 }

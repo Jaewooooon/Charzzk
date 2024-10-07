@@ -100,4 +100,10 @@ public class Reservation extends BaseEntity {
         this.status = ReservationStatus.CANCELED;
         System.out.println("Reservation canceled");
     }
+
+    public void chargeComplete() {
+        this.status = ReservationStatus.DONE;
+        charger.chargeComplete();
+        car.chargeComplete();
+    }
 }
