@@ -1,0 +1,29 @@
+.SelectCarTime {
+    padding: 0px; /* 전체 여백 */
+    margin-top: 60px;
+    height: 100vh; /* 전체 화면 높이 */
+  }
+  
+  .SelectCarTime_contents_box {
+    margin-bottom: 20px; /* 주차장 선택 안내 텍스트와 검색창 사이 여백 */
+  }
+  
+  .SelectCarTime_contents1,
+  .SelectCarTime_contents2 {
+    padding-left: 25px;
+    font-size: 20px; /* 텍스트 크기 */
+    font-weight: bold; /* 텍스트 두께 */
+  }
+  
+  .SelectCar {
+    margin-top: 15px;
+    height: 28vh;
+    background: linear-gradient(to bottom,#010103,#2A2452);
+  }
+  
+  .SelectCarTime_Carimg{
+    width: 100%;
+  }
+  .SelectCarTime_contents{
+    color: white;
+  }
