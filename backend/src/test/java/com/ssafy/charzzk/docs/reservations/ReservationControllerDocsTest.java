@@ -27,8 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
@@ -189,6 +188,86 @@ public class ReservationControllerDocsTest extends RestDocsSupport {
                         resource(ResourceSnippetParameters.builder()
                                 .tag("Reservation")
                                 .summary("예약 확정")
+                                .requestHeaders(
+                                        headerWithName("Authorization").description("JWT 토큰 (Bearer)")
+                                )
+                                .responseFields(
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER)
+                                                .description("코드"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("message").type(JsonFieldType.STRING)
+                                                .description("메시지"),
+                                        fieldWithPath("data.id").type(JsonFieldType.NUMBER)
+                                                .description("예약 아이디"),
+                                        fieldWithPath("data.startTime").type(JsonFieldType.STRING)
+                                                .description("예상 시작시간"),
+                                        fieldWithPath("data.endTime").type(JsonFieldType.STRING)
+                                                .description("예상 종료시간"),
+                                        fieldWithPath("data.status").type(JsonFieldType.STRING)
+                                                .description("예약 상태"),
+                                        fieldWithPath("data.car.id").type(JsonFieldType.NUMBER)
+                                                .description("차량 아이디"),
+                                        fieldWithPath("data.car.id").type(JsonFieldType.NUMBER)
+                                                .description("차량 아이디"),
+                                        fieldWithPath("data.car.number").type(JsonFieldType.STRING)
+                                                .description("차량 번호"),
+                                        fieldWithPath("data.car.nickname").type(JsonFieldType.STRING)
+                                                .description("차량 별명"),
+                                        fieldWithPath("data.car.carType.id").type(JsonFieldType.NUMBER)
+                                                .description("차종 아이디"),
+                                        fieldWithPath("data.car.carType.name").type(JsonFieldType.STRING)
+                                                .description("차종 이름"),
+                                        fieldWithPath("data.car.carType.image").type(JsonFieldType.STRING)
+                                                .description("차종 이미지 아이디"))
+                                .build())));
+
+    }
+
+
+    @DisplayName("예약을 취소한다.")
+    @Test
+    void cancelReservation() throws Exception {
+        // given
+        CarType carType = CarType.builder()
+                .id(1L)
+                .name("아이오닉")
+                .image("image")
+                .build();
+
+        Car car = Car.builder()
+                .id(1L)
+                .carType(carType)
+                .number("1234")
+                .nickname("nickname")
+                .build();
+
+        ReservationResponse response = ReservationResponse.builder()
+                .id(1L)
+                .car(CarResponse.from(car))
+                .startTime(LocalDateTime.of(2021, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2021, 1, 1, 2, 0))
+                .status(ReservationStatus.CANCELED.name())
+                .build();
+
+        given(reservationService.cancel(any(), any())).willReturn(Reservation.builder().id(1L).build());
+        given(reservationService.getReservation(any())).willReturn(response);
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                delete("/api/v1/reservations/{reservationId}", 1)
+                        .header("Authorization", "Bearer token")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        // then
+        perform
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document("reservation-cancel",
+                        preprocessResponse(prettyPrint()),
+                        resource(ResourceSnippetParameters.builder()
+                                .tag("Reservation")
+                                .summary("예약 취소")
                                 .requestHeaders(
                                         headerWithName("Authorization").description("JWT 토큰 (Bearer)")
                                 )

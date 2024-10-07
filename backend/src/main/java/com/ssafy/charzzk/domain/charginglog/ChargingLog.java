@@ -3,6 +3,7 @@ package com.ssafy.charzzk.domain.charginglog;
 import com.ssafy.charzzk.domain.BaseEntity;
 import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.charger.Charger;
+import com.ssafy.charzzk.domain.reservation.Reservation;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -41,5 +42,14 @@ public class ChargingLog extends BaseEntity {
         this.charger = charger;
         this.startTime = startTime;
         this.endTime = endTime;
+    }
+
+    public static ChargingLog of(Reservation reservation) {
+        return ChargingLog.builder()
+                .car(reservation.getCar())
+                .charger(reservation.getCharger())
+                .startTime(reservation.getStartTime())
+                .endTime(reservation.getEndTime())
+                .build();
     }
 }

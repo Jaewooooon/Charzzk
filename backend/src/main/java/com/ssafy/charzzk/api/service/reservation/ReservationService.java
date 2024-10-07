@@ -138,11 +138,16 @@ public class ReservationService {
         return canceledReservation;
     }
 
-
-
     public List<ReservationQueueResponse> getReservations() {
         Map<Long, Queue<Reservation>> reservationMap = reservationManager.getReservationQueueMap();
-        System.out.println(reservationMap);
+
+        for (Map.Entry<Long, Queue<Reservation>> l : reservationMap.entrySet()) {
+            System.out.println(l.getKey());
+            for (Reservation r : l.getValue()) {
+                System.out.println(r);
+            }
+        }
+
         List<ReservationQueueResponse> response = new ArrayList<>();
 
         for (Map.Entry<Long, Queue<Reservation>> entry : reservationMap.entrySet()) {
@@ -150,5 +155,9 @@ public class ReservationService {
         }
 
         return response;
+    }
+
+    public void deleteReservations() {
+        reservationManager.deleteAllReservations();
     }
 }

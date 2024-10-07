@@ -58,6 +58,7 @@ public class Car extends BaseEntity {
                 .carType(carType)
                 .number(number)
                 .nickname(nickname)
+                .battery(30)
                 .isCharging(false)
                 .build();
     }

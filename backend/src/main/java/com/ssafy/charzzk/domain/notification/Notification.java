@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Notification {
+public class  Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

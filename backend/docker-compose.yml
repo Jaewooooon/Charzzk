@@ -61,4 +61,3 @@ volumes:
 
 networks:
   custom-network:
-    external: true
