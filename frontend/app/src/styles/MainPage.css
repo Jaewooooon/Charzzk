@@ -93,7 +93,7 @@ html, body {
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'MinSans-Regular';
-    
+    color: #000000;
   }
   
   .ChargeStart_Button {
@@ -146,6 +146,7 @@ html, body {
     height: 80px;
     border: none;
     font-family: 'MinSans-Regular';
+    color: #000000;
   }
 
   .Mypage_Car, .Mypage_Payment{
@@ -181,6 +182,7 @@ html, body {
 
   .ChargeStart_Button_Content{
     padding-right: 40px;
+    color: #000000;
   }
 
   .MonthPayment_Contents{

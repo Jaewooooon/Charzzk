@@ -5,13 +5,15 @@ import { accessTokenState } from '../recoil/LoginAtom';
 import { parkingState } from '../recoil/parkingState.jsx';
 import '../components/styles/SelectCarTime.css'; 
 import { useSwipeable } from 'react-swipeable';
+import { batteryState } from '../recoil/batteryState';
 
 function SelectCarTime({ setIsReady }) {
   const [chargeTime, setChargeTime] = useState('');
   const [carData, setCarData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const accessToken = useRecoilValue(accessTokenState); 
-  const setParkingState = useSetRecoilState(parkingState); 
+  const setParkingState = useSetRecoilState(parkingState);
+  const setBatteryState = useSetRecoilState(batteryState);  
 
   useEffect(() => {
     const fetchCarData = async () => {
@@ -58,9 +60,12 @@ function SelectCarTime({ setIsReady }) {
     setParkingState((prevState) => ({
       ...prevState,
       carId: carData[currentIndex].id, // 차량의 id를 설정
+      battery: carData[currentIndex].battery,
       fullCharge: isFullCharge,
       time: timeValue,
     }));
+
+    setBatteryState(carData[currentIndex].battery);
 
     console.log('Updated Parking State:', {
       carId: carData[currentIndex].id,
@@ -93,7 +98,6 @@ function SelectCarTime({ setIsReady }) {
             <div>배터리 잔량: {carData[currentIndex].battery}%</div>
           </div>
         </div>
-        
         
         <select 
           value={chargeTime} 
