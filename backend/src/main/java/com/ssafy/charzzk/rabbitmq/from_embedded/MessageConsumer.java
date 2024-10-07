@@ -1,12 +1,16 @@
 package com.ssafy.charzzk.rabbitmq.from_embedded;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ssafy.charzzk.api.service.message.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 public class MessageConsumer {
+
+    private final MessageService messageService;
 
     @RabbitListener(queues = "${spring.rabbitmq.queue.name}")
     public void receiveMessage(MessageRequest  message) {
@@ -41,12 +45,14 @@ public class MessageConsumer {
 
     private void handleBatteryStatus(MessageRequest message) {
         System.out.println("Handling battery status: " + message);
-        // 배터리 상태 처리 로직 추가
+
+        messageService.updateBatteryStatus(message.getReservationId(), message.getBatteryLevel());
     }
 
     private void handleChargeComplete(MessageRequest message) {
         System.out.println("Handling charge complete: " + message);
-        // 충전 완료 처리 로직 추가
+
+        messageService.chargeComplete(message.getReservationId());
     }
 
     private void handleLocationUpdate(MessageRequest message) {

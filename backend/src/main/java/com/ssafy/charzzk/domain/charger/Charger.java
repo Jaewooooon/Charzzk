@@ -72,4 +72,8 @@ public class Charger extends BaseEntity {
     public void stopCharge() {
         this.status = ChargerStatus.WAITING;
     }
+
+    public void chargeComplete() {
+        this.status = ChargerStatus.WAITING;
+    }
 }

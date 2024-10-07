@@ -8,8 +8,8 @@ import lombok.Setter;
 public class MessageRequest {
     private String type;
     private String status;  // recognition_status 에서만 사용됨
-    private int reservationId;
-    private int chargerId;
+    private Long reservationId;
+    private Long chargerId;
     private String vehicleNumber;
     private String timestamp;
     private Integer batteryLevel;  // battery_status 에서만 사용됨
