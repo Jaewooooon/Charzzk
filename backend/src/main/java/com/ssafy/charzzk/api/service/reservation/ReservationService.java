@@ -117,7 +117,6 @@ public class ReservationService {
             throw new BaseException(ErrorCode.RESERVATION_CONFIRM_TIMEOUT);
         }
 
-        reservation.confirm();
 
         reservationManager.confirmReservation(reservation);
 

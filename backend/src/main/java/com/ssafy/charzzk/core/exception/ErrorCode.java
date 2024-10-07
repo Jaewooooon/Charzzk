@@ -52,6 +52,7 @@ public enum ErrorCode {
     PARKING_SPOT_NOT_FOUND(7001, HttpStatus.NOT_FOUND, "주차 공간을 찾을 수 없습니다."),
     PARKING_LOT_NOT_FOUND(7002, HttpStatus.NOT_FOUND, "주차장이 존재하지 않습니다."),
 
+    API_REQUEST_FAILED(8000, HttpStatus.BAD_REQUEST, "API 요청에 실패하였습니다."),
 
     ;
     private final int code;

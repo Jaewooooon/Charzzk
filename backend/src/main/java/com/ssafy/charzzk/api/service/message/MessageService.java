@@ -1,6 +1,7 @@
 package com.ssafy.charzzk.api.service.message;
 
 
+import com.ssafy.charzzk.api.service.reservation.ReservationManager;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
 import com.ssafy.charzzk.domain.car.Car;
@@ -18,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 public class MessageService {
+
+    private final ReservationManager reservationManager;
 
     private final ReservationRepository reservationRepository;
     private final ChargingLogRepository chargingLogRepository;
@@ -38,6 +41,9 @@ public class MessageService {
                 .orElseThrow(() -> new BaseException(ErrorCode.RESERVATION_NOT_FOUND));
 
         reservation.chargeComplete();
+
+        // reservationManager에서 충전기의 다음 예약 진행하기
+        reservationManager.executeNextReservation(reservation.getCharger());
 
         ChargingLog chargingLog = ChargingLog.of(reservation);
         return chargingLogRepository.save(chargingLog);
