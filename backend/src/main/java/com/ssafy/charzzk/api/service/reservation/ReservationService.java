@@ -1,7 +1,7 @@
 package com.ssafy.charzzk.api.service.reservation;
 
-import com.ssafy.charzzk.api.service.reservation.request.ReservationConfirmServiceRequest;
 import com.ssafy.charzzk.api.service.reservation.request.ReservationServiceRequest;
+import com.ssafy.charzzk.api.service.reservation.response.ReservationQueueResponse;
 import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
@@ -25,7 +25,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -92,10 +96,11 @@ public class ReservationService {
 
     @Transactional
     public void timeout(Long reservationId) {
-        reservationRepository.deleteById(reservationId);
+        Reservation reservation = reservationRepository.findByIdWithCarAndCharger(reservationId)
+                .orElseThrow(() -> new BaseException(ErrorCode.RESERVATION_NOT_FOUND));
 
-        // TODO : 예약시간 스케줄링
-//        reservationManager.deleteReservation(reservationId);
+        reservationManager.timeout(reservation);
+        reservationRepository.delete(reservation);
     }
 
     @Transactional
@@ -119,4 +124,31 @@ public class ReservationService {
         return reservation;
     }
 
+    @Transactional
+    public Reservation cancel(User user, Long reservationId) {
+        Reservation reservation = reservationRepository.findByIdWithCarAndCharger(reservationId)
+                .orElseThrow(() -> new BaseException(ErrorCode.RESERVATION_NOT_FOUND));
+
+        if (!reservation.getCar().getUser().equals(user)) {
+            throw new BaseException(ErrorCode.FORBIDDEN);
+        }
+
+        Reservation canceledReservation = reservationManager.cancelReservation(reservation);
+
+        return canceledReservation;
+    }
+
+
+
+    public List<ReservationQueueResponse> getReservations() {
+        Map<Long, Queue<Reservation>> reservationMap = reservationManager.getReservationQueueMap();
+        System.out.println(reservationMap);
+        List<ReservationQueueResponse> response = new ArrayList<>();
+
+        for (Map.Entry<Long, Queue<Reservation>> entry : reservationMap.entrySet()) {
+            ReservationQueueResponse.of(entry.getKey(), entry.getValue().stream().map(ReservationResponse::of).collect(Collectors.toList()));
+        }
+
+        return response;
+    }
 }

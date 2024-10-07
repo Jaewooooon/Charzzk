@@ -45,11 +45,9 @@ public class Reservation extends BaseEntity {
     public String toString() {
         return "Reservation{" +
                 "id=" + id +
-                ", car=" + car +
-                ", charger=" + charger +
-                ", parkingSpot=" + parkingSpot +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
+                ", car=" + car.getNumber() +
+                ", charger=" + charger.getId() +
+                ", parkingSpot=" + parkingSpot.getId() +
                 ", status=" + status +
                 '}';
     }
@@ -96,5 +94,16 @@ public class Reservation extends BaseEntity {
 
     public void start() {
         this.status = ReservationStatus.CHARGING;
+    }
+
+    public void cancel() {
+        this.status = ReservationStatus.CANCELED;
+        System.out.println("Reservation canceled");
+    }
+
+    public void chargeComplete() {
+        this.status = ReservationStatus.DONE;
+        charger.chargeComplete();
+        car.chargeComplete();
     }
 }

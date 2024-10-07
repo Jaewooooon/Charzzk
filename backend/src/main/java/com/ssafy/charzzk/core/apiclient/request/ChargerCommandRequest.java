@@ -12,14 +12,16 @@ public class ChargerCommandRequest {
     private Long reservationId;
     private Long chargerId;
     private String carNumber;
+    private int battery;
     private long duration;
     private double latitude;
     private double longitude;
 
     @Builder
-    private ChargerCommandRequest(Long reservationId, Long chargerId, double latitude, double longitude, String carNumber, long duration) {
+    private ChargerCommandRequest(Long reservationId, Long chargerId, int battery, double latitude, double longitude, String carNumber, long duration) {
         this.reservationId = reservationId;
         this.chargerId = chargerId;
+        this.battery = battery;
         this.latitude = latitude;
         this.longitude = longitude;
         this.carNumber = carNumber;
@@ -33,6 +35,7 @@ public class ChargerCommandRequest {
                 .reservationId(reservation.getId())
                 .chargerId(reservation.getCharger().getId())
                 .carNumber(reservation.getCar().getNumber())
+                .battery(reservation.getCar().getBattery())
                 .duration(duration)
                 .latitude(reservation.getParkingSpot().getLocation().getLatitude())
                 .longitude(reservation.getParkingSpot().getLocation().getLongitude())
