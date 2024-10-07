@@ -28,6 +28,12 @@ def generate_launch_description():
         ),
         # Node(
         #     package='sub1',
+        #     node_executable='picture',
+        #     node_name='picture',
+        #     output = 'screen'
+        # ),
+        # Node(
+        #     package='sub1',
         #     node_executable='goal_publisher',
         #     node_name='goal_publisher',
         #     output = 'screen'
