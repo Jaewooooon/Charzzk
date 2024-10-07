@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
-import { parkingState } from '../recoil/parkingState'; // parkingState atom import
+import { parkingState } from '../recoil/parkingState.jsx'; // parkingState atom import
 import '../components/styles/SelectParking.css'; // CSS 파일 임포트
 
 function SelectParking({ setIsReady }) { // setIsReady를 props로 추가

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import axios from 'axios';
-import { parkingState } from '../recoil/parkingState'; 
+import { parkingState } from '../recoil/parkingState.jsx';
 import '../components/styles/SelectParking2.css';
 import ChargeMap from '../assets/ChargeMap.png';
 

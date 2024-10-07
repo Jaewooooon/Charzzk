@@ -9,7 +9,7 @@ import SelectParking from '../components/SelectParking';
 import SelectParking2 from '../components/SelectParking2';
 import SelectCarTime from '../components/SelectCarTime';
 import { buttonState } from '../recoil/buttonState'; 
-import { parkingState } from '../recoil/parkingState'; // parkingState atom import
+import { parkingState } from '../recoil/parkingState.jsx'; // parkingState atom import
 import { accessTokenState } from '../recoil/LoginAtom'; // accessTokenState import
 
 const ChargeStart = () => {
