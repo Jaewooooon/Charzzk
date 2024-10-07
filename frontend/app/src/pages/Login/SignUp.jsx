@@ -43,6 +43,7 @@ const SignUp = () => {
         }
     };
 
+
     // 닉네임 중복 확인
     const checkNickname = async () => {
         if (!nickname) {
@@ -153,9 +154,10 @@ const SignUp = () => {
                 <div className='SignUp_contents1'>회원정보 및 차량정보를</div>
                 <div className='SignUp_contents2'>입력해 주세요.</div>
             </div>
-
-            {/* 닉네임 입력 및 중복 확인 */}
-            <div>닉네임</div>
+            
+            <div className="SignUpBox_contents">
+                            {/* 닉네임 입력 및 중복 확인 */}
+            <div className="SignUpBox_content1"> 닉네임</div>
             <input 
                 type="text" 
                 value={nickname} 
@@ -175,7 +177,7 @@ const SignUp = () => {
             {carList.map((car, index) => (
                 <div key={index}>
                     <div>차량 {index + 1}</div>
-                    <div>차량 기종</div>
+                    <div className="SignUpBox_content1"> 차량 기종</div>
                     <select
                         value={car.carType}
                         onChange={(e) => handleCarChange(index, 'carType', e.target.value)}
@@ -192,14 +194,14 @@ const SignUp = () => {
                         )}
                     </select>
 
-                    <div>차량 번호</div>
+                    <div className="SignUpBox_content1">차량 번호</div>
                     <input 
                         type="text" 
                         value={car.carNumber}
                         onChange={(e) => handleCarChange(index, 'carNumber', e.target.value)} 
                     />
 
-                    <div>차량 별명</div>
+                    <div className="SignUpBox_content1">차량 별명</div>
                     <input 
                         type="text" 
                         value={car.carNickname}
@@ -212,6 +214,8 @@ const SignUp = () => {
             <button onClick={addCar}>차량 추가</button>
             <br />
             <button onClick={handleSignUp}>회원가입 완료</button>
+            </div>
+
         </>
     );
 };

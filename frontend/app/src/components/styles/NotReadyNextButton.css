@@ -1,0 +1,14 @@
+.NotReady_NextButton{
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #AFAFAF;
+    border: none;
+    width: 90%;
+    height: 50px;
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}

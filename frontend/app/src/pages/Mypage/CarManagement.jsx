@@ -154,6 +154,7 @@ function CarManagement() {
         }
       );
       if (response.data.code === 200) {
+        console.log(newCarData);
         alert('차량이 성공적으로 추가되었습니다.');
         fetchCarData(); // 추가 후 차량 데이터를 다시 불러옴
         closeAddCarModal(); // 모달 닫기
