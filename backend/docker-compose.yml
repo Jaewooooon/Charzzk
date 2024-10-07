@@ -13,6 +13,8 @@ services:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - charzzk-db:/var/lib/postgresql/data
+    networks:
+      - custom-network
 
   database-admin:
     container_name: database-admin
@@ -23,6 +25,9 @@ services:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     restart: always
+    networks:
+      - custom-network
+
 
   cache-database:
     image: redis:7.4-rc2-alpine
@@ -37,6 +42,8 @@ services:
       - "128mb"
       - "--notify-keyspace-events"
       - "Ex"
+    networks:
+      - custom-network
 
   backend-server:
     container_name: charzzk-backend-server
