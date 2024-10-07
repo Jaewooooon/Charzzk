@@ -30,3 +30,41 @@
     display: flex;
     flex-direction: column;
 }
+.battery_value{
+    font-size: 60px;
+    color: white;
+    font-weight: 900;
+
+}
+.chargestart_content, .chargeend_content{
+    color: white;
+    font-weight: 900;
+}
+.ChargeStart_btn{
+    background-color: #5CDAB8;
+    border: none;
+    border-radius: 15px;
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    color: white;
+    font-weight: bolder;
+    font-size: 16px;
+}
+.Cancel_btn{
+    background-color: white;
+    border: none;
+    border-radius: 15px;
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    color: #5CDAB8;
+    font-weight: bolder;
+    font-size: 16px;
+}
+.CompleteCharge_contents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

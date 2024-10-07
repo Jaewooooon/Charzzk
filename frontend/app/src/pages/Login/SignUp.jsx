@@ -147,6 +147,7 @@ const SignUp = () => {
         fetchCarTypes();
     }, []);
 
+
     return (
         <>
             <GobackButton />
@@ -213,7 +214,7 @@ const SignUp = () => {
 
             <button onClick={addCar}>차량 추가</button>
             <br />
-            <button onClick={handleSignUp}>회원가입 완료</button>
+            <button onClick={handleSignUp} className="Complete_Signup_Button">회원가입 완료</button>
             </div>
 
         </>
