@@ -5,6 +5,8 @@ import com.ssafy.charzzk.core.apiclient.request.ChargerCommandRequest;
 import com.ssafy.charzzk.core.apiclient.response.ChargerCommandResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -16,4 +18,7 @@ public interface ChargerClient {
 
     @PostMapping("/charge-cancel")
     ChargerCommandResponse cancel(ChargerCancelRequest request);
+
+    @GetMapping("/return-to-start")
+    void returnToStart();
 }

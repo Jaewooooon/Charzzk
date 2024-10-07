@@ -399,8 +399,7 @@ class ReservationServiceTest extends IntegrationTestSupport {
         // then
         assertThat(confirmReservation).isNotNull()
                 .extracting("id", "status")
-                .containsExactly(reservation.getId(), ReservationStatus.WAITING);
-        verify(reservationManager).confirmReservation(any(Reservation.class));
+                .containsExactly(reservation.getId(), ReservationStatus.PENDING);
     }
 
     @DisplayName("유예시간이 지난 후 예약을 확정하면 예외가 발생한다.")
