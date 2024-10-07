@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRecoilValue, useSetRecoilState } from 'recoil'; 
 import { accessTokenState } from '../recoil/LoginAtom'; 
-import { parkingState } from '../recoil/parkingState'; 
+import { parkingState } from '../recoil/parkingState.jsx';
 import '../components/styles/SelectCarTime.css'; 
 import { useSwipeable } from 'react-swipeable';
 
