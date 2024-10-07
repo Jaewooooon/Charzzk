@@ -102,7 +102,6 @@ public class ReservationManager {
 
         if (reservation.getStatus().isWaiting()) { // 대기중이면 취소
             reservations.remove(reservation);
-
         } else { // 충전중이면 중지 명령 내리기
             ChargerCancelRequest request = ChargerCancelRequest.of(reservation);
             ChargerCommandResponse response = chargerClient.cancel(request);
@@ -136,5 +135,11 @@ public class ReservationManager {
     public void timeout(Reservation reservation) {
         Queue<Reservation> reservations = reservationQueueMap.get(reservation.getCharger().getId());
         reservations.remove(reservation);
+    }
+
+    public void deleteAllReservations() {
+        for (Long l : reservationQueueMap.keySet()) {
+            reservationQueueMap.get(l).clear();
+        }
     }
 }

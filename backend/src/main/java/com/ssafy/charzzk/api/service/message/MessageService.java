@@ -6,6 +6,8 @@ import com.ssafy.charzzk.core.exception.ErrorCode;
 import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarRepository;
 import com.ssafy.charzzk.domain.charger.Charger;
+import com.ssafy.charzzk.domain.charginglog.ChargingLog;
+import com.ssafy.charzzk.domain.charginglog.ChargingLogRepository;
 import com.ssafy.charzzk.domain.reservation.Reservation;
 import com.ssafy.charzzk.domain.reservation.ReservationRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MessageService {
 
     private final ReservationRepository reservationRepository;
+    private final ChargingLogRepository chargingLogRepository;
 
     @Transactional
     public void updateBatteryStatus(Long reservationId, Integer batteryLevel) {
@@ -29,12 +32,15 @@ public class MessageService {
         car.chargeBattery(batteryLevel);
     }
 
-    public void chargeComplete(Long reservationId) {
+    @Transactional
+    public ChargingLog chargeComplete(Long reservationId) {
         Reservation reservation = reservationRepository.findByIdWithCarAndCharger(reservationId)
                 .orElseThrow(() -> new BaseException(ErrorCode.RESERVATION_NOT_FOUND));
 
         reservation.chargeComplete();
 
+        ChargingLog chargingLog = ChargingLog.of(reservation);
+        return chargingLogRepository.save(chargingLog);
         // TODO 알림
     }
 }

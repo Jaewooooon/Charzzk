@@ -61,5 +61,16 @@ public class ReservationController {
     public ApiResponse<List<ReservationQueueResponse>> getReservation() {
         return ApiResponse.ok(reservationService.getReservations());
     }
+
+    /**
+     * 큐에 초기화
+     * @return
+     */
+    @DeleteMapping("/api/v1/reservations")
+    public ApiResponse<List<ReservationQueueResponse>> deleteReservation() {
+        reservationService.deleteReservations();
+        return ApiResponse.ok(null);
+    }
+
 }
 
