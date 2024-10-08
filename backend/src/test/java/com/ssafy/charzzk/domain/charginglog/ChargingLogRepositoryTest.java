@@ -48,7 +48,7 @@ class ChargingLogRepositoryTest extends IntegrationTestSupport {
 
     @DisplayName("특정 차량의 1달 이내의 충전 기록을 조회한다.")
     @Test
-    public void findByCarAndTimePeriod() {
+    void findByCarAndTimePeriod() {
         // given
         User user = User.builder()
                 .username("testuser@gmail.com")
@@ -124,6 +124,110 @@ class ChargingLogRepositoryTest extends IntegrationTestSupport {
                 .containsExactlyInAnyOrder(
                         Tuple.tuple(LocalDateTime.of(2024, 9, 1, 10, 0), LocalDateTime.of(2024, 9, 1, 12, 0)),
                         Tuple.tuple(LocalDateTime.of(2024, 9, 5, 10, 0), LocalDateTime.of(2024, 9, 5, 11, 0))
+                );
+    }
+
+    @Test
+    @DisplayName("특정 유저의 모든 충전 기록을 조회한다.")
+    void findByUser() {
+
+        // given
+        User user1 = User.builder()
+                .username("testuser1@gmail.com")
+                .nickname("테스트유저1")
+                .build();
+        userRepository.save(user1);
+
+        User user2 = User.builder()
+                .username("testuser2@gmail.com")
+                .nickname("테스트유저2")
+                .build();
+        userRepository.save(user2);
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(Location.builder()
+                        .latitude(37.5665)
+                        .longitude(126.9780)
+                        .build())
+                .build();
+        parkingLotRepository.save(parkingLot);
+
+        Charger charger = Charger.builder()
+                .serialNumber("5678EFGH")
+                .parkingLot(parkingLot)
+                .build();
+        chargerRepository.save(charger);
+
+        CarType carType1 = CarType.builder()
+                .name("현대 포터2 일렉트릭")
+                .image("image/hyundai")
+                .build();
+        carTypeRepository.save(carType1);
+
+        CarType carType2 = CarType.builder()
+                .name("테슬라 모델3")
+                .image("image/tesla")
+                .build();
+        carTypeRepository.save(carType2);
+
+        Car car1 = Car.builder()
+                .user(user1)
+                .carType(carType1)
+                .number("12가1234")
+                .nickname("붕붕이")
+                .isCharging(false)
+                .build();
+        carRepository.save(car1);
+
+        ChargingLog log1 = ChargingLog.builder()
+                .car(car1)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 8, 25, 14, 0))
+                .endTime(LocalDateTime.of(2024, 8, 25, 16, 0))
+                .build();
+        ChargingLog log2 = ChargingLog.builder()
+                .car(car1)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 9, 2, 13, 0))
+                .endTime(LocalDateTime.of(2024, 9, 2, 14, 0))
+                .build();
+        chargingLogRepository.saveAll(List.of(log1, log2));
+
+        Car car2 = Car.builder()
+                .user(user2)
+                .carType(carType2)
+                .number("34나5678")
+                .nickname("닝닝")
+                .isCharging(false)
+                .build();
+        carRepository.save(car2);
+
+        ChargingLog log3 = ChargingLog.builder()
+                .car(car2)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 8, 26, 15, 0))
+                .endTime(LocalDateTime.of(2024, 8, 26, 17, 0))
+                .build();
+        chargingLogRepository.save(log3);
+
+
+        // when
+        List<ChargingLog> logs = chargingLogRepository.findByUser(user1);
+
+
+        // then
+        assertThat(logs).hasSize(2)
+                .extracting("startTime", "endTime")
+                .containsExactlyInAnyOrder(
+                        Tuple.tuple(LocalDateTime.of(2024, 8, 25, 14, 0), LocalDateTime.of(2024, 8, 25, 16, 0)),
+                        Tuple.tuple(LocalDateTime.of(2024, 9, 2, 13, 0), LocalDateTime.of(2024, 9, 2, 14, 0))
+                );
+        assertThat(logs)
+                .extracting("car.number", "car.carType.name")
+                .containsExactlyInAnyOrder(
+                        Tuple.tuple("12가1234", "현대 포터2 일렉트릭"),
+                        Tuple.tuple("12가1234", "현대 포터2 일렉트릭")
                 );
     }
 }

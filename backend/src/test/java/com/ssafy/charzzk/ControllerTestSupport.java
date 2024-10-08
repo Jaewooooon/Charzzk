@@ -2,6 +2,7 @@ package com.ssafy.charzzk;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.charzzk.api.controller.car.CarController;
+import com.ssafy.charzzk.api.controller.charginglog.ChargingLogController;
 import com.ssafy.charzzk.api.controller.parkinglot.ParkingLotController;
 import com.ssafy.charzzk.api.controller.report.ReportController;
 import com.ssafy.charzzk.api.controller.reservation.ReservationController;
@@ -9,6 +10,7 @@ import com.ssafy.charzzk.api.controller.user.UserController;
 import com.ssafy.charzzk.api.service.auth.CustomUserService;
 import com.ssafy.charzzk.api.service.auth.JWTService;
 import com.ssafy.charzzk.api.service.car.CarService;
+import com.ssafy.charzzk.api.service.charginglog.ChargingLogService;
 import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
 import com.ssafy.charzzk.api.service.report.ReportService;
 import com.ssafy.charzzk.api.service.report.S3ImageService;
@@ -39,7 +41,8 @@ import static org.mockito.Mockito.when;
                 ParkingLotController.class,
                 ReportController.class,
                 ParkingLotController.class,
-                ReservationController.class
+                ReservationController.class,
+                ChargingLogController.class,
         },
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {SecurityConfig.class}),
@@ -78,6 +81,9 @@ public abstract class ControllerTestSupport {
 
     @MockBean
     protected UserRepository userRepository;
+
+    @MockBean
+    protected ChargingLogService chargingLogService;
 
     @BeforeEach
     public void setUp() {
