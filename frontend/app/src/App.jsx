@@ -5,7 +5,7 @@ import ChargeMap from './pages/ChargeMap';
 import ChargeStart from './pages/ChargeStart';
 import ChargeStatus from './pages/ChargeStatus';
 import CarManagement from './pages/Mypage/CarManagement';
-import PaymentManagement from './pages/Mypage/PaymentManagement';
+import UserManagement from './pages/Mypage/UserManagement';
 import ReportIssue from './pages/Mypage/ReportIssue';
 import LoginSuccess from './pages/Login/LoginSuccess';
 import Login from './pages/Login/Login';
@@ -35,7 +35,7 @@ function App() {
 <Route path="/mypage/car-management" element={<PrivateRoute element={<CarManagement />} />} />
 
 {/* 마이페이지 - 결제 수단 관리 */}
-<Route path="/mypage/payment-management" element={<PrivateRoute element={<PaymentManagement />} />} />
+<Route path="/mypage/user-management" element={<PrivateRoute element={<UserManagement />} />} />
 
 {/* 마이페이지 - 문제 신고 */}
 <Route path="/mypage/report-issue" element={<PrivateRoute element={<ReportIssue />} />} />
