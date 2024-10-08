@@ -14,8 +14,8 @@ const MapManagement = () => {
   const [error, setError] = useState(null);
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
+  const [selectedLot, setSelectedLot] = useState(null);
   
-
   // 역지오코딩을 통해 주소 가져오기
   const getAddressFromCoords = (latitude, longitude, callback) => {
     const geocoder = new kakao.maps.services.Geocoder();
@@ -105,7 +105,7 @@ const MapManagement = () => {
 
   useEffect(() => {
     if (map && parkingLots.length > 0) {
-      parkingLots.forEach(lot => {
+      parkingLots.forEach((lot, index) => {
         const markerPosition = new kakao.maps.LatLng(lot.location.latitude, lot.location.longitude);
         const parkingMarkerImage = new kakao.maps.MarkerImage(ParkingLocation, new kakao.maps.Size(100, 50));
 
@@ -114,10 +114,21 @@ const MapManagement = () => {
           image: parkingMarkerImage,
           map: map,
         });
+
         marker.setMap(map); // 마커를 지도에 표시
+
+        // 마커 클릭 이벤트 추가
+        kakao.maps.event.addListener(marker, 'click', () => {
+          handleRobotCheck(index); // 마커 클릭 시 주차장 정보 표시
+        });
       });
     }
   }, [map, parkingLots]);
+
+  // 버튼 클릭 또는 마커 클릭 시 주차장 정보 표시
+  const handleRobotCheck = (index) => {
+    setSelectedLot((prevSelectedLot) => (prevSelectedLot === index ? null : index));
+  };
 
   return (
     <div>
@@ -126,12 +137,26 @@ const MapManagement = () => {
       <div className='ParkingListTitle'>주차장 목록</div>
         {filteredParkingLots.length > 0 ? (
           filteredParkingLots.map((lot, index) => (
-            <li key={index} className='parking_box'>
+            <li key={index} className={`parking_box ${selectedLot === index ? 'active' : ''}`}>
               <img src={lot.image} alt="주차장 이미지" style={{ width: '90px', height: '77px' }} />
               <div className='parking_contents'>
                 <h3 className='parking_name'>{lot.name}</h3>
                 <div className='parking_address'>{lot.address}</div>
+                <button 
+                  className={`check_robot_button ${selectedLot === index ? 'selected' : ''}`} 
+                  onClick={() => handleRobotCheck(index)}
+                >
+                  로봇 확인
+                </button>
               </div>
+
+              {selectedLot === index && (
+                  <div className='robot_info'>
+                  <h4>Robot Information</h4>
+                  <p>주차장: {lot.name}</p>
+                  <p>상태: 충전중 </p>
+                </div>
+              )}
 
             </li>
           ))
