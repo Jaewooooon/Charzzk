@@ -8,6 +8,7 @@ import MyPageReport from '../assets/MypageReport.png';
 import ChargeStatus from '../assets/ChargeStatus.png';
 import ChargeStart from '../assets/ChargeStart.png';
 import Question from '../assets/Question.png';
+import UserImg from '../assets/UserImg.png';
 import axios from 'axios'; 
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { accessTokenState } from '../recoil/LoginAtom';
@@ -74,35 +75,73 @@ const MainPage = () => {
       if (currentIndex >= carData.length) {
         setCurrentIndex(0);
       } else {
-        setPayment(Math.floor(carData[currentIndex].chargeCost) || 0);
-        setChargeAmount(Math.floor(carData[currentIndex].chargeAmount) || 0);
+        const currentCar = carData[currentIndex]; // 현재 차량 데이터 가져오기
+        if (currentCar) { // currentCar가 undefined가 아닐 경우만
+          setPayment(Math.floor(currentCar.chargeCost) || 0);
+          setChargeAmount(Math.floor(currentCar.chargeAmount) || 0);
+        }
       }
     }
   }, [currentIndex, carData]);
+
   return (
     <div className='MainPage_ContainerBox'>
       <button className='Question_button'><img src={Question} alt="도움말" className='Question_logo' /></button>
       <div className='Car_Information' {...handlers}>
         {/* 차량 이미지 슬라이드 */}
         <img 
-          src={carData.length > 0 ? carData[currentIndex].carType.image : CarSample} 
-          alt={carData.length > 0 ? carData[currentIndex].carType.name : "Car Sample"} 
+          src={carData.length > 0 ? carData[currentIndex]?.carType.image : CarSample} 
+          alt={carData.length > 0 ? carData[currentIndex]?.carType.name : "Car Sample"} 
           className="Car_Image" 
         />
         
         <div className='Car_MonthInformation'>
+  <div>
+    <div className='Car_MonthInformation1'>배터리</div>
+    <div className='MonthPayment_Contents'>
+      <div>
+        {/* 배터리 상태 */}
+        {[...Array(10)].map((_, index) => {
+          const batteryLevel = carData[currentIndex]?.battery || 0;
+          let batteryClass = 'NoChargeBattery_img'; // 기본적으로 배터리가 없는 경우 클래스
+
+          if (batteryLevel === 100) {
+            batteryClass = 'ChargeBattery_img1'; // 100%일 경우
+          } else if (batteryLevel >= 70) {
+            batteryClass = 'ChargeBattery_img2'; // 70~99%일 경우
+          } else if (batteryLevel >= 30) {
+            batteryClass = 'ChargeBattery_img3'; // 30~69%일 경우
+          } else if (batteryLevel > 0) {
+            batteryClass = 'ChargeBattery_img4'; // 1~29%일 경우
+          }
+
+          return (
+            <div 
+              key={index} 
+              className={batteryLevel >= (10 - index) * 10 
+                ? batteryClass 
+                : 'NoChargeBattery_img'} // 각 배터리 단계에 따라 클래스 적용
+            ></div>
+          );
+        })}
+      </div>
+      <div>{carData[currentIndex]?.battery || 0}</div>
+      <div className='small_font'>%</div>
+    </div>
+  </div>
+
           <div>
-            <div className='Car_MonthInformation1'>이번달 충전 요금</div>
+            <div className='Car_MonthInformation1'>차량 번호</div>
             <div className='MonthPayment_Contents'>
-              <div>{payment}</div>
-              <div className='small_font'>원</div>
+              <div className='small_font'>{carData[currentIndex]?.number?.slice(0, 3) || "N/A"}</div>
+              <div>{carData[currentIndex]?.number?.slice(3) || "N/A"}</div>
             </div>
           </div>
 
           <div>
             <div className='Car_MonthInformation2'>이번달 충전량</div>
             <div className='MonthCharge_Contents'>
-              <div>{chargeamount}</div>
+              <div className='chargeamount'>{chargeamount || 0}</div>
               <div className='small_font'>kWh</div>
             </div>
           </div>
@@ -141,9 +180,9 @@ const MainPage = () => {
             </button>
           </Link>
           
-          <Link to="/mypage/payment-management">
+          <Link to="/mypage/user-management">
             <button className='Mypage_Payment'>
-              <img src={MyPagePayment} alt="MyPagePayment" className="MyPagePayment_Image" />결제수단 관리
+              <img src={UserImg} alt="MyPagePayment" className="UserImg_Image" />사용자 정보
             </button>
           </Link>
           
