@@ -10,6 +10,7 @@ import com.ssafy.charzzk.domain.charger.ChargerRepository;
 import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
+import com.ssafy.charzzk.domain.reservation.Reservation;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +82,15 @@ public class ParkingLotService {
                 .orElseThrow(() -> new BaseException(ErrorCode.PARKING_LOT_NOT_FOUND));
 
         return parkingLot.getChargers().stream()
-                .map(ChargerResponse::from)
+                .map(charger -> {
+                    List<Reservation> reservations = charger.getReservations().stream()
+                            .filter(Reservation::inUsing)
+                            .sorted(Comparator.comparing(Reservation::getStartTime))
+                            .toList();
+
+                    return ChargerResponse.of(charger, reservations);
+                })
                 .collect(Collectors.toList());
     }
+
 }

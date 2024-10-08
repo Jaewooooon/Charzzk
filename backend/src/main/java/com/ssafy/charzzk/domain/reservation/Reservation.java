@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -98,7 +99,10 @@ public class Reservation extends BaseEntity {
 
     public void cancel() {
         this.status = ReservationStatus.CANCELED;
-        System.out.println("Reservation canceled");
+    }
+
+    public boolean inUsing() {
+        return List.of(ReservationStatus.WAITING, ReservationStatus.CHARGING).contains(this.status);
     }
 
     public void chargeComplete() {
