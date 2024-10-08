@@ -9,21 +9,22 @@
 
 @keyframes changePolygon1 {
     0% {
-      clip-path: polygon(0% 0%, 100% 10%, 100% 100%, 0% 100%);
+      clip-path: polygon(0px 0px, 100% 20px, 100% 100%, 0px 100%);
     }
     100% {
-      clip-path: polygon(0% 8%, 100% 0%, 100% 100%, 0% 100%);
+      clip-path: polygon(0px 10px, 100% 0px, 100% 100%, 0px 100%);
     }
 }
 
 @keyframes changePolygon2 {
     0% {
-      clip-path: polygon(0% 0%, 100% 8%, 100% 100%, 0% 100%);
+      clip-path: polygon(0px 0px, 100% 15px, 100% 100%, 0px 100%);
     }
     100% {
-      clip-path: polygon(0% 10%, 100% 0%, 100% 100%, 0% 100%);
+      clip-path: polygon(0px 20px, 100% 0px, 100% 100%, 0px 100%);
     }
 }
+
 
 .Percent_Show1{
     background: linear-gradient(to bottom, #65f9d132, #3C937B) ;
@@ -34,6 +35,7 @@
     bottom:0;
     left: 0;
     animation: changePolygon1 0.9s infinite alternate;
+    transition: height 0.5s ease-in-out;
 }
 .Percent_Show2{
     background: linear-gradient(to bottom, #65f9d12d, #3c937a48) ;
@@ -45,6 +47,7 @@
     bottom:0;
     left: 0;
     animation: changePolygon2 1s infinite alternate;
+    transition: height 0.5s ease-in-out;
 }
 .Percent_Show3{
     background: linear-gradient(to bottom, #65f9d13a, #3C937B) ;
@@ -56,6 +59,7 @@
     bottom:0;
     left: 0;
     animation: changePolygon2 1.5s infinite alternate;
+    transition: height 0.5s ease-in-out;
 }
 .Percent_Show4{
     background: linear-gradient(to bottom, #65f9d142, #3c937a42) ;
@@ -66,7 +70,20 @@
     position: absolute;
     bottom:0;
     left: 0;
-    animation: changePolygon2 s infinite alternate;
+    animation: changePolygon2 0.8s infinite alternate;
+    transition: height 0.5s ease-in-out;
+}
+.Percent_Show5{
+    background: linear-gradient(to bottom, #65f9d142, #3c937a42) ;
+    clip-path: polygon(0% 2%, 100% 10%, 100% 100%, 0% 100%); 
+    width: 100%;
+    height: 490px;
+    margin-top: auto;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    animation: changePolygon2 1.6s infinite alternate;
+    transition: height 0.5s ease-in-out;
 }
 .Percent_Contents{
     position: absolute;
