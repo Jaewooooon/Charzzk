@@ -80,6 +80,7 @@ public class ReservationManager {
                 reservations.poll();
                 Charger charger = reservation.getCharger();
                 charger.startCharge();
+                reservation.getCar().startCharge();
                 reservation.start();
             }
         }
@@ -136,6 +137,7 @@ public class ReservationManager {
                 reservations.poll();
                 Charger charger = nextReservation.getCharger();
                 charger.startCharge();
+                reservation.getCar().startCharge();
                 nextReservation.start();
             }
         }
@@ -173,6 +175,7 @@ public class ReservationManager {
             if (response.getStatus().equals("success")) {
                 reservations.poll();
                 reservation.getCharger().startCharge();
+                reservation.getCar().startCharge();
                 reservation.start();
             }
         } else { // 다음 예약을 수행할 수 없으면 기본위치로 이동

@@ -376,6 +376,7 @@ public class CarControllerDocsTest extends RestDocsSupport {
         // given
         CarReservationStatusResponse response = CarReservationStatusResponse.builder()
                 .battery(30)
+                .reservationId(1L)
                 .startTime(LocalDateTime.of(2024, 9, 1, 0, 0, 0))
                 .endTime(LocalDateTime.of(2024, 9, 1, 1, 0, 0))
                 .status(ReservationStatus.CHARGING.name())
@@ -415,6 +416,8 @@ public class CarControllerDocsTest extends RestDocsSupport {
                                                 .description("메시지"),
                                         fieldWithPath("data.battery").type(JsonFieldType.NUMBER)
                                                 .description("배터리"),
+                                        fieldWithPath("data.reservationId").type(JsonFieldType.NUMBER)
+                                                .description("예약 아이디"),
                                         fieldWithPath("data.status").type(JsonFieldType.STRING)
                                                 .description("상태"),
                                         fieldWithPath("data.startTime").type(JsonFieldType.STRING)

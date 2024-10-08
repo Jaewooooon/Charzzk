@@ -76,4 +76,8 @@ public class Car extends BaseEntity {
     public void chargeComplete() {
         this.isCharging = false;
     }
+
+    public void startCharge() {
+        this.isCharging = true;
+    }
 }

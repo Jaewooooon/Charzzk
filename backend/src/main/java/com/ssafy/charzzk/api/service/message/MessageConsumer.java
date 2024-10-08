@@ -1,7 +1,5 @@
-package com.ssafy.charzzk.rabbitmq.from_embedded;
+package com.ssafy.charzzk.api.service.message;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ssafy.charzzk.api.service.message.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
