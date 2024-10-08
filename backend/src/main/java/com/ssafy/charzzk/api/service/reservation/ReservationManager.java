@@ -158,29 +158,36 @@ public class ReservationManager {
 
         Reservation reservation = reservations.peek();
 
-        if (!reservations.peek().equals(reservation)) {
-            log.info("충전기의 큐에서 이 예약이 1순위가 아닙니다.");
-        }
+        if (reservation != null) {
+            if (!reservations.peek().equals(reservation)) {
+                log.info("충전기의 큐에서 이 예약이 1순위가 아닙니다.");
+            }
 
-        if (!reservation.getCharger().getStatus().isWaiting()) {
-            log.info("충전기가 사용중입니다.");
-        }
+            if (!reservation.getCharger().getStatus().isWaiting()) {
+                log.info("충전기가 사용중입니다.");
+            }
 
-        if (reservations.peek().getStatus().equals(ReservationStatus.WAITING)) {
-            // FastAPI 서버 요청
-            ChargerCommandRequest chargerCommandRequest = ChargerCommandRequest.of(reservation);
-            ChargerCommandResponse response = chargerClient.command(chargerCommandRequest);
+            if (reservations.peek().getStatus().equals(ReservationStatus.WAITING)) {
+                // FastAPI 서버 요청
+                ChargerCommandRequest chargerCommandRequest = ChargerCommandRequest.of(reservation);
+                ChargerCommandResponse response = chargerClient.command(chargerCommandRequest);
 
-            // 성공하면 충전기의 상태 바꾸기
-            if (response.getStatus().equals("success")) {
-                reservations.poll();
-                reservation.getCharger().startCharge();
-                reservation.getCar().startCharge();
-                reservation.start();
+                // 성공하면 충전기의 상태 바꾸기
+                if (response.getStatus().equals("success")) {
+                    reservations.poll();
+                    reservation.getCharger().startCharge();
+                    reservation.getCar().startCharge();
+                    reservation.start();
+                }
+            } else { // 다음 예약을 수행할 수 없으면 기본위치로 이동
+                log.info("1순위이지만 확정 전입니다.");
+                chargerClient.returnToStart();
             }
         } else { // 다음 예약을 수행할 수 없으면 기본위치로 이동
+            log.info("다음 예약이 없기 때문에 시작 위치로 이동합니다");
             chargerClient.returnToStart();
         }
+
     }
 
     public void deleteAllReservations() {
