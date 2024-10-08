@@ -141,8 +141,12 @@ public class CarService {
             throw new BaseException(ErrorCode.CAR_NOT_BELONG_TO_USER);
         }
 
-        Reservation reservation = reservationRepository.findLatestReservationByCar(car)
+        Reservation reservation = reservationRepository.findLatestReservationByCar(car.getId())
                 .orElseGet(null);
+
+        if (reservation == null) {
+            return null;
+        }
 
         return CarReservationStatusResponse.from(reservation);
     }
