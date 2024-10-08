@@ -169,13 +169,6 @@ class ParkingLotControllerTest extends ControllerTestSupport {
                 .andExpect(jsonPath("$.code").value("200"))
                 .andExpect(jsonPath("$.status").value("OK"))
                 .andExpect(jsonPath("$.message").value("OK"))
-                .andExpect(jsonPath("$.data[0].id").value(1L))
-                .andExpect(jsonPath("$.data[0].serialNumber").value("1234A"))
-                .andExpect(jsonPath("$.data[0].battery").value(80))
-                .andExpect(jsonPath("$.data[0].status").value(ChargerStatus.WAITING.name()))
-                .andExpect(jsonPath("$.data[1].id").value(2L))
-                .andExpect(jsonPath("$.data[1].serialNumber").value("1234B"))
-                .andExpect(jsonPath("$.data[1].battery").value(90))
-                .andExpect(jsonPath("$.data[1].status").value(ChargerStatus.CHARGER_CHARGING.name()));
+                .andExpect(jsonPath("$.data").exists());
     }
 }

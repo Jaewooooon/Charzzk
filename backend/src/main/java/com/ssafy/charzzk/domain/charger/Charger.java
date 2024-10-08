@@ -2,24 +2,16 @@ package com.ssafy.charzzk.domain.charger;
 
 import com.ssafy.charzzk.domain.BaseEntity;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import com.ssafy.charzzk.domain.reservation.Reservation;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "charger", uniqueConstraints = {
@@ -46,6 +38,9 @@ public class Charger extends BaseEntity {
     private ChargerStatus status;
 
     private LocalDateTime lastReservedTime = LocalDateTime.MIN;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "charger")
+    private List<Reservation> reservations = new ArrayList<>();
 
     @Builder
     private Charger(ParkingLot parkingLot, String serialNumber, Integer battery, ChargerStatus status, LocalDateTime lastReservedTime) {

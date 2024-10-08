@@ -17,10 +17,8 @@ import com.ssafy.charzzk.domain.charger.ChargerRepository;
 import com.ssafy.charzzk.domain.charger.ChargerStatus;
 import com.ssafy.charzzk.domain.charginglog.ChargingLog;
 import com.ssafy.charzzk.domain.charginglog.ChargingLogRepository;
-import com.ssafy.charzzk.domain.parkinglot.Location;
-import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
-import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
-import com.ssafy.charzzk.domain.parkinglot.ParkingSpot;
+import com.ssafy.charzzk.domain.notification.Notification;
+import com.ssafy.charzzk.domain.parkinglot.*;
 import com.ssafy.charzzk.domain.reservation.Reservation;
 import com.ssafy.charzzk.domain.reservation.ReservationRepository;
 import com.ssafy.charzzk.domain.reservation.ReservationStatus;
@@ -68,6 +66,9 @@ class CarServiceTest extends IntegrationTestSupport {
 
     @Autowired
     private CarService carService;
+
+    @Autowired
+    private ParkingSpotRepository parkingSpotRepository;
 
     @DisplayName("차량을 등록하면 정상적으로 등록된다.")
     @Test
@@ -838,4 +839,66 @@ class CarServiceTest extends IntegrationTestSupport {
                 .hasMessage(ErrorCode.CAR_NOT_BELONG_TO_USER.getMessage());
     }
 
+    @DisplayName("차량을 삭제하면 관련된 ChargingLog와 Reservation도 함께 삭제된다.")
+    @Test
+    public void deleteCarAndRelatedEntities() {
+        // given
+        User user = User.builder()
+                .username("testuser@gmail.com")
+                .nickname("테스트 유저")
+                .build();
+        userRepository.save(user);
+
+        CarType carType = CarType.builder()
+                .name("테슬라 모델 3")
+                .build();
+        carTypeRepository.save(carType);
+
+        Car car = Car.builder()
+                .user(user)
+                .carType(carType)
+                .number("11가1111")
+                .nickname("테슬라")
+                .build();
+        carRepository.save(car);
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(Location.builder().latitude(37.5665).longitude(126.9780).build())
+                .build();
+        parkingLotRepository.save(parkingLot);
+
+        ParkingSpot parkingSpot = ParkingSpot.builder()
+                .parkingLot(parkingLot)
+                .name("1")
+                .location(Location.builder().latitude(37.5665).longitude(126.9780).build())
+                .build();
+        parkingSpotRepository.save(parkingSpot);
+
+        Charger charger = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("12345")
+                .battery(80)
+                .status(ChargerStatus.WAITING)
+                .build();
+        chargerRepository.save(charger);
+
+        Reservation reservation = Reservation.create(car, parkingSpot, charger,
+                LocalDateTime.of(2024, 9, 1, 10, 0), LocalDateTime.of(2024, 9, 1, 12, 0));
+        reservationRepository.save(reservation);
+
+        ChargingLog chargingLog = ChargingLog.of(reservation);
+        chargingLogRepository.save(chargingLog);
+
+        car.getReservations().add(reservation);
+        car.getChargingLogs().add(chargingLog);
+
+        // when
+        carService.deleteCar(car.getId(), user);
+
+        // then
+        assertThat(carRepository.findById(car.getId())).isEmpty();
+        assertThat(reservationRepository.findById(reservation.getId())).isEmpty();
+        assertThat(chargingLogRepository.findById(chargingLog.getId())).isEmpty();
+    }
 }

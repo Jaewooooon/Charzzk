@@ -1,12 +1,18 @@
 package com.ssafy.charzzk.domain.car;
 
 import com.ssafy.charzzk.domain.BaseEntity;
+import com.ssafy.charzzk.domain.charginglog.ChargingLog;
+import com.ssafy.charzzk.domain.notification.Notification;
+import com.ssafy.charzzk.domain.reservation.Reservation;
 import com.ssafy.charzzk.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(
@@ -28,6 +34,13 @@ public class Car extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "car_type_id", nullable = false)
     private CarType carType;
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE)
+    private List<ChargingLog> chargingLogs = new ArrayList<>();
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.REMOVE)
+    private List<Reservation> reservations = new ArrayList<>();
+
 
     @Column(nullable = false)
     private String number;

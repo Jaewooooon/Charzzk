@@ -3,7 +3,6 @@ package com.ssafy.charzzk.api.service.reservation.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.domain.reservation.Reservation;
-import jakarta.persistence.Column;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -29,7 +28,7 @@ public class ReservationResponse {
         this.status = status;
     }
 
-    public static ReservationResponse of(Reservation findReservation) {
+    public static ReservationResponse from(Reservation findReservation) {
 
         return ReservationResponse.builder()
                 .id(findReservation.getId())
