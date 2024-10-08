@@ -36,8 +36,7 @@
     padding-left: 80px;
     padding-top: 20px;
     border-bottom: 1px solid rgb(223, 223, 223);
-
-
+    
   }
 
   .parking_box{
@@ -58,3 +57,36 @@
   .parking_address{
     font-size: 13px;
   }
+
+  .check_robot_button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 2px 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+  }
+
+  .check_robot_button:hover {
+    background-color: #16a085;
+  }
+
+  .check_robot_button.selected {
+    background-color: #f39c12; /* 선택된 경우 색상 변경 */
+  }
+
+  .robot_info {
+    background-color: rgba(25, 4, 68, 0.7);
+    color: white;
+    padding: 15px;
+    position: fixed; /* fixed로 변경하여 페이지 하단에 고정 */
+    bottom: 0; /* 페이지 하단에 고정 */
+    right: 0px;
+    width: 60%; /* 화면 전체 너비 */
+    z-index: 10;
+}
