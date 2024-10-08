@@ -1,6 +1,7 @@
 .SignUp_contents_box{
     padding-left: 40px;
     margin-top: 22%;
+    margin-bottom: 60px;
 }
 
 .SignUp_contents1, .SignUp_contents2{
@@ -16,6 +17,8 @@
 .SignUpBox_content1{
     color: rgb(140, 140, 140);
     font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 30px;
 }
 .Complete_Signup_Button{
     position: fixed;
@@ -30,4 +33,52 @@
     color: white;
     font-size: 18px;
     font-weight: 600;
+}
+.Nickname_input{
+    height: 35px;
+    border-radius: 10px;
+    width: 200px;
+    border: 1px solid #BABABA;
+}
+.NicknameCheck_btn{
+    height: 40px;
+    background-color: #5CDAB8;
+    border: 1px solid #5CDAB8;
+    border-radius: 10px;
+    color: white;
+    font-weight: bolder;
+    font-size: 15px;
+    margin-left: 20px;
+    width: 120px;
+}
+.NickName_Box{
+    display: flex;
+    width: 90%;
+}
+.SignUp_SelectCar{
+    height: 45px;
+    border-radius: 10px;
+    width: 90%;
+    border: 1px solid #BABABA;
+}
+.SignUp_CarNumber{
+    font-size: 20px;
+    font-weight: bolder;
+}
+.SignUp_Input{
+    height: 35px;
+    border-radius: 10px;
+    width: 200px;
+    border: 1px solid #BABABA;
+}
+.SignUp_CarAddbtn{
+    align-items: center;
+    margin-left: 260px;
+    text-align: left; 
+    margin-top: 15px;
+    background: none;
+    border: none;
+    display: flex;
+    padding-right: 30px;
+    width: 100%;
 }
