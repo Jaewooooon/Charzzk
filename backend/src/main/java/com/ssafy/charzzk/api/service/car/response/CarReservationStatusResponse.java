@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 public class CarReservationStatusResponse {
 
+    private Long reservationId;
     private int battery;
     private String status;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
@@ -19,7 +20,8 @@ public class CarReservationStatusResponse {
     private LocalDateTime endTime;
 
     @Builder
-    private CarReservationStatusResponse(int battery, String status, LocalDateTime startTime, LocalDateTime endTime) {
+    private CarReservationStatusResponse(Long reservationId, int battery, String status, LocalDateTime startTime, LocalDateTime endTime) {
+        this.reservationId = reservationId;
         this.battery = battery;
         this.status = status;
         this.startTime = startTime;
@@ -27,7 +29,9 @@ public class CarReservationStatusResponse {
     }
 
     public static CarReservationStatusResponse from(Reservation reservation) {
+
         return CarReservationStatusResponse.builder()
+                .reservationId(reservation.getId())
                 .battery(reservation.getCar().getBattery())
                 .status(reservation.getStatus().name())
                 .startTime(reservation.getStartTime())
