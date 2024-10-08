@@ -72,6 +72,7 @@ const ChargeStart = () => {
       setIsLoading(false); 
     }
   };
+
   const startCharging = async () => {
     const reservationId = reservationData.data.id; // 예약 ID 가져오기
     setIsLoading(true); // 로딩 시작
@@ -89,7 +90,6 @@ const ChargeStart = () => {
       );
 
       console.log('충전 시작 응답:', response.data); // 응답 데이터 확인
-      // 충전 시작 후 필요한 추가 로직 구현
       navigate('/');
 
     } catch (error) {
@@ -98,7 +98,6 @@ const ChargeStart = () => {
       setIsLoading(false); // 로딩 종료
     }
   };
-
 
   useEffect(() => {
     if (step === 3) {
@@ -114,6 +113,20 @@ const ChargeStart = () => {
     setIsModalOpen(false); // 모달 닫기
     setStep(2); // Step을 2로 변경
   };
+
+  // 모달이 열리고 30초간 아무 이벤트가 없으면 Step을 2로 변경하는 타이머 추가
+  useEffect(() => {
+    let timer;
+    if (isModalOpen) {
+      timer = setTimeout(() => {
+        setIsModalOpen(false); // 모달 닫기
+        setStep(2); // Step을 2로 변경
+      }, 30000); // 30초 후
+    }
+
+    // 컴포넌트가 언마운트되거나 모달이 닫힐 때 타이머를 정리
+    return () => clearTimeout(timer);
+  }, [isModalOpen]);
 
   return (
     <div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import '../components/styles/AddModal.css';
 
 function AddCarModal({ isOpen, onRequestClose, onConfirm, carTypes }) {
   const [selectedCarType, setSelectedCarType] = useState('');

@@ -1,9 +1,51 @@
+.UserManagement_container {
+    padding: 20px;
+  }
 
-.UserPatch_box{
-    background-color: #9AEED7;
-    height: 15vh;    
-}
-
-.Hi_contents{
-    margin: 0px;
-}
+  .UserPatch_box {
+    display: flex;
+    align-items: center;
+    background-color: #9AEED7; /* 배경색 */
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  
+  .logoImage {
+    width: 60px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .Hi_contents {
+    flex: 1;
+    font-size: 23px;
+    color: #333;
+  }
+  
+  .nextButton {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 54px;
+  }
+  
+  .history_box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .history_content {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 30px;
+    height: 100px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  }
