@@ -8,16 +8,28 @@ import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingSpotListResponse;
+import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
+import com.ssafy.charzzk.api.service.reservation.response.ReservationSimpleResponse;
 import com.ssafy.charzzk.docs.RestDocsSupport;
+import com.ssafy.charzzk.domain.car.Car;
+import com.ssafy.charzzk.domain.car.CarType;
+import com.ssafy.charzzk.domain.charger.Charger;
 import com.ssafy.charzzk.domain.charger.ChargerStatus;
 import com.ssafy.charzzk.domain.parkinglot.Location;
+import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
+import com.ssafy.charzzk.domain.parkinglot.ParkingSpot;
+import com.ssafy.charzzk.domain.reservation.Reservation;
+import com.ssafy.charzzk.domain.reservation.ReservationStatus;
+import com.ssafy.charzzk.domain.user.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
 import static com.epages.restdocs.apispec.ResourceDocumentation.resource;
@@ -190,10 +202,75 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
     @Test
     void getChargerList() throws Exception {
         // given
+        User user = User.builder()
+                .username("user@google.com")
+                .nickname("user")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테스트 차종")
+                .build();
+
+        Car car = Car.builder()
+                .user(user)
+                .carType(carType)
+                .number("12다1234")
+                .build();
+
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        ParkingSpot parkingSpot = ParkingSpot.builder()
+                .parkingLot(parkingLot)
+                .name("1")
+                .location(location)
+                .build();
+
+        Charger charger = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("1")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        parkingLot.getChargers().add(charger);
+
+        Reservation reservation1 = Reservation.builder()
+                .id(2L)
+                .car(car)
+                .parkingSpot(parkingSpot)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 1, 1, 0, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .status(ReservationStatus.PENDING)
+                .build();
+
+        Reservation reservation2 = Reservation.builder()
+                .id(2L)
+                .car(car)
+                .parkingSpot(parkingSpot)
+                .charger(charger)
+                .startTime(LocalDateTime.of(2024, 2, 1, 0, 0))
+                .endTime(LocalDateTime.of(2024, 2, 1, 1, 0))
+                .status(ReservationStatus.PENDING)
+                .build();
+
         ChargerResponse chargerResponse1 = ChargerResponse.builder()
                 .id(1L)
                 .serialNumber("1234A")
                 .battery(80)
+                .reservations(
+                        Stream.of(reservation1, reservation2)
+                                .map(ReservationSimpleResponse::from)
+                                .toList()
+                )
                 .status(ChargerStatus.WAITING)
                 .build();
 
@@ -201,8 +278,15 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                 .id(2L)
                 .serialNumber("1234B")
                 .battery(90)
+                .reservations(
+                        Stream.of(reservation1, reservation2)
+                                .map(ReservationSimpleResponse::from)
+                                .toList()
+                )
                 .status(ChargerStatus.CHARGER_CHARGING)
                 .build();
+
+
         List<ChargerResponse> chargerList = List.of(chargerResponse1, chargerResponse2);
 
         given(parkingLotService.getChargerList(any(Long.class))).willReturn(chargerList);
@@ -234,17 +318,26 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                                                 .description("상태"),
                                         fieldWithPath("message").type(JsonFieldType.STRING)
                                                 .description("메시지"),
-                                        fieldWithPath("data[].id").type(JsonFieldType.NUMBER)
+                                        fieldWithPath("data[].chargerId").type(JsonFieldType.NUMBER)
                                                 .description("충전 로봇 아이디"),
                                         fieldWithPath("data[].serialNumber").type(JsonFieldType.STRING)
                                                 .description("충전 로봇 시리얼 번호"),
                                         fieldWithPath("data[].battery").type(JsonFieldType.NUMBER)
                                                 .description("충전 로봇 배터리"),
                                         fieldWithPath("data[].status").type(JsonFieldType.STRING)
-                                                .description("충전 로봇 상태")
-                                )
+                                                .description("충전 로봇 상태"),
+                                        fieldWithPath("data[].reservations[].id").type(JsonFieldType.NUMBER)
+                                                .description("예약 아이디"),
+                                        fieldWithPath("data[].reservations[].carNumber").type(JsonFieldType.STRING)
+                                                .description("예약의 자동차번호"),
+                                        fieldWithPath("data[].reservations[].startTime").type(JsonFieldType.STRING)
+                                                .description("예약 시작시간"),
+                                        fieldWithPath("data[].reservations[].endTime").type(JsonFieldType.STRING)
+                                                .description("예약 시작시간"))
                                 .build()
                         )
                 ));
+
+
     }
 }

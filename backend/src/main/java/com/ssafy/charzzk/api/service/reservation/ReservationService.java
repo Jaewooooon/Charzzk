@@ -55,7 +55,7 @@ public class ReservationService {
         Reservation findReservation = reservationRepository.findByIdWithCar(reservationId)
                 .orElseThrow(() -> new BaseException(ErrorCode.RESERVATION_NOT_FOUND));
 
-        return ReservationResponse.of(findReservation);
+        return ReservationResponse.from(findReservation);
     }
 
     @Transactional
@@ -150,7 +150,7 @@ public class ReservationService {
         List<ReservationQueueResponse> response = new ArrayList<>();
 
         for (Map.Entry<Long, Queue<Reservation>> entry : reservationMap.entrySet()) {
-            ReservationQueueResponse.of(entry.getKey(), entry.getValue().stream().map(ReservationResponse::of).collect(Collectors.toList()));
+            ReservationQueueResponse.of(entry.getKey(), entry.getValue().stream().map(ReservationResponse::from).collect(Collectors.toList()));
         }
 
         return response;

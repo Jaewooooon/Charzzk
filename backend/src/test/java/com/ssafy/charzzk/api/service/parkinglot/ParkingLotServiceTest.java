@@ -242,7 +242,7 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
 
         // then
         assertThat(chargers).hasSize(2)
-                .extracting("id", "serialNumber", "battery", "status")
+                .extracting("chargerId", "serialNumber", "battery", "status")
                 .containsExactlyInAnyOrder(
                         tuple(charger1ParkingLot1.getId(), "1234A", 80, ChargerStatus.WAITING),
                         tuple(charger2ParkingLot1.getId(), "1234B", 90, ChargerStatus.CHARGER_CHARGING)
