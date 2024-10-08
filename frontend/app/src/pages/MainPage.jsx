@@ -74,8 +74,8 @@ const MainPage = () => {
       if (currentIndex >= carData.length) {
         setCurrentIndex(0);
       } else {
-        setPayment(carData[currentIndex].chargeCost || 0);
-        setChargeAmount(carData[currentIndex].chargeAmount || 0);
+        setPayment(Math.floor(carData[currentIndex].chargeCost) || 0);
+        setChargeAmount(Math.floor(carData[currentIndex].chargeAmount) || 0);
       }
     }
   }, [currentIndex, carData]);

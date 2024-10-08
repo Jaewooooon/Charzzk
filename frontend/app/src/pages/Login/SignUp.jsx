@@ -14,6 +14,7 @@ import {
 } from '../../recoil/SignupData.jsx';
 import { accessTokenState } from '../../recoil/LoginAtom.jsx';
 import { useNavigate } from 'react-router-dom';
+import Pluscircle from '../../assets/Pluscircle.png'
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -150,6 +151,7 @@ const SignUp = () => {
 
     return (
         <>
+
             <GobackButton />
             <div className='SignUp_contents_box'>
                 <div className='SignUp_contents1'>회원정보 및 차량정보를</div>
@@ -158,14 +160,23 @@ const SignUp = () => {
             
             <div className="SignUpBox_contents">
                             {/* 닉네임 입력 및 중복 확인 */}
+
+            
             <div className="SignUpBox_content1"> 닉네임</div>
+            <div className="NickName_Box">
             <input 
                 type="text" 
                 value={nickname} 
                 onChange={(e) => setNickname(e.target.value)} 
+                className="Nickname_input"
             />
-            <button onClick={checkNickname}>중복확인</button>
+
+            <button onClick={checkNickname} className="NicknameCheck_btn">중복확인</button>
+            </div>
+            
             <br />
+            <button onClick={addCar} className="SignUp_CarAddbtn"><img src={Pluscircle} alt="차량추가" />   
+            <div>차량 추가</div></button>
 
             {/* 닉네임 중복 확인 메시지 출력 */}
             {nicknameCheckMessage && (
@@ -177,11 +188,12 @@ const SignUp = () => {
             {/* 차량 추가 */}
             {carList.map((car, index) => (
                 <div key={index}>
-                    <div>차량 {index + 1}</div>
+                    <div className="SignUp_CarNumber">차량 {index + 1}</div>
                     <div className="SignUpBox_content1"> 차량 기종</div>
                     <select
                         value={car.carType}
                         onChange={(e) => handleCarChange(index, 'carType', e.target.value)}
+                        className="SignUp_SelectCar"
                     >
                         <option value="">차량 기종을 선택하세요</option>
                         {carTypes.length > 0 ? (
@@ -200,6 +212,7 @@ const SignUp = () => {
                         type="text" 
                         value={car.carNumber}
                         onChange={(e) => handleCarChange(index, 'carNumber', e.target.value)} 
+                        className="SignUp_Input"
                     />
 
                     <div className="SignUpBox_content1">차량 별명</div>
@@ -207,12 +220,13 @@ const SignUp = () => {
                         type="text" 
                         value={car.carNickname}
                         onChange={(e) => handleCarChange(index, 'carNickname', e.target.value)} 
+                        className="SignUp_Input"
                     />
                     <br />
                 </div>
             ))}
 
-            <button onClick={addCar}>차량 추가</button>
+            
             <br />
             <button onClick={handleSignUp} className="Complete_Signup_Button">회원가입 완료</button>
             </div>
