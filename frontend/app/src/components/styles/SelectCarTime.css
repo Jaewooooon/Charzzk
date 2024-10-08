@@ -24,6 +24,47 @@
   .SelectCarTime_Carimg{
     width: 100%;
   }
-  .SelectCarTime_contents{
+  .SelectCarTime_contents {
     color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: row; /* 세로 정렬 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+  }
+  
+  .CarNumber, .CarType, .BatteryLevel {
+    margin-bottom: 10px; /* 각 항목 사이에 여백 추가 */
+  }
+
+  .BatteryLevel {
+    color: #00FF00; /* 배터리 잔량을 녹색으로 설정 */
+  }
+  .CarNumber {
+    font-weight: bold; /* 차량 번호를 강조 */
+  }
+  
+  .CarType {
+    font-style: italic; /* 차량 종류에 기울임꼴 적용 */
+  }
+  
+  
+  .SelectTime{
+    display: block; /* select 요소를 블록으로 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    font-size: 16px; /* 폰트 크기 설정 */
+    padding: 10px; /* 내부 여백 설정 */
+    width: 350px; /* 원하는 너비 설정 */
+    border: 2px solid #ccc; /* 테두리 색상과 두께 설정 */
+    border-radius: 10px;
+    outline: none; /* 선택 시 기본 윤곽선 제거 */
+  }
+  .contents{
+    padding: 10px;
+    font-size: 18px; /* 텍스트 크기 */
+    font-weight: bold; /* 텍스트 두께 */
   }

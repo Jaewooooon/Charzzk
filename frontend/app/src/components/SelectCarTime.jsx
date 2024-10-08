@@ -93,12 +93,23 @@ function SelectCarTime({ setIsReady }) {
             className='SelectCarTime_Carimg' 
           />
           <div className='SelectCarTime_contents'>
-            <div>차량 번호: {carData[currentIndex].number}</div>
-            <div>차량 종류: {carData[currentIndex].carType.name}</div>
-            <div>배터리 잔량: {carData[currentIndex].battery}%</div>
+            <div className='Battery'>
+              <div className='BatteryIcon'></div>
+              <div className='BatteryLevel'>{carData[currentIndex].battery}%</div>
+            </div>
+            <div className='CarNumber'>
+              <div>차량 번호</div>
+              <div>{carData[currentIndex].number}</div>
+            </div>
+            <div className='CarType'>
+              <div>차량 종류</div>
+              <div>{carData[currentIndex].carType.name}</div>
+            </div>
           </div>
         </div>
-        
+
+        <p></p>
+        <div className='contents'>충전 시간 설정</div>
         <select 
           value={chargeTime} 
           onChange={handleChargeTimeChange} 

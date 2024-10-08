@@ -55,10 +55,11 @@ function SelectParking2({ setIsReady }) {
         <img src={ChargeMap} alt="충전지도" className='ChargeMapimg' />
       </div>
 
+      <div className='contents'>주차 위치 입력</div>
       <select value={selectedSpot} onChange={handleSpotSelect} className='ParkingSpotSelect'>
         <option value="">주차 공간을 선택하세요</option>
         {parkingSpots.map(spot => (
-          <option key={spot.id} value={spot.name}>{spot.name}</option>
+          <option key={spot.id} value ={spot.name}>{spot.name}</option>
         ))}
       </select>
     </div>
