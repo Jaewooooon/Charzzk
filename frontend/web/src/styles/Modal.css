@@ -1,0 +1,54 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .close-button {
+    background-color: #f4433600;
+    color: rgb(120, 120, 120);
+    border: none;
+    cursor: pointer;
+    margin-bottom: 0px;
+    margin-left: 470px;
+    font-weight: 500;
+    font-size: 30px;
+  }
+
+  .reportContents{
+    margin-top: 50px;
+    background-color: #e3fbf6;
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  .confirmation-container {
+    display: flex;
+    justify-content: center; /* 버튼을 가운데 정렬 */
+    margin-top: 20px; /* 위쪽 여백 추가 */
+  }
+  
+  .ConfirmReport {
+    background-color: #4DC2A3;
+    width: 250px;
+    height: 50px;
+    border: none;
+    color: white;
+    font-weight: bolder;
+    font-size: 15px;
+    border-radius: 10px;
+  }

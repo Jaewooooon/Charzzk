@@ -18,10 +18,9 @@
     top: 63px; /* 원하는 위치로 조정 */
     left: 80px;
     width: 300px;
-    height: 85%;
+    height: 100%;
     overflow-y: auto;
     background-color: #F3F3F3; 
-    border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px;
     z-index: 1; 
@@ -89,4 +88,10 @@
     right: 0px;
     width: 60%; /* 화면 전체 너비 */
     z-index: 10;
+}
+
+.ParkingListBox{
+  display: flex;
+  flex-direction: column;
+  height: 88.2vh;
 }

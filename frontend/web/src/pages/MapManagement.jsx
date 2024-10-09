@@ -83,7 +83,7 @@ const MapManagement = () => {
 
             Promise.all(updatedLots).then((resolvedLots) => {
               setParkingLots(resolvedLots);
-              setFilteredParkingLots(resolvedLots); // 필터링된 주차장 리스트 업데이트
+              setFilteredParkingLots(resolvedLots);  // 필터링된 주차장 리스트 업데이트
             });
           })
           .catch(error => {
@@ -132,22 +132,17 @@ const MapManagement = () => {
 
   return (
     <div>
-      <div id="KakaoMap" style={{ width: '100%', height: '86vh' }}></div>
+      <div id="KakaoMap" style={{ width: '100%', height: '90vh' }}></div>
       <ul className='ParkingListBox'>
       <div className='ParkingListTitle'>주차장 목록</div>
         {filteredParkingLots.length > 0 ? (
           filteredParkingLots.map((lot, index) => (
-            <li key={index} className={`parking_box ${selectedLot === index ? 'active' : ''}`}>
+            <li key={index} className={`parking_box ${selectedLot === index ? 'active' : ''}`} onClick={() => handleRobotCheck(index)}>
               <img src={lot.image} alt="주차장 이미지" style={{ width: '90px', height: '77px' }} />
               <div className='parking_contents'>
                 <h3 className='parking_name'>{lot.name}</h3>
                 <div className='parking_address'>{lot.address}</div>
-                <button 
-                  className={`check_robot_button ${selectedLot === index ? 'selected' : ''}`} 
-                  onClick={() => handleRobotCheck(index)}
-                >
-                  로봇 확인
-                </button>
+
               </div>
 
               {selectedLot === index && (
