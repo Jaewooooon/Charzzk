@@ -171,7 +171,7 @@ const ChargeStart = () => {
               : "충전 시작 시간을 가져오는 데 실패했습니다."}</div>
             <p className='chargestart_content'>충전시작  {new Date(reservationData.data.startTime).toLocaleString()}</p>
             <p className='chargeend_content'>충전완료  {new Date(reservationData.data.endTime).toLocaleString()}</p>
-            <div className='ChargeStart_btn'>
+            <div >
             <button className='ChargeStart_btn' onClick={startCharging} >충전 시작</button>
             <button className='Cancel_btn' onClick={handleCancel}>취소하기</button>
             </div>
