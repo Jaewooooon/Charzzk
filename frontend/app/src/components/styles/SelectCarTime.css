@@ -1,10 +1,11 @@
 .SelectCarTime {
     padding: 0px; /* 전체 여백 */
-    margin-top: 60px;
+    margin-top: 80px;
     height: 100vh; /* 전체 화면 높이 */
   }
   
   .SelectCarTime_contents_box {
+
     margin-bottom: 20px; /* 주차장 선택 안내 텍스트와 검색창 사이 여백 */
   }
   
@@ -17,13 +18,110 @@
   
   .SelectCar {
     margin-top: 15px;
-    height: 28vh;
     background: linear-gradient(to bottom,#010103,#2A2452);
+    padding: 20px;
   }
   
   .SelectCarTime_Carimg{
     width: 100%;
   }
-  .SelectCarTime_contents{
-    color: white;
+
+  .SelectCarTime_contents {
+    display: flex;
+    justify-content:space-between;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 12px;
+    font-family: 'MinSans-Regular';
+    margin: 10px;
   }
+  
+  .CarNumber, .CarType, .BatteryLevel {
+    margin-bottom: 10px; /* 각 항목 사이에 여백 추가 */
+  }
+
+  .BatteryLevel {
+    color: #00FF00; /* 배터리 잔량을 녹색으로 설정 */
+  }
+  .CarNumber {
+    font-weight: bold; /* 차량 번호를 강조 */
+  }
+  
+  .CarType {
+    font-style: italic; /* 차량 종류에 기울임꼴 적용 */
+  }
+  
+  
+  .SelectTime{
+    display: block; /* select 요소를 블록으로 설정 */
+    margin: 0 auto; /* 가운데 정렬 */
+    font-size: 16px; /* 폰트 크기 설정 */
+    padding: 10px; /* 내부 여백 설정 */
+    width: 350px; /* 원하는 너비 설정 */
+    border: 2px solid #ccc; /* 테두리 색상과 두께 설정 */
+    border-radius: 10px;
+    outline: none; /* 선택 시 기본 윤곽선 제거 */
+  }
+  .contents{
+    padding: 10px;
+    padding-left: 30px;
+    font-size: 18px; /* 텍스트 크기 */
+    font-weight: bold; /* 텍스트 두께 */
+  }
+  .MonthPayment_Contents{
+    display: flex;
+    font-family: 'LAB디지털';
+    font-size: 30px;
+    font-weight: bolder;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+
+  .NoChargeBattery_img{
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 22px;
+    height: 2px;
+    margin-top: 1px;
+    margin-right: 15px;
+  }
+
+  .ChargeBattery_img1{
+    background-color: #00F950;
+    width: 22px;
+    height: 1.8px;
+    margin-top: 1px;
+    margin-right: 15px;
+  }
+  .ChargeBattery_img2{
+    background-color: #47ff82;
+    width: 22px;
+    height: 1.8px;
+    margin-top: 1px;
+    margin-right: 15px;
+  }
+  .ChargeBattery_img3{
+    background-color: #ffee6c;
+    width: 22px;
+    height: 1.8px;
+    margin-top: 1px;
+    margin-right: 15px;
+  }
+  .ChargeBattery_img4{
+    background-color: #fe0d04;
+    width: 22px;
+    height: 1.8px;
+    margin-top: 1px;
+    margin-right: 15px;
+  }
+  .Car_MonthInformation1{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-right: 60px;
+    padding-bottom: 5px;
+    font-family: 'MinSans-Regular';
+}
+.MonthPayment_Contents2{
+  display: flex;
+  font-size: 13px;
+  font-weight: bolder;
+  font-weight: 500;
+  margin-top: 15px;
+}

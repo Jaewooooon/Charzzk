@@ -15,7 +15,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 100px;
+    z-index: 100;
   }
   
   /* 상단 네비게이션 바 */

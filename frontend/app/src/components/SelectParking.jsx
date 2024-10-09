@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { parkingState } from '../recoil/parkingState.jsx'; // parkingState atom import
 import '../components/styles/SelectParking.css'; // CSS 파일 임포트
 
+
 function SelectParking({ setIsReady }) { // setIsReady를 props로 추가
   const [parkingLots, setParkingLots] = useState([]); // 주차장 목록 상태
   const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
@@ -94,7 +95,11 @@ function SelectParking({ setIsReady }) { // setIsReady를 props로 추가
               <div className='ParkingInfo'>
                 <h3 className='ParkingName'>{lot.name}</h3>
                 <div className='ParkingAddress'>{lot.address}</div>
-                <div className='ParkingDistance'>{Math.floor(lot.distance)}m</div>
+                <div className='ParkingDistance'>
+                   {lot.distance >= 1000 
+                       ? `${(lot.distance / 1000).toFixed(1)}km`  
+                       : `${Math.floor(lot.distance)}m`}          
+                       </div>
               </div>
             </li>
           ))

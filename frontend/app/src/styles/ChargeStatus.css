@@ -94,11 +94,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    z-index: 1000;
 }
 .AutoCharge_Contents{
     font-size: 30px;
     font-weight: 900;
     margin: 0;
+    font-family: 'yg-jalnan';
+    color: #2a473f;
 }
 .ChargePercent_Contents{
     font-size: 60px;
@@ -106,7 +109,7 @@
     margin: 0;
 }
 .ChargeStatus_Contents{
-    color: #70A89A;
+    color: #569484;
     font-size: 25px;
     font-weight: 900;
     margin: 0;
@@ -116,10 +119,18 @@
     margin-top: 10px;
     font-size: 15px;
     font-weight: 900;
+    display: flex;
+    gap: 5px;
 }
 .ChargeComplete_Contents{
     margin: 0;
     font-size: 15px;
     font-weight: 900;
+    display: flex;
+    gap: 5px;
 }
 
+.charge_time{
+    color: #427467;
+    font-size: 15px;
+}
