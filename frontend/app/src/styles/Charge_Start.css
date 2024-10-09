@@ -34,13 +34,16 @@
     font-size: 60px;
     color: white;
     font-weight: 900;
-
+    font-family: 'yg-jalnan';
+    margin: 10px;
 }
 .chargestart_content, .chargeend_content{
     color: white;
     font-weight: 900;
+    margin: 10px;
+    
 }
-.ChargeStart_btn{
+.ChargeStart_btn {
     background-color: #5CDAB8;
     border: none;
     border-radius: 15px;
@@ -50,21 +53,39 @@
     color: white;
     font-weight: bolder;
     font-size: 16px;
+    font-family: 'yg-jalnan';
 }
-.Cancel_btn{
+
+.Cancel_btn {
     background-color: white;
     border: none;
     border-radius: 15px;
     width: 300px;
-    height: 50px;
+    height: 50px; 
     margin: 10px;
     color: #5CDAB8;
     font-weight: bolder;
     font-size: 16px;
+    font-family: 'yg-jalnan';
 }
+
+
 .CompleteCharge_contents{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 100%;
 }
+
+div.modal-content{
+        background-color: #5cdab800;
+        height: 100%;
+    }
+
+    .HowWaiting{
+        color: #5CDAB8;
+        font-size: 25px;
+        font-weight: bolder;
+        font-family: 'yg-jalnan';
+    }

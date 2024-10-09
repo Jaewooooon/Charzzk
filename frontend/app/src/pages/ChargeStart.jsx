@@ -9,6 +9,7 @@ import SelectParking from '../components/SelectParking';
 import SelectParking2 from '../components/SelectParking2';
 import SelectCarTime from '../components/SelectCarTime';
 import CompleteChargeModal from '../components/CompleteChargeModal';
+import StepDownButton from '../components/StepDownButton'; // StepDownButton 임포트
 import { batteryState } from '../recoil/batteryState';
 import { buttonState } from '../recoil/buttonState';
 import { parkingState } from '../recoil/parkingState'; 
@@ -36,6 +37,12 @@ const ChargeStart = () => {
     if (isReady) {
       setStep(prevStep => prevStep + 1);
       setIsReady(false);
+    }
+  };
+
+  const goToPreviousStep = () => {
+    if (step > 0) {
+      setStep(prevStep => prevStep - 1);
     }
   };
 
@@ -90,7 +97,8 @@ const ChargeStart = () => {
       );
 
       console.log('충전 시작 응답:', response.data); // 응답 데이터 확인
-      navigate('/');
+      // 충전 시작 후 필요한 추가 로직 구현
+      navigate('/charge-status');
 
     } catch (error) {
       console.error('충전 시작 요청 중 오류 발생:', error.response?.data || error.message);
@@ -128,10 +136,23 @@ const ChargeStart = () => {
     return () => clearTimeout(timer);
   }, [isModalOpen]);
 
+  const calculateMinutesUntilStart = (startTime) => {
+    const now = new Date();
+    const startDateTime = new Date(startTime);
+    const diffInMs = startDateTime - now; // 밀리초 차이 계산
+    const diffInMinutes = Math.ceil(diffInMs / (1000 * 60)); // 분으로 변환
+
+    return diffInMinutes >= 0 ? diffInMinutes : 0; // 음수일 경우 0으로 처리
+  };
+
+  const minutesUntilStart = reservationData ? calculateMinutesUntilStart(reservationData.data.startTime) : null;
+
   return (
     <div>
       <GoBackButton />
       {isReady ? <ReadyNextButton onClick={goToNextStep} /> : <NotReadyNextButton />}
+      
+      <StepDownButton onClick={goToPreviousStep} /> {/* 이전 단계 버튼 추가 */}
 
       {step === 0 && <SelectParking setIsReady={setIsReady} />}
       {step === 1 && <SelectParking2 setIsReady={setIsReady} />}
@@ -145,10 +166,17 @@ const ChargeStart = () => {
         ) : reservationData ? (
           <div className='CompleteCharge_contents'>
             <p className='battery_value'>{batteryValue}%</p>
-            <p className='chargestart_content'>충전시작시각 {new Date(reservationData.data.startTime).toLocaleString()}</p>
-            <p className='chargeend_content'>충전완료시각 {new Date(reservationData.data.endTime).toLocaleString()}</p>
+            <div className='HowWaiting'>{minutesUntilStart !== null ? 
+              `${minutesUntilStart === 0 ? "바로 충전 시작" : `${minutesUntilStart}분 후 충전 시작`}` 
+              : "충전 시작 시간을 가져오는 데 실패했습니다."}</div>
+            <p className='chargestart_content'>충전시작  {new Date(reservationData.data.startTime).toLocaleString()}</p>
+            <p className='chargeend_content'>충전완료  {new Date(reservationData.data.endTime).toLocaleString()}</p>
+            <div >
             <button className='ChargeStart_btn' onClick={startCharging} >충전 시작</button>
             <button className='Cancel_btn' onClick={handleCancel}>취소하기</button>
+            </div>
+            
+
           </div>
         ) : (
           <p>예약 정보를 가져오는 데 실패했습니다.</p>

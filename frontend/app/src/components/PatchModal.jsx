@@ -21,6 +21,7 @@ function PatchModal({ isOpen, onRequestClose, onConfirm, carData }) {
     onConfirm(updatedCarData);
   };
 
+  
   return (
     <Modal isOpen={isOpen} onRequestClose={onRequestClose}>
       <h2>차량 정보 수정</h2>
