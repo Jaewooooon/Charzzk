@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import '../components/styles/PatchModal.css';
 
 function PatchModal({ isOpen, onRequestClose, onConfirm, carData }) {
   const [carTypeId, setCarTypeId] = useState('');
@@ -29,14 +30,16 @@ function PatchModal({ isOpen, onRequestClose, onConfirm, carData }) {
         value={number}
         onChange={(e) => setNumber(e.target.value)}
       />
+      <p></p>
       <label>닉네임</label>
       <input
         type="text"
         value={nickname}
         onChange={(e) => setNickname(e.target.value)}
       />
-      <button onClick={handleConfirm}>확인</button>
-      <button onClick={onRequestClose}>취소</button>
+      <p></p>
+      <button className="confirm-button" onClick={handleConfirm}>확인</button>
+      <button className="cancel-button" onClick={onRequestClose}>취소</button>
     </Modal>
   );
 }
