@@ -22,10 +22,6 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping(value = "/api/v1/users")
-    public ApiResponse<List<UserResponse>> getUsers() {
-        return ApiResponse.ok(userService.getUsers());
-    }
 
     @GetMapping(value = "/api/v1/users/check-nickname")
     public ApiResponse<String> checkNickname(

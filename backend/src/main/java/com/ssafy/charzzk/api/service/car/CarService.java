@@ -25,8 +25,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.ssafy.charzzk.api.service.car.CarConstant.CHARGE_AMOUNT_PER_HOUR;
-import static com.ssafy.charzzk.api.service.car.CarConstant.COST_PER_KWH;
+import static com.ssafy.charzzk.api.service.car.CarConst.CHARGE_AMOUNT_PER_HOUR;
+import static com.ssafy.charzzk.api.service.car.CarConst.COST_PER_KWH;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -142,7 +142,7 @@ public class CarService {
         }
 
         Reservation reservation = reservationRepository.findLatestReservationByCar(car.getId())
-                .orElseGet(null);
+                .orElse(null);
 
         if (reservation == null) {
             return null;

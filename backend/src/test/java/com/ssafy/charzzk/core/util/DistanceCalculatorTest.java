@@ -50,4 +50,10 @@ class DistanceCalculatorTest {
         // then
         assertThat(distance).isEqualTo(1.0117369194124365E7);
     }
+
+    @DisplayName("기본생성자 테스트")
+    @Test
+    public void noArgsConstructor() {
+        new DistanceCalculator();
+    }
 }

@@ -36,17 +36,16 @@ public class MessageService {
     }
 
     @Transactional
-    public ChargingLog chargeComplete(Long reservationId) {
+    public void chargeComplete(Long reservationId) {
         Reservation reservation = reservationRepository.findByIdWithCarAndCharger(reservationId)
                 .orElseThrow(() -> new BaseException(ErrorCode.RESERVATION_NOT_FOUND));
 
         reservation.chargeComplete();
 
-        // reservationManager에서 충전기의 다음 예약 진행하기
         reservationManager.executeNextReservation(reservation.getCharger());
 
         ChargingLog chargingLog = ChargingLog.of(reservation);
-        return chargingLogRepository.save(chargingLog);
-        // TODO 알림
+        chargingLogRepository.save(chargingLog);
     }
+
 }

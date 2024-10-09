@@ -5,6 +5,7 @@ import com.ssafy.charzzk.api.service.car.CarService;
 import com.ssafy.charzzk.api.service.car.request.CarServiceRequest;
 import com.ssafy.charzzk.api.service.car.response.CarListResponse;
 import com.ssafy.charzzk.api.service.car.response.CarReservationStatusResponse;
+import com.ssafy.charzzk.api.service.car.response.CarResponse;
 import com.ssafy.charzzk.api.service.car.response.CarTypeResponse;
 import com.ssafy.charzzk.core.exception.BaseException;
 import com.ssafy.charzzk.core.exception.ErrorCode;
@@ -17,7 +18,6 @@ import com.ssafy.charzzk.domain.charger.ChargerRepository;
 import com.ssafy.charzzk.domain.charger.ChargerStatus;
 import com.ssafy.charzzk.domain.charginglog.ChargingLog;
 import com.ssafy.charzzk.domain.charginglog.ChargingLogRepository;
-import com.ssafy.charzzk.domain.notification.Notification;
 import com.ssafy.charzzk.domain.parkinglot.*;
 import com.ssafy.charzzk.domain.reservation.Reservation;
 import com.ssafy.charzzk.domain.reservation.ReservationRepository;
@@ -34,8 +34,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.ssafy.charzzk.api.service.car.CarConstant.CHARGE_AMOUNT_PER_HOUR;
-import static com.ssafy.charzzk.api.service.car.CarConstant.COST_PER_KWH;
+import static com.ssafy.charzzk.api.service.car.CarConst.CHARGE_AMOUNT_PER_HOUR;
+import static com.ssafy.charzzk.api.service.car.CarConst.COST_PER_KWH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -182,6 +182,45 @@ class CarServiceTest extends IntegrationTestSupport {
 
     }
 
+    @DisplayName("차량을 조회하면 정상적으로 반환된다.")
+    @Test
+    public void getCar() {
+        User user = User.builder()
+                .username("test@gmail.com")
+                .nickname("nickname")
+                .build();
+
+        CarType cartype = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("abc/def")
+                .build();
+
+        Car car = Car.builder()
+                .carType(cartype)
+                .number("11가1111")
+                .nickname("콩이")
+                .user(user)
+                .build();
+
+        carRepository.save(car);
+
+        CarResponse response = carService.getCar(car.getId());
+
+        assertThat(response).isNotNull()
+                .extracting("number", "nickname")
+                .containsExactly("11가1111", "콩이");
+    }
+
+    @DisplayName("없는 차량을 조회하면 정상적으로 반환된다.")
+    @Test
+    public void getCarWithInvalidCarId() {
+        // when, then
+        assertThatThrownBy(() -> carService.getCar(1L))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.CAR_NOT_FOUND.getMessage());
+    }
+
+
     @DisplayName("차종 이름으로 검색하면 해당하는 차종들만 반환한다.")
     @Test
     public void getCarTypesByName() {
@@ -248,6 +287,31 @@ class CarServiceTest extends IntegrationTestSupport {
         assertThat(updatedCar.getNumber()).isEqualTo("22나2222");
         assertThat(updatedCar.getNickname()).isEqualTo("새로운 콩이");
 
+    }
+
+    @DisplayName("없는 차를 수정하면 예외가 발생한다.")
+    @Test
+    public void updateCarWithInvalidCarId() {
+        User user = User.builder()
+                .username("test@gmail.com")
+                .nickname("nickname")
+                .build();
+
+        CarType cartype = CarType.builder()
+                .name("테슬라 모델 3")
+                .image("abc/def")
+                .build();
+
+        CarServiceRequest request = CarServiceRequest.builder()
+                .carTypeId(cartype.getId())
+                .number("22나2222")
+                .nickname("새로운 콩이")
+                .build();
+
+        // when, then
+        assertThatThrownBy(() -> carService.updateCar(1L, user, request))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.CAR_NOT_FOUND.getMessage());
     }
 
     @DisplayName("차량 번호를 변경하지 않으면 차량 번호 중복 검사가 이루어지지 않는다.")
@@ -838,6 +902,63 @@ class CarServiceTest extends IntegrationTestSupport {
                 .isInstanceOf(BaseException.class)
                 .hasMessage(ErrorCode.CAR_NOT_BELONG_TO_USER.getMessage());
     }
+
+
+    @DisplayName("차량 충전 상태를 조회할 예약이 없으면 null이 반환된다.")
+    @Test
+    public void getCarChargingStatusWithoutReservaion() {
+        // given
+        User user1 = User.builder()
+                .username("user1@google.com")
+                .nickname("user1")
+                .build();
+
+        User user2 = User.builder()
+                .username("user2@google.com")
+                .nickname("user2")
+                .build();
+
+        CarType carType = CarType.builder()
+                .name("테스트 차종")
+                .build();
+
+        Car car = Car.builder()
+                .user(user2)
+                .carType(carType)
+                .number("12다1234")
+                .build();
+
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        Charger charger = Charger.builder()
+                .parkingLot(parkingLot)
+                .serialNumber("1")
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .build();
+
+        parkingLot.getChargers().add(charger);
+
+
+        userRepository.saveAll(List.of(user1, user2));
+        carRepository.save(car);
+        parkingLotRepository.save(parkingLot);
+
+        // when
+        CarReservationStatusResponse response = carService.getCarChargingStatus(user2, car.getId());
+
+        // then
+        assertThat(response).isNull();
+    }
+
 
     @DisplayName("차량을 삭제하면 관련된 ChargingLog와 Reservation도 함께 삭제된다.")
     @Test

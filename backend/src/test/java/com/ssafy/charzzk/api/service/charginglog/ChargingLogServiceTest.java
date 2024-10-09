@@ -25,8 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.ssafy.charzzk.api.service.car.CarConstant.CHARGE_AMOUNT_PER_HOUR;
-import static com.ssafy.charzzk.api.service.car.CarConstant.COST_PER_KWH;
+import static com.ssafy.charzzk.api.service.car.CarConst.CHARGE_AMOUNT_PER_HOUR;
+import static com.ssafy.charzzk.api.service.car.CarConst.COST_PER_KWH;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional

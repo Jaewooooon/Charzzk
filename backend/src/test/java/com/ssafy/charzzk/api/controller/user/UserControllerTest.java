@@ -23,26 +23,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class UserControllerTest extends ControllerTestSupport {
 
-    @DisplayName("유저 목록을 조회한다.")
-    @WithMockUser
-    @Test
-    void getUsers() throws Exception {
-        // given
-
-        // when
-        ResultActions perform = mockMvc.perform(
-                get("/api/v1/users")
-        );
-
-        // then
-        perform.andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.code").value("200"))
-                .andExpect(jsonPath("$.status").value("OK"))
-                .andExpect(jsonPath("$.message").value("OK"))
-                .andExpect(jsonPath("$.data").isArray());
-    }
-
     @DisplayName("유저가 닉네임 중복을 확인했을 때 중복된 닉네임이 없다.")
     @WithMockUser
     @Test

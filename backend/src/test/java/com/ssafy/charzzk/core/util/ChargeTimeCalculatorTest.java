@@ -86,4 +86,9 @@ class ChargeTimeCalculatorTest {
         assertThat(duration).isEqualTo(10);
     }
 
+    @Test
+    public void testChargeTimeCalculatorInitialization() {
+        new ChargeTimeCalculator();
+    }
+
 }

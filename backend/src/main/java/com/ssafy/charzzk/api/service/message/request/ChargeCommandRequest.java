@@ -1,8 +1,7 @@
-package com.ssafy.charzzk.api.service.message;
+package com.ssafy.charzzk.api.service.message.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
@@ -22,4 +21,5 @@ public class ChargeCommandRequest {
         this.vehicleNumber = vehicleNumber;
         this.chargeDuration = chargeDuration;
     }
+
 }
