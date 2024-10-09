@@ -1,8 +1,8 @@
-package com.ssafy.charzzk.api.service.message;
+package com.ssafy.charzzk.api.service.message.request;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
@@ -17,7 +17,8 @@ public class MessageRequest {
     private Double latitude;  // location_update 에서만 사용됨
     private Double longitude;  // location_update 에서만 사용됨
 
-    public MessageRequest(String type, String status, Long reservationId, Long chargerId, String vehicleNumber, String timestamp, Integer batteryLevel, Double latitude, Double longitude) {
+    @Builder
+    private MessageRequest(String type, String status, Long reservationId, Long chargerId, String vehicleNumber, String timestamp, Integer batteryLevel, Double latitude, Double longitude) {
         this.type = type;
         this.status = status;
         this.reservationId = reservationId;

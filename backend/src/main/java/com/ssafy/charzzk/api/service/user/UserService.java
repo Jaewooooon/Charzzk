@@ -19,12 +19,6 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public List<UserResponse> getUsers() {
-        List<User> users = userRepository.findAll();
-
-        return users.stream().map(UserResponse::of).toList();
-    }
-
     public UserResponse getUser(User user) {
         User findUser = userRepository.findByUsername(user.getUsername()).orElseThrow(
                 () -> new BaseException(ErrorCode.NOT_FOUND_USER));

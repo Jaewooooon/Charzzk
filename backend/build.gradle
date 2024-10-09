@@ -106,12 +106,20 @@ jacocoTestReport {
 	afterEvaluate {
 		classDirectories.setFrom(
 				files(classDirectories.files.collect { fileTree(dir: it, exclude: [
+						'**/CarConst.class',
+						'**/ReservationConst.class',
+						'**/domain/auth/**',
+//						'**/reservation',
 						'**/filter/**',
+						'**/auth/**',
 						'**/exception/**',
 						'**/handler/**',
 						'**/request/**',
 						'**/response/**',
-						'**/configuration/**'
+						'**/configuration/**',
+						'**/S3ImageService.class',
+						'**/ApiControllerAdvice.class',
+						'**/CharzzkApplication.class'
 				])})
 		)
 	}

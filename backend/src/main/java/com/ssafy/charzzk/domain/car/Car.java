@@ -2,7 +2,6 @@ package com.ssafy.charzzk.domain.car;
 
 import com.ssafy.charzzk.domain.BaseEntity;
 import com.ssafy.charzzk.domain.charginglog.ChargingLog;
-import com.ssafy.charzzk.domain.notification.Notification;
 import com.ssafy.charzzk.domain.reservation.Reservation;
 import com.ssafy.charzzk.domain.user.User;
 import jakarta.persistence.*;

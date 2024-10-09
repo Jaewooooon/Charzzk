@@ -5,6 +5,8 @@ import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest
 import com.ssafy.charzzk.api.service.charger.response.ChargerResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
+import com.ssafy.charzzk.core.exception.BaseException;
+import com.ssafy.charzzk.core.exception.ErrorCode;
 import com.ssafy.charzzk.domain.charger.Charger;
 import com.ssafy.charzzk.domain.charger.ChargerRepository;
 import com.ssafy.charzzk.domain.charger.ChargerStatus;
@@ -22,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.tuple;
 
 @Transactional
@@ -176,6 +179,16 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
                 );
     }
 
+
+    @DisplayName("없는 주차장 아이디로 주차장을 조회하면 예외가 발생한다")
+    @Test
+    void getParkingLotWithInvalidParkingLogId() {
+        // when ,then
+        assertThatThrownBy(() -> parkingLotService.getParkingLot(1L))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.PARKING_LOT_NOT_FOUND.getMessage());
+    }
+
     @DisplayName("주차장 ID로 충전 로봇 목록을 조회한다.")
     @Test
     void getChargerList() {
@@ -247,5 +260,14 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
                         tuple(charger1ParkingLot1.getId(), "1234A", 80, ChargerStatus.WAITING),
                         tuple(charger2ParkingLot1.getId(), "1234B", 90, ChargerStatus.CHARGER_CHARGING)
                 );
+    }
+
+    @DisplayName("없는 주차장 아이디로 충전기 목록을 조회하면 예외가 발생한다")
+    @Test
+    void getChargerListWithInvalidParkingLogId() {
+        // when ,then
+        assertThatThrownBy(() -> parkingLotService.getChargerList(1L))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.PARKING_LOT_NOT_FOUND.getMessage());
     }
 }
