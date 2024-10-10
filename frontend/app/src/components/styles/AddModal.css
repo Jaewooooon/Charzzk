@@ -1,0 +1,86 @@
+.ReactModal__Overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .ReactModal__Content {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.483);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  /* 제목 스타일 */
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+  }
+  
+  /* 라벨과 입력 스타일 */
+  label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+  }
+  
+  select {
+    appearance: none; /* 기본 드롭다운 스타일 제거 */
+  }
+  
+  input[type="text"]:focus,
+  select:focus {
+    border-color: #80bdff;
+    outline: none;
+  }
+  
+  /* 추가 버튼 스타일 */
+  .add-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    background-color: #5adbb5;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .add-button:hover {
+    background-color: #48c9a9;
+  }
+  
+  /* 취소 버튼 스타일 */
+  .cancel-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .cancel-button:hover {
+    background-color: #e0e0e0;
+  }
+  

@@ -1,0 +1,64 @@
+name: charzzk-docker-compose
+
+services:
+  database:
+    image: postgres:16.3-alpine
+    container_name: charzzk-database
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      TIMEZONE: Asia/Seoul
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - charzzk-db:/var/lib/postgresql/data
+    networks:
+      - custom-network
+
+  database-admin:
+    container_name: database-admin
+    image: dpage/pgadmin4
+    ports:
+      - "${PGADMIN_PORT}:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    restart: always
+    networks:
+      - custom-network
+
+
+  cache-database:
+    image: redis:7.4-rc2-alpine
+    container_name: charzzk-cache-database
+    ports:
+      - "${REDIS_PORT}:6379"
+    entrypoint:
+      - redis-server
+      - "--requirepass"
+      - "${REDIS_PASSWORD}"
+      - "--maxmemory"
+      - "128mb"
+      - "--notify-keyspace-events"
+      - "Ex"
+    networks:
+      - custom-network
+
+  backend-server:
+    container_name: charzzk-backend-server
+    image: backend-image
+    ports:
+      - "${BACKEND_PORT}:8080"
+    depends_on:
+      - database
+      - cache-database
+    networks:
+      - custom-network
+
+volumes:
+  charzzk-db:
+
+networks:
+  custom-network:
+    external: true

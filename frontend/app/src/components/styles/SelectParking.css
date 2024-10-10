@@ -1,0 +1,114 @@
+.SelectParking {
+    padding: 25px; /* 전체 여백 */
+    margin-top: 60px;
+    margin-bottom: 300px;
+    padding-bottom: 100px;
+  }
+  
+  .SelectParking_contents_box {
+    margin-top: 0px;
+    margin-bottom: 20px; /* 주차장 선택 안내 텍스트와 검색창 사이 여백 */
+  }
+  
+  .SelectParking_contents1,
+  .SelectParking_contents2 {
+    font-size: 20px; /* 텍스트 크기 */
+    font-weight: bold; /* 텍스트 두께 */
+  }
+  
+  .SearchInput {
+    width: 90%; /* 검색창 너비 */
+    padding: 15px; /* 검색창 여백 */
+    margin-bottom: 20px; /* 검색창과 주차장 목록 사이 여백 */
+    border: none;
+    background-color: #F1F1F1;
+    border-radius: 5px;
+  }
+
+  .SearchInput:focus {
+    outline: none; /* 기본 아웃라인 제거 */
+    border: 2px solid #5CDAB8; /* 글씨 입력 시 테두리 초록색 */
+  }
+  
+  .ParkingList {
+    list-style-type: none; /* 리스트 스타일 제거 */
+    padding: 0; /* 리스트 패딩 제거 */
+    z-index: 0;
+  }
+  
+  .ParkingItem {
+    display: flex; /* Flexbox로 정렬 */
+    align-items: center; /* 세로 정렬 */
+    border-bottom: 1px solid gainsboro;
+    border-top: 1px solid gainsboro;
+    padding:10px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    z-index: 0;
+  }
+  
+  .ParkingImage {
+    width: 100px; /* 주차장 이미지 너비 */
+    height: 80px; /* 주차장 이미지 높이 */
+    border-radius: 5px; /* 이미지 둥글게 */
+    margin-right: 15px; /* 이미지와 텍스트 사이 여백 */
+  }
+  
+  .ParkingInfo {
+    width: 100%; /* 전체 너비 사용 */
+    z-index: 0; /* 리스트가 다른 요소 위에 표시되도록 설정 */
+  }
+  
+  .ParkingName {
+    font-size: 18px; /* 주차장 이름 텍스트 크기 */
+    font-weight: bold; /* 주차장 이름 텍스트 두께 */
+    margin-top: 0;
+  }
+  
+  .ParkingAddress {
+    font-size: 14px; /* 주차장 주소 텍스트 크기 */
+    color: #777; /* 주차장 주소 색상 */
+  }
+  
+  .ParkingDistance {
+    font-size: 12px; /* 거리 텍스트 크기 */
+    color: #555; /* 거리 색상 */
+  }
+  
+  .NoResults {
+    text-align: center; /* 가운데 정렬 */
+    color: #f00; /* 경고 색상 */
+  }
+  .SelectParking_bottom{
+    border-bottom: 1px solid gainsboro;
+  }
+  .selectparkingbutton{
+    border: none;
+    background-color: transparent;
+    font-weight: 800;
+    border-right: 1px solid rgb(161, 161, 161);
+    color: rgb(161, 161, 161);
+}
+
+.selectparkingbutton2{
+  border: none;
+  background-color: transparent;
+  font-weight: 800;
+  color: rgb(161, 161, 161);
+}
+
+.Botton_box_select{
+  margin-left: 250px;
+}
+.selectparkingbutton.active, .selectparkingbutton2.active {
+  color: black; /* 글씨체 변경 */
+  font-weight: bold; /* 굵게 표시 */
+}
+.ReadyNow{
+  color: #5CDAB8;
+  font-size: 15px;
+}
+.NotReadyNow{
+  color: #5c5c5c;
+  font-size: 15px;
+}

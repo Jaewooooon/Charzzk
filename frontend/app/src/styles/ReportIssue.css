@@ -1,0 +1,55 @@
+.ReportIssue_contents1, .ReportIssue_contents2{
+    font-weight: 700;
+    font-size: 20px;
+}
+.ReportIssue_content{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    position: relative;
+}
+.ReportIssue_select{
+    width: 90%;
+    height: 40px;
+    margin-top: 10px;
+    border: rgb(209, 209, 209) 1px solid;
+    border-radius: 10px;
+    padding: 5px;
+}
+.issue_contents{
+    width: 85%;
+    height: 500px;
+    background-color: #F9FEFD;
+    border: none;
+    margin-top: 40px;
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+    align-items: center;
+    padding-top: 15px;
+    padding-left: 10px;
+}
+.ReportIssue_contents_box{
+    padding-left: 40px;
+    margin-top: 22%;
+}
+.ReportIssue_startbutton{
+    background-color: #5DEAC4;
+    border: none;
+    width: 90%;
+    height: 50px;
+    margin-top: 30px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bolder;
+    font-size: 18px;
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+}
+.putpicture_button{
+    background:none;
+    border: none;
+    position: absolute;
+    top: 185px;
+    right: 40px;
+    
+}
+

@@ -1,0 +1,136 @@
+.ChargeStatus_ContainerBox{
+    background-color: #EBEBEB;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes changePolygon1 {
+    0% {
+      clip-path: polygon(0px 0px, 100% 20px, 100% 100%, 0px 100%);
+    }
+    100% {
+      clip-path: polygon(0px 10px, 100% 0px, 100% 100%, 0px 100%);
+    }
+}
+
+@keyframes changePolygon2 {
+    0% {
+      clip-path: polygon(0px 0px, 100% 15px, 100% 100%, 0px 100%);
+    }
+    100% {
+      clip-path: polygon(0px 20px, 100% 0px, 100% 100%, 0px 100%);
+    }
+}
+
+
+.Percent_Show1{
+    background: linear-gradient(to bottom, #65f9d132, #3C937B) ;
+    clip-path: polygon(0% 0%, 100% 16%, 100% 100%, 0% 100%); 
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    animation: changePolygon1 0.9s infinite alternate;
+    transition: height 0.5s ease-in-out;
+}
+.Percent_Show2{
+    background: linear-gradient(to bottom, #65f9d12d, #3c937a48) ;
+    clip-path: polygon(0% 10%, 100% 0%, 100% 100%, 0% 100%); 
+    width: 100%;
+    height: 500px;
+    margin-top: auto;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    animation: changePolygon2 1s infinite alternate;
+    transition: height 0.5s ease-in-out;
+}
+.Percent_Show3{
+    background: linear-gradient(to bottom, #65f9d13a, #3C937B) ;
+    clip-path: polygon(0% 8%, 100% 5%, 100% 100%, 0% 100%); 
+    width: 100%;
+    height: 490px;
+    margin-top: auto;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    animation: changePolygon2 1.5s infinite alternate;
+    transition: height 0.5s ease-in-out;
+}
+.Percent_Show4{
+    background: linear-gradient(to bottom, #65f9d142, #3c937a42) ;
+    clip-path: polygon(0% 2%, 100% 10%, 100% 100%, 0% 100%); 
+    width: 100%;
+    height: 490px;
+    margin-top: auto;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    animation: changePolygon2 0.8s infinite alternate;
+    transition: height 0.5s ease-in-out;
+}
+.Percent_Show5{
+    background: linear-gradient(to bottom, #65f9d142, #3c937a42) ;
+    clip-path: polygon(0% 2%, 100% 10%, 100% 100%, 0% 100%); 
+    width: 100%;
+    height: 490px;
+    margin-top: auto;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    animation: changePolygon2 1.6s infinite alternate;
+    transition: height 0.5s ease-in-out;
+}
+.Percent_Contents{
+    position: absolute;
+    top:0;
+    left:0;
+    padding: 20px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 1000;
+}
+.AutoCharge_Contents{
+    font-size: 30px;
+    font-weight: 900;
+    margin: 0;
+    font-family: 'yg-jalnan';
+    color: #2a473f;
+}
+.ChargePercent_Contents{
+    font-size: 70px;
+    font-weight: 900;
+    margin: 0;
+}
+.ChargeStatus_Contents{
+    color: #569484;
+    font-size: 25px;
+    font-weight: 900;
+    margin: 0;
+}
+.ChargeStart_Contents{
+    margin: 0;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 900;
+    display: flex;
+    gap: 5px;
+}
+.ChargeComplete_Contents{
+    margin: 0;
+    font-size: 20px;
+    font-weight: 900;
+    display: flex;
+    gap: 5px;
+}
+
+.charge_time{
+    color: #427467;
+    font-size: 20px;
+}

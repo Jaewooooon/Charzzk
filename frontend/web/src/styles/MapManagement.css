@@ -1,0 +1,166 @@
+.MapManagement_container{
+    padding-left: 150px;
+    margin-top: 60px;
+}
+.Management_Map{
+    width: 80%;
+    height: auto;
+}
+#KakaoMap {
+    margin-left:80px;
+    width: 80%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */    
+    padding-left: 300px;
+    position: relative;
+  }
+  .ParkingListBox{
+    position: absolute;
+    top: 63px; /* 원하는 위치로 조정 */
+    left: 80px;
+    width: 350px;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #F3F3F3; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 2; 
+
+  }
+
+  .ParkingListTitle{
+    z-index: 3;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 30px;
+    padding-left: 100px;
+    padding-top: 20px;
+    border-bottom: 1px solid rgb(223, 223, 223);
+    
+  }
+
+  .parking_box{
+    position: relative;
+    border-bottom: 1px solid rgb(223, 223, 223);
+    padding: 10px;
+    display: flex;
+    width: 500px;
+    background-color: #F3F3F3;
+  }
+   .parking_contents{
+    margin-left: 10px;
+
+  }
+  .parking_name{
+    margin: 0;
+    font-size: 15px;
+  }
+  .parking_address{
+    font-size: 13px;
+  }
+
+  .check_robot_button {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 2px 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 10px;
+    bottom: 8px;
+  }
+
+  .check_robot_button:hover {
+    background-color: #16a085;
+  }
+
+  .check_robot_button.selected {
+    background-color: #f39c12; /* 선택된 경우 색상 변경 */
+  }
+
+  .robot_info {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    padding: 15px;
+    position: fixed; /* fixed로 변경하여 페이지 하단에 고정 */
+    top: 0; 
+    left: 450px;
+    width: 100%; /* 화면 전체 너비 */
+    z-index: 3;
+    height: 100vh;
+    padding-left: 50px;
+}
+
+.ParkingListBox{
+  display: flex;
+  flex-direction: column;
+  height: 88.2vh;
+}
+
+.parking_box.active {
+  width: 100%;
+  background-color: #ffffff; /* 선택된 아이템의 배경색 */
+}
+
+.parking_box{
+  width: 100%;
+}
+
+.charger_box{
+  border: none;
+  background-color: #f7fffd;
+  margin: 10PX;
+  display: flex;
+  gap: 10px;
+  width: 70%;
+  border-radius: 10px;
+  
+}
+
+.MapChargeRobotacontent{
+  margin-top: 120px;
+  margin-left: 0px;
+  font-size: 20px;
+  margin-bottom: 0;
+  color: #16a085;
+}
+
+.full-calendar {
+  position: relative; 
+  z-index: 1000; 
+}
+
+.test11{
+  font-size: 500px;
+}
+
+.fc {
+  width: 120% !important; /* 전체 화면에 맞춤 */
+  height: 600px; /* 고정 높이 */
+}
+.Select_Serial_Number{
+  width: 300px;
+  height: 50px;
+  border-radius: 10px;
+  border: 3px solid rgb(123, 156, 143);
+  font-family: 'yg-jalnan';
+}
+.RobotState{
+  margin-top: 50px;
+  font-family: 'yg-jalnan';
+}
+.serial_number_container {
+  display: flex;
+  align-items: center; /* 수직 정렬 */
+}
+
+.RobotState {
+  margin-left: 10px; /* 시리얼 넘버 선택 박스와 로봇 상태 간의 간격 */
+}
+
+.Serial_option{
+  font-family: 'yg-jalnan';
+}
+
