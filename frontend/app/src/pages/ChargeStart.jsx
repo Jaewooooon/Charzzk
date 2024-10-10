@@ -22,6 +22,8 @@ const ChargeStart = () => {
   const [reservationData, setReservationData] = useState(null); 
   const [isLoading, setIsLoading] = useState(false); 
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열기 상태
+  const [remainingTime, setRemainingTime] = useState(30); // 남은 시간을 30초로 초기화
+
   const parkingInfo = useRecoilValue(parkingState);
   const accessToken = useRecoilValue(accessTokenState);
   const batteryValue = useRecoilValue(batteryState);
@@ -122,18 +124,30 @@ const ChargeStart = () => {
     setStep(2); // Step을 2로 변경
   };
 
-  // 모달이 열리고 30초간 아무 이벤트가 없으면 Step을 2로 변경하는 타이머 추가
+  // 모달이 열리고 30초간 아무 이벤트가 없으면 Step을 2로 변경하는 타이머 추가 및 남은 시간 표시
   useEffect(() => {
     let timer;
+    let interval;
+
     if (isModalOpen) {
+      // 매 초마다 남은 시간을 감소시키는 타이머 설정
+      interval = setInterval(() => {
+        setRemainingTime((prev) => prev - 1);
+      }, 1000);
+
+      // 30초 후 모달을 닫고 Step을 2로 변경
       timer = setTimeout(() => {
-        setIsModalOpen(false); // 모달 닫기
-        setStep(2); // Step을 2로 변경
-      }, 30000); // 30초 후
+        setIsModalOpen(false);
+        setStep(2);
+      }, 30000);
     }
 
-    // 컴포넌트가 언마운트되거나 모달이 닫힐 때 타이머를 정리
-    return () => clearTimeout(timer);
+    // 컴포넌트가 언마운트되거나 모달이 닫힐 때 타이머와 인터벌 정리
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+      setRemainingTime(30); // 남은 시간 초기화
+    };
   }, [isModalOpen]);
 
   const calculateMinutesUntilStart = (startTime) => {
@@ -165,25 +179,31 @@ const ChargeStart = () => {
           <p>로딩 중...</p>
         ) : reservationData ? (
           <div className='CompleteCharge_contents'>
-            <p className='battery_value'>{batteryValue}%</p>
+            <p className='confirm_second'>예약확정까지</p>
+            <div className='remain-time-box'><p className='battery_value'>{remainingTime} </p><div className='confirm_second2'>초</div></div>
+            
             <div className='HowWaiting'>{minutesUntilStart !== null ? 
               `${minutesUntilStart === 0 ? "바로 충전 시작" : `${minutesUntilStart}분 후 충전 시작`}` 
               : "충전 시작 시간을 가져오는 데 실패했습니다."}</div>
-            <p className='chargestart_content'>충전시작  {new Date(reservationData.data.startTime).toLocaleString()}</p>
-            <p className='chargeend_content'>충전완료  {new Date(reservationData.data.endTime).toLocaleString()}</p>
-            <div >
-            <button className='ChargeStart_btn' onClick={startCharging} >충전 시작</button>
-            <button className='Cancel_btn' onClick={handleCancel}>취소하기</button>
-            </div>
+<p className='chargestart_content white-text'>충전시작 :  
+  <span className="green-text"> {new Date(reservationData.data.startTime).toLocaleTimeString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
+</p>
+<p className='chargeend_content white-text'>충전완료 : 
+  <span className="green-text"> {new Date(reservationData.data.endTime).toLocaleTimeString('ko-KR', { hour: 'numeric', minute: 'numeric', hour12: true })}</span>
+</p>
+            <div>
+              <button className='ChargeStart_btn' onClick={startCharging}>충전 시작</button>
+              <button className='Cancel_btn' onClick={handleCancel}>취소하기</button>
             
-
+            </div>
           </div>
         ) : (
-          <p>예약 정보를 가져오는 데 실패했습니다.</p>
+          <p >예약 정보를 가져오는 데 실패했습니다.</p>
         )}
       </CompleteChargeModal>
     </div>
   );
 };
+
 
 export default ChargeStart;

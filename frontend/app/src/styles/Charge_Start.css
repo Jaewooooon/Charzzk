@@ -31,17 +31,19 @@
     flex-direction: column;
 }
 .battery_value{
-    font-size: 60px;
+    font-size: 70px;
     color: white;
     font-weight: 900;
     font-family: 'yg-jalnan';
-    margin: 10px;
+    margin: 0px;
 }
 .chargestart_content, .chargeend_content{
     color: white;
     font-weight: 900;
     margin: 10px;
-    
+    font-size: 20px;
+    font-family: 'yg-jalnan';
+    gap: 10px;
 }
 .ChargeStart_btn {
     background-color: #5CDAB8;
@@ -89,3 +91,32 @@ div.modal-content{
         font-weight: bolder;
         font-family: 'yg-jalnan';
     }
+
+.confirm_second{
+    color: white;
+    font-size: 20px;
+    font-family: 'yg-jalnan';
+    padding: 0;
+    margin: 0;
+}
+
+.remain-time-box{
+    display: flex;
+    
+}
+
+.confirm_second2{
+    color: white;
+    font-size: 22px;
+    font-family: 'yg-jalnan';
+    height: 10px;
+    margin-top: 50px;
+}
+
+.green-text{
+    color: #acf9e5;
+}
+
+.white-text{
+    color: white;
+}
