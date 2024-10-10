@@ -1,5 +1,7 @@
+import React, { useEffect } from 'react'; 
+import { useSetRecoilState } from 'recoil';
+import { accessTokenState } from './recoil/LoginAtom';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
 import MainPage from './pages/MainPage';
 import ChargeMap from './pages/ChargeMap';
 import ChargeStart from './pages/ChargeStart';
@@ -14,43 +16,32 @@ import SignUp from './pages/Login/SignUp';
 import { RecoilRoot } from 'recoil';
 
 function App() {
+  const setAccessToken = useSetRecoilState(accessTokenState);
+
+  useEffect(() => {
+    // localStorage에서 토큰을 가져와 Recoil 상태에 복원
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      setAccessToken(token);
+    }
+  }, [setAccessToken]);
+
   return (
     <RecoilRoot>
-    <Router>
-    <Routes>
-
-{/* 메인 페이지 */}
-<Route path="/" element={<PrivateRoute element={<MainPage />} />}/>
-
-{/* 충전 지도 페이지 */}
-<Route path="/charge-map" element={<PrivateRoute element={<ChargeMap />} />} />
-
-{/* 충전 시작 페이지 */}
-<Route path="/charge-start" element={<PrivateRoute element={<ChargeStart />} />} />
-
-{/* 충전 상태 페이지 */}
-<Route path="/charge-status" element={<PrivateRoute element={<ChargeStatus />} />} />
-
-{/* 마이페이지 - 차량 관리 */}
-<Route path="/mypage/car-management" element={<PrivateRoute element={<CarManagement />} />} />
-
-{/* 마이페이지 - 결제 수단 관리 */}
-<Route path="/mypage/user-management" element={<PrivateRoute element={<UserManagement />} />} />
-
-{/* 마이페이지 - 문제 신고 */}
-<Route path="/mypage/report-issue" element={<PrivateRoute element={<ReportIssue />} />} />
-
-{/*로그인 페이지*/}
-<Route path="/login" element={<Login />} />
-
-{/* 로그인 성공 페이지 */}
-<Route path="/auth/callback" element={<LoginSuccess />}  />
-
-{/* 회원가입 페이지 */}
-<Route path="/sign-up" element={<PrivateRoute element={<SignUp />} />} />
-
-</Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<PrivateRoute element={<MainPage />} />} />
+          <Route path="/charge-map" element={<PrivateRoute element={<ChargeMap />} />} />
+          <Route path="/charge-start" element={<PrivateRoute element={<ChargeStart />} />} />
+          <Route path="/charge-status" element={<PrivateRoute element={<ChargeStatus />} />} />
+          <Route path="/mypage/car-management" element={<PrivateRoute element={<CarManagement />} />} />
+          <Route path="/mypage/user-management" element={<PrivateRoute element={<UserManagement />} />} />
+          <Route path="/mypage/report-issue" element={<PrivateRoute element={<ReportIssue />} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/auth/callback" element={<LoginSuccess />} />
+          <Route path="/sign-up" element={<PrivateRoute element={<SignUp />} />} />
+        </Routes>
+      </Router>
     </RecoilRoot>
   );
 }
