@@ -1,7 +1,6 @@
 package com.ssafy.charzzk.api.service.parkinglot;
 
 import com.ssafy.charzzk.IntegrationTestSupport;
-import com.ssafy.charzzk.api.controller.parkinglot.request.ParkingLotListRequest;
 import com.ssafy.charzzk.api.service.charger.response.ChargerResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
@@ -14,13 +13,13 @@ import com.ssafy.charzzk.domain.parkinglot.Location;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingLotRepository;
 import com.ssafy.charzzk.domain.parkinglot.ParkingSpot;
-import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -69,8 +68,11 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
 
         parkingLotRepository.saveAll(parkingLotList);
 
+        String sort = "distance";
+        LocalDateTime now = LocalDateTime.of(2024, 1, 1, 0, 0);
+
         // when
-        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(latitude, longitude, "");
+        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(latitude, longitude, "", sort, now);
 
         // then
         assertThat(parkingLotListResponseList).hasSize(2)
@@ -78,6 +80,69 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
                 .containsExactly(
                         tuple(parkingLotList.get(0).getId(), "주차장1", location1, null),
                         tuple(parkingLotList.get(1).getId(), "주차장2", location2, null)
+                );
+    }
+
+    @DisplayName("주변 주차장 리스트를 예상 대기시간이 짧은 오름차순으로 조회한다.")
+    @Test
+    void getParkingLotListWithWaitingTimeAscend() {
+        // given
+        Location location1 = Location.builder()
+                .latitude(0.0)
+                .longitude(0.0)
+                .build();
+
+        Location location2 = Location.builder()
+                .latitude(89.0)
+                .longitude(179.0)
+                .build();
+
+        ParkingLot parkingLot1 = ParkingLot.builder()
+                .name("주차장1")
+                .location(location1)
+                .build();
+
+        ParkingLot parkingLot2 = ParkingLot.builder()
+                .name("주차장2")
+                .location(location2)
+                .build();
+
+        Charger charger1 = Charger.builder()
+                .parkingLot(parkingLot1)
+                .serialNumber("11")
+                .battery(80)
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2023, 1, 1, 0, 0))
+                .build();
+
+        Charger charger2 = Charger.builder()
+                .parkingLot(parkingLot2)
+                .serialNumber("22")
+                .battery(80)
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 0, 30))
+                .build();
+
+        parkingLot1.getChargers().add(charger1);
+        parkingLot2.getChargers().add(charger2);
+
+        Double latitude = 0.0;
+        Double longitude = 0.0;
+
+        parkingLotRepository.saveAll(List.of(parkingLot1, parkingLot2));
+
+        String sort = "time";
+        LocalDateTime now = LocalDateTime.of(2024, 1, 1, 0, 0);
+
+        // when
+        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(latitude, longitude, "", sort, now);
+
+        // then
+        assertThat(parkingLotListResponseList).hasSize(2)
+                .extracting("id", "name", "waitingTime")
+                .containsExactly(
+                        tuple(parkingLot1.getId(), "주차장1", 0),
+                        tuple(parkingLot2.getId(), "주차장2", 30)
                 );
     }
 
@@ -118,8 +183,11 @@ class ParkingLotServiceTest extends IntegrationTestSupport {
 
         parkingLotRepository.saveAll(parkingLotList);
 
+        String sort = "distance";
+        LocalDateTime now = LocalDateTime.of(2024, 1, 1, 0, 0);
+
         // when
-        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(latitude, longitude, "주차장");
+        List<ParkingLotListResponse> parkingLotListResponseList = parkingLotService.getParkingLotList(latitude, longitude, "주차장", sort, now);
 
         // then
         assertThat(parkingLotListResponseList).hasSize(3)

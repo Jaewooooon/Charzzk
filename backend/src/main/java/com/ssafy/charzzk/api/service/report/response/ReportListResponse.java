@@ -18,7 +18,6 @@ public class ReportListResponse {
     private ReportType reportType;
     private ParkingLotReportResponse parkingLot;
     private boolean isRead;
-
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 

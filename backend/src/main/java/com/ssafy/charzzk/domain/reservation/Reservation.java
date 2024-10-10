@@ -104,6 +104,11 @@ public class Reservation extends BaseEntity {
         return List.of(ReservationStatus.WAITING, ReservationStatus.CHARGING).contains(this.status);
     }
 
+    public void updateTime(LocalDateTime startTime, LocalDateTime endTime) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public void chargeComplete() {
         this.status = ReservationStatus.DONE;
         charger.chargeComplete();

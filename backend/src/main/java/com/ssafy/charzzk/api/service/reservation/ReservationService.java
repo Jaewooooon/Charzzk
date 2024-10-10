@@ -25,10 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
@@ -82,7 +79,7 @@ public class ReservationService {
 
         LocalDateTime startTime = charger.getLastReservedTime().isAfter(now) ? charger.getLastReservedTime() : now;
         LocalDateTime endTime = startTime.plusMinutes(ChargeTimeCalculator.calculate(car, request.isFullCharge(), request.getTime()));
-        charger.updateLastReservedTime(startTime);
+        charger.updateLastReservedTime(endTime);
 
         Reservation reservation = Reservation.create(car, parkingSpot, charger, startTime, endTime);
         reservationRepository.save(reservation);
@@ -136,9 +133,9 @@ public class ReservationService {
     }
 
     public List<ReservationQueueResponse> getReservations() {
-        Map<Long, Queue<Reservation>> reservationMap = reservationManager.getReservationQueueMap();
+        Map<Long, Deque<Reservation>> reservationMap = reservationManager.getReservationQueueMap();
 
-        for (Map.Entry<Long, Queue<Reservation>> l : reservationMap.entrySet()) {
+        for (Map.Entry<Long, Deque<Reservation>> l : reservationMap.entrySet()) {
             System.out.println(l.getKey());
             for (Reservation r : l.getValue()) {
                 System.out.println(r);
@@ -147,7 +144,7 @@ public class ReservationService {
 
         List<ReservationQueueResponse> response = new ArrayList<>();
 
-        for (Map.Entry<Long, Queue<Reservation>> entry : reservationMap.entrySet()) {
+        for (Map.Entry<Long, Deque<Reservation>> entry : reservationMap.entrySet()) {
             ReservationQueueResponse.of(entry.getKey(), entry.getValue().stream().map(ReservationResponse::from).collect(Collectors.toList()));
         }
 
