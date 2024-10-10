@@ -20,6 +20,7 @@
     padding-top: 40px;
   }
   
+
   /* 좌표 목록 스타일 */
   .coordinates-box h3 {
     font-size: 1.2em;
@@ -47,7 +48,7 @@
       position: absolute;
       top: 15px;
       left: 10px; 
-      width: 83%; 
+      width: 100px;
       height: 40px; 
       z-index: 1000;
       padding: 10px;
@@ -55,6 +56,7 @@
       border: 1px solid #ccc;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
+
 
   .parking_box{
     position: relative;
