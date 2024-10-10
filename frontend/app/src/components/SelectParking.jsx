@@ -4,8 +4,7 @@ import { useRecoilState } from 'recoil';
 import { parkingState } from '../recoil/parkingState.jsx'; // parkingState atom import
 import '../components/styles/SelectParking.css'; // CSS 파일 임포트
 
-
-function SelectParking({ setIsReady }) { // setIsReady를 props로 추가
+function SelectParking({ setIsReady }) {
   const [parkingLots, setParkingLots] = useState([]); // 주차장 목록 상태
   const [searchTerm, setSearchTerm] = useState(''); // 검색어 상태
   const [location, setLocation] = useState({ latitude: null, longitude: null }); // 위치 상태
@@ -72,42 +71,44 @@ function SelectParking({ setIsReady }) { // setIsReady를 props로 추가
         <div className='SelectParking_contents2'>선택해 주세요.</div>
       </div>
 
-      <input
-        type="text"
-        placeholder="주차장 검색..."
-        className='SearchInput'
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)} // 검색어 상태 업데이트
-      />
+      <div className='Content_Area'> {/* 스크롤 가능한 콘텐츠 영역 */}
+        <input
+          type="text"
+          placeholder="주차장 검색..."
+          className='SearchInput'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // 검색어 상태 업데이트
+        />
 
-      <ul className='ParkingList'>
-        {filteredParkingLots.length > 0 ? (
-          filteredParkingLots.map((lot, index) => (
-            <li
-              key={index}
-              className='ParkingItem'
-              onClick={() => handleParkingLotSelect(index)} // 주차장 선택 핸들러 호출
-              style={{
-                backgroundColor: selectedParkingLotIndex === index ? 'lightgray' : 'transparent', // 선택된 주차장 배경색 변경
-              }}
-            >
-              <img src={lot.image} alt="주차장 이미지" className='ParkingImage' />
-              <div className='ParkingInfo'>
-                <h3 className='ParkingName'>{lot.name}</h3>
-                <div className='ParkingAddress'>{lot.address}</div>
-                <div className='ParkingDistance'>
-                   {lot.distance >= 1000 
-                       ? `${(lot.distance / 1000).toFixed(1)}km`  
-                       : `${Math.floor(lot.distance)}m`}          
-                       </div>
-              </div>
-            </li>
-          ))
-        ) : (
-          <li className='NoResults'>일치하는 주차장이 없습니다</li>
-        )}
-      </ul>
-      {error && <div className='Error'>{error}</div>} {/* 에러 메시지 표시 */}
+        <ul className='ParkingList'>
+          {filteredParkingLots.length > 0 ? (
+            filteredParkingLots.map((lot, index) => (
+              <li
+                key={index}
+                className='ParkingItem'
+                onClick={() => handleParkingLotSelect(index)} // 주차장 선택 핸들러 호출
+                style={{
+                  backgroundColor: selectedParkingLotIndex === index ? 'lightgray' : 'transparent', // 선택된 주차장 배경색 변경
+                }}
+              >
+                <img src={lot.image} alt="주차장 이미지" className='ParkingImage' />
+                <div className='ParkingInfo'>
+                  <h3 className='ParkingName'>{lot.name}</h3>
+                  <div className='ParkingAddress'>{lot.address}</div>
+                  <div className='ParkingDistance'>
+                    {lot.distance >= 1000 
+                      ? `${(lot.distance / 1000).toFixed(1)}km`  
+                      : `${Math.floor(lot.distance)}m`}          
+                  </div>
+                </div>
+              </li>
+            ))
+          ) : (
+            <li className='NoResults'>일치하는 주차장이 없습니다</li>
+          )}
+        </ul>
+        {error && <div className='Error'>{error}</div>} {/* 에러 메시지 표시 */}
+      </div>
     </div>
   );
 }

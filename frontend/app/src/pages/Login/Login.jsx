@@ -21,15 +21,7 @@ const Login = () => {
     <div className='ChageStart_Box'>
       <img src={CharZzk_Logo} alt="Car Sample" className="CharZzk_Logo" />
       <div className='start_button'>
-        <button 
-          className='kakao_button'
-          onClick={() => {
-            // 환경에 맞는 redirect_uri 설정
-            window.location.href = `https://j11c208.p.ssafy.io/oauth2/authorization/kakao?redirect_uri=${redirectUri}`;
-          }}
-        >
-          <img src={KakaoLogo} alt="카카오" className='kakao_logo' />카카오로 시작하기
-        </button>
+
 
         {/* 구글 로그인 버튼 */}
         <button 

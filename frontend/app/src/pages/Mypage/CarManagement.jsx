@@ -229,26 +229,28 @@ function CarManagement() {
         <p>차량 데이터가 없습니다.</p>
       )}
 
-      <DeleteModal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        onDelete={deleteCar}
+{/* 모달들 */}
+<DeleteModal 
+        isOpen={modalIsOpen} 
+        onRequestClose={closeModal} 
+        onConfirm={deleteCar} 
       />
 
-      <PatchModal
-        isOpen={patchModalIsOpen}
-        onRequestClose={closePatchModal}
-        onPatch={patchCar}
-        carData={carData[currentIndex]}
+      <PatchModal 
+        isOpen={patchModalIsOpen} 
+        onRequestClose={closePatchModal} 
+        onConfirm={patchCar} 
+        carData={carData[currentIndex]} 
       />
 
-      <AddCarModal
+      <AddCarModal 
         isOpen={addCarModalIsOpen}
         onRequestClose={closeAddCarModal}
-        carTypes={carTypes}
-        onAdd={addCar}
+        onConfirm={addCar} 
+        carTypes={carTypes} // 차량 타입 리스트 전달
       />
     </div>
+
   );
 }
 
