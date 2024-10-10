@@ -15,13 +15,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 @RestController
 public class UserController {
     private final UserService userService;
 
+    @GetMapping(value = "/api/v1/users/me")
+    public ApiResponse<UserResponse> getUser(
+            @CurrentUser User user
+    ) {
+        return ApiResponse.ok(userService.getUser(user));
+    }
 
     @GetMapping(value = "/api/v1/users/check-nickname")
     public ApiResponse<String> checkNickname(
