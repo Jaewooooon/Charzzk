@@ -127,10 +127,16 @@ const MapManagement = () => {
   };
 
   const handleRobotCheck = (parkingLotId, index) => {
-    if (selectedLot === index) return;
-
-    setSelectedLot(index);
-    fetchChargerData(parkingLotId);
+    // 이미 선택된 주차장이 클릭되었으면 선택 해제
+    if (selectedLot === index) {
+      setSelectedLot(null); // 선택 해제
+      setChargers([]); // 충전기 정보 초기화
+      setChargerStatus(null); // 충전기 상태 초기화
+      setReservations([]); // 예약 정보 초기화
+    } else {
+      setSelectedLot(index);
+      fetchChargerData(parkingLotId);
+    }
   };
 
   const handleSerialChange = (e) => {
