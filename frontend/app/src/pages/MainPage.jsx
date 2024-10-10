@@ -84,7 +84,9 @@ const MainPage = () => {
     }
   }, [currentIndex, carData]);
 
+  
   return (
+    <>
     <div className='MainPage_ContainerBox'>
       <button className='Question_button'><img src={Question} alt="도움말" className='Question_logo' /></button>
       <div className='Car_Information' {...handlers}>
@@ -182,7 +184,7 @@ const MainPage = () => {
           
           <Link to="/mypage/user-management">
             <button className='Mypage_Payment'>
-              <img src={UserImg} alt="MyPagePayment" className="UserImg_Image" />사용자 정보
+              <img src={MyPagePayment} alt="MyPagePayment" className="MyPagePayment_Image" />내 사용내역
             </button>
           </Link>
           
@@ -194,7 +196,9 @@ const MainPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
+
 };
 
 export default MainPage;

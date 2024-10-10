@@ -22,7 +22,7 @@
     height: 500px;
     background-color: #F9FEFD;
     border: none;
-    margin-top: 30px;
+    margin-top: 40px;
     box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
     align-items: center;
     padding-top: 15px;
@@ -48,7 +48,8 @@
     background:none;
     border: none;
     position: absolute;
-    top: 80px;
+    top: 185px;
     right: 40px;
     
 }
+
