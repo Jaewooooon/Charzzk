@@ -11,6 +11,8 @@ function SelectParking({ setIsReady }) {
   const [error, setError] = useState(null); // 에러 상태
   const [selectedParkingLotIndex, setSelectedParkingLotIndex] = useState(null); // 선택된 주차장 인덱스 상태
   const [parkingData, setParkingData] = useRecoilState(parkingState); // Recoil 상태 사용
+  const [sortOrder, setSortOrder] = useState('distance'); // 초기 정렬 기준
+  const [activeButton, setActiveButton] = useState('distance'); // 선택된 버튼 상태
 
   useEffect(() => {
     const getCurrentLocation = () => {
@@ -19,7 +21,7 @@ function SelectParking({ setIsReady }) {
           (position) => {
             const { latitude, longitude } = position.coords;
             setLocation({ latitude, longitude });
-            fetchParkingLots(latitude, longitude);
+            fetchParkingLots(latitude, longitude, sortOrder);
           },
           (error) => {
             setError("위치를 가져오는 데 오류가 발생했습니다: " + error.message);
@@ -30,11 +32,12 @@ function SelectParking({ setIsReady }) {
       }
     };
 
-    const fetchParkingLots = (latitude, longitude) => {
+    const fetchParkingLots = (latitude, longitude, sort) => {
       axios.get('https://j11c208.p.ssafy.io/api/v1/parking-lot', {
         params: {
           latitude: latitude,
-          longitude: longitude
+          longitude: longitude,
+          sort: sort // 정렬 기준 추가
         }
       })
       .then(response => {
@@ -46,7 +49,7 @@ function SelectParking({ setIsReady }) {
     };
 
     getCurrentLocation();
-  }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+  }, [sortOrder]); // sortOrder가 변경될 때마다 실행
 
   const filteredParkingLots = parkingLots.filter(lot =>
     lot.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -61,6 +64,23 @@ function SelectParking({ setIsReady }) {
       setSelectedParkingLotIndex(index);
       setIsReady(true); // 버튼 상태 true로 변경
       setParkingData((prevData) => ({ ...prevData, parkingLotId: parkingLots[index].id })); // parkingLotId 업데이트
+    }
+  };
+
+  const handleSort = (order) => {
+    setSortOrder(order); // 정렬 기준 업데이트
+    setActiveButton(order); // 활성화된 버튼 상태 업데이트
+  };
+
+  const formatWaitingTime = (waitingTime) => {
+    if (waitingTime === 0) {
+      return <span className='ReadyNow'>지금 바로 충전 가능</span>;
+    } else if (waitingTime > 0 && waitingTime <= 60) {
+      return <span className='NotReadyNow'>{waitingTime}분 후 충전 가능</span>;
+    } else {
+      const hours = Math.floor(waitingTime / 60);
+      const minutes = waitingTime % 60;
+      return <span className='NotReadyNow'>{hours}시간 {minutes}분 후 충전 가능</span>;
     }
   };
 
@@ -79,6 +99,20 @@ function SelectParking({ setIsReady }) {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)} // 검색어 상태 업데이트
         />
+        <div className='Botton_box_select'>
+          <button
+            onClick={() => handleSort('distance')}
+            className={`selectparkingbutton ${activeButton === 'distance' ? 'active' : ''}`}
+          >
+            거리순
+          </button>
+          <button
+            onClick={() => handleSort('time')}
+            className={`selectparkingbutton2 ${activeButton === 'time' ? 'active' : ''}`}
+          >
+            시간순
+          </button>
+        </div>
 
         <ul className='ParkingList'>
           {filteredParkingLots.length > 0 ? (
@@ -100,6 +134,7 @@ function SelectParking({ setIsReady }) {
                       ? `${(lot.distance / 1000).toFixed(1)}km`  
                       : `${Math.floor(lot.distance)}m`}          
                   </div>
+                  <div>{formatWaitingTime(lot.waitingTime)}</div> {/* 대기 시간 포맷 */}
                 </div>
               </li>
             ))

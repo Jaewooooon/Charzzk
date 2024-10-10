@@ -198,10 +198,7 @@ function Kakao() {
         onTouchEnd={handleTouchEnd}
       >
         <div className='List_Title'>
-          <h2 className='parking_title'>Service Parking Lots </h2>
-          <button onClick={sortByDistance} className='sort_distance'>
-            <img src={isSorted ? Check : NoCheck} alt={isSorted ? "가까운순" : "기본"} /> <div className='show_distance'>거리순으로 보기</div>
-          </button>
+          <h2 className='parking_title'>주변 주차장 조회 </h2>
         </div>
         
         <ul>

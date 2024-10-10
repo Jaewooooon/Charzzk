@@ -126,3 +126,33 @@
   font-weight: 500;
   margin-top: 15px;
 }
+.SelectTime {
+  
+  color: #656464; /* 비활성화된 옵션 글씨 색상 */
+  font-family: 'yg-jalnan';
+}
+
+.SelectTime:focus {
+  border: 2px solid #5CDAB8; /* 포커스 시 초록색 테두리 */
+}
+
+.ReportIssue_select {
+  color: #656464; /* Set text color */
+  font-family: 'yg-jalnan'; /* Set font family */
+  border: 1px solid #ccc; /* Default border */
+  padding: 10px; /* Add some padding for better aesthetics */
+  border-radius: 5px; /* Slightly round the corners */
+}
+
+/* Change border color on focus */
+.ReportIssue_select:focus {
+  border: 2px solid #5CDAB8; /* Border color when focused */
+  outline: none; /* Remove default outline */
+}
+
+/* Optional: Add hover effect */
+.ReportIssue_select:hover {
+  border: 1px solid #5CDAB8; /* Change border color on hover */
+}
+
+

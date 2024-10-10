@@ -7,6 +7,7 @@ function NotReadyNextButton() {
   return (
   <div>
     <button className='NotReady_NextButton'>다음</button>
+    <div className='NotReady_NextButtonBox'></div>
 
     </div>
   );

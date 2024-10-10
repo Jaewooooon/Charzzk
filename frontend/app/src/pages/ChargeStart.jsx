@@ -164,9 +164,10 @@ const ChargeStart = () => {
   return (
     <div>
       <GoBackButton />
+      
       {isReady ? <ReadyNextButton onClick={goToNextStep} /> : <NotReadyNextButton />}
       
-      <StepDownButton onClick={goToPreviousStep} /> {/* 이전 단계 버튼 추가 */}
+      {step > 0 && <StepDownButton onClick={goToPreviousStep} />} {/* 이전 단계 버튼 추가 */}
 
       {step === 0 && <SelectParking setIsReady={setIsReady} />}
       {step === 1 && <SelectParking2 setIsReady={setIsReady} />}
