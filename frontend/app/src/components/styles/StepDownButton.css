@@ -3,7 +3,7 @@
     border: none;
     position: fixed; /* 화면의 특정 위치에 고정 */
     top: 11px;       /* 상단에서 10px 아래 */
-    left: 16px;      /* 왼쪽에서 10px 오른쪽 */
+    left: 10px;      /* 왼쪽에서 10px 오른쪽 */
     color: rgb(171, 171, 171);
     font-size: 40px;
     width: 20px;

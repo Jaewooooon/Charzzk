@@ -17,7 +17,25 @@ function SelectParking2({ setIsReady }) {
       axios.get(`https://j11c208.p.ssafy.io/api/v1/parking-lot/${currentParkingState.parkingLotId}`)
         .then(response => {
           if (response.data.code === 200) {
-            setParkingSpots(response.data.data.parkingSpots); // 주차 공간 데이터 설정
+            // 주차 공간 데이터를 알파벳순과 숫자순으로 정렬
+            const sortedSpots = response.data.data.parkingSpots.sort((a, b) => {
+              const nameA = a.name.toUpperCase(); // 대소문자 구분 없이 알파벳 비교
+              const nameB = b.name.toUpperCase();
+
+              // 알파벳순으로 먼저 비교
+              if (nameA < nameB) return -1;
+              if (nameA > nameB) return 1;
+
+              // 이름이 숫자로만 구성된 경우, 숫자순으로 비교
+              const numA = parseInt(a.name, 10);
+              const numB = parseInt(b.name, 10);
+              if (!isNaN(numA) && !isNaN(numB)) {
+                return numA - numB;
+              }
+
+              return 0; // 동일하면 변화 없음
+            });
+            setParkingSpots(sortedSpots); // 정렬된 주차 공간 데이터 설정
           }
         })
         .catch(error => {
@@ -59,7 +77,7 @@ function SelectParking2({ setIsReady }) {
       <select value={selectedSpot} onChange={handleSpotSelect} className='ParkingSpotSelect'>
         <option value="">주차 공간을 선택하세요</option>
         {parkingSpots.map(spot => (
-          <option key={spot.id} value ={spot.name}>{spot.name}</option>
+          <option key={spot.id} value={spot.name}>{spot.name}</option>
         ))}
       </select>
     </div>

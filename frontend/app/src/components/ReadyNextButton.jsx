@@ -7,6 +7,7 @@ function ReadyNextButton({ onClick }) {
       <button className='Ready_NextButton' onClick={onClick}>
         다음
       </button>
+      <div className='Ready_NextButtonBox'></div>
     </div>
   );
 }

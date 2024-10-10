@@ -46,10 +46,10 @@
   
   .ChargeMap_Search{
       position: absolute;
-      top: 15px;
+      top: 50px;
       left: 10px; 
-      width: 100px;
-      height: 40px; 
+      width: 90% !important;
+      height: 50px; 
       z-index: 1000;
       padding: 10px;
       border-radius: 5px;

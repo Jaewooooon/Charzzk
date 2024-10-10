@@ -1,10 +1,12 @@
 .SelectParking {
     padding: 25px; /* 전체 여백 */
     margin-top: 60px;
+    margin-bottom: 300px;
+    padding-bottom: 100px;
   }
   
   .SelectParking_contents_box {
-    margin-top: 50px;
+    margin-top: 0px;
     margin-bottom: 20px; /* 주차장 선택 안내 텍스트와 검색창 사이 여백 */
   }
   
@@ -31,6 +33,7 @@
   .ParkingList {
     list-style-type: none; /* 리스트 스타일 제거 */
     padding: 0; /* 리스트 패딩 제거 */
+    z-index: 0;
   }
   
   .ParkingItem {
@@ -41,6 +44,7 @@
     padding:10px;
     padding-top: 18px;
     padding-bottom: 18px;
+    z-index: 0;
   }
   
   .ParkingImage {
@@ -51,7 +55,8 @@
   }
   
   .ParkingInfo {
-    flex-grow: 1; /* 텍스트가 공간을 차지하도록 설정 */
+    width: 100%; /* 전체 너비 사용 */
+    z-index: 0; /* 리스트가 다른 요소 위에 표시되도록 설정 */
   }
   
   .ParkingName {
@@ -77,3 +82,33 @@
   .SelectParking_bottom{
     border-bottom: 1px solid gainsboro;
   }
+  .selectparkingbutton{
+    border: none;
+    background-color: transparent;
+    font-weight: 800;
+    border-right: 1px solid rgb(161, 161, 161);
+    color: rgb(161, 161, 161);
+}
+
+.selectparkingbutton2{
+  border: none;
+  background-color: transparent;
+  font-weight: 800;
+  color: rgb(161, 161, 161);
+}
+
+.Botton_box_select{
+  margin-left: 250px;
+}
+.selectparkingbutton.active, .selectparkingbutton2.active {
+  color: black; /* 글씨체 변경 */
+  font-weight: bold; /* 굵게 표시 */
+}
+.ReadyNow{
+  color: #5CDAB8;
+  font-size: 15px;
+}
+.NotReadyNow{
+  color: #5c5c5c;
+  font-size: 15px;
+}
