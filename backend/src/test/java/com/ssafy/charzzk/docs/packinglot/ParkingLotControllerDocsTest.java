@@ -8,7 +8,6 @@ import com.ssafy.charzzk.api.service.parkinglot.ParkingLotService;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotListResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingLotResponse;
 import com.ssafy.charzzk.api.service.parkinglot.response.ParkingSpotListResponse;
-import com.ssafy.charzzk.api.service.reservation.response.ReservationResponse;
 import com.ssafy.charzzk.api.service.reservation.response.ReservationSimpleResponse;
 import com.ssafy.charzzk.docs.RestDocsSupport;
 import com.ssafy.charzzk.domain.car.Car;
@@ -78,7 +77,7 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                         .build()
         );
 
-        given(parkingLotService.getParkingLotList(anyDouble(), anyDouble(), anyString())).willReturn(response);
+        given(parkingLotService.getParkingLotList(anyDouble(), anyDouble(), anyString(), anyString(), any())).willReturn(response);
 
         // when
         ResultActions perform = mockMvc.perform(
@@ -107,6 +106,7 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                                 )
                                 .queryParameters(
                                         parameterWithName("q").optional().description("검색어 (옵션)"),
+                                        parameterWithName("sort").optional().description("정렬 조건"),
                                         parameterWithName("latitude").description("위도"),
                                         parameterWithName("longitude").description("경도")
                                 )
@@ -130,9 +130,12 @@ class ParkingLotControllerDocsTest extends RestDocsSupport {
                                         fieldWithPath("data[].image").type(JsonFieldType.STRING)
                                                 .description("주차장 이미지"),
                                         fieldWithPath("data[].distance").type(JsonFieldType.NUMBER)
-                                                .description("주차장까지 거리")
-                                )
-                                .build())));
+                                                .description("주차장까지 거리"),
+                                        fieldWithPath("data[].waitingTime").type(JsonFieldType.NUMBER)
+                                                .description("예상 대기 시간"))
+                                .build()
+                        )
+                ));
 
     }
 

@@ -68,7 +68,7 @@ class ParkingLotControllerTest extends ControllerTestSupport {
                         .build()
         );
 
-        given(parkingLotService.getParkingLotList(any(), any(), any())).willReturn(response);
+        given(parkingLotService.getParkingLotList(any(), any(), any(), any(), any())).willReturn(response);
 
         // when
         ResultActions perform = mockMvc.perform(
