@@ -23,6 +23,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class UserControllerTest extends ControllerTestSupport {
 
+    @DisplayName("유저가 자신의 닉네을 조회한다.")
+    @WithMockUser
+    @Test
+    public void getUser() throws Exception {
+        // given
+        User user = User.builder()
+                .username("username")
+                .nickname("nickname")
+                .build();
+
+        given(userService.getUser(any(User.class)))
+                .willReturn(UserResponse.of(user));
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/users/me")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value("200"))
+                .andExpect(jsonPath("$.status").value("OK"))
+                .andExpect(jsonPath("$.message").value("OK"))
+                .andExpect(jsonPath("$.data").exists());
+    }
+
     @DisplayName("유저가 닉네임 중복을 확인했을 때 중복된 닉네임이 없다.")
     @WithMockUser
     @Test
