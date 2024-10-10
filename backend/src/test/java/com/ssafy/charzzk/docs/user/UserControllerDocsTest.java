@@ -12,7 +12,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
@@ -28,7 +30,9 @@ import static org.springframework.restdocs.operation.preprocess.Preprocessors.pr
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class UserControllerDocsTest extends RestDocsSupport {
@@ -39,6 +43,52 @@ public class UserControllerDocsTest extends RestDocsSupport {
     protected Object initController() {
         return new UserController(userService);
     }
+
+    @DisplayName("유저가 자신의 닉네을 조회한다.")
+    @Test
+    public void getUser() throws Exception {
+        // given
+        User user = User.builder()
+                .id(1L)
+                .username("username")
+                .nickname("nickname")
+                .build();
+
+        given(userService.getUser(any(User.class)))
+                .willReturn(UserResponse.of(user));
+
+        // when
+        ResultActions perform = mockMvc.perform(
+                get("/api/v1/users/me")
+                        .contentType(MediaType.APPLICATION_JSON)
+        );
+
+        // then
+        perform
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andDo(document("get-user",
+                        preprocessResponse(prettyPrint()),
+                        resource(ResourceSnippetParameters.builder()
+                                .tag("User")
+                                .summary("유저 정보 확인")
+                                .responseFields(
+                                        fieldWithPath("code").type(JsonFieldType.NUMBER)
+                                                .description("코드"),
+                                        fieldWithPath("status").type(JsonFieldType.STRING)
+                                                .description("상태"),
+                                        fieldWithPath("message").type(JsonFieldType.STRING)
+                                                .description("메시지"),
+                                        fieldWithPath("data.id").type(JsonFieldType.NUMBER)
+                                                .description("유저 아이디"),
+                                        fieldWithPath("data.username").type(JsonFieldType.STRING)
+                                                .description("로그인한 아이디"),
+                                        fieldWithPath("data.nickname").type(JsonFieldType.STRING)
+                                                .description("닉네임")
+                                )
+                                .build())));
+    }
+
 
     @DisplayName("닉네임을 중복확인한다.")
     @Test
