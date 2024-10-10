@@ -43,17 +43,6 @@ public class Reservation extends BaseEntity {
     private ReservationStatus status;
 
     @Override
-    public String toString() {
-        return "Reservation{" +
-                "id=" + id +
-                ", car=" + car.getNumber() +
-                ", charger=" + charger.getId() +
-                ", parkingSpot=" + parkingSpot.getId() +
-                ", status=" + status +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -95,10 +84,20 @@ public class Reservation extends BaseEntity {
 
     public void start() {
         this.status = ReservationStatus.CHARGING;
+        charger.startCharge();
+        car.startCharge();
     }
 
     public void cancel() {
         this.status = ReservationStatus.CANCELED;
+    }
+
+    public boolean isWaiting() {
+        return this.status == ReservationStatus.WAITING;
+    }
+
+    public boolean isCharging() {
+        return this.status == ReservationStatus.CHARGING;
     }
 
     public boolean inUsing() {
@@ -110,4 +109,5 @@ public class Reservation extends BaseEntity {
         charger.chargeComplete();
         car.chargeComplete();
     }
+
 }

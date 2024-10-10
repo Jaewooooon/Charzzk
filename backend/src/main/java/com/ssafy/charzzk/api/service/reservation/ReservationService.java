@@ -73,7 +73,6 @@ public class ReservationService {
         ParkingSpot parkingSpot = parkingSpotRepository.findById(request.getParkingSpotId())
                 .orElseThrow(() -> new BaseException(ErrorCode.PARKING_SPOT_NOT_FOUND));
 
-        // 옮기기
         List<Charger> chargers = parkingLot.getChargers();
 
         Charger charger = chargers.stream()
@@ -117,7 +116,6 @@ public class ReservationService {
             throw new BaseException(ErrorCode.RESERVATION_CONFIRM_TIMEOUT);
         }
 
-
         reservationManager.confirmReservation(reservation);
 
         return reservation;
@@ -137,26 +135,26 @@ public class ReservationService {
         return canceledReservation;
     }
 
-    public List<ReservationQueueResponse> getReservations() {
-        Map<Long, Queue<Reservation>> reservationMap = reservationManager.getReservationQueueMap();
-
-        for (Map.Entry<Long, Queue<Reservation>> l : reservationMap.entrySet()) {
-            System.out.println(l.getKey());
-            for (Reservation r : l.getValue()) {
-                System.out.println(r);
-            }
-        }
-
-        List<ReservationQueueResponse> response = new ArrayList<>();
-
-        for (Map.Entry<Long, Queue<Reservation>> entry : reservationMap.entrySet()) {
-            ReservationQueueResponse.of(entry.getKey(), entry.getValue().stream().map(ReservationResponse::from).collect(Collectors.toList()));
-        }
-
-        return response;
-    }
-
-    public void deleteReservations() {
-        reservationManager.deleteAllReservations();
-    }
+//    public List<ReservationQueueResponse> getReservations() {
+//        Map<Long, Queue<Reservation>> reservationMap = reservationManager.getReservationQueueMap();
+//
+//        for (Map.Entry<Long, Queue<Reservation>> l : reservationMap.entrySet()) {
+//            System.out.println(l.getKey());
+//            for (Reservation r : l.getValue()) {
+//                System.out.println(r);
+//            }
+//        }
+//
+//        List<ReservationQueueResponse> response = new ArrayList<>();
+//
+//        for (Map.Entry<Long, Queue<Reservation>> entry : reservationMap.entrySet()) {
+//            ReservationQueueResponse.of(entry.getKey(), entry.getValue().stream().map(ReservationResponse::from).collect(Collectors.toList()));
+//        }
+//
+//        return response;
+//    }
+//
+//    public void deleteReservations() {
+//        reservationManager.deleteAllReservations();
+//    }
 }

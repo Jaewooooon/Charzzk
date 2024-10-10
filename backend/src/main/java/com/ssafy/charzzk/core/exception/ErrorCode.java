@@ -47,6 +47,7 @@ public enum ErrorCode {
     // Reservation
     RESERVATION_NOT_FOUND(6000, HttpStatus.NOT_FOUND, "예약을 찾을 수 없습니다."),
     RESERVATION_CONFIRM_TIMEOUT(6001, HttpStatus.BAD_REQUEST, "예약 확정 시간이 초과되었습니다."),
+    CANNOT_CANCEL_RESERVATION(6002, HttpStatus.BAD_REQUEST, "예약을 취소할 수 없습니다."),
 
     // Parking
     PARKING_SPOT_NOT_FOUND(7001, HttpStatus.NOT_FOUND, "주차 공간을 찾을 수 없습니다."),

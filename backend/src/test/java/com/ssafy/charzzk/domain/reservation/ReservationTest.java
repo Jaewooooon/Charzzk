@@ -1,6 +1,5 @@
 package com.ssafy.charzzk.domain.reservation;
 
-import com.ssafy.charzzk.api.service.reservation.ReservationManager;
 import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.car.CarType;
 import com.ssafy.charzzk.domain.charger.Charger;
@@ -15,7 +14,8 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ReservationTest {
 
@@ -121,6 +121,34 @@ class ReservationTest {
         assertThat(reservation.getStatus()).isEqualTo(ReservationStatus.WAITING);
     }
 
+    @DisplayName("예약이 대기 상태인지 확인한다.")
+    @Test
+    public void isWaiting() {
+        Reservation reservation1 = Reservation.builder()
+                .status(ReservationStatus.WAITING)
+                .build();
+        Reservation reservation2 = Reservation.builder()
+                .status(ReservationStatus.PENDING)
+                .build();
+
+        assertTrue(reservation1.isWaiting());
+        assertFalse(reservation2.isWaiting());
+    }
+
+    @DisplayName("예약이 충전 상태인지 확인한다.")
+    @Test
+    public void isCharging() {
+        Reservation reservation1 = Reservation.builder()
+                .status(ReservationStatus.CHARGING)
+                .build();
+        Reservation reservation2 = Reservation.builder()
+                .status(ReservationStatus.PENDING)
+                .build();
+
+        assertTrue(reservation1.isCharging());
+        assertFalse(reservation2.isCharging());
+    }
+
     @DisplayName("예약을 취소하면 상태를 CANCELED으로 변경한다")
     @Test
     public void cancel() {
@@ -136,7 +164,17 @@ class ReservationTest {
     @DisplayName("충전을 시작하면 상태를 CHARGING으로 변경한다")
     @Test
     public void start() {
+        Car car = Car.builder()
+                .number("12다1234")
+                .build();
+
+        Charger charger = Charger.builder()
+                .status(ChargerStatus.WAITING)
+                .build();
+
         Reservation reservation = Reservation.builder()
+                .car(car)
+                .charger(charger)
                 .status(ReservationStatus.WAITING)
                 .build();
 
