@@ -7,9 +7,10 @@
     flex-direction: column;
 }
 .Car_Image_Management{
-    margin-top: 20px;
+    margin-top: 30px;
     width: 100%; 
     height: auto;
+    margin-bottom: 50px;
 }
 .Car_ImageBox{
         padding: 50px;
@@ -29,4 +30,118 @@
     display: flex;
     padding: 15px;
     padding-top: 22px;
+}
+.CarManagement_title{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-right: 30px;
+    padding-bottom: 5px;
+    font-family: 'MinSans-Regular';
+    width: 70%;
+    margin: 10px;
+    color:  rgba(255, 255, 255, 0.4);
+}
+.CarManagement_title2{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-right: 30px;
+    padding-bottom: 5px;
+    font-family: 'MinSans-Regular';
+    width: 70%;
+    margin: 10px;
+    color:  rgba(255, 255, 255, 0.4);
+}
+.CarManagement_box1{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.CarManagement_content{
+    display: flex;
+    font-family: 'LAB디지털';
+    font-size: 30px;
+    font-weight: bolder;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-left: 10px;
+    color: rgba(255, 255, 255, 0.771);
+}
+.CarManagement_Info2{
+    display: flex;
+    width: 80%;
+    margin-left: 10px;
+    margin-bottom: 50px;
+}
+
+.CarManagement_Info3{
+    display: flex;
+    margin-left: 80px;
+}
+
+.CarManagement_content2{
+    display: flex;
+    font-family: 'MinSans-Regular';
+    font-size: 18px;
+    font-weight: bolder;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-left: 10px;
+    color: rgba(255, 255, 255, 0.771);
+}
+
+.CarNoChargeBattery_img{
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 100px;
+    height: 6px;
+    margin-top: 4px;
+    margin-right: 15px;
+  }
+
+  .CarChargeBattery_img1{
+    background-color: #00F950;
+    width: 100px;
+    height: 6px;
+    margin-top: 4px;
+    margin-right: 15px;
+  }
+  .CarChargeBattery_img2{
+    background-color: #47ff82;
+    width: 100px;
+    height: 6px;
+    margin-top: 4px;
+    margin-right: 15px;
+  }
+  .CarChargeBattery_img3{
+    background-color: #ffee6c;
+    width: 100px;
+    height: 6px;
+    margin-top: 4px;
+    margin-right: 15px;
+  }
+  .CarChargeBattery_img4{
+    background-color: #fe0d04;
+    width: 100px;
+    height: 6px;
+    margin-top: 4px;
+    margin-right: 15px;
+  }
+  .Car_Battery{
+    margin-top: 55px;
+    color: aliceblue;
+    font-size: 50px;
+  }
+  .small_font2{
+    color: aliceblue;
+    margin-top:70px;
+    margin-left: 2px;
+    font-size: 30px;
+  }
+  .Car_BattreryBox{
+    display: flex;
+  }
+  .Car_Nickname {
+    position: fixed;  /* 화면에서 고정 */
+    top: 50px;        /* 위에서 10px 떨어진 위치 */
+    right: 30px;      /* 오른쪽에서 10px 떨어진 위치 */
+    color: aliceblue; /* 텍스트 색상 */
+    font-size: 20px;
+    font-family: 'yg-jalnan';
 }
