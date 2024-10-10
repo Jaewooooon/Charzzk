@@ -53,11 +53,6 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
 
-	// Test Container
-	testImplementation 'org.springframework.boot:spring-boot-testcontainers'
-	testImplementation 'org.testcontainers:junit-jupiter'
-	testImplementation 'org.testcontainers:postgresql'
-
 	// Test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
@@ -73,9 +68,6 @@ dependencies {
 
 	// rabbitMQ
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
-
-	// STOMP, websocket
-	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	
 	// OpenFeign
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
@@ -109,7 +101,6 @@ jacocoTestReport {
 						'**/CarConst.class',
 						'**/ReservationConst.class',
 						'**/domain/auth/**',
-//						'**/reservation',
 						'**/filter/**',
 						'**/auth/**',
 						'**/exception/**',

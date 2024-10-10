@@ -110,10 +110,10 @@ public class ReservationManager {
         }
     }
 
-//    public void deleteAllReservations() {
-//        for (Long l : reservationQueueMap.keySet()) {
-//            reservationQueueMap.get(l).clear();
-//        }
-//    }
+    public void deleteAllReservations() {
+        for (Long l : reservationQueueMap.keySet()) {
+            reservationQueueMap.get(l).clear();
+        }
+    }
 
 }
