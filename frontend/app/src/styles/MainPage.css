@@ -41,8 +41,8 @@ html, body {
     justify-content: center;;
 }
 .Car_Image{
-    margin-top: 20px;
-    width: 100%;
+    margin-top: 0px;
+    width: 85%;
 }
 .Car_MonthInformation{
     display: flex;
@@ -78,12 +78,12 @@ html, body {
   
   .ChargeFind_Button,
   .ChargeStart_Button {
-    background-color: #EAEAED; /* 버튼 기본 배경색 */
+    background: linear-gradient(to bottom,#5085C1 10%, #631A7E 90%); /* 버튼 기본 배경색 */
     border: none; /* 테두리 제거 */
     flex: 1; /* Flexbox에서 동일한 비율로 크기 설정 */
-    height: 160px; /* 버튼의 고정 높이 */
+    height: 170px; /* 버튼의 고정 높이 */
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     align-items: center; /* 세로 중앙 정렬 */
     justify-content: center; /* 가로 중앙 정렬 */
     cursor: pointer;
@@ -93,20 +93,17 @@ html, body {
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'MinSans-Regular';
-    color: #000000;
+    color: white;
+    font-family: 'yg-jalnan';
   }
   
   .ChargeStart_Button {
-    background-color: #E8F2F0; /* 다른 버튼 배경색 */
+    background: linear-gradient(to bottom,#57A5CD 20%, #65F9D1 80%);/* 다른 버튼 배경색 */
     padding-top: 22px;
-    
+    color: white;
   }
   
-  .ChargeFind_Button:hover,
-  .ChargeStart_Button:hover {
-    background-color: #d4d4d6; /* 마우스 오버 시 배경색 */
-  
-  }
+
 
   .ChargeStatus_Button{
     border: none;
@@ -122,7 +119,7 @@ html, body {
     font-size: 20px;
     font-weight: bolder;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    font-family: 'MinSans-Regular';
+    font-family: 'yg-jalnan';
   }
 
   .MyPage{
@@ -182,7 +179,9 @@ html, body {
 
   .ChargeStart_Button_Content{
     padding-right: 40px;
-    color: #000000;
+    color: #ffffff;
+    font-family: 'yg-jalnan';
+    font-size: 18px;
   }
 
   .MonthPayment_Contents{
@@ -217,6 +216,7 @@ html, body {
     border: none; /* 버튼 테두리 제거 */
   }
   
+
   .Question_logo {
     width: 20px; /* 아이콘 크기 조정 */
     height: 20px;

@@ -4,6 +4,7 @@
   }
   
   .SelectParking_contents_box {
+    margin-top: 50px;
     margin-bottom: 20px; /* 주차장 선택 안내 텍스트와 검색창 사이 여백 */
   }
   
