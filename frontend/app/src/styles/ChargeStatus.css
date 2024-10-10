@@ -117,14 +117,14 @@
 .ChargeStart_Contents{
     margin: 0;
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 900;
     display: flex;
     gap: 5px;
 }
 .ChargeComplete_Contents{
     margin: 0;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 900;
     display: flex;
     gap: 5px;
@@ -132,5 +132,5 @@
 
 .charge_time{
     color: #427467;
-    font-size: 15px;
+    font-size: 20px;
 }

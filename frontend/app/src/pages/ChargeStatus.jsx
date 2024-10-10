@@ -48,13 +48,29 @@ const ChargeStatus = () => {
       });
 
       if (response.data.code === 200) {
-        console.log('Reservation Data Response:', response.data);
         setReservationData(response.data.data);  
       } else {
         console.error('Error fetching reservation data:', response.data.message);
       }
     } catch (error) {
       console.error('Error fetching reservation data:', error);
+    }
+  };
+
+  const getReservationStatus = (status) => {
+    switch (status) {
+      case 'PENDING':
+        return '대기 중';
+      case 'WAITING':
+        return '대기 중';
+      case 'CANCELED':
+        return '충전 취소';
+      case 'CHARGING':
+        return '충전 중';
+        case 'DONE':
+        return '충전 완료';
+      default:
+        return status; // 상태에 대한 기본값
     }
   };
 
@@ -84,34 +100,35 @@ const ChargeStatus = () => {
       <GoBackButton />
 
       <div className="Percent_Contents">
-        <p className='AutoCharge_Contents'>{reservationData ? reservationData.status : '예약 정보 없음'}</p>
+        <p className='AutoCharge_Contents'>{reservationData ? getReservationStatus(reservationData.status) : '예약 정보 없음'}</p>
         <p className='ChargePercent_Contents'>{carData.length > 0 && currentIndex < carData.length && `${carData[currentIndex].battery}%`}</p>
 
         {reservationData && (
-          <>
-            {reservationData.status === 'WAITING' && (
-              <>
-                <p className='ChargeStatus_Contents'>{calculateRemainingTime(reservationData.startTime)} 분 후 충전 시작</p>
-                <p className='ChargeStart_Contents'>충전 시작 <div className='charge_time'> {new Date(reservationData.startTime).toLocaleTimeString()}</div> 예정</p>
-                <p className='ChargeComplete_Contents'>충전 완료 <div className='charge_time'> {new Date(reservationData.endTime).toLocaleTimeString()} </div>예정</p>
-              </>
-            )}
+  <>
+    {reservationData.status === 'WAITING' && (
+      <>
+        <p className='ChargeStatus_Contents'>{calculateRemainingTime(reservationData.startTime)} 분 후 충전 시작</p>
+        <p className='ChargeStart_Contents'>충전 시작 <div className='charge_time'> {new Date(reservationData.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div> 예정</p>
+        <p className='ChargeComplete_Contents'>충전 완료 <div className='charge_time'> {new Date(reservationData.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} </div>예정</p>
+      </>
+    )}
 
-            {reservationData.status === 'CHARGING' && (
-              <>
-                <p className='ChargeStatus_Contents'>{calculateRemainingTime(reservationData.endTime)} 분 후 충전 완료</p>
-                <p className='ChargeStart_Contents'>충전 시작 <div className='charge_time'> {new Date(reservationData.startTime).toLocaleTimeString()}</div> 시작</p>
-                <p className='ChargeComplete_Contents'>충전 완료 <div className='charge_time'> {new Date(reservationData.endTime).toLocaleTimeString()} </div>예정</p>
-              </>
-            )}
+    {reservationData.status === 'CHARGING' && (
+      <>
+        <p className='ChargeStatus_Contents'>{calculateRemainingTime(reservationData.endTime)} 분 후 충전 완료</p>
+        <p className='ChargeStart_Contents'>충전 시작 <div className='charge_time'> {new Date(reservationData.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div> 시작</p>
+        <p className='ChargeComplete_Contents'>충전 완료 <div className='charge_time'> {new Date(reservationData.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} </div>예정</p>
+      </>
+    )}
 
-            {reservationData.status === 'DONE' && (
-              <>
-                <p className='ChargeComplete_Contents'>충전 완료 <div className='charge_time'> {new Date(reservationData.endTime).toLocaleTimeString()}</div> 완료</p>
-              </>
-            )}
-          </>
-        )}
+    {reservationData.status === 'DONE' && (
+      <>
+        <p className='ChargeComplete_Contents'>충전 완료 <div className='charge_time'> {new Date(reservationData.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div> 완료</p>
+      </>
+    )}
+  </>
+)}
+
       </div>
 
       <div 
