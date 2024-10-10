@@ -41,4 +41,11 @@ public class ChargerCommandRequest {
                 .longitude(reservation.getParkingSpot().getLocation().getLongitude())
                 .build();
     }
+
+    /**
+     * 예약 아이디, 시작시간, 종료시간
+     * 충전기 아이디
+     * 차량 번호, 배터리
+     * 주차칸 위도, 경도
+     */
 }

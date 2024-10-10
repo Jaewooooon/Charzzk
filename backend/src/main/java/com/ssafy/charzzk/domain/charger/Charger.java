@@ -43,7 +43,8 @@ public class Charger extends BaseEntity {
     private List<Reservation> reservations = new ArrayList<>();
 
     @Builder
-    private Charger(ParkingLot parkingLot, String serialNumber, Integer battery, ChargerStatus status, LocalDateTime lastReservedTime) {
+    private Charger(Long id, ParkingLot parkingLot, String serialNumber, Integer battery, ChargerStatus status, LocalDateTime lastReservedTime) {
+        this.id = id;
         this.parkingLot = parkingLot;
         this.serialNumber = serialNumber;
         this.battery = battery;
