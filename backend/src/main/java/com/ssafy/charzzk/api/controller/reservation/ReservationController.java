@@ -52,16 +52,16 @@ public class ReservationController {
         return ApiResponse.ok(reservationService.getReservation(reservation.getId()));
     }
 
-//    @GetMapping("/api/v1/reservations")
-//    public ApiResponse<List<ReservationQueueResponse>> getReservation() {
-//        return ApiResponse.ok(reservationService.getReservations());
-//    }
+    @GetMapping("/api/v1/reservations")
+    public ApiResponse<List<ReservationQueueResponse>> getReservation() {
+        return ApiResponse.ok(reservationService.getReservations());
+    }
 
-//    @DeleteMapping("/api/v1/reservations")
-//    public ApiResponse<List<ReservationQueueResponse>> deleteReservation() {
-//        reservationService.deleteReservations();
-//        return ApiResponse.ok(null);
-//    }
+    @DeleteMapping("/api/v1/reservations")
+    public ApiResponse<List<ReservationQueueResponse>> deleteReservation() {
+        reservationService.deleteReservations();
+        return ApiResponse.ok(null);
+    }
 
 }
 
