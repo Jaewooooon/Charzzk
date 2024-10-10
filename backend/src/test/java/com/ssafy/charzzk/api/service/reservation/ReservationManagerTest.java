@@ -8,6 +8,7 @@ import com.ssafy.charzzk.domain.car.Car;
 import com.ssafy.charzzk.domain.charger.Charger;
 import com.ssafy.charzzk.domain.charger.ChargerStatus;
 import com.ssafy.charzzk.domain.parkinglot.Location;
+import com.ssafy.charzzk.domain.parkinglot.ParkingLot;
 import com.ssafy.charzzk.domain.parkinglot.ParkingSpot;
 import com.ssafy.charzzk.domain.reservation.Reservation;
 import com.ssafy.charzzk.domain.reservation.ReservationStatus;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,14 +31,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @Transactional
 @ActiveProfiles("test")
 class ReservationManagerTest extends IntegrationTestSupport {
 
-    @Autowired
+    @SpyBean
     private ReservationManager reservationManager;
 
     @MockBean
@@ -315,7 +316,7 @@ class ReservationManagerTest extends IntegrationTestSupport {
                 .location(Location.builder().latitude(37.123456).longitude(127.123456).build())
                 .build();
 
-        Reservation reservation1 = Reservation.builder()
+        Reservation reservation = Reservation.builder()
                 .id(1L)
                 .car(car)
                 .charger(charger1)
@@ -330,16 +331,19 @@ class ReservationManagerTest extends IntegrationTestSupport {
         Queue<Reservation> reservations = reservationManager.getReservationQueueMap().get(charger1.getId());
         Queue<Reservation> sequenceQueue = reservationManager.getSequenceQueue();
 
-        reservations.add(reservation1);
-        sequenceQueue.add(reservation1);
+        reservations.add(reservation);
+        sequenceQueue.add(reservation);
+
+        doNothing().when(reservationManager).relocate(any(Reservation.class), any());
 
         // when
-        reservationManager.cancelReservation(reservation1);
+        reservationManager.cancelReservation(reservation);
 
         // then
-        assertFalse(reservations.contains(reservation1));
-        assertFalse(sequenceQueue.contains(reservation1));
-        assertThat(reservation1.getStatus()).isEqualTo(ReservationStatus.CANCELED);
+        assertFalse(reservations.contains(reservation));
+        assertFalse(sequenceQueue.contains(reservation));
+        assertThat(reservation.getStatus()).isEqualTo(ReservationStatus.CANCELED);
+        verify(reservationManager).relocate(any(), any());
     }
 
     @DisplayName("충전중인 예약을 취소하면 대기중인 예약은 큐에서 삭제한다.")
@@ -364,7 +368,7 @@ class ReservationManagerTest extends IntegrationTestSupport {
                 .location(Location.builder().latitude(37.123456).longitude(127.123456).build())
                 .build();
 
-        Reservation reservation1 = Reservation.builder()
+        Reservation reservation = Reservation.builder()
                 .id(1L)
                 .car(car)
                 .charger(charger1)
@@ -379,18 +383,20 @@ class ReservationManagerTest extends IntegrationTestSupport {
         Queue<Reservation> reservations = reservationManager.getReservationQueueMap().get(charger1.getId());
         Queue<Reservation> sequenceQueue = reservationManager.getSequenceQueue();
 
-        reservations.add(reservation1);
-        sequenceQueue.add(reservation1);
+        reservations.add(reservation);
+        sequenceQueue.add(reservation);
 
+        doNothing().when(reservationManager).relocate(any(Reservation.class), any());
 
         // when
-        reservationManager.cancelReservation(reservation1);
+        reservationManager.cancelReservation(reservation);
 
         // then
-        assertFalse(reservations.contains(reservation1));
-        assertTrue(sequenceQueue.contains(reservation1));
-        assertThat(reservation1.getStatus()).isEqualTo(ReservationStatus.CANCELED);
-        assertThat(reservation1.getCharger().getStatus()).isEqualTo(ChargerStatus.WAITING);
+        assertFalse(reservations.contains(reservation));
+        assertTrue(sequenceQueue.contains(reservation));
+        assertThat(reservation.getStatus()).isEqualTo(ReservationStatus.CANCELED);
+        assertThat(reservation.getCharger().getStatus()).isEqualTo(ChargerStatus.WAITING);
+        verify(reservationManager).relocate(any(), any());
     }
 
     @DisplayName("끝난 예약을 취소하면 예외가 발생한다.")
@@ -467,12 +473,15 @@ class ReservationManagerTest extends IntegrationTestSupport {
         reservations.add(reservation);
         sequenceQueue.add(reservation);
 
+        doNothing().when(reservationManager).relocate(any(Reservation.class), any());
+
         // when
         reservationManager.timeout(reservation);
 
         // then
         assertThat(reservations.size()).isEqualTo(0);
         assertThat(sequenceQueue.size()).isEqualTo(0);
+        verify(reservationManager).relocate(any(), any());
     }
 
     @DisplayName("충전기의 다음 예약을 실행한다.")
@@ -589,13 +598,207 @@ class ReservationManagerTest extends IntegrationTestSupport {
 
         reservationManager.init(List.of(charger1, charger2));
 
-
-
         // when
         reservationManager.executeNextReservation(charger1);
 
         // then
         verify(chargerClient).returnToStart();
+    }
+
+    @DisplayName("예약을 재배치한다.")
+    @Test
+    void relocate() {
+        // given
+        Car car = Car.builder()
+                .isCharging(false)
+                .build();
+
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        Charger charger1 = Charger.builder()
+                .id(1L)
+                .parkingLot(parkingLot)
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 4, 0))
+                .build();
+
+        Charger charger2 = Charger.builder()
+                .id(2L)
+                .parkingLot(parkingLot)
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 4, 0))
+                .build();
+
+        parkingLot.getChargers().addAll(List.of(charger1, charger2));
+
+        ParkingSpot parkingSpot = ParkingSpot.builder()
+                .location(location)
+                .build();
+
+        Reservation reservation1 = Reservation.builder()
+                .id(1L)
+                .car(car)
+                .charger(charger1)
+                .parkingSpot(parkingSpot)
+                .startTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .status(ReservationStatus.WAITING)
+                .build();
+
+        Reservation reservation2 = Reservation.builder()
+                .id(2L)
+                .car(car)
+                .charger(charger2)
+                .parkingSpot(parkingSpot)
+                .startTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 3, 0))
+                .status(ReservationStatus.WAITING)
+                .build();
+
+        Reservation reservation3 = Reservation.builder()
+                .id(3L)
+                .car(car)
+                .charger(charger1)
+                .parkingSpot(parkingSpot)
+                .startTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 4, 0))
+                .status(ReservationStatus.WAITING)
+                .build();
+
+        Reservation reservation4 = Reservation.builder()
+                .id(4L)
+                .car(car)
+                .charger(charger2)
+                .parkingSpot(parkingSpot)
+                .startTime(LocalDateTime.of(2024, 1, 1, 3, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 4, 0))
+                .status(ReservationStatus.WAITING)
+                .build();
+
+        reservationManager.init(List.of(charger1, charger2));
+
+        Queue<Reservation> reservationQueue1 = reservationManager.getReservationQueueMap().get(charger1.getId());
+        Queue<Reservation> reservationQueue2 = reservationManager.getReservationQueueMap().get(charger2.getId());
+        Queue<Reservation> sequenceQueue = reservationManager.getSequenceQueue();
+
+        reservationQueue1.addAll(List.of(reservation1, reservation3));
+        reservationQueue2.addAll(List.of(reservation2, reservation4));
+        sequenceQueue.addAll(List.of(reservation1, reservation2, reservation3, reservation4));
+
+        LocalDateTime now = LocalDateTime.of(2024, 1, 1, 1, 0);
+        // when
+        reservationManager.relocate(reservation2, now);
+
+        // then
+        assertThat(reservationQueue1.size()).isEqualTo(2);
+        assertThat(reservationQueue2.size()).isEqualTo(1);
+        assertThat(sequenceQueue.size()).isEqualTo(3);
+
+        assertThat(reservationQueue1.poll()).isEqualTo(reservation1);
+        assertThat(reservationQueue1.poll()).isEqualTo(reservation4);
+        assertThat(reservationQueue2.poll()).isEqualTo(reservation3);
+    }
+
+    @DisplayName("예약을 재배치할 때 충전기가 없으면 예외가 발생한다..")
+    @Test
+    void relocateWithoutCharger() {
+        // given
+        Car car = Car.builder()
+                .isCharging(false)
+                .build();
+
+        Location location = Location.builder()
+                .latitude(37.123456)
+                .longitude(127.123456)
+                .build();
+
+        ParkingLot parkingLot = ParkingLot.builder()
+                .name("테스트 주차장")
+                .location(location)
+                .build();
+
+        Charger charger1 = Charger.builder()
+                .id(1L)
+                .parkingLot(parkingLot)
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 4, 0))
+                .build();
+
+        Charger charger2 = Charger.builder()
+                .id(2L)
+                .parkingLot(parkingLot)
+                .status(ChargerStatus.WAITING)
+                .lastReservedTime(LocalDateTime.of(2024, 1, 1, 4, 0))
+                .build();
+
+        ParkingSpot parkingSpot = ParkingSpot.builder()
+                .location(location)
+                .build();
+
+        Reservation reservation1 = Reservation.builder()
+                .id(1L)
+                .car(car)
+                .charger(charger1)
+                .parkingSpot(parkingSpot)
+                .startTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .status(ReservationStatus.WAITING)
+                .build();
+
+        Reservation reservation2 = Reservation.builder()
+                .id(2L)
+                .car(car)
+                .charger(charger2)
+                .parkingSpot(parkingSpot)
+                .startTime(LocalDateTime.of(2024, 1, 1, 1, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 3, 0))
+                .status(ReservationStatus.WAITING)
+                .build();
+
+        Reservation reservation3 = Reservation.builder()
+                .id(3L)
+                .car(car)
+                .charger(charger1)
+                .parkingSpot(parkingSpot)
+                .startTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 4, 0))
+                .status(ReservationStatus.WAITING)
+                .build();
+
+        Reservation reservation4 = Reservation.builder()
+                .id(4L)
+                .car(car)
+                .charger(charger2)
+                .parkingSpot(parkingSpot)
+                .startTime(LocalDateTime.of(2024, 1, 1, 3, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 4, 0))
+                .status(ReservationStatus.WAITING)
+                .build();
+
+        reservationManager.init(List.of(charger1, charger2));
+
+        Queue<Reservation> reservationQueue1 = reservationManager.getReservationQueueMap().get(charger1.getId());
+        Queue<Reservation> reservationQueue2 = reservationManager.getReservationQueueMap().get(charger2.getId());
+        Queue<Reservation> sequenceQueue = reservationManager.getSequenceQueue();
+
+        reservationQueue1.addAll(List.of(reservation1, reservation3));
+        reservationQueue2.addAll(List.of(reservation2, reservation4));
+        sequenceQueue.addAll(List.of(reservation1, reservation2, reservation3, reservation4));
+
+        LocalDateTime now = LocalDateTime.of(2024, 1, 1, 1, 0);
+
+        // when
+        assertThatThrownBy(() -> reservationManager.relocate(reservation2, now))
+                .isInstanceOf(BaseException.class)
+                .hasMessage(ErrorCode.NO_AVAILABLE_CHARGER.getMessage());
     }
 
 }

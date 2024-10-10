@@ -237,4 +237,18 @@ class ReservationTest {
         assertFalse(car.isCharging());
     }
 
+    @DisplayName("예약 시간을 변경한다.")
+    @Test
+    public void updateTime() {
+        Reservation reservation = Reservation.builder()
+                .startTime(LocalDateTime.of(2024, 1, 1, 2, 0))
+                .endTime(LocalDateTime.of(2024, 1, 1, 3, 0))
+                .build();
+
+        reservation.updateTime(LocalDateTime.of(2024, 1, 1, 3, 0), LocalDateTime.of(2024, 1, 1, 4, 0));
+
+        assertThat(reservation.getStartTime()).isEqualTo(LocalDateTime.of(2024, 1, 1, 3, 0));
+        assertThat(reservation.getEndTime()).isEqualTo(LocalDateTime.of(2024, 1, 1, 4, 0));
+    }
+
 }
