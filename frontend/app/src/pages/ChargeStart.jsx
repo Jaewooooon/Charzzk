@@ -59,7 +59,8 @@ const ChargeStart = () => {
       battery: parkingInfo.battery,
     };
 
-
+    console.log('예약 요청 데이터:', requestData); 
+    console.log('전송할 Authorization 헤더:', `Bearer ${accessToken}`);
 
     try {
       const response = await axios.post(
@@ -84,7 +85,7 @@ const ChargeStart = () => {
   const startCharging = async () => {
     const reservationId = reservationData.data.id; // 예약 ID 가져오기
     setIsLoading(true); // 로딩 시작
-   
+    console.log(reservationId);
 
     try {
       const response = await axios.patch(
@@ -97,7 +98,7 @@ const ChargeStart = () => {
         }
       );
 
-      
+      console.log('충전 시작 응답:', response.data); // 응답 데이터 확인
       // 충전 시작 후 필요한 추가 로직 구현
       navigate('/charge-status');
 
@@ -171,7 +172,6 @@ const ChargeStart = () => {
       {step === 1 && <SelectParking2 setIsReady={setIsReady} />}
       {step === 2 && <SelectCarTime setIsReady={setIsReady} />}
       {step === 3 && <SelectCarTime setIsReady={setIsReady} />}
-
 
       {/* 모달 창을 통해 예약 정보 표시 */}
       <CompleteChargeModal isOpen={isModalOpen} onClose={closeModal}>

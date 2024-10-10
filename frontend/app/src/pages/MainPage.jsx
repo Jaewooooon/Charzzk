@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';  
 import '../styles/MainPage.css';
-import CarSample from '../assets/car_sample.png'; // 기본 이미지
+import CarSample from '../assets/car_sample.png';
 import MypageCar from '../assets/MypageCar.png';
 import MyPagePayment from '../assets/MypagePayment.png';
-import MyPageReport from '../assets/MypageReport.png';
+import MyPageReport from '../assets/MyPageReport.png';
 import ChargeStatus from '../assets/ChargeStatus.png';
 import ChargeStart from '../assets/ChargeStart.png';
-import Question from '../assets/Question.png';
-import UserImg from '../assets/UserImg.png';
 import axios from 'axios'; 
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { accessTokenState } from '../recoil/LoginAtom';
 import { currentIndexState } from '../recoil/CurrentIndex';
-import { useSwipeable } from 'react-swipeable'; // react-swipeable 임포트
+import { useSwipeable } from 'react-swipeable';
 
 const MainPage = () => {
   const [payment, setPayment] = useState(0);
   const [chargeamount, setChargeAmount] = useState(0);
-  const [carData, setCarData] = useState([]); // 차량 데이터를 배열로 저장
-  const [currentIndex, setCurrentIndex] = useRecoilState(currentIndexState); // Recoil을 사용하여 currentIndex 상태 관리
+  const [carData, setCarData] = useState([]);
+  const [currentIndex, setCurrentIndex] = useRecoilState(currentIndexState); 
   const accessToken = useRecoilValue(accessTokenState); 
 
-  // 차량 데이터 가져오는 함수
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
+
   const fetchCarData = async () => {
     try {
       const response = await axios.get('https://j11c208.p.ssafy.io/api/v1/cars/me', {
@@ -32,10 +32,10 @@ const MainPage = () => {
       });
 
       if (response.data.code === 200) {
-        setCarData(response.data.data); // 차량 데이터를 상태에 저장
+        setCarData(response.data.data); 
         if (response.data.data.length > 0) {
-          setPayment(response.data.data[currentIndex].chargeCost || 0); // 현재 차량의 충전 요금을 설정
-          setChargeAmount(response.data.data[currentIndex].chargeAmount || 0); // 현재 차량의 충전량을 설정
+          setPayment(response.data.data[currentIndex].chargeCost || 0);
+          setChargeAmount(response.data.data[currentIndex].chargeAmount || 0);
         }
       } else {
         console.error('Error fetching car data:', response.data.message);
@@ -45,51 +45,62 @@ const MainPage = () => {
     }
   };
 
-  // 컴포넌트 마운트 시 차량 데이터 가져오기
   useEffect(() => {
     fetchCarData();
   }, []);
 
-  // 다음 이미지로 이동하는 함수
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX > touchEndX + 50) {
+      // Swipe left
+      nextImage();
+    } else if (touchStartX < touchEndX - 50) {
+      // Swipe right
+      prevImage();
+    }
+  };
+
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % carData.length);
   };
 
-  // 이전 이미지로 이동하는 함수
   const prevImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + carData.length) % carData.length);
   };
 
-  // Swipeable 설정
-  const handlers = useSwipeable({
-    onSwipedLeft: nextImage, // 왼쪽으로 스와이프 시 다음 이미지
-    onSwipedRight: prevImage, // 오른쪽으로 스와이프 시 이전 이미지
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-  });
-
-  // 차량 정보 업데이트
   useEffect(() => {
     if (carData.length > 0) {
-      // currentIndex가 carData의 길이보다 크면 0으로 설정
-      if (currentIndex >= carData.length) {
-        setCurrentIndex(0);
-      } else {
-        const currentCar = carData[currentIndex]; // 현재 차량 데이터 가져오기
-        if (currentCar) { // currentCar가 undefined가 아닐 경우만
-          setPayment(Math.floor(currentCar.chargeCost) || 0);
-          setChargeAmount(Math.floor(currentCar.chargeAmount) || 0);
-        }
+      const currentCar = carData[currentIndex];
+      if (currentCar) {
+        setPayment(Math.floor(currentCar.chargeCost) || 0);
+        setChargeAmount(Math.floor(currentCar.chargeAmount) || 0);
       }
     }
   }, [currentIndex, carData]);
 
-  
   return (
-    <>
     <div className='MainPage_ContainerBox'>
-      <button className='Question_button'><img src={Question} alt="도움말" className='Question_logo' /></button>
-      <div className='Car_Information' {...handlers}>
+      {/* 동그라미 표시 */}
+      <div className="dot-container">
+        {carData.map((_, index) => (
+          <div 
+            key={index} 
+            className={`dot ${currentIndex === index ? 'active' : ''}`} 
+          />
+        ))}
+      </div>
+
+      <div className='Car_Information' 
+           onTouchStart={handleTouchStart} 
+           onTouchMove={handleTouchMove} 
+           onTouchEnd={handleTouchEnd}>
         {/* 차량 이미지 슬라이드 */}
         <img 
           src={carData.length > 0 ? carData[currentIndex]?.carType.image : CarSample} 
@@ -98,39 +109,39 @@ const MainPage = () => {
         />
         
         <div className='Car_MonthInformation'>
-  <div>
-    <div className='Car_MonthInformation1'>배터리</div>
-    <div className='MonthPayment_Contents'>
-      <div>
-        {/* 배터리 상태 */}
-        {[...Array(10)].map((_, index) => {
-          const batteryLevel = carData[currentIndex]?.battery || 0;
-          let batteryClass = 'NoChargeBattery_img'; // 기본적으로 배터리가 없는 경우 클래스
+          {/* 나머지 내용은 동일하게 유지 */}
+          <div>
+            <div className='Car_MonthInformation1'>배터리</div>
+            <div className='MonthPayment_Contents'>
+              <div>
+                {[...Array(10)].map((_, index) => {
+                  const batteryLevel = carData[currentIndex]?.battery || 0;
+                  let batteryClass = 'NoChargeBattery_img'; 
 
-          if (batteryLevel === 100) {
-            batteryClass = 'ChargeBattery_img1'; // 100%일 경우
-          } else if (batteryLevel >= 70) {
-            batteryClass = 'ChargeBattery_img2'; // 70~99%일 경우
-          } else if (batteryLevel >= 30) {
-            batteryClass = 'ChargeBattery_img3'; // 30~69%일 경우
-          } else if (batteryLevel > 0) {
-            batteryClass = 'ChargeBattery_img4'; // 1~29%일 경우
-          }
+                  if (batteryLevel === 100) {
+                    batteryClass = 'ChargeBattery_img1'; 
+                  } else if (batteryLevel >= 70) {
+                    batteryClass = 'ChargeBattery_img2'; 
+                  } else if (batteryLevel >= 30) {
+                    batteryClass = 'ChargeBattery_img3'; 
+                  } else if (batteryLevel > 0) {
+                    batteryClass = 'ChargeBattery_img4'; 
+                  }
 
-          return (
-            <div 
-              key={index} 
-              className={batteryLevel >= (10 - index) * 10 
-                ? batteryClass 
-                : 'NoChargeBattery_img'} // 각 배터리 단계에 따라 클래스 적용
-            ></div>
-          );
-        })}
-      </div>
-      <div>{carData[currentIndex]?.battery || 0}</div>
-      <div className='small_font'>%</div>
-    </div>
-  </div>
+                  return (
+                    <div 
+                      key={index} 
+                      className={batteryLevel >= (10 - index) * 10 
+                        ? batteryClass 
+                        : 'NoChargeBattery_img'}
+                    ></div>
+                  );
+                })}
+              </div>
+              <div>{carData[currentIndex]?.battery || 0}</div>
+              <div className='small_font'>%</div>
+            </div>
+          </div>
 
           <div>
             <div className='Car_MonthInformation1'>차량 번호</div>
@@ -149,7 +160,7 @@ const MainPage = () => {
           </div>
         </div>
       </div>
-      
+
       <div className='MainPage_ButtonBox'>
         <div className='ChargePage_Content'>충전페이지</div>
         <div className='ChargePage'>
@@ -195,10 +206,29 @@ const MainPage = () => {
           </Link>
         </div>
       </div>
-    </div>
-    </>
-  );
 
+      <style>
+        {`
+          .dot-container {
+            display: flex;
+            justify-content: center;
+            padding-top: 20px
+          }
+          .dot {
+            height: 5px;
+            width: 5px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background-color: lightgray;
+            transition: background-color 0.3s;
+          }
+          .dot.active {
+            background-color: #65F9D1;
+          }
+        `}
+      </style>
+    </div>
+  );
 };
 
 export default MainPage;
