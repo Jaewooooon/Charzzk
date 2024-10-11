@@ -14,7 +14,7 @@ const MapManagement = () => {
   const [location, setLocation] = useState(null);
   const [parkingLots, setParkingLots] = useState([]);
   const [filteredParkingLots, setFilteredParkingLots] = useState([]);
-  const [selectedLot, setSelectedLot] = useState(null);
+  const [selectedLot, setSelectedLot] = useState(null); // 주차장 선택 상태
   const [chargers, setChargers] = useState([]);
   const [selectedSerial, setSelectedSerial] = useState(""); 
   const [chargerStatus, setChargerStatus] = useState(null);
@@ -127,18 +127,14 @@ const MapManagement = () => {
   };
 
   const handleRobotCheck = (parkingLotId, index) => {
-    // 이미 선택된 주차장이 클릭되었으면 선택 해제
+    // 선택된 주차장이 이미 클릭된 경우 상태를 변경하지 않음
     if (selectedLot === index) {
-      setSelectedLot(null); // 선택 해제
-      setChargers([]); // 충전기 정보 초기화
-      setChargerStatus(null); // 충전기 상태 초기화
-      setReservations([]); // 예약 정보 초기화
-    } else {
-      setSelectedLot(index);
-      fetchChargerData(parkingLotId);
+      return;
     }
+    setSelectedLot(index);
+    fetchChargerData(parkingLotId);
   };
-
+  
   const handleSerialChange = (e) => {
     const serialNumber = e.target.value;
     setSelectedSerial(serialNumber);
