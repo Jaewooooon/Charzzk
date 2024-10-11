@@ -1,0 +1,152 @@
+
+
+# Jenkins pipline
+
+pipeline {
+    agent any
+
+    environment {
+        CONTAINER_NAME = "charzzk-server"
+    }
+    
+    stages {
+        
+        stage('clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+        
+        stage('git clone') {
+            steps {
+                git branch: "develop", 
+                    credentialsId: "zzezzee", 
+                    url: "https://lab.ssafy.com/s11-mobility-smarthome-sub1/S11P21C208.git"
+            }
+        }
+        
+        stage('add properties') {
+            steps {
+                dir('backend') {
+                    withCredentials([file(credentialsId: 'application-prod', variable: 'APPLICATION_PROD')]) {
+                       sh 'cp ${APPLICATION_PROD} src/main/resources/application.properties'
+                    }
+                    withCredentials([file(credentialsId: 'application-test', variable: 'APPLICATION_TEST')]) {
+                       sh 'cp ${APPLICATION_TEST} src/test/resources/application-test.properties'
+                    }
+                    withCredentials([file(credentialsId: 'env-server', variable: 'ENV_SERVER')]) {
+                      sh 'cp ${ENV_SERVER} ./'
+                    }
+                }
+            }
+        }
+
+        stage('test server') {
+            steps {
+                dir('backend') {
+                    withGradle {
+                      script {
+                            def isRedisRunning = sh(script: "docker ps --filter 'name=redis-test-database' --format '{{.Names}}'", returnStdout: true).trim()
+                            if (!isRedisRunning) {
+                                sh 'docker run -d --name redis-test-database -p 6380:6379 redis:7.4-rc2-alpine redis-server --maxmemory 128mb --notify-keyspace-events Ex'
+                            }
+                        }                        
+                        sh 'chmod +x ./gradlew'
+                        sh './gradlew test'
+                    }
+                }
+            }
+        }
+        
+        stage('build server') {
+            steps {
+                dir('backend') {
+                    withGradle {
+                        sh 'chmod +x ./gradlew'
+                        sh './gradlew clean build'
+                    }
+                }
+            }
+        }
+
+        stage('build backend image') {
+            steps {
+                dir('backend') {
+                    sh 'docker stop charzzk-backend-server || true'
+                    sh 'docker rm charzzk-backend-server || true'
+                    sh 'docker rmi backend-image || true'
+                    sh 'docker build  -t backend-image .'
+                }
+            }
+        }
+        
+        stage('documentation') {
+            steps {
+                dir('backend') {
+                    withGradle {
+                        sh 'docker ps -q --filter "name=swagger" | xargs -r docker stop'
+                        sh 'docker ps -aq --filter "name=swagger" | xargs -r docker rm'
+                        sh 'rm -rf build'
+                        sh './gradlew openapi3-security-schemes'
+                        sh 'mkdir -p /home/api'
+                        sh 'cp build/api-spec/openapi3.yml /home/api-docs/openapi3.yml'
+                        sh 'docker run -p 8000:8080 -e SWAGGER_JSON=/app/openapi3.yml -e BASE_URL=/docs -v /home/ubuntu/source/api-docs/openapi3.yml:/app/openapi3.yml -d --name=swagger swaggerapi/swagger-ui'
+                    }
+                }
+            }
+        }
+
+        stage('build frontend app') {
+            steps {
+                dir('frontend/app') {
+                    withCredentials([file(credentialsId: 'env-front', variable: 'ENV_FRONT')]) {
+                      sh 'cp ${ENV_FRONT} ./'
+                    }
+                    
+                    sh 'docker build -t frontend-app-image .'
+                    
+                    sh '''
+                    if [ "$(docker ps -q -f name=frontend-app)" ]; then
+                        docker stop frontend-app
+                        docker rm frontend-app
+                    fi
+                    '''                    
+                    
+                    sh 'docker run -d -p 8888:80 --name frontend-app frontend-app-image'                    
+                }
+            }
+        }
+        
+        stage('build frontend web') {
+            steps {
+                dir('frontend/web') {
+                    withCredentials([file(credentialsId: 'env-front', variable: 'ENV_FRONT')]) {
+                      sh 'cp ${ENV_FRONT} ./'
+                    }
+                    
+                    sh 'docker build -t frontend-web-image .'
+                    
+                    sh '''
+                    if [ "$(docker ps -q -f name=frontend-web)" ]; then
+                        docker stop frontend-web
+                        docker rm frontend-web
+                    fi
+                    '''                    
+                    
+                    sh 'docker run -d -p 8889:80 --name frontend-web frontend-web-image'                    
+                }
+            }
+        }
+
+
+        stage('docker run') {
+            steps {
+                dir('backend') {
+                    sh 'docker-compose up -d'
+                }
+            }
+        }
+        
+        
+    }
+}
