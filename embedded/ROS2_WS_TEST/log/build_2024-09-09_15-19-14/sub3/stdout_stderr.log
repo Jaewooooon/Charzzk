@@ -1,0 +1,69 @@
+running egg_info
+creating ..\..\build\sub3\sub3.egg-info
+writing ..\..\build\sub3\sub3.egg-info\PKG-INFO
+writing dependency_links to ..\..\build\sub3\sub3.egg-info\dependency_links.txt
+writing entry points to ..\..\build\sub3\sub3.egg-info\entry_points.txt
+writing requirements to ..\..\build\sub3\sub3.egg-info\requires.txt
+writing top-level names to ..\..\build\sub3\sub3.egg-info\top_level.txt
+writing manifest file '..\..\build\sub3\sub3.egg-info\SOURCES.txt'
+reading manifest file '..\..\build\sub3\sub3.egg-info\SOURCES.txt'
+writing manifest file '..\..\build\sub3\sub3.egg-info\SOURCES.txt'
+running build
+running build_py
+creating C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build
+creating C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib
+creating C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3
+copying sub3\client.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3
+copying sub3\iot_udp.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3
+copying sub3\run_localization.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3
+copying sub3\run_mapping.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3
+copying sub3\tf_detector.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3
+copying sub3\utils.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3
+copying sub3\__init__.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3
+running install
+running install_lib
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3\client.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3\iot_udp.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3\run_localization.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3\run_mapping.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3\tf_detector.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3\utils.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build\lib\sub3\__init__.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3\client.py to client.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3\iot_udp.py to iot_udp.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3\run_localization.py to run_localization.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3\run_mapping.py to run_mapping.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3\tf_detector.py to tf_detector.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3\utils.py to utils.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3\__init__.py to __init__.cpython-37.pyc
+running install_data
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\ament_index
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\ament_index\resource_index
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\ament_index\resource_index\packages
+copying resource\sub3 -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\ament_index\resource_index\packages
+copying package.xml -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3
+running install_egg_info
+Copying ..\..\build\sub3\sub3.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3-0.0.0-py3.7.egg-info
+running install_scripts
+Installing aws_client-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing aws_client.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing iot_udp-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing iot_udp.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing iot_udp_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing iot_udp_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing load_map-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing load_map.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing run_localization-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing run_localization.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing run_localization_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing run_localization_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing run_mapping-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing run_mapping.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing run_mapping_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing run_mapping_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing tf_detector-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing tf_detector.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing tf_detector_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+Installing tf_detector_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\install.log'

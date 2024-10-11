@@ -1,0 +1,106 @@
+[0.000000] (-) TimerEvent: {}
+[0.000000] (-) JobUnselected: {'identifier': 'advanced'}
+[0.000000] (-) JobUnselected: {'identifier': 'c208_package'}
+[0.000000] (-) JobUnselected: {'identifier': 'custom_game'}
+[0.000000] (-) JobUnselected: {'identifier': 'security_service'}
+[0.000000] (-) JobUnselected: {'identifier': 'ssafy_bridge'}
+[0.000000] (-) JobUnselected: {'identifier': 'ssafy_msgs'}
+[0.000000] (-) JobUnselected: {'identifier': 'sub2'}
+[0.000000] (-) JobUnselected: {'identifier': 'sub3'}
+[0.000000] (sub1) JobQueued: {'identifier': 'sub1', 'dependencies': OrderedDict()}
+[0.000000] (sub1) JobStarted: {'identifier': 'sub1'}
+[0.110000] (-) TimerEvent: {}
+[0.219000] (-) TimerEvent: {}
+[0.329000] (-) TimerEvent: {}
+[0.454000] (-) TimerEvent: {}
+[0.563000] (-) TimerEvent: {}
+[0.672000] (-) TimerEvent: {}
+[0.782000] (-) TimerEvent: {}
+[0.891000] (-) TimerEvent: {}
+[1.000000] (-) TimerEvent: {}
+[1.110000] (-) TimerEvent: {}
+[1.219000] (-) TimerEvent: {}
+[1.329000] (-) TimerEvent: {}
+[1.438000] (-) TimerEvent: {}
+[1.563000] (-) TimerEvent: {}
+[1.704000] (-) TimerEvent: {}
+[1.829000] (-) TimerEvent: {}
+[1.938000] (-) TimerEvent: {}
+[2.047000] (-) TimerEvent: {}
+[2.157000] (-) TimerEvent: {}
+[2.266000] (-) TimerEvent: {}
+[2.375000] (-) TimerEvent: {}
+[2.485000] (-) TimerEvent: {}
+[2.547000] (sub1) Command: {'cmd': ['c:\\python37\\python.exe', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', '..\\..\\build\\sub1', 'build', '--build-base', 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build', 'install', '--record', 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\install.log', '--install-scripts', '$base/lib/sub1', '--single-version-externally-managed', 'install_data'], 'cwd': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\sub1', 'env': {'ALLUSERSPROFILE': 'C:\\ProgramData', 'ament_cmake_libraries_DIR': 'C:\\dev\\ros2-windows\\share\\ament_cmake_libraries\\cmake', 'APPDATA': 'C:\\Users\\SSAFY\\AppData\\Roaming', 'ChocolateyInstall': 'C:\\ProgramData\\chocolatey', 'ChocolateyLastPathUpdate': '133685161235929084', 'CLASSPATH': 'C:\\Program Files\\Java\\jdk-17lib', 'CMAKE_PREFIX_PATH': 'C:\\dev\\ros2-windows', 'COLCON': '1', 'CommandPromptType': 'Native', 'CommonProgramFiles': 'C:\\Program Files\\Common Files', 'CommonProgramFiles(x86)': 'C:\\Program Files (x86)\\Common Files', 'CommonProgramW6432': 'C:\\Program Files\\Common Files', 'COMPUTERNAME': 'DESKTOP-6ABJ64L', 'ComSpec': 'C:\\Windows\\system32\\cmd.exe', 'DevEnvDir': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\', 'DriverData': 'C:\\Windows\\System32\\Drivers\\DriverData', 'ExtensionSdkDir': 'C:\\Program Files (x86)\\Microsoft SDKs\\Windows Kits\\10\\ExtensionSDKs', 'EXTERNAL_INCLUDE': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\ATLMFC\\include;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include;C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt;C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um;C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared;C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt;C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt', 'Framework40Version': 'v4.0', 'FrameworkDir': 'C:\\Windows\\Microsoft.NET\\Framework\\', 'FrameworkDir32': 'C:\\Windows\\Microsoft.NET\\Framework\\', 'FrameworkVersion': 'v4.0.30319', 'FrameworkVersion32': 'v4.0.30319', 'GIT_LFS_PATH': 'C:\\Program Files\\Git LFS', 'HOMEDRIVE': 'C:', 'HOMEPATH': '\\Users\\SSAFY', 'INCLUDE': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\include;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\ATLMFC\\include;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include;C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt;C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um;C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared;C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt;C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt\nIntelliJ IDEA=C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.4\\bin;', 'JAVA_HOME': 'C:\\Program Files\\Java\\jdk-17', 'LIB': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\ATLMFC\\lib\\x86;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\lib\\x86;C:\\Program Files (x86)\\Windows Kits\\10\\lib\\10.0.22621.0\\ucrt\\x86;C:\\Program Files (x86)\\Windows Kits\\10\\\\lib\\10.0.22621.0\\\\um\\x86', 'LIBPATH': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\ATLMFC\\lib\\x86;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\lib\\x86;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\lib\\x86\\store\\references;C:\\Program Files (x86)\\Windows Kits\\10\\UnionMetadata\\10.0.22621.0;C:\\Program Files (x86)\\Windows Kits\\10\\References\\10.0.22621.0;C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319', 'LOCALAPPDATA': 'C:\\Users\\SSAFY\\AppData\\Local', 'LOGONSERVER': '\\\\DESKTOP-6ABJ64L', 'NUMBER_OF_PROCESSORS': '12', 'OneDrive': 'C:\\Users\\SSAFY\\OneDrive', 'OpenCV_DIR': 'C:\\opencv', 'OPENSSL_CONF': 'C:\\OpenSSL-Win64\\bin\\openssl.cfg', 'OS': 'Windows_NT', 'Path': 'c:\\python37\\lib\\site-packages\\pywin32_system32;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX86\\x86;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\VC\\VCPackages;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\bin\\Roslyn;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Team Tools\\DiagnosticsHub\\Collector;C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.22621.0\\\\x86;C:\\Program Files (x86)\\Windows Kits\\10\\bin\\\\x86;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\\\MSBuild\\Current\\Bin\\amd64;C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\;C:\\Python37\\Scripts\\;C:\\Python37\\;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Java\\jdk-17\\bin\\;;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Program Files\\Git LFS;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\CMake\\bin;C:\\ProgramData\\chocolatey\\lib\\cunit\\lib;C:\\ProgramData\\chocolatey\\lib\\tinyxml2\\lib;C:\\ProgramData\\chocolatey\\lib\\log4cxx\\lib;C:\\ProgramData\\chocolatey\\lib\\bullet\\lib;C:\\Users\\SSAFY\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.4\\bin;;C:\\OpenSSL-Win64\\bin;C:\\Program Files\\CMake\\bin;C:\\Users\\SSAFY\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Program Files\\Tesseract-OCR;;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\bin;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\Ninja;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\VC\\Linux\\bin\\ConnectionManagerExe;C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\vcpkg', 'PATHEXT': '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW', 'PROCESSOR_ARCHITECTURE': 'AMD64', 'PROCESSOR_IDENTIFIER': 'Intel64 Family 6 Model 141 Stepping 1, GenuineIntel', 'PROCESSOR_LEVEL': '6', 'PROCESSOR_REVISION': '8d01', 'ProgramData': 'C:\\ProgramData', 'ProgramFiles': 'C:\\Program Files', 'ProgramFiles(x86)': 'C:\\Program Files (x86)', 'ProgramW6432': 'C:\\Program Files', 'PROMPT': '$P$G', 'PSModulePath': 'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules', 'PUBLIC': 'C:\\Users\\Public', 'ROS_DOMAIN_ID': '208', 'SESSIONNAME': 'Console', 'SystemDrive': 'C:', 'SystemRoot': 'C:\\Windows', 'TEMP': 'C:\\Users\\SSAFY\\AppData\\Local\\Temp', 'TMP': 'C:\\Users\\SSAFY\\AppData\\Local\\Temp', 'UCRTVersion': '10.0.22621.0', 'UniversalCRTSdkDir': 'C:\\Program Files (x86)\\Windows Kits\\10\\', 'USERDOMAIN': 'DESKTOP-6ABJ64L', 'USERDOMAIN_ROAMINGPROFILE': 'DESKTOP-6ABJ64L', 'USERNAME': 'SSAFY', 'USERPROFILE': 'C:\\Users\\SSAFY', 'VBOX_MSI_INSTALL_PATH': 'C:\\Program Files\\Oracle\\VirtualBox\\', 'VCIDEInstallDir': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\VC\\', 'VCINSTALLDIR': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\', 'VCPKG_ROOT': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\vcpkg', 'VCToolsInstallDir': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\', 'VCToolsRedistDir': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Redist\\MSVC\\14.40.33807\\', 'VCToolsVersion': '14.40.33807', 'VisualStudioVersion': '17.0', 'VS170COMNTOOLS': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\', 'VSCMD_ARG_app_plat': 'Desktop', 'VSCMD_ARG_HOST_ARCH': 'x86', 'VSCMD_ARG_TGT_ARCH': 'x86', 'VSCMD_VER': '17.10.3', 'VSINSTALLDIR': 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\', 'windir': 'C:\\Windows', 'WindowsLibPath': 'C:\\Program Files (x86)\\Windows Kits\\10\\UnionMetadata\\10.0.22621.0;C:\\Program Files (x86)\\Windows Kits\\10\\References\\10.0.22621.0', 'WindowsSdkBinPath': 'C:\\Program Files (x86)\\Windows Kits\\10\\bin\\', 'WindowsSdkDir': 'C:\\Program Files (x86)\\Windows Kits\\10\\', 'WindowsSDKLibVersion': '10.0.22621.0\\', 'WindowsSdkVerBinPath': 'C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.22621.0\\', 'WindowsSDKVersion': '10.0.22621.0\\', 'ZES_ENABLE_SYSMAN': '1', '__DOTNET_ADD_32BIT': '1', '__DOTNET_PREFERRED_BITNESS': '32', '__VSCMD_PREINIT_PATH': 'C:\\Python37\\Scripts\\;C:\\Python37\\;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Java\\jdk-17\\bin\\;;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Program Files\\Git LFS;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\CMake\\bin;C:\\ProgramData\\chocolatey\\lib\\cunit\\lib;C:\\ProgramData\\chocolatey\\lib\\tinyxml2\\lib;C:\\ProgramData\\chocolatey\\lib\\log4cxx\\lib;C:\\ProgramData\\chocolatey\\lib\\bullet\\lib;C:\\Users\\SSAFY\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.4\\bin;;C:\\OpenSSL-Win64\\bin;C:\\Program Files\\CMake\\bin;C:\\Users\\SSAFY\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Program Files\\Tesseract-OCR;', 'PYTHONPATH': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\prefix_override;c:\\python37\\lib\\site-packages\\colcon_core\\task\\python\\colcon_distutils_commands;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages;'}, 'shell': False}
+[2.610000] (-) TimerEvent: {}
+[2.719000] (-) TimerEvent: {}
+[2.829000] (-) TimerEvent: {}
+[2.954000] (-) TimerEvent: {}
+[3.063000] (-) TimerEvent: {}
+[3.172000] (-) TimerEvent: {}
+[3.282000] (-) TimerEvent: {}
+[3.391000] (-) TimerEvent: {}
+[3.438000] (sub1) StdoutLine: {'line': b'running egg_info\r\n'}
+[3.438000] (sub1) StdoutLine: {'line': b'writing ..\\..\\build\\sub1\\sub1.egg-info\\PKG-INFO\r\n'}
+[3.454000] (sub1) StdoutLine: {'line': b'writing dependency_links to ..\\..\\build\\sub1\\sub1.egg-info\\dependency_links.txt\r\n'}
+[3.454000] (sub1) StdoutLine: {'line': b'writing entry points to ..\\..\\build\\sub1\\sub1.egg-info\\entry_points.txt\r\n'}
+[3.454000] (sub1) StdoutLine: {'line': b'writing requirements to ..\\..\\build\\sub1\\sub1.egg-info\\requires.txt\r\n'}
+[3.454000] (sub1) StdoutLine: {'line': b'writing top-level names to ..\\..\\build\\sub1\\sub1.egg-info\\top_level.txt\r\n'}
+[3.500000] (sub1) StdoutLine: {'line': b"reading manifest file '..\\..\\build\\sub1\\sub1.egg-info\\SOURCES.txt'\r\n"}
+[3.500000] (-) TimerEvent: {}
+[3.500000] (sub1) StdoutLine: {'line': b"writing manifest file '..\\..\\build\\sub1\\sub1.egg-info\\SOURCES.txt'\r\n"}
+[3.500000] (sub1) StdoutLine: {'line': b'running build\r\n'}
+[3.516000] (sub1) StdoutLine: {'line': b'running build_py\r\n'}
+[3.516000] (sub1) StdoutLine: {'line': b'copying sub1\\picture_ocr.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\r\n'}
+[3.516000] (sub1) StdoutLine: {'line': b'running install\r\n'}
+[3.532000] (sub1) StdoutLine: {'line': b'running install_lib\r\n'}
+[3.532000] (sub1) StdoutLine: {'line': b'copying C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\\picture_ocr.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\r\n'}
+[3.547000] (sub1) StdoutLine: {'line': b'byte-compiling C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\\picture_ocr.py to picture_ocr.cpython-37.pyc\r\n'}
+[3.563000] (sub1) StdoutLine: {'line': b'running install_data\r\n'}
+[3.563000] (sub1) StdoutLine: {'line': b'running install_egg_info\r\n'}
+[3.579000] (sub1) StdoutLine: {'line': b"removing 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1-0.0.0-py3.7.egg-info' (and everything under it)\r\n"}
+[3.579000] (sub1) StdoutLine: {'line': b'Copying ..\\..\\build\\sub1\\sub1.egg-info to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1-0.0.0-py3.7.egg-info\r\n'}
+[3.610000] (-) TimerEvent: {}
+[3.625000] (sub1) StdoutLine: {'line': b'running install_scripts\r\n'}
+[3.688000] (sub1) StdoutLine: {'line': b'Installing a_star-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.688000] (sub1) StdoutLine: {'line': b'Installing a_star.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.688000] (sub1) StdoutLine: {'line': b'Installing a_star_local_path-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.688000] (sub1) StdoutLine: {'line': b'Installing a_star_local_path.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.688000] (sub1) StdoutLine: {'line': b'Installing controller-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.688000] (sub1) StdoutLine: {'line': b'Installing controller.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing goal_publisher-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing goal_publisher.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing handcontrol-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing handcontrol.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing load_map-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing load_map.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing make_path-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing make_path.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing odom-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.704000] (sub1) StdoutLine: {'line': b'Installing odom.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.719000] (sub1) StdoutLine: {'line': b'Installing path_pub-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.719000] (-) TimerEvent: {}
+[3.719000] (sub1) StdoutLine: {'line': b'Installing path_pub.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.719000] (sub1) StdoutLine: {'line': b'Installing path_tracking-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.719000] (sub1) StdoutLine: {'line': b'Installing path_tracking.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.719000] (sub1) StdoutLine: {'line': b'Installing path_tracking_PID-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.719000] (sub1) StdoutLine: {'line': b'Installing path_tracking_PID.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.719000] (sub1) StdoutLine: {'line': b'Installing perception-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.719000] (sub1) StdoutLine: {'line': b'Installing perception.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.719000] (sub1) StdoutLine: {'line': b'Installing picture-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.735000] (sub1) StdoutLine: {'line': b'Installing picture.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.735000] (sub1) StdoutLine: {'line': b'Installing picture_ocr-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.735000] (sub1) StdoutLine: {'line': b'Installing picture_ocr.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.735000] (sub1) StdoutLine: {'line': b'Installing publisher-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.735000] (sub1) StdoutLine: {'line': b'Installing publisher.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.735000] (sub1) StdoutLine: {'line': b'Installing run_localization-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.735000] (sub1) StdoutLine: {'line': b'Installing run_localization.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.750000] (sub1) StdoutLine: {'line': b'Installing run_mapping-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.750000] (sub1) StdoutLine: {'line': b'Installing run_mapping.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.750000] (sub1) StdoutLine: {'line': b'Installing subscriber-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.750000] (sub1) StdoutLine: {'line': b'Installing subscriber.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[3.750000] (sub1) StdoutLine: {'line': b"writing list of installed files to 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\install.log'\r\n"}
+[3.797000] (sub1) CommandEnded: {'returncode': 0}
+[3.829000] (-) TimerEvent: {}
+[3.844000] (sub1) JobEnded: {'identifier': 'sub1', 'rc': 0}
+[3.844000] (-) EventReactorShutdown: {}

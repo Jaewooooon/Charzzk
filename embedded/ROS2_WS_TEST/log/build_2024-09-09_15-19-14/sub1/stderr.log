@@ -1,0 +1,5 @@
+  File "C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\controller.py", line 137
+    self.turtlebot_go()
+       ^
+SyntaxError: invalid syntax
+

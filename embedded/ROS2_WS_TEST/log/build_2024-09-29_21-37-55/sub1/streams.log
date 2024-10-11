@@ -1,0 +1,29 @@
+[21.297s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub1 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log --install-scripts $base/lib/sub1 --single-version-externally-managed install_data
+[25.156s] running egg_info
+[25.156s] writing ..\..\build\sub1\sub1.egg-info\PKG-INFO
+[25.156s] writing dependency_links to ..\..\build\sub1\sub1.egg-info\dependency_links.txt
+[25.172s] writing entry points to ..\..\build\sub1\sub1.egg-info\entry_points.txt
+[25.172s] writing requirements to ..\..\build\sub1\sub1.egg-info\requires.txt
+[25.172s] writing top-level names to ..\..\build\sub1\sub1.egg-info\top_level.txt
+[25.344s] reading manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+[25.390s] writing manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+[25.390s] running build
+[25.390s] running build_py
+[25.406s] copying sub1\load_map.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+[25.437s] running install
+[25.437s] running install_lib
+[25.469s] copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\load_map.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+[25.765s] byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\load_map.py to load_map.cpython-37.pyc
+[25.765s] running install_data
+[25.765s] running install_egg_info
+[25.765s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1-0.0.0-py3.7.egg-info' (and everything under it)
+[25.781s] Copying ..\..\build\sub1\sub1.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1-0.0.0-py3.7.egg-info
+[26.000s] running install_scripts
+[26.000s] Installing a_star-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[26.000s] Installing a_star.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[26.000s] Installing a_star_local_path-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[26.031s] Installing a_star_local_path.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[26.031s] error: [Errno 13] Permission denied: 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\\a_star_local_path.exe'
+[26.187s] Invoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1' returned '1': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub1 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log --install-scripts $base/lib/sub1 --single-version-externally-managed install_data

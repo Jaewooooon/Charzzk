@@ -1,0 +1,5 @@
+  File "C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\load_map.py", line 77
+    back_folder='C:\Users\SSAFY\Desktop\ros2_ws\src\sub2'
+               ^
+SyntaxError: (unicode error) 'unicodeescape' codec can't decode bytes in position 2-3: truncated \UXXXXXXXX escape
+

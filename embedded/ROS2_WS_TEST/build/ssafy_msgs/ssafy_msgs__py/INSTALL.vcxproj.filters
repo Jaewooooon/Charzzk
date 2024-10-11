@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\CMakeFiles\e99dcc3936d412c0d17d5b210faa1596\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{322E7602-914F-31AC-9763-DD669E636793}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
