@@ -1,0 +1,3 @@
+[console_scripts]
+c208_node = c208_package.c208_node:main
+

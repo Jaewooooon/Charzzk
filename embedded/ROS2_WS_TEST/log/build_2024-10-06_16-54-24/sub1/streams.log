@@ -1,0 +1,48 @@
+[13.281s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin;
+IntelliJ IDEA Community Edition=C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2024.2.3\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub1 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log --install-scripts $base/lib/sub1 --single-version-externally-managed install_data
+[16.266s] running egg_info
+[16.266s] writing ..\..\build\sub1\sub1.egg-info\PKG-INFO
+[16.281s] writing dependency_links to ..\..\build\sub1\sub1.egg-info\dependency_links.txt
+[16.281s] writing entry points to ..\..\build\sub1\sub1.egg-info\entry_points.txt
+[16.281s] writing requirements to ..\..\build\sub1\sub1.egg-info\requires.txt
+[16.281s] writing top-level names to ..\..\build\sub1\sub1.egg-info\top_level.txt
+[16.422s] reading manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+[16.453s] writing manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+[16.453s] running build
+[16.453s] running build_py
+[16.500s] running install
+[16.500s] running install_lib
+[16.766s] running install_data
+[16.766s] running install_egg_info
+[16.766s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1-0.0.0-py3.7.egg-info' (and everything under it)
+[16.766s] Copying ..\..\build\sub1\sub1.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1-0.0.0-py3.7.egg-info
+[16.766s] running install_scripts
+[16.938s] Installing a_star-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing a_star.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing a_star_goal-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing a_star_goal.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing charge_command-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing charge_command.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing controller-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing controller.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing goal_publisher-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing goal_publisher.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing handcontrol-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing handcontrol.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing load_map-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.938s] Installing load_map.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.953s] Installing make_path-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.953s] Installing make_path.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.953s] Installing message_producer-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.953s] Installing message_producer.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[16.953s] Installing odom-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[17.000s] Installing odom.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[17.031s] Installing path_pub-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[17.063s] Installing path_pub.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[17.063s] Installing path_tracking-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[17.063s] Installing path_tracking.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[17.063s] error: [Errno 13] Permission denied: 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\\path_tracking.exe'
+[17.156s] Invoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1' returned '1': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin;
+IntelliJ IDEA Community Edition=C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2024.2.3\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub1 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log --install-scripts $base/lib/sub1 --single-version-externally-managed install_data

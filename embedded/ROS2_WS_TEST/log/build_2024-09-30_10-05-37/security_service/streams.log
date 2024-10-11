@@ -1,0 +1,34 @@
+[20.906s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\security_service': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\security_service build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\install.log --install-scripts $base/lib/security_service --single-version-externally-managed install_data
+[26.031s] running egg_info
+[26.031s] writing ..\..\build\security_service\security_service.egg-info\PKG-INFO
+[26.031s] writing dependency_links to ..\..\build\security_service\security_service.egg-info\dependency_links.txt
+[26.031s] writing entry points to ..\..\build\security_service\security_service.egg-info\entry_points.txt
+[26.031s] writing requirements to ..\..\build\security_service\security_service.egg-info\requires.txt
+[26.031s] writing top-level names to ..\..\build\security_service\security_service.egg-info\top_level.txt
+[26.031s] reading manifest file '..\..\build\security_service\security_service.egg-info\SOURCES.txt'
+[26.031s] writing manifest file '..\..\build\security_service\security_service.egg-info\SOURCES.txt'
+[26.031s] running build
+[26.031s] running build_py
+[26.031s] running install
+[26.031s] running install_lib
+[26.047s] running install_data
+[26.047s] running install_egg_info
+[26.047s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\Lib\site-packages\security_service-0.0.0-py3.7.egg-info' (and everything under it)
+[26.047s] Copying ..\..\build\security_service\security_service.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\Lib\site-packages\security_service-0.0.0-py3.7.egg-info
+[26.047s] running install_scripts
+[26.047s] Installing intruder_detector_client-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.047s] Installing intruder_detector_client.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.047s] Installing make_path-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] Installing make_path.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] Installing odom-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] Installing odom.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] Installing path_pub-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] Installing path_pub.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] Installing path_tracking-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] Installing path_tracking.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] Installing patrol_client-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] Installing patrol_client.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\security_service
+[26.062s] writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\install.log'
+[26.297s] Invoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\security_service' returned '0': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\security_service build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\install.log --install-scripts $base/lib/security_service --single-version-externally-managed install_data

@@ -1,0 +1,52 @@
+[23.016s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin;
+IntelliJ IDEA Community Edition=C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2024.2.3\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub1 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log --install-scripts $base/lib/sub1 --single-version-externally-managed install_data
+[27.063s] running egg_info
+[27.078s] writing ..\..\build\sub1\sub1.egg-info\PKG-INFO
+[27.078s] writing dependency_links to ..\..\build\sub1\sub1.egg-info\dependency_links.txt
+[27.078s] writing entry points to ..\..\build\sub1\sub1.egg-info\entry_points.txt
+[27.078s] writing requirements to ..\..\build\sub1\sub1.egg-info\requires.txt
+[27.078s] writing top-level names to ..\..\build\sub1\sub1.egg-info\top_level.txt
+[27.266s] reading manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+[27.328s] writing manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+[27.328s] running build
+[27.344s] running build_py
+[27.375s] copying sub1\path_tracking_ocr.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+[27.375s] copying sub1\picture_ocr.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+[27.391s] copying sub1\picture_ocr_before.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+[27.406s] running install
+[27.406s] running install_lib
+[27.469s] copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\path_tracking_ocr.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+[27.500s] copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\picture_ocr.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+[27.516s] copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\picture_ocr_before.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+[27.781s] byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\path_tracking_ocr.py to path_tracking_ocr.cpython-37.pyc
+[27.781s] byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\picture_ocr.py to picture_ocr.cpython-37.pyc
+[27.781s] byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\picture_ocr_before.py to picture_ocr_before.cpython-37.pyc
+[27.781s] running install_data
+[27.781s] running install_egg_info
+[27.781s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1-0.0.0-py3.7.egg-info' (and everything under it)
+[27.781s] Copying ..\..\build\sub1\sub1.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1-0.0.0-py3.7.egg-info
+[28.000s] running install_scripts
+[28.000s] Installing a_star-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing a_star.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing a_star_goal-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing a_star_goal.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing charge_command-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing charge_command.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing charge_ing-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing charge_ing.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing controller-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing controller.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing goal_publisher-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing goal_publisher.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing handcontrol-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing handcontrol.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing load_map-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing load_map.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing make_path-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing make_path.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing message_producer-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing message_producer.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing odom-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] Installing odom.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[28.000s] error: [Errno 13] Permission denied: 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\\odom.exe'

@@ -1,0 +1,42 @@
+[15.468s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub3': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub3 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\install.log --install-scripts $base/lib/sub3 --single-version-externally-managed install_data
+[18.312s] running egg_info
+[18.328s] writing ..\..\build\sub3\sub3.egg-info\PKG-INFO
+[18.328s] writing dependency_links to ..\..\build\sub3\sub3.egg-info\dependency_links.txt
+[18.328s] writing entry points to ..\..\build\sub3\sub3.egg-info\entry_points.txt
+[18.343s] writing requirements to ..\..\build\sub3\sub3.egg-info\requires.txt
+[18.343s] writing top-level names to ..\..\build\sub3\sub3.egg-info\top_level.txt
+[18.625s] reading manifest file '..\..\build\sub3\sub3.egg-info\SOURCES.txt'
+[18.687s] writing manifest file '..\..\build\sub3\sub3.egg-info\SOURCES.txt'
+[18.687s] running build
+[18.687s] running build_py
+[18.703s] running install
+[18.703s] running install_lib
+[18.734s] running install_data
+[18.750s] running install_egg_info
+[18.781s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3-0.0.0-py3.7.egg-info' (and everything under it)
+[18.843s] Copying ..\..\build\sub3\sub3.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages\sub3-0.0.0-py3.7.egg-info
+[19.234s] running install_scripts
+[19.343s] Installing aws_client-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.343s] Installing aws_client.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.359s] Installing iot_udp-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.500s] Installing iot_udp.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.500s] Installing iot_udp_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing iot_udp_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing load_map-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing load_map.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing run_localization-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing run_localization.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing run_localization_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing run_localization_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing run_mapping-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing run_mapping.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing run_mapping_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing run_mapping_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing tf_detector-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.515s] Installing tf_detector.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.546s] Installing tf_detector_skeleton-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.671s] Installing tf_detector_skeleton.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\sub3
+[19.671s] writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\install.log'
+[19.984s] Invoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub3' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub3 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\install.log --install-scripts $base/lib/sub3 --single-version-externally-managed install_data

@@ -1,0 +1,74 @@
+running egg_info
+creating ..\..\build\sub2\sub2.egg-info
+writing ..\..\build\sub2\sub2.egg-info\PKG-INFO
+writing dependency_links to ..\..\build\sub2\sub2.egg-info\dependency_links.txt
+writing entry points to ..\..\build\sub2\sub2.egg-info\entry_points.txt
+writing requirements to ..\..\build\sub2\sub2.egg-info\requires.txt
+writing top-level names to ..\..\build\sub2\sub2.egg-info\top_level.txt
+writing manifest file '..\..\build\sub2\sub2.egg-info\SOURCES.txt'
+reading manifest file '..\..\build\sub2\sub2.egg-info\SOURCES.txt'
+writing manifest file '..\..\build\sub2\sub2.egg-info\SOURCES.txt'
+running build
+running build_py
+creating C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build
+creating C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib
+creating C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\a_star.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\a_star_local_path.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\ex_calib.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\human_detector.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\load_map.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\odom.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\path_tracking.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\seg_binarizer.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\utils.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+copying sub2\__init__.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2
+running install
+running install_lib
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\a_star.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\a_star_local_path.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\ex_calib.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\human_detector.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\load_map.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\odom.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\path_tracking.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\seg_binarizer.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\utils.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build\lib\sub2\__init__.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\a_star.py to a_star.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\a_star_local_path.py to a_star_local_path.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\ex_calib.py to ex_calib.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\human_detector.py to human_detector.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\load_map.py to load_map.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\odom.py to odom.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\path_tracking.py to path_tracking.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\seg_binarizer.py to seg_binarizer.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\utils.py to utils.cpython-37.pyc
+byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2\__init__.py to __init__.cpython-37.pyc
+running install_data
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\ament_index
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\ament_index\resource_index
+creating C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\ament_index\resource_index\packages
+copying resource\sub2 -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\ament_index\resource_index\packages
+copying package.xml -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2
+running install_egg_info
+Copying ..\..\build\sub2\sub2.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages\sub2-0.0.0-py3.7.egg-info
+running install_scripts
+Installing a_star-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing a_star.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing a_star_local_path-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing a_star_local_path.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing ex_calib-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing ex_calib.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing human_detector-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing human_detector.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing load_map-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing load_map.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing odom-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing odom.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing path_tracking-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing path_tracking.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing seg_binarizer-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+Installing seg_binarizer.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\sub2
+writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\install.log'

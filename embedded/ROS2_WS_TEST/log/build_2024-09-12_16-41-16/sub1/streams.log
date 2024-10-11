@@ -1,0 +1,49 @@
+[6.156s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub1 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log --install-scripts $base/lib/sub1 --single-version-externally-managed install_data
+[8.281s] running egg_info
+[8.281s] writing ..\..\build\sub1\sub1.egg-info\PKG-INFO
+[8.297s] writing dependency_links to ..\..\build\sub1\sub1.egg-info\dependency_links.txt
+[8.297s] writing entry points to ..\..\build\sub1\sub1.egg-info\entry_points.txt
+[8.297s] writing requirements to ..\..\build\sub1\sub1.egg-info\requires.txt
+[8.297s] writing top-level names to ..\..\build\sub1\sub1.egg-info\top_level.txt
+[8.469s] reading manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+[8.500s] writing manifest file '..\..\build\sub1\sub1.egg-info\SOURCES.txt'
+[8.500s] running build
+[8.500s] running build_py
+[8.500s] copying sub1\controller.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+[8.515s] copying sub1\make_path.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+[8.547s] copying sub1\perception.py -> C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1
+[8.562s] running install
+[8.562s] running install_lib
+[8.578s] copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\controller.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+[8.594s] copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\make_path.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+[8.625s] copying C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build\lib\sub1\perception.py -> C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1
+[8.656s] byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\controller.py to controller.cpython-37.pyc
+[8.672s] byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\make_path.py to make_path.cpython-37.pyc
+[8.703s] byte-compiling C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1\perception.py to perception.cpython-37.pyc
+[8.734s] running install_data
+[8.734s] running install_egg_info
+[8.765s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1-0.0.0-py3.7.egg-info' (and everything under it)
+[8.765s] Copying ..\..\build\sub1\sub1.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages\sub1-0.0.0-py3.7.egg-info
+[8.875s] running install_scripts
+[9.015s] Installing controller-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.015s] Installing controller.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.031s] Installing handcontrol-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.031s] Installing handcontrol.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.031s] Installing make_path-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.031s] Installing make_path.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.031s] Installing odom-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.047s] Installing odom.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.047s] Installing path_pub-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.047s] Installing path_pub.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.047s] Installing path_tracking-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.062s] Installing path_tracking.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.062s] Installing perception-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.062s] Installing perception.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.078s] Installing publisher-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.078s] Installing publisher.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.078s] Installing subscriber-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.078s] Installing subscriber.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\sub1
+[9.094s] writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log'
+[9.312s] Invoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub1 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log --install-scripts $base/lib/sub1 --single-version-externally-managed install_data

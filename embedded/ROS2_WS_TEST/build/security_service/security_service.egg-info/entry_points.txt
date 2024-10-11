@@ -1,0 +1,8 @@
+[console_scripts]
+intruder_detector_client = security_service.intruder_detector_client:main
+make_path = security_service.make_path:main
+odom = security_service.odom:main
+path_pub = security_service.path_pub:main
+path_tracking = security_service.path_tracking:main
+patrol_client = security_service.patrol_client:main
+

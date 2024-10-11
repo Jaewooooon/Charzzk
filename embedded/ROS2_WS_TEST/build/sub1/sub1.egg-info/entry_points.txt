@@ -1,0 +1,25 @@
+[console_scripts]
+a_star = sub1.a_star:main
+a_star_goal = sub1.a_star_goal:main
+charge_command = sub1.charge_command:main
+charge_ing = sub1.charge_ing:main
+controller = sub1.controller:main
+goal_publisher = sub1.goal_publisher:main
+handcontrol = sub1.handcontrol:main
+load_map = sub1.load_map:main
+make_path = sub1.make_path:main
+message_producer = sub1.message_producer:main
+odom = sub1.odom:main
+path_pub = sub1.path_pub:main
+path_tracking = sub1.path_tracking:main
+path_tracking_ocr = sub1.path_tracking_ocr:main
+perception = sub1.perception:main
+picture = sub1.picture:main
+picture_ocr = sub1.picture_ocr:main
+picture_ocr_before = sub1.picture_ocr_before:main
+publisher = sub1.publisher:main
+run_localization = sub1.run_localization:main
+run_mapping = sub1.run_mapping:main
+subscriber = sub1.subscriber:main
+testapi = sub1.testapi:main
+
