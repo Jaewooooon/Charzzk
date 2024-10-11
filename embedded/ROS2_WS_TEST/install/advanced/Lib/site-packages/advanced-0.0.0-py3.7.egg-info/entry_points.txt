@@ -1,0 +1,5 @@
+[console_scripts]
+a_strun_mappingar = advanced.run_mapping:main
+load_map = advanced.load_map:main
+run_localization = advanced.run_localization:main
+

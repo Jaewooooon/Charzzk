@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\num__type_support_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\enviroment_status__type_support_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\turtlebot_status__type_support_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\b_box__type_support_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\object_info__type_support_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\hand_control__type_support_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\custom_object_info__type_support_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\num__rosidl_typesupport_fastrtps_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\enviroment_status__rosidl_typesupport_fastrtps_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\turtlebot_status__rosidl_typesupport_fastrtps_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\b_box__rosidl_typesupport_fastrtps_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\object_info__rosidl_typesupport_fastrtps_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\hand_control__rosidl_typesupport_fastrtps_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_typesupport_fastrtps_c\ssafy_msgs\msg\custom_object_info__rosidl_typesupport_fastrtps_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\CMakeFiles\e9e47510e2be2c0212630e35af41cbcc\num__rosidl_typesupport_fastrtps_c.h.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_msgs\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{322E7602-914F-31AC-9763-DD669E636793}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9904DEAB-B9F9-309D-93DD-DB94DDAFA3C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8F87B7DF-1DD4-358C-8EB8-AAEC485FD4C8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

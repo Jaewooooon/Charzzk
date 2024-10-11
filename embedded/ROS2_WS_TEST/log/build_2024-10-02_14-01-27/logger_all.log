@@ -1,0 +1,539 @@
+[0.629s] [34mcolcon[0m [1;30mDEBUG[0m [32mCommand line arguments: ['C:\\Python37\\Scripts\\colcon', 'build'][0m
+[0.630s] [34mcolcon[0m [1;30mDEBUG[0m [32mParsed command line arguments: Namespace(ament_cmake_args=None, base_paths=['.'], build_base='build', catkin_cmake_args=None, catkin_skip_building_tests=False, cmake_args=None, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, cmake_target=None, cmake_target_skip_unavailable=False, continue_on_error=False, event_handlers=None, executor='parallel', ignore_user_meta=False, install_base='install', log_base=None, log_level=None, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x00000269774986C8>>, merge_install=False, metas=['./colcon.meta'], packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, parallel_workers=12, paths=None, symlink_install=False, test_result_base=None, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x00000269774986C8>, verb_name='build', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x0000026977529F88>)[0m
+[1.003s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) check parameters
+[1.003s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) check parameters
+[1.003s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) check parameters
+[1.003s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) check parameters
+[1.003s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(colcon_meta) discover
+[1.003s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) discover
+[1.003s] [34mcolcon.colcon_core.package_discovery[0m [1;30mINFO[0m Crawling recursively for packages in 'C:\Users\SSAFY\Desktop\ros2_ws'
+[1.003s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.003s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore'
+[1.003s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ignore_ament_install'
+[1.003s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_pkg']
+[1.003s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_pkg'
+[1.003s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['colcon_meta']
+[1.003s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'colcon_meta'
+[1.003s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['ros']
+[1.003s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'ros'
+[1.083s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['cmake', 'python']
+[1.083s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'cmake'
+[1.083s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python'
+[1.083s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extensions ['python_setup_py']
+[1.083s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(.) by extension 'python_setup_py'
+[1.084s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extensions ['ignore', 'ignore_ament_install']
+[1.084s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) by extension 'ignore'
+[1.084s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(build) ignored
+[1.084s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extensions ['ignore', 'ignore_ament_install']
+[1.085s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) by extension 'ignore'
+[1.085s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(install) ignored
+[1.086s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.086s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) by extension 'ignore'
+[1.086s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(log) ignored
+[1.086s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ignore', 'ignore_ament_install']
+[1.086s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore'
+[1.086s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ignore_ament_install'
+[1.086s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_pkg']
+[1.086s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_pkg'
+[1.086s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['colcon_meta']
+[1.087s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'colcon_meta'
+[1.087s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['ros']
+[1.087s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'ros'
+[1.087s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['cmake', 'python']
+[1.087s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'cmake'
+[1.087s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python'
+[1.087s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extensions ['python_setup_py']
+[1.087s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src) by extension 'python_setup_py'
+[1.087s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\advanced) by extensions ['ignore', 'ignore_ament_install']
+[1.088s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\advanced) by extension 'ignore'
+[1.088s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\advanced) by extension 'ignore_ament_install'
+[1.088s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\advanced) by extensions ['colcon_pkg']
+[1.088s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\advanced) by extension 'colcon_pkg'
+[1.088s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\advanced) by extensions ['colcon_meta']
+[1.088s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\advanced) by extension 'colcon_meta'
+[1.088s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\advanced) by extensions ['ros']
+[1.088s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\advanced) by extension 'ros'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\advanced' with type 'ros.ament_python' and name 'advanced'[0m
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\c208_package) by extensions ['ignore', 'ignore_ament_install']
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\c208_package) by extension 'ignore'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\c208_package) by extension 'ignore_ament_install'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\c208_package) by extensions ['colcon_pkg']
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\c208_package) by extension 'colcon_pkg'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\c208_package) by extensions ['colcon_meta']
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\c208_package) by extension 'colcon_meta'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\c208_package) by extensions ['ros']
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\c208_package) by extension 'ros'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\c208_package' with type 'ros.ament_python' and name 'c208_package'[0m
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\custom_game) by extensions ['ignore', 'ignore_ament_install']
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\custom_game) by extension 'ignore'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\custom_game) by extension 'ignore_ament_install'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\custom_game) by extensions ['colcon_pkg']
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\custom_game) by extension 'colcon_pkg'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\custom_game) by extensions ['colcon_meta']
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\custom_game) by extension 'colcon_meta'
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\custom_game) by extensions ['ros']
+[1.103s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\custom_game) by extension 'ros'
+[1.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\custom_game' with type 'ros.ament_python' and name 'custom_game'[0m
+[1.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\security_service) by extensions ['ignore', 'ignore_ament_install']
+[1.110s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\security_service) by extension 'ignore'
+[1.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\security_service) by extension 'ignore_ament_install'
+[1.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\security_service) by extensions ['colcon_pkg']
+[1.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\security_service) by extension 'colcon_pkg'
+[1.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\security_service) by extensions ['colcon_meta']
+[1.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\security_service) by extension 'colcon_meta'
+[1.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\security_service) by extensions ['ros']
+[1.111s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\security_service) by extension 'ros'
+[1.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\security_service' with type 'ros.ament_python' and name 'security_service'[0m
+[1.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_bridge) by extensions ['ignore', 'ignore_ament_install']
+[1.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_bridge) by extension 'ignore'
+[1.113s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_bridge) by extension 'ignore_ament_install'
+[1.114s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_bridge) by extensions ['colcon_pkg']
+[1.114s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_bridge) by extension 'colcon_pkg'
+[1.114s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_bridge) by extensions ['colcon_meta']
+[1.114s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_bridge) by extension 'colcon_meta'
+[1.114s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_bridge) by extensions ['ros']
+[1.114s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_bridge) by extension 'ros'
+[1.116s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\ssafy_bridge' with type 'ros.ament_python' and name 'ssafy_bridge'[0m
+[1.117s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_msgs) by extensions ['ignore', 'ignore_ament_install']
+[1.117s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_msgs) by extension 'ignore'
+[1.117s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_msgs) by extension 'ignore_ament_install'
+[1.117s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_msgs) by extensions ['colcon_pkg']
+[1.117s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_msgs) by extension 'colcon_pkg'
+[1.117s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_msgs) by extensions ['colcon_meta']
+[1.117s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_msgs) by extension 'colcon_meta'
+[1.117s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_msgs) by extensions ['ros']
+[1.117s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\ssafy_msgs) by extension 'ros'
+[1.120s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\ssafy_msgs' with type 'ros.ament_cmake' and name 'ssafy_msgs'[0m
+[1.120s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub1) by extensions ['ignore', 'ignore_ament_install']
+[1.120s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub1) by extension 'ignore'
+[1.120s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub1) by extension 'ignore_ament_install'
+[1.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub1) by extensions ['colcon_pkg']
+[1.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub1) by extension 'colcon_pkg'
+[1.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub1) by extensions ['colcon_meta']
+[1.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub1) by extension 'colcon_meta'
+[1.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub1) by extensions ['ros']
+[1.121s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub1) by extension 'ros'
+[1.123s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\sub1' with type 'ros.ament_python' and name 'sub1'[0m
+[1.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub2) by extensions ['ignore', 'ignore_ament_install']
+[1.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub2) by extension 'ignore'
+[1.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub2) by extension 'ignore_ament_install'
+[1.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub2) by extensions ['colcon_pkg']
+[1.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub2) by extension 'colcon_pkg'
+[1.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub2) by extensions ['colcon_meta']
+[1.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub2) by extension 'colcon_meta'
+[1.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub2) by extensions ['ros']
+[1.124s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub2) by extension 'ros'
+[1.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\sub2' with type 'ros.ament_python' and name 'sub2'[0m
+[1.126s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub3) by extensions ['ignore', 'ignore_ament_install']
+[1.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub3) by extension 'ignore'
+[1.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub3) by extension 'ignore_ament_install'
+[1.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub3) by extensions ['colcon_pkg']
+[1.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub3) by extension 'colcon_pkg'
+[1.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub3) by extensions ['colcon_meta']
+[1.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub3) by extension 'colcon_meta'
+[1.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub3) by extensions ['ros']
+[1.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mLevel 1[0m _identify(src\sub3) by extension 'ros'
+[1.127s] [34mcolcon.colcon_core.package_identification[0m [1;30mDEBUG[0m [32mPackage 'src\sub3' with type 'ros.ament_python' and name 'sub3'[0m
+[1.127s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(recursive) using defaults
+[1.130s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) discover
+[1.130s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(ignore) using defaults
+[1.130s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) discover
+[1.130s] [34mcolcon.colcon_core.package_discovery[0m [1;30mLevel 1[0m discover_packages(path) using defaults
+[1.177s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'c208_package' build argument 'cmake_args' from command line to 'None'
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'c208_package' build argument 'cmake_target' from command line to 'None'
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'c208_package' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'c208_package' build argument 'cmake_clean_cache' from command line to 'False'
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'c208_package' build argument 'cmake_clean_first' from command line to 'False'
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'c208_package' build argument 'cmake_force_configure' from command line to 'False'
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'c208_package' build argument 'ament_cmake_args' from command line to 'None'
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'c208_package' build argument 'catkin_cmake_args' from command line to 'None'
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'c208_package' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'c208_package' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\c208_package', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\c208_package', 'merge_install': False, 'path': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\c208_package', 'symlink_install': False, 'test_result_base': None}[0m
+[1.178s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'security_service' build argument 'cmake_args' from command line to 'None'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'security_service' build argument 'cmake_target' from command line to 'None'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'security_service' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'security_service' build argument 'cmake_clean_cache' from command line to 'False'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'security_service' build argument 'cmake_clean_first' from command line to 'False'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'security_service' build argument 'cmake_force_configure' from command line to 'False'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'security_service' build argument 'ament_cmake_args' from command line to 'None'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'security_service' build argument 'catkin_cmake_args' from command line to 'None'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'security_service' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'security_service' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\security_service', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\security_service', 'merge_install': False, 'path': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\security_service', 'symlink_install': False, 'test_result_base': None}[0m
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_bridge' build argument 'cmake_args' from command line to 'None'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_bridge' build argument 'cmake_target' from command line to 'None'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_bridge' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.179s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_bridge' build argument 'cmake_clean_cache' from command line to 'False'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_bridge' build argument 'cmake_clean_first' from command line to 'False'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_bridge' build argument 'cmake_force_configure' from command line to 'False'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_bridge' build argument 'ament_cmake_args' from command line to 'None'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_bridge' build argument 'catkin_cmake_args' from command line to 'None'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_bridge' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'ssafy_bridge' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\ssafy_bridge', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\ssafy_bridge', 'merge_install': False, 'path': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\ssafy_bridge', 'symlink_install': False, 'test_result_base': None}[0m
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_msgs' build argument 'cmake_args' from command line to 'None'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_msgs' build argument 'cmake_target' from command line to 'None'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_msgs' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_msgs' build argument 'cmake_clean_cache' from command line to 'False'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_msgs' build argument 'cmake_clean_first' from command line to 'False'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_msgs' build argument 'cmake_force_configure' from command line to 'False'
+[1.180s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_msgs' build argument 'ament_cmake_args' from command line to 'None'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_msgs' build argument 'catkin_cmake_args' from command line to 'None'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'ssafy_msgs' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'ssafy_msgs' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\ssafy_msgs', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\ssafy_msgs', 'merge_install': False, 'path': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\ssafy_msgs', 'symlink_install': False, 'test_result_base': None}[0m
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub1' build argument 'cmake_args' from command line to 'None'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub1' build argument 'cmake_target' from command line to 'None'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub1' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub1' build argument 'cmake_clean_cache' from command line to 'False'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub1' build argument 'cmake_clean_first' from command line to 'False'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub1' build argument 'cmake_force_configure' from command line to 'False'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub1' build argument 'ament_cmake_args' from command line to 'None'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub1' build argument 'catkin_cmake_args' from command line to 'None'
+[1.181s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub1' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'sub1' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1', 'merge_install': False, 'path': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\sub1', 'symlink_install': False, 'test_result_base': None}[0m
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub2' build argument 'cmake_args' from command line to 'None'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub2' build argument 'cmake_target' from command line to 'None'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub2' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub2' build argument 'cmake_clean_cache' from command line to 'False'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub2' build argument 'cmake_clean_first' from command line to 'False'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub2' build argument 'cmake_force_configure' from command line to 'False'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub2' build argument 'ament_cmake_args' from command line to 'None'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub2' build argument 'catkin_cmake_args' from command line to 'None'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub2' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.182s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'sub2' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub2', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub2', 'merge_install': False, 'path': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\sub2', 'symlink_install': False, 'test_result_base': None}[0m
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub3' build argument 'cmake_args' from command line to 'None'
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub3' build argument 'cmake_target' from command line to 'None'
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub3' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub3' build argument 'cmake_clean_cache' from command line to 'False'
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub3' build argument 'cmake_clean_first' from command line to 'False'
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub3' build argument 'cmake_force_configure' from command line to 'False'
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub3' build argument 'ament_cmake_args' from command line to 'None'
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub3' build argument 'catkin_cmake_args' from command line to 'None'
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'sub3' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.183s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'sub3' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub3', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub3', 'merge_install': False, 'path': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\sub3', 'symlink_install': False, 'test_result_base': None}[0m
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'advanced' build argument 'cmake_args' from command line to 'None'
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'advanced' build argument 'cmake_target' from command line to 'None'
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'advanced' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'advanced' build argument 'cmake_clean_cache' from command line to 'False'
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'advanced' build argument 'cmake_clean_first' from command line to 'False'
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'advanced' build argument 'cmake_force_configure' from command line to 'False'
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'advanced' build argument 'ament_cmake_args' from command line to 'None'
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'advanced' build argument 'catkin_cmake_args' from command line to 'None'
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'advanced' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.184s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'advanced' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\advanced', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\advanced', 'merge_install': False, 'path': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\advanced', 'symlink_install': False, 'test_result_base': None}[0m
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'custom_game' build argument 'cmake_args' from command line to 'None'
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'custom_game' build argument 'cmake_target' from command line to 'None'
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'custom_game' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'custom_game' build argument 'cmake_clean_cache' from command line to 'False'
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'custom_game' build argument 'cmake_clean_first' from command line to 'False'
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'custom_game' build argument 'cmake_force_configure' from command line to 'False'
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'custom_game' build argument 'ament_cmake_args' from command line to 'None'
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'custom_game' build argument 'catkin_cmake_args' from command line to 'None'
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mLevel 5[0m set package 'custom_game' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.185s] [34mcolcon.colcon_core.verb[0m [1;30mDEBUG[0m [32mBuilding package 'custom_game' with the following arguments: {'ament_cmake_args': None, 'build_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\custom_game', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\custom_game', 'merge_install': False, 'path': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\custom_game', 'symlink_install': False, 'test_result_base': None}[0m
+[1.185s] [34mcolcon.colcon_core.executor[0m [1;30mINFO[0m Executing jobs using 'parallel' executor
+[1.188s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete[0m
+[1.188s] [34mcolcon.colcon_ros.task.ament_cmake.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_msgs' with build type 'ament_cmake'
+[1.189s] [34mcolcon.colcon_cmake.task.cmake.build[0m [1;30mINFO[0m Building CMake package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_msgs'
+[1.196s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_core.shell.sh': Not used on Windows systems
+[1.196s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.215s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\c208_package' with build type 'ament_python'
+[1.215s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('c208_package', 'ament_prefix_path')
+[1.215s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\c208_package\hook\ament_prefix_path.ps1'
+[1.220s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\c208_package\hook\ament_prefix_path.bat'
+[1.226s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\c208_package\hook\ament_prefix_path.dsv'
+[1.231s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.243s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\security_service' with build type 'ament_python'
+[1.243s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('security_service', 'ament_prefix_path')
+[1.243s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\security_service\hook\ament_prefix_path.ps1'
+[1.246s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\security_service\hook\ament_prefix_path.bat'
+[1.247s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\security_service\hook\ament_prefix_path.dsv'
+[1.249s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.260s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_bridge' with build type 'ament_python'
+[1.261s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_bridge', 'ament_prefix_path')
+[1.261s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\ssafy_bridge\hook\ament_prefix_path.ps1'
+[1.263s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\ssafy_bridge\hook\ament_prefix_path.bat'
+[1.264s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\ssafy_bridge\hook\ament_prefix_path.dsv'
+[1.267s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.277s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1' with build type 'ament_python'
+[1.278s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('sub1', 'ament_prefix_path')
+[1.278s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1\hook\ament_prefix_path.ps1'
+[1.280s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1\hook\ament_prefix_path.bat'
+[1.282s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1\hook\ament_prefix_path.dsv'
+[1.283s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.295s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub2' with build type 'ament_python'
+[1.295s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('sub2', 'ament_prefix_path')
+[1.296s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2\hook\ament_prefix_path.ps1'
+[1.298s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2\hook\ament_prefix_path.bat'
+[1.299s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2\hook\ament_prefix_path.dsv'
+[1.301s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.312s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub3' with build type 'ament_python'
+[1.312s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('sub3', 'ament_prefix_path')
+[1.312s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3\hook\ament_prefix_path.ps1'
+[1.312s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3\hook\ament_prefix_path.bat'
+[1.312s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3\hook\ament_prefix_path.dsv'
+[1.312s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.352s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs': CL=/MP INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs --config Release[0m
+[2.035s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\c208_package'
+[2.036s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.816s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\security_service'
+[2.817s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[4.024s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1'
+[4.025s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[4.954s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_bridge'
+[4.955s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[5.952s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub2'
+[5.953s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[6.900s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub3'
+[6.901s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[11.243s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub1 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log --install-scripts $base/lib/sub1 --single-version-externally-managed install_data[0m
+[11.270s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub2': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub2 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\install.log --install-scripts $base/lib/sub2 --single-version-externally-managed install_data[0m
+[11.322s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_bridge': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\ssafy_bridge build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\install.log --install-scripts $base/lib/ssafy_bridge --single-version-externally-managed install_data[0m
+[11.344s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\security_service': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\security_service build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\install.log --install-scripts $base/lib/security_service --single-version-externally-managed install_data[0m
+[11.353s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub3': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub3 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\install.log --install-scripts $base/lib/sub3 --single-version-externally-managed install_data[0m
+[11.378s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\c208_package': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\c208_package build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\install.log --install-scripts $base/lib/c208_package --single-version-externally-managed install_data[0m
+[14.743s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub2' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub2 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub2\install.log --install-scripts $base/lib/sub2 --single-version-externally-managed install_data[0m
+[14.848s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2' for CMake module files
+[14.861s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2' for CMake config files
+[14.871s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\bin'
+[14.873s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\bin'
+[14.873s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\lib\pkgconfig\sub2.pc'
+[14.875s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Lib\site-packages'
+[14.875s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('sub2', 'pythonpath')
+[14.876s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2\hook\pythonpath.ps1'
+[14.883s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2\hook\pythonpath.bat'
+[14.887s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2\hook\pythonpath.dsv'
+[14.893s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\Scripts'
+[14.894s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(sub2)
+[14.895s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2\package.ps1'
+[14.914s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2\package.bat'
+[14.939s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\sub2\package.dsv'
+[14.954s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\sub2\share\colcon-core\packages\sub2)
+[14.964s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge' for CMake module files
+[14.983s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge' for CMake config files
+[15.006s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\bin'
+[15.007s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\bin'
+[15.007s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\pkgconfig\ssafy_bridge.pc'
+[15.009s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages'
+[15.011s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_bridge', 'pythonpath')
+[15.013s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\ssafy_bridge\hook\pythonpath.ps1'
+[15.017s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_bridge' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\ssafy_bridge build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\install.log --install-scripts $base/lib/ssafy_bridge --single-version-externally-managed install_data[0m
+[15.019s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\ssafy_bridge\hook\pythonpath.bat'
+[15.024s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\ssafy_bridge\hook\pythonpath.dsv'
+[15.028s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Scripts'
+[15.029s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(ssafy_bridge)
+[15.032s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\ssafy_bridge\package.ps1'
+[15.036s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\ssafy_bridge\package.bat'
+[15.040s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\ssafy_bridge\package.dsv'
+[15.045s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\share\colcon-core\packages\ssafy_bridge)
+[15.050s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3' for CMake module files
+[15.063s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3' for CMake config files
+[15.069s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\bin'
+[15.070s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\bin'
+[15.070s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\lib\pkgconfig\sub3.pc'
+[15.071s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages'
+[15.071s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('sub3', 'pythonpath')
+[15.072s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3\hook\pythonpath.ps1'
+[15.074s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub3' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub3 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub3\install.log --install-scripts $base/lib/sub3 --single-version-externally-managed install_data[0m
+[15.078s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3\hook\pythonpath.bat'
+[15.081s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3\hook\pythonpath.dsv'
+[15.084s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\Scripts'
+[15.084s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(sub3)
+[15.086s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3\package.ps1'
+[15.090s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3\package.bat'
+[15.096s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\sub3\package.dsv'
+[15.101s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\sub3\share\colcon-core\packages\sub3)
+[15.106s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package' for CMake module files
+[15.117s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\c208_package' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\c208_package build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\install.log --install-scripts $base/lib/c208_package --single-version-externally-managed install_data[0m
+[15.120s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package' for CMake config files
+[15.126s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\bin'
+[15.128s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\bin'
+[15.128s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\lib\pkgconfig\c208_package.pc'
+[15.128s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\Lib\site-packages'
+[15.128s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('c208_package', 'pythonpath')
+[15.130s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\c208_package\hook\pythonpath.ps1'
+[15.134s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\c208_package\hook\pythonpath.bat'
+[15.138s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\c208_package\hook\pythonpath.dsv'
+[15.142s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\Scripts'
+[15.143s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(c208_package)
+[15.145s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\c208_package\package.ps1'
+[15.150s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\c208_package\package.bat'
+[15.155s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\c208_package\package.dsv'
+[15.159s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\share\colcon-core\packages\c208_package)
+[15.163s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service' for CMake module files
+[15.172s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\security_service' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\security_service build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\security_service\install.log --install-scripts $base/lib/security_service --single-version-externally-managed install_data[0m
+[15.175s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service' for CMake config files
+[15.182s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\bin'
+[15.182s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\bin'
+[15.183s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\lib\pkgconfig\security_service.pc'
+[15.183s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\Lib\site-packages'
+[15.184s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('security_service', 'pythonpath')
+[15.185s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\security_service\hook\pythonpath.ps1'
+[15.189s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\security_service\hook\pythonpath.bat'
+[15.192s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\security_service\hook\pythonpath.dsv'
+[15.196s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\Scripts'
+[15.196s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(security_service)
+[15.198s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\security_service\package.ps1'
+[15.202s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\security_service\package.bat'
+[15.206s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\security_service\package.dsv'
+[15.210s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\security_service\share\colcon-core\packages\security_service)
+[15.213s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1' for CMake module files
+[15.225s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\sub1' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\sub1 build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\sub1\install.log --install-scripts $base/lib/sub1 --single-version-externally-managed install_data[0m
+[15.233s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1' for CMake config files
+[15.242s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\bin'
+[15.243s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\bin'
+[15.243s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\lib\pkgconfig\sub1.pc'
+[15.244s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Lib\site-packages'
+[15.245s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('sub1', 'pythonpath')
+[15.245s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1\hook\pythonpath.ps1'
+[15.250s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1\hook\pythonpath.bat'
+[15.253s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1\hook\pythonpath.dsv'
+[15.257s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\Scripts'
+[15.258s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(sub1)
+[15.259s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1\package.ps1'
+[15.263s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1\package.bat'
+[15.267s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\sub1\package.dsv'
+[15.270s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\sub1\share\colcon-core\packages\sub1)
+[18.428s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs' returned '0': CL=/MP INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs --config Release[0m
+[18.566s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs --config Release[0m
+[24.179s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(ssafy_msgs)
+[24.179s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs' for CMake module files
+[24.181s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; C:\Program Files\CMake\bin\cmake.EXE --install C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs --config Release[0m
+[24.184s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs' for CMake config files
+[24.191s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_msgs', 'cmake_prefix_path')
+[24.191s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\cmake_prefix_path.ps1'
+[24.193s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\cmake_prefix_path.bat'
+[24.194s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\cmake_prefix_path.dsv'
+[24.196s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\bin'
+[24.196s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_msgs', 'path_dll')
+[24.197s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path_dll.ps1'
+[24.198s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path_dll.bat'
+[24.200s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path_dll.dsv'
+[24.202s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\bin'
+[24.203s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_msgs', 'path')
+[24.203s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path.ps1'
+[24.203s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path.bat'
+[24.203s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path.dsv'
+[24.203s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\lib\pkgconfig\ssafy_msgs.pc'
+[24.203s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\Lib\site-packages'
+[24.203s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_msgs', 'pythonpath')
+[24.203s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\pythonpath.ps1'
+[24.211s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\pythonpath.bat'
+[24.212s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\pythonpath.dsv'
+[24.212s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\Scripts'
+[24.212s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\package.ps1'
+[24.212s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\package.bat'
+[24.212s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\package.dsv'
+[24.221s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\colcon-core\packages\ssafy_msgs)
+[24.223s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(ssafy_msgs)
+[24.223s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs' for CMake module files
+[24.228s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs' for CMake config files
+[24.235s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_msgs', 'cmake_prefix_path')
+[24.235s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\cmake_prefix_path.ps1'
+[24.237s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\cmake_prefix_path.bat'
+[24.239s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\cmake_prefix_path.dsv'
+[24.240s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\bin'
+[24.241s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_msgs', 'path_dll')
+[24.241s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path_dll.ps1'
+[24.242s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path_dll.bat'
+[24.244s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path_dll.dsv'
+[24.246s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\bin'
+[24.246s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_msgs', 'path')
+[24.247s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path.ps1'
+[24.248s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path.bat'
+[24.250s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\path.dsv'
+[24.251s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\lib\pkgconfig\ssafy_msgs.pc'
+[24.252s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\Lib\site-packages'
+[24.252s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('ssafy_msgs', 'pythonpath')
+[24.252s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\pythonpath.ps1'
+[24.253s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\pythonpath.bat'
+[24.255s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\hook\pythonpath.dsv'
+[24.257s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\Scripts'
+[24.258s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\package.ps1'
+[24.261s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\package.bat'
+[24.262s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\ssafy_msgs\package.dsv'
+[24.264s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\share\colcon-core\packages\ssafy_msgs)
+[24.265s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\advanced' with build type 'ament_python'
+[24.265s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('advanced', 'ament_prefix_path')
+[24.266s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\advanced\hook\ament_prefix_path.ps1'
+[24.268s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\advanced\hook\ament_prefix_path.bat'
+[24.270s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\advanced\hook\ament_prefix_path.dsv'
+[24.272s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[24.284s] [34mcolcon.colcon_ros.task.ament_python.build[0m [1;30mINFO[0m Building ROS package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\custom_game' with build type 'ament_python'
+[24.284s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('custom_game', 'ament_prefix_path')
+[24.284s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\custom_game\hook\ament_prefix_path.ps1'
+[24.286s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\custom_game\hook\ament_prefix_path.bat'
+[24.288s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\custom_game\hook\ament_prefix_path.dsv'
+[24.291s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[25.138s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\advanced'
+[25.138s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[25.589s] [34mcolcon.colcon_core.task.python.build[0m [1;30mINFO[0m Building Python package in 'C:\Users\SSAFY\Desktop\ros2_ws\src\custom_game'
+[25.589s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[26.282s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\advanced': AMENT_PREFIX_PATH=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs CMAKE_PREFIX_PATH=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs;%CMAKE_PREFIX_PATH% INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\advanced\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\Lib\site-packages;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\Lib\site-packages Path=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\bin;c:\python37\lib\site-packages\pywin32_system32;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX86\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\bin\Roslyn;C:\Program Files\Microsoft Visual Studio\2022\Community\Team Tools\DiagnosticsHub\Collector;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\\x86;C:\Program Files (x86)\Windows Kits\10\bin\\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\;C:\Python37\Scripts\;C:\Python37\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-17\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git LFS;C:\ProgramData\chocolatey\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\cunit\lib;C:\ProgramData\chocolatey\lib\tinyxml2\lib;C:\ProgramData\chocolatey\lib\log4cxx\lib;C:\ProgramData\chocolatey\lib\bullet\lib;C:\Users\SSAFY\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin;C:\OpenSSL-Win64\bin;C:\Program Files\CMake\bin;C:\Users\SSAFY\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Tesseract-OCR;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\advanced build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\advanced\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\advanced\install.log --install-scripts $base/lib/advanced --single-version-externally-managed install_data[0m
+[26.491s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\custom_game': AMENT_PREFIX_PATH=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs CMAKE_PREFIX_PATH=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs;%CMAKE_PREFIX_PATH% INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\custom_game\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\Lib\site-packages;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\Lib\site-packages Path=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\bin;c:\python37\lib\site-packages\pywin32_system32;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX86\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\bin\Roslyn;C:\Program Files\Microsoft Visual Studio\2022\Community\Team Tools\DiagnosticsHub\Collector;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\\x86;C:\Program Files (x86)\Windows Kits\10\bin\\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\;C:\Python37\Scripts\;C:\Python37\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-17\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git LFS;C:\ProgramData\chocolatey\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\cunit\lib;C:\ProgramData\chocolatey\lib\tinyxml2\lib;C:\ProgramData\chocolatey\lib\log4cxx\lib;C:\ProgramData\chocolatey\lib\bullet\lib;C:\Users\SSAFY\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin;C:\OpenSSL-Win64\bin;C:\Program Files\CMake\bin;C:\Users\SSAFY\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Tesseract-OCR;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\custom_game build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\custom_game\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\custom_game\install.log --install-scripts $base/lib/custom_game --single-version-externally-managed install_data[0m
+[26.876s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced' for CMake module files
+[26.877s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\advanced' returned '0': AMENT_PREFIX_PATH=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs CMAKE_PREFIX_PATH=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs;%CMAKE_PREFIX_PATH% INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\advanced\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\Lib\site-packages;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\Lib\site-packages Path=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\bin;c:\python37\lib\site-packages\pywin32_system32;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX86\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\bin\Roslyn;C:\Program Files\Microsoft Visual Studio\2022\Community\Team Tools\DiagnosticsHub\Collector;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\\x86;C:\Program Files (x86)\Windows Kits\10\bin\\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\;C:\Python37\Scripts\;C:\Python37\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-17\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git LFS;C:\ProgramData\chocolatey\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\cunit\lib;C:\ProgramData\chocolatey\lib\tinyxml2\lib;C:\ProgramData\chocolatey\lib\log4cxx\lib;C:\ProgramData\chocolatey\lib\bullet\lib;C:\Users\SSAFY\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin;C:\OpenSSL-Win64\bin;C:\Program Files\CMake\bin;C:\Users\SSAFY\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Tesseract-OCR;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\advanced build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\advanced\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\advanced\install.log --install-scripts $base/lib/advanced --single-version-externally-managed install_data[0m
+[26.878s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced' for CMake config files
+[26.881s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\bin'
+[26.881s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\bin'
+[26.881s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\lib\pkgconfig\advanced.pc'
+[26.882s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\Lib\site-packages'
+[26.882s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('advanced', 'pythonpath')
+[26.882s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\advanced\hook\pythonpath.ps1'
+[26.883s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\advanced\hook\pythonpath.bat'
+[26.884s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\advanced\hook\pythonpath.dsv'
+[26.886s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\Scripts'
+[26.886s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(advanced)
+[26.886s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\advanced\package.ps1'
+[26.888s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\advanced\package.bat'
+[26.889s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\advanced\package.dsv'
+[26.890s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\advanced\share\colcon-core\packages\advanced)
+[27.181s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game' for CMake module files
+[27.181s] [34mcolcon.colcon_core.event_handler.log_command[0m [1;30mDEBUG[0m [32mInvoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\custom_game' returned '0': AMENT_PREFIX_PATH=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs CMAKE_PREFIX_PATH=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs;%CMAKE_PREFIX_PATH% INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\custom_game\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\Lib\site-packages;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\Lib\site-packages Path=C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_msgs\bin;c:\python37\lib\site-packages\pywin32_system32;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.40.33807\bin\HostX86\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\VCPackages;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\bin\Roslyn;C:\Program Files\Microsoft Visual Studio\2022\Community\Team Tools\DiagnosticsHub\Collector;C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\\x86;C:\Program Files (x86)\Windows Kits\10\bin\\x86;C:\Program Files\Microsoft Visual Studio\2022\Community\\MSBuild\Current\Bin\amd64;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\;C:\Python37\Scripts\;C:\Python37\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-17\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\Git LFS;C:\ProgramData\chocolatey\bin;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\lib\cunit\lib;C:\ProgramData\chocolatey\lib\tinyxml2\lib;C:\ProgramData\chocolatey\lib\log4cxx\lib;C:\ProgramData\chocolatey\lib\bullet\lib;C:\Users\SSAFY\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin;C:\OpenSSL-Win64\bin;C:\Program Files\CMake\bin;C:\Users\SSAFY\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Tesseract-OCR;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\VC\Linux\bin\ConnectionManagerExe;C:\Program Files\Microsoft Visual Studio\2022\Community\VC\vcpkg c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\custom_game build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\custom_game\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\custom_game\install.log --install-scripts $base/lib/custom_game --single-version-externally-managed install_data[0m
+[27.181s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game' for CMake config files
+[27.181s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\bin'
+[27.181s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\bin'
+[27.181s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\lib\pkgconfig\custom_game.pc'
+[27.181s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\Lib\site-packages'
+[27.181s] [34mcolcon.colcon_core.shell[0m [1;30mLevel 1[0m create_environment_hook('custom_game', 'pythonpath')
+[27.181s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\custom_game\hook\pythonpath.ps1'
+[27.190s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment hook 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\custom_game\hook\pythonpath.bat'
+[27.192s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating environment descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\custom_game\hook\pythonpath.dsv'
+[27.193s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m checking 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\Scripts'
+[27.195s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_environment_scripts_only(custom_game)
+[27.195s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\custom_game\package.ps1'
+[27.197s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package script 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\custom_game\package.bat'
+[27.198s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating package descriptor 'C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\custom_game\package.dsv'
+[27.200s] [34mcolcon.colcon_core.environment[0m [1;30mLevel 1[0m create_file_with_runtime_dependencies(C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game\share\colcon-core\packages\custom_game)
+[27.200s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mskipping loop closure[0m
+[27.200s] [34mcolcon.colcon_parallel_executor.executor.parallel[0m [1;30mDEBUG[0m [32mrun_until_complete finished with '0'[0m
+[27.201s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoining thread[0m
+[27.221s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.notify2': 'notify2' not found
+[27.221s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.notify_send': Not used on non-Linux systems
+[27.221s] [34mcolcon.colcon_core.plugin_system[0m [1;30mINFO[0m Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[27.221s] [34mcolcon.colcon_notification.desktop_notification[0m [1;30mINFO[0m Sending desktop notification using 'win32'
+[32.310s] [34mcolcon.colcon_core.event_reactor[0m [1;30mDEBUG[0m [32mjoined thread[0m
+[32.310s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script 'C:\Users\SSAFY\Desktop\ros2_ws\install\local_setup.ps1'
+[32.318s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module 'C:\Users\SSAFY\Desktop\ros2_ws\install\_local_setup_util_ps1.py'
+[32.326s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script 'C:\Users\SSAFY\Desktop\ros2_ws\install\setup.ps1'
+[32.333s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix script 'C:\Users\SSAFY\Desktop\ros2_ws\install\local_setup.bat'
+[32.337s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix util module 'C:\Users\SSAFY\Desktop\ros2_ws\install\_local_setup_util_bat.py'
+[32.339s] [34mcolcon.colcon_core.shell[0m [1;30mINFO[0m Creating prefix chain script 'C:\Users\SSAFY\Desktop\ros2_ws\install\setup.bat'

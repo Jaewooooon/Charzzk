@@ -1,0 +1,172 @@
+[0.000000] (-) TimerEvent: {}
+[0.000000] (-) JobUnselected: {'identifier': 'advanced'}
+[0.015000] (-) JobUnselected: {'identifier': 'c208_package'}
+[0.015000] (-) JobUnselected: {'identifier': 'custom_game'}
+[0.015000] (-) JobUnselected: {'identifier': 'security_service'}
+[0.015000] (-) JobUnselected: {'identifier': 'ssafy_bridge'}
+[0.015000] (-) JobUnselected: {'identifier': 'ssafy_msgs'}
+[0.015000] (-) JobUnselected: {'identifier': 'sub2'}
+[0.015000] (-) JobUnselected: {'identifier': 'sub3'}
+[0.015000] (sub1) JobQueued: {'identifier': 'sub1', 'dependencies': OrderedDict()}
+[0.015000] (sub1) JobStarted: {'identifier': 'sub1'}
+[0.109000] (-) TimerEvent: {}
+[0.218000] (-) TimerEvent: {}
+[0.328000] (-) TimerEvent: {}
+[0.437000] (-) TimerEvent: {}
+[0.547000] (-) TimerEvent: {}
+[0.656000] (-) TimerEvent: {}
+[0.765000] (-) TimerEvent: {}
+[0.875000] (-) TimerEvent: {}
+[0.984000] (-) TimerEvent: {}
+[1.093000] (-) TimerEvent: {}
+[1.203000] (-) TimerEvent: {}
+[1.312000] (-) TimerEvent: {}
+[1.422000] (-) TimerEvent: {}
+[1.531000] (-) TimerEvent: {}
+[1.640000] (-) TimerEvent: {}
+[1.750000] (-) TimerEvent: {}
+[1.859000] (-) TimerEvent: {}
+[1.968000] (-) TimerEvent: {}
+[2.078000] (-) TimerEvent: {}
+[2.187000] (-) TimerEvent: {}
+[2.297000] (-) TimerEvent: {}
+[2.406000] (-) TimerEvent: {}
+[2.515000] (-) TimerEvent: {}
+[2.625000] (-) TimerEvent: {}
+[2.734000] (-) TimerEvent: {}
+[2.843000] (-) TimerEvent: {}
+[2.953000] (-) TimerEvent: {}
+[3.062000] (-) TimerEvent: {}
+[3.172000] (-) TimerEvent: {}
+[3.281000] (-) TimerEvent: {}
+[3.390000] (-) TimerEvent: {}
+[3.500000] (-) TimerEvent: {}
+[3.609000] (-) TimerEvent: {}
+[3.718000] (-) TimerEvent: {}
+[3.828000] (-) TimerEvent: {}
+[3.937000] (-) TimerEvent: {}
+[4.047000] (-) TimerEvent: {}
+[4.156000] (-) TimerEvent: {}
+[4.265000] (-) TimerEvent: {}
+[4.390000] (-) TimerEvent: {}
+[4.500000] (-) TimerEvent: {}
+[4.609000] (-) TimerEvent: {}
+[4.718000] (-) TimerEvent: {}
+[4.828000] (-) TimerEvent: {}
+[4.937000] (-) TimerEvent: {}
+[5.047000] (-) TimerEvent: {}
+[5.156000] (-) TimerEvent: {}
+[5.265000] (-) TimerEvent: {}
+[5.375000] (-) TimerEvent: {}
+[5.484000] (-) TimerEvent: {}
+[5.593000] (-) TimerEvent: {}
+[5.703000] (-) TimerEvent: {}
+[5.812000] (-) TimerEvent: {}
+[5.922000] (-) TimerEvent: {}
+[6.031000] (-) TimerEvent: {}
+[6.062000] (sub1) Command: {'cmd': ['c:\\python37\\python.exe', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', '..\\..\\build\\sub1', 'build', '--build-base', 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build', 'install', '--record', 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\install.log', '--install-scripts', '$base/lib/sub1', '--single-version-externally-managed', 'install_data'], 'cwd': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\src\\sub1', 'env': {'ALLUSERSPROFILE': 'C:\\ProgramData', 'ament_cmake_libraries_DIR': 'C:\\dev\\ros2-windows\\share\\ament_cmake_libraries\\cmake', 'AMENT_PREFIX_PATH': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub3;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub2;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\custom_game;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\advanced;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\ssafy_msgs;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\ssafy_bridge;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\security_service;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\c208_package;C:\\dev\\ros2-windows', 'APPDATA': 'C:\\Users\\SSAFY\\AppData\\Roaming', 'architectureName': 'x64Win64VS2017', 'ChocolateyInstall': 'C:\\ProgramData\\chocolatey', 'ChocolateyLastPathUpdate': '133685161235929084', 'CLASSPATH': 'C:\\Program Files\\Java\\jdk-17lib', 'CMAKE_PREFIX_PATH': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\ssafy_msgs;C:\\dev\\ros2-windows', 'COLCON': '1', 'COLCON_PREFIX_PATH': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\;C:\\dev\\ros2-windows\\', 'CommonProgramFiles': 'C:\\Program Files\\Common Files', 'CommonProgramFiles(x86)': 'C:\\Program Files (x86)\\Common Files', 'CommonProgramW6432': 'C:\\Program Files\\Common Files', 'COMPUTERNAME': 'DESKTOP-6ABJ64L', 'ComSpec': 'C:\\Windows\\system32\\cmd.exe', 'DriverData': 'C:\\Windows\\System32\\Drivers\\DriverData', 'FPS_BROWSER_APP_PROFILE_STRING': 'Internet Explorer', 'FPS_BROWSER_USER_PROFILE_STRING': 'Default', 'GIT_LFS_PATH': 'C:\\Program Files\\Git LFS', 'HOMEDRIVE': 'C:', 'HOMEPATH': '\\Users\\SSAFY', 'hostVersion': '5.3.1', 'installDir': 'C:\\Program Files\\rti_connext_dds-5.3.1\\resource\\scripts\\..\\..\nIntelliJ IDEA=C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.4\\bin;\nIntelliJ IDEA Community Edition=C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2024.2.3\\bin;', 'JAVA_HOME': 'C:\\Program Files\\Java\\jdk-17', 'LOCALAPPDATA': 'C:\\Users\\SSAFY\\AppData\\Local', 'LOGONSERVER': '\\\\DESKTOP-6ABJ64L', 'NDDSHOME': 'C:\\Program Files\\rti_connext_dds-5.3.1', 'NUMBER_OF_PROCESSORS': '12', 'OneDrive': 'C:\\Users\\SSAFY\\OneDrive', 'OpenCV_DIR': 'C:\\opencv', 'OPENSSL_CONF': 'C:\\OpenSSL-Win64\\bin\\openssl.cfg', 'OS': 'Windows_NT', 'OSPL_ERRORFILE': '<stderr>', 'OSPL_HOME': 'C:\\dev\\opensplice\\HDE\\x86_64.win64\\', 'OSPL_INFOFILE': '<stdout>', 'OSPL_TMPL_PATH': 'C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\etc\\idlpp', 'OSPL_URI': 'file:///share/opensplice_cmake_module/config/ros_ospl.xml', 'OSPL_VERBOSITY': '2', 'Path': 'c:\\python37\\lib\\site-packages\\pywin32_system32;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\ssafy_msgs\\bin;C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\bin;C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\lib;C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\examples\\lib;C:\\Program Files\\rti_connext_dds-5.3.1\\bin;C:\\Program Files\\rti_connext_dds-5.3.1\\lib\\x64Win64VS2017;C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\bin;C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\lib;C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\examples\\lib;C:\\Program Files\\rti_connext_dds-5.3.1\\bin;C:\\Program Files\\rti_connext_dds-5.3.1\\lib\\x64Win64VS2017;C:\\dev\\ros2-windows\\opt\\yaml_cpp_vendor\\bin;C:\\dev\\ros2-windows\\opt\\rviz_ogre_vendor\\bin;C:\\dev\\ros2-windows\\opt\\rviz_assimp_vendor\\bin;C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\bin;C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\lib;C:\\dev\\opensplice\\HDE\\x86_64.win64\\\\examples\\lib;C:\\dev\\ros2-windows\\opt\\libcurl_vendor\\bin;C:\\Program Files\\rti_connext_dds-5.3.1\\bin;C:\\Program Files\\rti_connext_dds-5.3.1\\lib\\x64Win64VS2017;C:\\dev\\ros2-windows\\Scripts;C:\\dev\\ros2-windows\\bin;C:\\Python37\\Scripts\\;C:\\Python37\\;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Java\\jdk-17\\bin\\;;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Program Files\\Git LFS;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\CMake\\bin;C:\\ProgramData\\chocolatey\\lib\\cunit\\lib;C:\\ProgramData\\chocolatey\\lib\\tinyxml2\\lib;C:\\ProgramData\\chocolatey\\lib\\log4cxx\\lib;C:\\ProgramData\\chocolatey\\lib\\bullet\\lib;C:\\Users\\SSAFY\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.4\\bin;;C:\\OpenSSL-Win64\\bin;C:\\Program Files\\CMake\\bin;C:\\Users\\SSAFY\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Program Files\\Tesseract-OCR;;C:\\Program Files\\JetBrains\\IntelliJ IDEA Community Edition 2024.2.3\\bin;', 'PATHEXT': '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW', 'PKG_CONFIG_PATH': 'C:\\dev\\ros2-windows\\lib\\pkgconfig', 'PROCESSOR_ARCHITECTURE': 'AMD64', 'PROCESSOR_IDENTIFIER': 'Intel64 Family 6 Model 141 Stepping 1, GenuineIntel', 'PROCESSOR_LEVEL': '6', 'PROCESSOR_REVISION': '8d01', 'ProgramData': 'C:\\ProgramData', 'ProgramFiles': 'C:\\Program Files', 'ProgramFiles(x86)': 'C:\\Program Files (x86)', 'ProgramW6432': 'C:\\Program Files', 'PROMPT': '$P$G', 'PSModulePath': 'C:\\Program Files\\WindowsPowerShell\\Modules;C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules', 'PUBLIC': 'C:\\Users\\Public', 'PYTHONPATH': 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\prefix_override;c:\\python37\\lib\\site-packages\\colcon_core\\task\\python\\colcon_distutils_commands;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub3\\Lib\\site-packages;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub2\\Lib\\site-packages;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\custom_game\\Lib\\site-packages;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\advanced\\Lib\\site-packages;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\ssafy_msgs\\Lib\\site-packages;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\ssafy_bridge\\Lib\\site-packages;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\security_service\\Lib\\site-packages;C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\c208_package\\Lib\\site-packages;C:\\dev\\ros2-windows\\Lib\\site-packages', 'ROS_DISTRO': 'eloquent', 'ROS_DOMAIN_ID': '208', 'ROS_LOCALHOST_ONLY': '0', 'ROS_PYTHON_VERSION': '3', 'ROS_VERSION': '2', 'scriptDir': 'C:\\Program Files\\rti_connext_dds-5.3.1\\resource\\scripts\\', 'scriptName': 'rtisetenv_x64Win64VS2017', 'SESSIONNAME': 'Console', 'SPLICE_ORB': 'DDS_OpenFusion_1_6_1', 'SystemDrive': 'C:', 'SystemRoot': 'C:\\Windows', 'TEMP': 'C:\\Users\\SSAFY\\AppData\\Local\\Temp', 'TMP': 'C:\\Users\\SSAFY\\AppData\\Local\\Temp', 'USERDOMAIN': 'DESKTOP-6ABJ64L', 'USERDOMAIN_ROAMINGPROFILE': 'DESKTOP-6ABJ64L', 'USERNAME': 'SSAFY', 'USERPROFILE': 'C:\\Users\\SSAFY', 'VBOX_MSI_INSTALL_PATH': 'C:\\Program Files\\Oracle\\VirtualBox\\', 'windir': 'C:\\Windows', 'ZES_ENABLE_SYSMAN': '1'}, 'shell': False}
+[6.140000] (-) TimerEvent: {}
+[6.250000] (-) TimerEvent: {}
+[6.375000] (-) TimerEvent: {}
+[6.484000] (-) TimerEvent: {}
+[6.593000] (-) TimerEvent: {}
+[6.703000] (-) TimerEvent: {}
+[6.812000] (-) TimerEvent: {}
+[6.922000] (-) TimerEvent: {}
+[7.031000] (-) TimerEvent: {}
+[7.140000] (-) TimerEvent: {}
+[7.250000] (-) TimerEvent: {}
+[7.359000] (-) TimerEvent: {}
+[7.468000] (-) TimerEvent: {}
+[7.578000] (-) TimerEvent: {}
+[7.687000] (-) TimerEvent: {}
+[7.797000] (-) TimerEvent: {}
+[7.906000] (-) TimerEvent: {}
+[8.031000] (-) TimerEvent: {}
+[8.156000] (-) TimerEvent: {}
+[8.218000] (sub1) StdoutLine: {'line': b'running egg_info\r\n'}
+[8.218000] (sub1) StdoutLine: {'line': b'writing ..\\..\\build\\sub1\\sub1.egg-info\\PKG-INFO\r\n'}
+[8.234000] (sub1) StdoutLine: {'line': b'writing dependency_links to ..\\..\\build\\sub1\\sub1.egg-info\\dependency_links.txt\r\n'}
+[8.234000] (sub1) StdoutLine: {'line': b'writing entry points to ..\\..\\build\\sub1\\sub1.egg-info\\entry_points.txt\r\n'}
+[8.234000] (sub1) StdoutLine: {'line': b'writing requirements to ..\\..\\build\\sub1\\sub1.egg-info\\requires.txt\r\n'}
+[8.234000] (sub1) StdoutLine: {'line': b'writing top-level names to ..\\..\\build\\sub1\\sub1.egg-info\\top_level.txt\r\n'}
+[8.265000] (-) TimerEvent: {}
+[8.375000] (-) TimerEvent: {}
+[8.390000] (sub1) StdoutLine: {'line': b"reading manifest file '..\\..\\build\\sub1\\sub1.egg-info\\SOURCES.txt'\r\n"}
+[8.422000] (sub1) StdoutLine: {'line': b"writing manifest file '..\\..\\build\\sub1\\sub1.egg-info\\SOURCES.txt'\r\n"}
+[8.422000] (sub1) StdoutLine: {'line': b'running build\r\n'}
+[8.422000] (sub1) StdoutLine: {'line': b'running build_py\r\n'}
+[8.437000] (sub1) StdoutLine: {'line': b'copying sub1\\charge_command.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\r\n'}
+[8.437000] (sub1) StdoutLine: {'line': b'copying sub1\\charge_ing.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\r\n'}
+[8.468000] (sub1) StdoutLine: {'line': b'copying sub1\\picture_ocr.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\r\n'}
+[8.468000] (sub1) StdoutLine: {'line': b'copying sub1\\run_mapping.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\r\n'}
+[8.484000] (sub1) StdoutLine: {'line': b'running install\r\n'}
+[8.484000] (-) TimerEvent: {}
+[8.484000] (sub1) StdoutLine: {'line': b'running install_lib\r\n'}
+[8.500000] (sub1) StdoutLine: {'line': b'copying C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\\charge_command.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\r\n'}
+[8.515000] (sub1) StdoutLine: {'line': b'copying C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\\charge_ing.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\r\n'}
+[8.547000] (sub1) StdoutLine: {'line': b'copying C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\\picture_ocr.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\r\n'}
+[8.562000] (sub1) StdoutLine: {'line': b'copying C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\build\\lib\\sub1\\run_mapping.py -> C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\r\n'}
+[8.578000] (sub1) StdoutLine: {'line': b'byte-compiling C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\\charge_command.py to charge_command.cpython-37.pyc\r\n'}
+[8.593000] (-) TimerEvent: {}
+[8.593000] (sub1) StdoutLine: {'line': b'byte-compiling C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\\charge_ing.py to charge_ing.cpython-37.pyc\r\n'}
+[8.609000] (sub1) StdoutLine: {'line': b'byte-compiling C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\\picture_ocr.py to picture_ocr.cpython-37.pyc\r\n'}
+[8.640000] (sub1) StdoutLine: {'line': b'byte-compiling C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\\run_mapping.py to run_mapping.cpython-37.pyc\r\n'}
+[8.672000] (sub1) StdoutLine: {'line': b'running install_data\r\n'}
+[8.672000] (sub1) StdoutLine: {'line': b'running install_egg_info\r\n'}
+[8.687000] (sub1) StdoutLine: {'line': b"removing 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1-0.0.0-py3.7.egg-info' (and everything under it)\r\n"}
+[8.703000] (sub1) StdoutLine: {'line': b'Copying ..\\..\\build\\sub1\\sub1.egg-info to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1-0.0.0-py3.7.egg-info\r\n'}
+[8.703000] (-) TimerEvent: {}
+[8.750000] (sub1) StdoutLine: {'line': b'running install_scripts\r\n'}
+[8.812000] (-) TimerEvent: {}
+[8.859000] (sub1) StdoutLine: {'line': b'Installing a_star-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.859000] (sub1) StdoutLine: {'line': b'Installing a_star.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.859000] (sub1) StdoutLine: {'line': b'Installing charge_command-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.859000] (sub1) StdoutLine: {'line': b'Installing charge_command.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.859000] (sub1) StdoutLine: {'line': b'Installing controller-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.859000] (sub1) StdoutLine: {'line': b'Installing controller.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing goal_publisher-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing goal_publisher.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing handcontrol-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing handcontrol.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing load_map-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing load_map.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing make_path-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing make_path.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing message_producer-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing message_producer.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing odom-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing odom.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing path_pub-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing path_pub.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing path_tracking-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.875000] (sub1) StdoutLine: {'line': b'Installing path_tracking.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing path_tracking_PID-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing path_tracking_PID.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing perception-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing perception.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing picture-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing picture.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing picture_ocr-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing picture_ocr.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing publisher-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing publisher.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing run_localization-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.890000] (sub1) StdoutLine: {'line': b'Installing run_localization.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.906000] (sub1) StdoutLine: {'line': b'Installing run_mapping-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.906000] (sub1) StdoutLine: {'line': b'Installing run_mapping.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.906000] (sub1) StdoutLine: {'line': b'Installing subscriber-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.906000] (sub1) StdoutLine: {'line': b'Installing subscriber.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.906000] (sub1) StdoutLine: {'line': b'Installing testapi-script.py script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.906000] (sub1) StdoutLine: {'line': b'Installing testapi.exe script to C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\lib\\sub1\r\n'}
+[8.922000] (sub1) StdoutLine: {'line': b"writing list of installed files to 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\build\\sub1\\install.log'\r\n"}
+[8.922000] (-) TimerEvent: {}
+[8.922000] (sub1) StderrLine: {'line': b'  File "C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\sub1\\Lib\\site-packages\\sub1\\charge_ing.py", line 18\r\n'}
+[8.922000] (sub1) StderrLine: {'line': b'    \r\n'}
+[8.922000] (sub1) StderrLine: {'line': b'    ^\r\n'}
+[8.922000] (sub1) StderrLine: {'line': b'SyntaxError: unexpected EOF while parsing\r\n'}
+[8.922000] (sub1) StderrLine: {'line': b'\r\n'}
+[9.000000] (sub1) CommandEnded: {'returncode': 0}
+[9.031000] (-) TimerEvent: {}
+[9.109000] (sub1) JobEnded: {'identifier': 'sub1', 'rc': 0}
+[9.125000] (-) EventReactorShutdown: {}

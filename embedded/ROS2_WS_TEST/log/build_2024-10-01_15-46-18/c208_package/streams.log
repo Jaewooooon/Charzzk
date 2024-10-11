@@ -1,0 +1,24 @@
+[12.250s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\c208_package': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\c208_package build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\install.log --install-scripts $base/lib/c208_package --single-version-externally-managed install_data
+[15.469s] running egg_info
+[15.484s] writing ..\..\build\c208_package\c208_package.egg-info\PKG-INFO
+[15.484s] writing dependency_links to ..\..\build\c208_package\c208_package.egg-info\dependency_links.txt
+[15.484s] writing entry points to ..\..\build\c208_package\c208_package.egg-info\entry_points.txt
+[15.500s] writing requirements to ..\..\build\c208_package\c208_package.egg-info\requires.txt
+[15.500s] writing top-level names to ..\..\build\c208_package\c208_package.egg-info\top_level.txt
+[15.688s] reading manifest file '..\..\build\c208_package\c208_package.egg-info\SOURCES.txt'
+[15.719s] writing manifest file '..\..\build\c208_package\c208_package.egg-info\SOURCES.txt'
+[15.719s] running build
+[15.719s] running build_py
+[15.734s] running install
+[15.734s] running install_lib
+[15.766s] running install_data
+[15.766s] running install_egg_info
+[15.797s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\Lib\site-packages\c208_package-0.0.0-py3.7.egg-info' (and everything under it)
+[15.828s] Copying ..\..\build\c208_package\c208_package.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\Lib\site-packages\c208_package-0.0.0-py3.7.egg-info
+[15.984s] running install_scripts
+[16.188s] Installing c208_node-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\lib\c208_package
+[16.188s] Installing c208_node.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\lib\c208_package
+[16.203s] writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\install.log'
+[16.313s] Invoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\c208_package' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\c208_package build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\c208_package\install.log --install-scripts $base/lib/c208_package --single-version-externally-managed install_data

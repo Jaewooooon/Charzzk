@@ -1,0 +1,44 @@
+[2.031s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs': CL=/MP CMAKE_PREFIX_PATH=%CMAKE_PREFIX_PATH%;C:\Users\SSAFY\Desktop\ros2_ws\install\sub3;C:\Users\SSAFY\Desktop\ros2_ws\install\sub2;C:\Users\SSAFY\Desktop\ros2_ws\install\sub1;C:\Users\SSAFY\Desktop\ros2_ws\install\custom_game;C:\Users\SSAFY\Desktop\ros2_ws\install\advanced;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge;C:\Users\SSAFY\Desktop\ros2_ws\install\security_service;C:\Users\SSAFY\Desktop\ros2_ws\install\c208_package installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; C:\Program Files\CMake\bin\cmake.EXE --build C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs --config Release
+[10.453s] msbuild 버전 17.10.4+10fbfbf2e(.NET Framework용)
+[10.453s] 
+[10.453s]   1>Checking Build System
+[10.453s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[10.453s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[10.453s]   ssafy_msgs__rosidl_generator_c.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_generator_c.dll
+[10.453s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[10.468s]   ssafy_msgs__rosidl_typesupport_c.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_c.dll
+[10.468s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[10.468s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[10.468s]   ssafy_msgs__rosidl_typesupport_connext_cpp.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_connext_cpp.dll
+[10.468s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[10.468s]   ssafy_msgs__rosidl_typesupport_connext_c.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_connext_c.dll
+[10.468s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[10.468s]   ssafy_msgs__rosidl_typesupport_cpp.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_cpp.dll
+[15.406s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[15.406s]   ssafy_msgs__rosidl_typesupport_fastrtps_cpp.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_fastrtps_cpp.dll
+[15.406s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[15.406s]   ssafy_msgs__rosidl_typesupport_fastrtps_c.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_fastrtps_c.dll
+[15.406s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[15.406s]   ssafy_msgs__rosidl_typesupport_introspection_c.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_introspection_c.dll
+[15.406s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[15.406s]   ssafy_msgs__rosidl_typesupport_introspection_cpp.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_introspection_cpp.dll
+[15.406s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[15.406s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[15.406s]   ssafy_msgs__rosidl_typesupport_opensplice_cpp.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_opensplice_cpp.dll
+[15.406s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[15.422s]   ssafy_msgs__rosidl_typesupport_opensplice_c.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\Release\ssafy_msgs__rosidl_typesupport_opensplice_c.dll
+[15.625s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[16.515s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[16.781s]   ssafy_msgs__python.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_generator_py\ssafy_msgs\ssafy_msgs__python.dll
+[17.078s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[17.312s]   ssafy_msgs__rosidl_typesupport_c__pyext.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_generator_py\ssafy_msgs\ssafy_msgs_s__rosidl_typesupport_c.pyd
+[17.953s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[18.265s]   ssafy_msgs__rosidl_typesupport_connext_c__pyext.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_generator_py\ssafy_msgs\ssafy_msgs_s__rosidl_typesupport_connext_c.pyd
+[18.578s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[18.812s]   ssafy_msgs__rosidl_typesupport_fastrtps_c__pyext.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_generator_py\ssafy_msgs\ssafy_msgs_s__rosidl_typesupport_fastrtps_c.pyd
+[19.093s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[103.578s]   ssafy_msgs__rosidl_typesupport_introspection_c__pyext.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_generator_py\ssafy_msgs\ssafy_msgs_s__rosidl_typesupport_introspection_c.pyd
+[103.578s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt
+[103.578s]   ssafy_msgs__rosidl_typesupport_opensplice_c__pyext.vcxproj -> C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_msgs\rosidl_generator_py\ssafy_msgs\ssafy_msgs_s__rosidl_typesupport_opensplice_c.pyd
+[103.578s]   Building Custom Rule C:/Users/SSAFY/Desktop/ros2_ws/src/ssafy_msgs/CMakeLists.txt

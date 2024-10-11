@@ -1,0 +1,32 @@
+[23.922s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_bridge': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\ssafy_bridge build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\install.log --install-scripts $base/lib/ssafy_bridge --single-version-externally-managed install_data
+[28.828s] running egg_info
+[28.828s] writing ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\PKG-INFO
+[28.828s] writing dependency_links to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\dependency_links.txt
+[28.828s] writing entry points to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\entry_points.txt
+[28.844s] writing requirements to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\requires.txt
+[28.844s] writing top-level names to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\top_level.txt
+[28.844s] reading manifest file '..\..\build\ssafy_bridge\ssafy_bridge.egg-info\SOURCES.txt'
+[28.844s] writing manifest file '..\..\build\ssafy_bridge\ssafy_bridge.egg-info\SOURCES.txt'
+[28.844s] running build
+[28.844s] running build_py
+[28.844s] running install
+[28.844s] running install_lib
+[28.859s] running install_data
+[28.859s] running install_egg_info
+[28.859s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages\ssafy_bridge-0.0.0-py3.7.egg-info' (and everything under it)
+[28.859s] Copying ..\..\build\ssafy_bridge\ssafy_bridge.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages\ssafy_bridge-0.0.0-py3.7.egg-info
+[28.859s] running install_scripts
+[28.859s] Installing cam_viewer-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] Installing cam_viewer.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] Installing sub_to_udp-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] Installing sub_to_udp.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] Installing udp_to_cam-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] Installing udp_to_cam.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] Installing udp_to_laser-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] Installing udp_to_laser.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] Installing udp_to_pub-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] Installing udp_to_pub.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[28.859s] writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\install.log'
+[29.016s] Invoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_bridge' returned '0': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\ssafy_bridge build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\install.log --install-scripts $base/lib/ssafy_bridge --single-version-externally-managed install_data

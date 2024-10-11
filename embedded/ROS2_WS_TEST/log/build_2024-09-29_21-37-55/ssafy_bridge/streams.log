@@ -1,0 +1,24 @@
+[21.938s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_bridge': PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages;%PYTHONPATH% installDir=%installDir%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\ssafy_bridge build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\install.log --install-scripts $base/lib/ssafy_bridge --single-version-externally-managed install_data
+[25.828s] running egg_info
+[25.828s] writing ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\PKG-INFO
+[25.828s] writing dependency_links to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\dependency_links.txt
+[25.828s] writing entry points to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\entry_points.txt
+[25.844s] writing requirements to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\requires.txt
+[25.844s] writing top-level names to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\top_level.txt
+[26.266s] reading manifest file '..\..\build\ssafy_bridge\ssafy_bridge.egg-info\SOURCES.txt'
+[26.266s] writing manifest file '..\..\build\ssafy_bridge\ssafy_bridge.egg-info\SOURCES.txt'
+[26.266s] running build
+[26.266s] running build_py
+[26.266s] running install
+[26.266s] running install_lib
+[26.266s] running install_data
+[26.266s] running install_egg_info
+[26.266s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages\ssafy_bridge-0.0.0-py3.7.egg-info' (and everything under it)
+[26.266s] Copying ..\..\build\ssafy_bridge\ssafy_bridge.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages\ssafy_bridge-0.0.0-py3.7.egg-info
+[26.484s] running install_scripts
+[26.516s] Installing cam_viewer-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[26.516s] Installing cam_viewer.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[26.516s] Installing sub_to_udp-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[26.531s] Installing sub_to_udp.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[26.531s] error: [Errno 13] Permission denied: 'C:\\Users\\SSAFY\\Desktop\\ros2_ws\\install\\ssafy_bridge\\lib\\ssafy_bridge\\sub_to_udp.exe'

@@ -1,0 +1,32 @@
+[16.766s] Invoking command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_bridge': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\ssafy_bridge build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\install.log --install-scripts $base/lib/ssafy_bridge --single-version-externally-managed install_data
+[19.719s] running egg_info
+[19.734s] writing ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\PKG-INFO
+[19.734s] writing dependency_links to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\dependency_links.txt
+[19.734s] writing entry points to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\entry_points.txt
+[19.734s] writing requirements to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\requires.txt
+[19.750s] writing top-level names to ..\..\build\ssafy_bridge\ssafy_bridge.egg-info\top_level.txt
+[19.922s] reading manifest file '..\..\build\ssafy_bridge\ssafy_bridge.egg-info\SOURCES.txt'
+[19.953s] writing manifest file '..\..\build\ssafy_bridge\ssafy_bridge.egg-info\SOURCES.txt'
+[19.953s] running build
+[19.969s] running build_py
+[19.984s] running install
+[20.000s] running install_lib
+[20.062s] running install_data
+[20.062s] running install_egg_info
+[20.094s] removing 'C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages\ssafy_bridge-0.0.0-py3.7.egg-info' (and everything under it)
+[20.109s] Copying ..\..\build\ssafy_bridge\ssafy_bridge.egg-info to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages\ssafy_bridge-0.0.0-py3.7.egg-info
+[20.203s] running install_scripts
+[20.391s] Installing cam_viewer-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.391s] Installing cam_viewer.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.391s] Installing sub_to_udp-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.406s] Installing sub_to_udp.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.406s] Installing udp_to_cam-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.422s] Installing udp_to_cam.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.422s] Installing udp_to_laser-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.422s] Installing udp_to_laser.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.437s] Installing udp_to_pub-script.py script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.437s] Installing udp_to_pub.exe script to C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\lib\ssafy_bridge
+[20.453s] writing list of installed files to 'C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\install.log'
+[21.031s] Invoked command in 'C:\Users\SSAFY\Desktop\ros2_ws\src\ssafy_bridge' returned '0': INCLUDE=%INCLUDE%
+IntelliJ IDEA=C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin; PYTHONPATH=C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\prefix_override;c:\python37\lib\site-packages\colcon_core\task\python\colcon_distutils_commands;C:\Users\SSAFY\Desktop\ros2_ws\install\ssafy_bridge\Lib\site-packages; c:\python37\python.exe -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ..\..\build\ssafy_bridge build --build-base C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\build install --record C:\Users\SSAFY\Desktop\ros2_ws\build\ssafy_bridge\install.log --install-scripts $base/lib/ssafy_bridge --single-version-externally-managed install_data
