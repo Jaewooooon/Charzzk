@@ -26,6 +26,24 @@ const DocumentManagement = () => {
     }
   };
 
+  // 신고 유형 값을 텍스트로 변환하는 함수
+  const getReportTypeLabel = (reportType) => {
+    switch (reportType) {
+      case 'FLIPPED':
+        return '로봇이 뒤집힘';
+      case 'BROKEN':
+        return '로봇 고장';
+      case 'DAMAGED':
+        return '로봇의 외관 손상';
+      case 'NOT_CHARGING':
+        return '충전이 안됨';
+      case 'ETC':
+        return '기타';
+      default:
+        return '알 수 없음'; // 예상하지 못한 경우 기본값
+    }
+  };
+
   // 컴포넌트가 마운트될 때 신고 데이터를 가져옴
   useEffect(() => {
     fetchReports();
@@ -79,7 +97,7 @@ const DocumentManagement = () => {
               <div key={report.id} className='IssueList_Contents' onClick={() => handleReportClick(report.id)}>
                 <div>{new Date(report.createdAt).toLocaleString()}</div> {/* 신고 시각 */}
                 <div>{report.user.username}</div> {/* 작성자 */}
-                <div>{report.reportType}</div> {/* 제목 */}
+                <div>{getReportTypeLabel(report.reportType)}</div> {/* 신고 유형 변환 */}
                 <div>{report.read ? "확인됨" : "미확인"}</div> {/* 확인 여부 */}
               </div>
             ))
